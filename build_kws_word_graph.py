@@ -6,18 +6,19 @@ import pickle
 import torch
 import os
 
-
+    
 def build_dgl_graph(nx_graph):
-    # Créer un graphe DGL vide
-    dgl_graph = dgl.DGLGraph()
+    # Extract edges with weights from the NetworkX graph
+    edges = np.array(list(nx_graph.edges(data='weight', default=1.0)), dtype=object)
+    src = edges[:, 0].astype(int)
+    dst = edges[:, 1].astype(int)
+    weights = edges[:, 2].astype(float)
 
-    # Ajouter des nœuds au graphe DGL
-    dgl_graph.add_nodes(nx_graph.number_of_nodes())
+    # Create a DGL graph from the edges
+    dgl_graph = dgl.graph((src, dst))
 
-    # Ajouter des arêtes au graphe DGL avec les poids
-    src, dst, weights = zip(*[(int(src), int(dst), data['weight']) for src, dst, data in nx_graph.edges(data=True)])
-    dgl_graph.add_edges(src, dst)
-    dgl_graph.edata['weight'] = torch.tensor(weights,dtype=torch.float)
+    # Add edge weights to the DGL graph
+    dgl_graph.edata['weight'] = torch.tensor(weights, dtype=torch.float32)
 
     return dgl_graph
     
