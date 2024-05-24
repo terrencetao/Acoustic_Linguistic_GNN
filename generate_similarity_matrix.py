@@ -17,9 +17,7 @@ import gensim.downloader as api
 import numpy as np
 import dgl
 import torch
-import pickle  # for saving label names
-import eng_to_ipa as ipa
-from sklearn.feature_extraction.text import CountVectorizer
+import pickle 
 
 
 # Function to extract spectrograms from the dataset and squeeze them
@@ -207,19 +205,12 @@ with open('label_names.pkl', 'rb') as f:
     
 
 
-# Convert words to their phoneme representations
-phoneme_words = [ipa.convert(word) for word in label_names]
-
-
-# Initialize CountVectorizer
-vectorizer = CountVectorizer(analyzer='char', token_pattern=r'[^ ]')
-
-# Fit the vectorizer on the phoneme words and transform them to vectors
-X = vectorizer.fit_transform(phoneme_words)
+# Load the GloVe Twitter embeddings
+glove_vectors = api.load('glove-twitter-25')
 
 
 # Retrieve embeddings for each word in the list
-word_embeddings = X.toarray()
+word_embeddings = np.array([glove_vectors[word] for word in label_names])
 
 # Compute the cosine similarity matrix
 similarity_matrix = np.dot(word_embeddings, word_embeddings.T)
