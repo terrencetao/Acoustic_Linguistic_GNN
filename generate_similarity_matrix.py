@@ -174,7 +174,7 @@ median_distances = compute_median_distances(similarity_matrix, subset_labels)
 
 medianes = np.array(list(median_distances.values()))
 nan_mask = np.isnan(medianes)
-filtered_similarity_matrix = filter_similarity_matrix(similarity_matrix, subset_labels, threshold=int(args.ta), k=int(args.num_n)))
+filtered_similarity_matrix = filter_similarity_matrix(similarity_matrix, subset_labels, threshold=int(args.ta), k=int(args.num_n))
 
 print("Filtered similarity matrix computed successfully.")
 
@@ -228,7 +228,7 @@ similarity_matrix = similarity_matrix / norms[:, np.newaxis]
 similarity_matrix = similarity_matrix / norms[np.newaxis, :]
 
 # Apply threshold
-threshold = int(args.tw)
+threshold = float(args.tw)
 similarity_matrix[similarity_matrix < threshold] = 0
 
 # Set diagonal to 0 to avoid self-loops
