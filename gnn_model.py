@@ -76,8 +76,8 @@ class GCN(nn.Module):
     def forward(self, g, features, edge_weights):
         #x = self.cnn(features.unsqueeze(1)).squeeze(1)
         x = self.flatten(features)
-        x = F.relu(self.conv1(g, x))
-        x = self.conv2(g, x)
+        x = F.relu(self.conv1(g, x, edge_weights))
+        x = self.conv2(g, x, edge_weights)
         return x
 
 # Define the training function
