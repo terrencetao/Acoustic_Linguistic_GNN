@@ -18,6 +18,9 @@ import numpy as np
 import dgl
 import torch
 import pickle  # for saving label names
+import eng_to_ipa as ipa
+from sklearn.feature_extraction.text import CountVectorizer
+
 
 # Function to extract spectrograms from the dataset and squeeze them
 def extract_spectrograms(dataset):
@@ -101,23 +104,42 @@ def compute_iqr_thresholds(similarity_matrix, labels):
 
     return iqr_thresholds
     
-# Function to filter the similarity matrix based on median thresholds and set diagonal to zero
-def filter_similarity_matrix(similarity_matrix, labels, threshold, alpha=2):
+
+import numpy as np
+
+def filter_similarity_matrix(similarity_matrix, labels, threshold=0, alpha=2, k=None):
+    # Make a copy of the similarity matrix to avoid modifying the original
     filtered_matrix = similarity_matrix.copy()
     
-    for i in range(similarity_matrix.shape[0]):
-        for j in range(similarity_matrix.shape[1]):
-            if i == j or similarity_matrix[i, j] > threshold:
+    # Get the size of the matrix
+    n = similarity_matrix.shape[0]
+    
+    for i in range(n):
+        # Get the indices of the values greater than the threshold
+        valid_indices = np.where(similarity_matrix[i, :] > threshold)[0]
+        
+        if k is not None and len(valid_indices) > k:
+            # Sort valid indices based on the similarity values in descending order
+            sorted_indices = valid_indices[np.argsort(similarity_matrix[i, valid_indices])[-k:]]
+        else:
+            sorted_indices = valid_indices
+        
+        for j in range(n):
+            if i == j or j not in sorted_indices:
                 filtered_matrix[i, j] = 0
             elif labels[i] == labels[j]:
-                filtered_matrix[i, j] = alpha*similarity_matrix[i, j]
+                filtered_matrix[i, j] = alpha * similarity_matrix[i, j]
+    
+    return filtered_matrix
 
-    return filtered_matrix  
     
 
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--sub_unit', help='number for training', required=True)    
+parser.add_argument('--num_n', help='number of neighbors for filering acoustic graph', required=True)
+parser.add_argument('--ta', help='acoustic similarity threshold', required=True)
+parser.add_argument('--tw', help='word similarity threshold', required=True)
 args = parser.parse_args()
 sub_units = int(args.sub_unit)    
  
@@ -152,7 +174,7 @@ median_distances = compute_median_distances(similarity_matrix, subset_labels)
 
 medianes = np.array(list(median_distances.values()))
 nan_mask = np.isnan(medianes)
-filtered_similarity_matrix = filter_similarity_matrix(similarity_matrix, subset_labels, np.min(medianes[~nan_mask]))
+filtered_similarity_matrix = filter_similarity_matrix(similarity_matrix, subset_labels, threshold=int(args.ta), k=int(args.num_n))
 
 print("Filtered similarity matrix computed successfully.")
 
@@ -185,12 +207,19 @@ with open('label_names.pkl', 'rb') as f:
     
 
 
-# Load the GloVe Twitter embeddings
-glove_vectors = api.load('glove-twitter-25')
+# Convert words to their phoneme representations
+phoneme_words = [ipa.convert(word) for word in label_names]
+
+
+# Initialize CountVectorizer
+vectorizer = CountVectorizer(analyzer='char', token_pattern=r'[^ ]')
+
+# Fit the vectorizer on the phoneme words and transform them to vectors
+X = vectorizer.fit_transform(phoneme_words)
 
 
 # Retrieve embeddings for each word in the list
-word_embeddings = np.array([glove_vectors[word] for word in label_names])
+word_embeddings = X.toarray()
 
 # Compute the cosine similarity matrix
 similarity_matrix = np.dot(word_embeddings, word_embeddings.T)
@@ -199,7 +228,7 @@ similarity_matrix = similarity_matrix / norms[:, np.newaxis]
 similarity_matrix = similarity_matrix / norms[np.newaxis, :]
 
 # Apply threshold
-threshold = 0.5
+threshold = float(args.tw)
 similarity_matrix[similarity_matrix < threshold] = 0
 
 # Set diagonal to 0 to avoid self-loops
