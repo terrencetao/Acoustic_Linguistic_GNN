@@ -21,12 +21,12 @@ import pickle
 
 
 # Function to extract spectrograms from the dataset and squeeze them
-def extract_spectrograms(dataset):
+def extract_spectrograms(dataset, dim):
     spectrograms = []
     labels = []
     for spectrogram_batch, label_batch in loaded_train_spectrogram_ds:
         for spectrogram in spectrogram_batch:
-            spectrograms.append(tf.squeeze(spectrogram, axis=-1).numpy())
+            spectrograms.append(tf.squeeze(spectrogram[:,:dim], axis=-1).numpy())
         for label in label_batch:
             labels.append(label.numpy())
     return spectrograms, labels
@@ -135,6 +135,7 @@ def filter_similarity_matrix(similarity_matrix, labels, threshold=0, alpha=2, k=
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--sub_unit', help='number for training', required=True)    
+parser.add_argument('--dim_init', help='dim of spec', required=True)    
 parser.add_argument('--num_n', help='number of neighbors for filering acoustic graph', required=True)
 parser.add_argument('--ta', help='acoustic similarity threshold', required=True)
 parser.add_argument('--tw', help='word similarity threshold', required=True)
@@ -153,7 +154,7 @@ print("Datasets loaded successfully.")
 
 
 # Extract spectrograms
-train_spectrograms, labels_train = extract_spectrograms(loaded_train_spectrogram_ds)
+train_spectrograms, labels_train = extract_spectrograms(loaded_train_spectrogram_ds, int(args.dim_init))
 #val_spectrograms, labels_val = extract_spectrograms(loaded_val_spectrogram_ds)
 #test_spectrograms, labels_test = extract_spectrograms(loaded_test_spectrogram_ds)
 
@@ -162,6 +163,7 @@ train_spectrograms, labels_train = extract_spectrograms(loaded_train_spectrogram
 ## Compute DTW similarity matrix for a subset (e.g., first 100 spectrograms)
 subset_size = sub_units
 subset_spectrograms = train_spectrograms[:subset_size]
+
 subset_labels = labels_train[:subset_size]
 similarity_matrix = compute_dtw_similarity_matrix(subset_spectrograms)
 

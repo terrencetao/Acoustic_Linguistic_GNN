@@ -1,5 +1,5 @@
 python3 preprocess.py
-python3 generate_similarity_matrix.py --sub_unit 10 --num_n 15 --ta 0 --tw 0.5
+python3 generate_similarity_matrix.py --sub_unit 5 --num_n 1 --ta 0 --tw 0.5 --dim_init 10
 python3 build_kws_graph.py
 python3 gnn_model.py --input_folder ''  --graph_file saved_graphs/kws_graph.dgl
 python build_kws_word_graph.py
