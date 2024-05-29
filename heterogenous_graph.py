@@ -5,7 +5,41 @@ import torch
 import networkx as nx
 import matplotlib.pyplot as plt
 import tensorflow as tf
+import argparse
+import numpy as np
 
+
+
+
+def filter_similarity_matrix(similarity_matrix,  threshold=0, k=None):
+    # Make a copy of the similarity matrix to avoid modifying the original
+    filtered_matrix = similarity_matrix.copy()
+    
+    # Get the size of the matrix
+    n,m = similarity_matrix.shape
+    
+    for j in range(m):
+        # Get the indices of the values greater than the threshold
+        valid_indices = np.where(similarity_matrix[:, j] > threshold)[0]
+        
+        if k is not None and len(valid_indices) > k:
+            # Sort valid indices based on the similarity values in descending order
+            sorted_indices = valid_indices[np.argsort(similarity_matrix[valid_indices, j])[-k:]]
+        else:
+            sorted_indices = valid_indices
+        
+        for i in range(n):
+            if i not in sorted_indices:
+                filtered_matrix[i, j] = 0
+            
+    
+    return filtered_matrix
+    
+parser = argparse.ArgumentParser()
+parser.add_argument('--twa', help='threshold for mixte graph', required=True)    
+parser.add_argument('--num_n', help='number of neigheibors for word', required=True)   
+args = parser.parse_args()
+    
 save_graph_dir = 'saved_graphs'
 # Load the simple DGL graphs
 glist1, label_dict = load_graphs(os.path.join(save_graph_dir,"kws_graph.dgl"))
@@ -30,21 +64,28 @@ edge_weights2 = graph2.edata['weight']  # Assume edge weights are stored in 'wei
 num_acoustic_nodes = graph1.num_nodes()
 num_word_nodes = graph2.num_nodes()
 
-acoustic_model = tf.keras.models.load_model('models/model.h5')
+acoustic_model = tf.keras.models.load_model('models/model.keras')
 softmax_probabilities = acoustic_model.predict(tf.convert_to_tensor(graph1.ndata['feat'].cpu().numpy()))
 
 # Step 2: Define the threshold probability
-threshold_probability = 0.3
+threshold_probability = float(args.twa)
+k= int(args.num_n)
 
+softmax_probabilities=filter_similarity_matrix(softmax_probabilities,  threshold=threshold_probability, k=k)
+
+np.save('filtered_softmax_probabilities_words_acoustic.npy', softmax_probabilities)
 # Step 3: Create links between acoustic and word nodes based on probabilities exceeding the threshold
 links_acoustic_word = []
 probabilities_acoustic_word = []
+
+
 for i in range(num_acoustic_nodes):
     for j in range(num_word_nodes):
-        if softmax_probabilities[i, j] > threshold_probability:
-            links_acoustic_word.append((i, j))
-            probabilities_acoustic_word.append(softmax_probabilities[i, j])
+        links_acoustic_word.append((i, j))
+        probabilities_acoustic_word.append(softmax_probabilities[i, j])
 
+
+                
 # Combine the edges into a data dictionary for the heterogeneous graph
 data_dict = {
     ('acoustic', 'sim_tic', 'acoustic'): (src1, dst1),

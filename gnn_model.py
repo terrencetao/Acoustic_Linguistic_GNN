@@ -2,7 +2,7 @@ import dgl.function as fn
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from dgl.nn import SAGEConv
+from dgl.nn import SAGEConv, GraphConv
 import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
 from dgl.data.utils import load_graphs
@@ -70,7 +70,7 @@ class GCN(nn.Module):
         self.flatten = nn.Flatten()
         self.cnn = CNN(conv_param=conv_param, hidden_units=hidden_units)
         #self.conv1 = SAGEConv(hidden_units[-1], hidden_size, 'mean')
-        self.conv1 = SAGEConv(15996, hidden_size, 'mean')
+        self.conv1 = SAGEConv(in_feats, hidden_size, 'mean')
         self.conv2 = SAGEConv(hidden_size, num_classes, 'mean')
 
     def forward(self, g, features, edge_weights):
@@ -140,7 +140,8 @@ labels = dgl_G.ndata['label']
 edge_weights = dgl_G.edata['weight']
 
 # Initialize the GCN model
-in_feats = dgl_G.ndata['feat'].shape[1]
+
+in_feats = features[0].shape[0] * features[0].shape[1]
 hidden_size = 64
 num_classes = len(labels.unique())  # Number of unique labels
 conv_param = [

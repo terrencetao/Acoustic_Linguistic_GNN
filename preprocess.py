@@ -10,6 +10,8 @@ from tensorflow.keras import layers
 from tensorflow.keras import models
 from IPython import display
 import pickle
+import argparse
+
 # Set the seed value for experiment reproducibility.
 seed = 42
 tf.random.set_seed(seed)
@@ -17,12 +19,12 @@ np.random.seed(seed)
 
 
 
-def get_spectrogram(waveform):
+def get_spectrogram(waveform, dim):
   # Convert the waveform to a spectrogram via a STFT.
   spectrogram = tf.signal.stft(
       waveform, frame_length=255, frame_step=128)
   # Obtain the magnitude of the STFT.
-  spectrogram = tf.abs(spectrogram)
+  spectrogram = tf.abs(spectrogram[:,:dim])
   # Add a `channels` dimension, so that the spectrogram can be used
   # as image-like input data with convolution layers (which expect
   # shape (`batch_size`, `height`, `width`, `channels`).
@@ -30,16 +32,19 @@ def get_spectrogram(waveform):
   return spectrogram
 
 
-def make_spec_ds(ds):
+def make_spec_ds(ds,dim):
   return ds.map(
-      map_func=lambda audio,label: (get_spectrogram(audio), label),
+      map_func=lambda audio,label: (get_spectrogram(audio,dim), label),
       num_parallel_calls=tf.data.AUTOTUNE)
 
 def squeeze(audio, labels):
   audio = tf.squeeze(audio, axis=-1)
   return audio, labels
 
-
+parser = argparse.ArgumentParser()
+parser.add_argument('--dim_init', help='number for training', required=True)  
+args = parser.parse_args()
+dim = int(args.dim_init) 
 
 DATASET_PATH = 'data/mini_speech_commands'
 
@@ -87,15 +92,16 @@ test_ds = val_ds.shard(num_shards=2, index=0)
 val_ds = val_ds.shard(num_shards=2, index=1)
 
 
-train_spectrogram_ds = make_spec_ds(train_ds)
-val_spectrogram_ds = make_spec_ds(val_ds)
-test_spectrogram_ds = make_spec_ds(test_ds)
+train_spectrogram_ds = make_spec_ds(train_ds,dim)
+val_spectrogram_ds = make_spec_ds(val_ds,dim)
+test_spectrogram_ds = make_spec_ds(test_ds,dim)
 
 
 
 # Define the directory to save the datasets
 save_dir = 'saved_datasets'
 os.makedirs(save_dir, exist_ok=True)
+
 
 # Save the datasets
 tf.data.experimental.save(train_spectrogram_ds, os.path.join(save_dir, 'train_spectrogram_ds'))

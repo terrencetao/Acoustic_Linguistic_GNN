@@ -2,30 +2,39 @@ import dgl
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from dgl.nn import HeteroGraphConv, GraphConv
+from dgl.nn import HeteroGraphConv, GraphConv, SAGEConv
 import argparse 
 import os
 import networkx as nx
+import logging
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 # Define the HeteroGCN model
 class HeteroGCN(nn.Module):
     def __init__(self, in_feats, hidden_size, out_feats):
         super(HeteroGCN, self).__init__()
         self.conv1 = HeteroGraphConv({
-            'sim_tic': GraphConv(in_feats['acoustic'], hidden_size),
-            'sim_w': GraphConv(in_feats['word'], hidden_size),
-            'related_to': GraphConv(in_feats['acoustic'], hidden_size)
+            'sim_tic': SAGEConv(in_feats['acoustic'], hidden_size, 'mean'),
+            'sim_w': SAGEConv(in_feats['word'], hidden_size, 'mean'),
+            'related_to': SAGEConv(in_feats['acoustic'], hidden_size, 'mean')
         }, aggregate='mean')
         self.conv2 = HeteroGraphConv({
-            'sim_tic': GraphConv(hidden_size, out_feats),
-            'sim_w': GraphConv(hidden_size, out_feats),
-            'related_to': GraphConv(hidden_size, out_feats)
+            'sim_tic': SAGEConv(hidden_size, out_feats, 'mean'),
+            'sim_w': SAGEConv(hidden_size, out_feats, 'mean'),
+            'related_to': SAGEConv(hidden_size, out_feats, 'mean')
         }, aggregate='mean')
 
+    #def forward(self, g, inputs):
+    #    h = self.conv1(g, inputs)
+    #    h = {k: F.relu(v) for k, v in h.items()}
+    #    h = self.conv2(g, h)
+    #    return h
     def forward(self, g, inputs):
-        h = self.conv1(g, inputs)
+        # Get edge weights
+        edge_weights = {etype: g.edges[etype].data['weight'] for etype in g.etypes}
+        h = self.conv1(g, inputs, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
         h = {k: F.relu(v) for k, v in h.items()}
-        h = self.conv2(g, h)
+        h = self.conv2(g, h, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
         return h
 
 # Define a custom topological loss function
@@ -115,7 +124,7 @@ def main(input_folder, graph_file, epochs):
     # Save the model
     model_path = os.path.join('models', "hetero_gnn_model.pth")
     torch.save(model.state_dict(), model_path)
-    print(f'Model saved to {model_path}')
+    logging.info(f'Model saved to {model_path}')
 
 # Parse arguments and run main
 if __name__ == "__main__":
@@ -126,4 +135,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     main(args.input_folder, args.graph_file, int(args.epochs))
-
