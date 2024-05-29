@@ -3,6 +3,13 @@ from tensorflow.keras import layers
 from tensorflow.keras import models
 import os
 import pickle
+import argparse
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--epochs', help='number of epochs', required=True)
+args = parser.parse_args()
+
 # Load the datasets
 save_dir = 'saved_datasets'
 
@@ -57,7 +64,7 @@ model.compile(
     metrics=['accuracy'],
 )
 
-EPOCHS = 10
+EPOCHS = int(args.epochs)
 history = model.fit(
     train_spectrogram_ds,
     validation_data=val_spectrogram_ds,
