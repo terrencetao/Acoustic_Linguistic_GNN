@@ -20,7 +20,7 @@ def filter_similarity_matrix(similarity_matrix,  threshold=0, k=None):
     
     for j in range(m):
         # Get the indices of the values greater than the threshold
-        valid_indices = np.where(similarity_matrix[:, :j] > threshold)[0]
+        valid_indices = np.where(similarity_matrix[:, j] > threshold)[0]
         
         if k is not None and len(valid_indices) > k:
             # Sort valid indices based on the similarity values in descending order
@@ -72,6 +72,8 @@ threshold_probability = float(args.twa)
 k= int(args.num_n)
 
 softmax_probabilities=filter_similarity_matrix(softmax_probabilities,  threshold=threshold_probability, k=k)
+
+np.save('filtered_softmax_probabilities_words_acoustic.npy', softmax_probabilities)
 # Step 3: Create links between acoustic and word nodes based on probabilities exceeding the threshold
 links_acoustic_word = []
 probabilities_acoustic_word = []
