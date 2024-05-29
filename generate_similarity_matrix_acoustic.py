@@ -13,13 +13,11 @@ import argparse
 
 
 
-import gensim.downloader as api
+
 import numpy as np
 import dgl
 import torch
-import pickle  # for saving label names
-import eng_to_ipa as ipa
-from sklearn.feature_extraction.text import CountVectorizer
+import pickle 
 
 
 # Function to extract spectrograms from the dataset and squeeze them
@@ -110,7 +108,6 @@ import numpy as np
 def filter_similarity_matrix(similarity_matrix, labels, threshold=0, alpha=2, k=None):
     # Make a copy of the similarity matrix to avoid modifying the original
     filtered_matrix = similarity_matrix.copy()
-    
     # Get the size of the matrix
     n = similarity_matrix.shape[0]
     
@@ -125,10 +122,12 @@ def filter_similarity_matrix(similarity_matrix, labels, threshold=0, alpha=2, k=
             sorted_indices = valid_indices
         
         for j in range(n):
+            
             if i == j or j not in sorted_indices:
                 filtered_matrix[i, j] = 0
             elif labels[i] == labels[j]:
                 filtered_matrix[i, j] = alpha * similarity_matrix[i, j]
+           
     
     return filtered_matrix
 
@@ -136,12 +135,12 @@ def filter_similarity_matrix(similarity_matrix, labels, threshold=0, alpha=2, k=
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--sub_unit', help='number for training', required=True)    
+  
+parser.add_argument('--sub_units', help='fraction of data', required=True)    
 parser.add_argument('--num_n', help='number of neighbors for filering acoustic graph', required=True)
 parser.add_argument('--ta', help='acoustic similarity threshold', required=True)
-parser.add_argument('--tw', help='word similarity threshold', required=True)
 args = parser.parse_args()
-sub_units = int(args.sub_unit)    
+sub_units = int(args.sub_units)    
  
 # Define the directory where datasets are saved
 save_dir = 'saved_datasets'
@@ -159,11 +158,13 @@ train_spectrograms, labels_train = extract_spectrograms(loaded_train_spectrogram
 #val_spectrograms, labels_val = extract_spectrograms(loaded_val_spectrogram_ds)
 #test_spectrograms, labels_test = extract_spectrograms(loaded_test_spectrogram_ds)
 
+  
 
 
 ## Compute DTW similarity matrix for a subset (e.g., first 100 spectrograms)
 subset_size = sub_units
 subset_spectrograms = train_spectrograms[:subset_size]
+
 subset_labels = labels_train[:subset_size]
 similarity_matrix = compute_dtw_similarity_matrix(subset_spectrograms)
 
