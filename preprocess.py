@@ -11,37 +11,48 @@ from tensorflow.keras import models
 from IPython import display
 import pickle
 import argparse
+import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Set the seed value for experiment reproducibility.
 seed = 42
 tf.random.set_seed(seed)
 np.random.seed(seed)
 
-def drof_freq(spectrogram, drop_fraction):
-  drop_fraction = 0.5  # Fraction of frequency bins to drop
-
-# Calculate the number of frequencies to keep
-  num_frequencies = spectrogram.shape[2]
-  num_to_keep = int(num_frequencies * (1 - drop_fraction))
+def sampler(spectrogram, dim, drop=None ):
+  drop_fraction = drop  
+# Calculate the number of dim to keep
+  num_dim = spectrogram.shape[dim]
+  num_to_keep = int(num_dim * (1 - drop_fraction))
  
-# Randomly select indices for the frequency dimension to keep
-  frequency_indices = np.random.choice(num_frequencies, num_to_keep, replace=False)
+# Randomly select indices for the dim dimension to keep
+  indices = np.random.choice(num_dim, num_to_keep, replace=False)
 
 # Sort the indices (optional, to maintain some order)
-  frequency_indices = np.sort(frequency_indices)
+  indices = np.sort(indices)
 
-# Downsample the spectrogram by selecting the random subset of frequencies
-  spectrogram_downsampled = tf.gather(spectrogram, frequency_indices, axis=2)
+# Downsample the spectrogram by selecting the random subset of dim
+  spectrogram_downsampled = tf.gather(spectrogram, indices, axis=dim)
   
   return spectrogram_downsampled
 
-def get_spectrogram(waveform, drop_fraction):
+def drop_out(spectrogram, drop_int=None, drop_freq=None ):
+  spectrogram_downsampled =  tf.zeros_like
+  if drop_int:
+     spectrogram_downsampled =  sampler(spectrogram, dim=1, drop=drop_int )
+  if drop_freq:
+     spectrogram_downsampled = sampler(spectrogram_downsampled, dim=2, drop=drop_freq )
+    
+  return spectrogram_downsampled
+  
+def get_spectrogram(waveform, drop_int=None, drop_freq=None):
   # Convert the waveform to a spectrogram via a STFT.
   spectrogram = tf.signal.stft(
       waveform, frame_length=255, frame_step=128)
   # Obtain the magnitude of the STFT.
   
-  spectrogram = tf.abs(drof_freq(spectrogram, drop_fraction))
+  spectrogram = tf.abs(drop_out(spectrogram, drop_int, drop_freq))
   
   # Add a `channels` dimension, so that the spectrogram can be used
   # as image-like input data with convolution layers (which expect
@@ -50,9 +61,9 @@ def get_spectrogram(waveform, drop_fraction):
   return spectrogram
 
 
-def make_spec_ds(ds,dim):
+def make_spec_ds(ds,drop_int=None, drop_freq=None):
   return ds.map(
-      map_func=lambda audio,label: (get_spectrogram(audio,dim), label),
+      map_func=lambda audio,label: (get_spectrogram(audio, drop_int, drop_freq), label),
       num_parallel_calls=tf.data.AUTOTUNE)
 
 def squeeze(audio, labels):
@@ -60,11 +71,12 @@ def squeeze(audio, labels):
   return audio, labels
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--drop_freq', help='dim frequency ', required=True)  
+parser.add_argument('--drop_freq', help='dim frequency ', required=False)  
+parser.add_argument('--drop_int', help='dim amplitude ', required=False) 
 
 args = parser.parse_args()
 drop_freq = float(args.drop_freq) 
-
+drop_int = float(args.drop_int)
 
 DATASET_PATH = 'data/mini_speech_commands'
 
@@ -112,9 +124,9 @@ test_ds = val_ds.shard(num_shards=2, index=0)
 val_ds = val_ds.shard(num_shards=2, index=1)
 
 
-train_spectrogram_ds = make_spec_ds(train_ds,drop_freq)
-val_spectrogram_ds = make_spec_ds(val_ds,drop_freq)
-test_spectrogram_ds = make_spec_ds(test_ds,drop_freq)
+train_spectrogram_ds = make_spec_ds(train_ds, drop_int, drop_freq)
+val_spectrogram_ds = make_spec_ds(val_ds, drop_int, drop_freq)
+test_spectrogram_ds = make_spec_ds(test_ds, drop_int, drop_freq)
 
 
 
@@ -129,4 +141,8 @@ tf.data.experimental.save(val_spectrogram_ds, os.path.join(save_dir, 'val_spectr
 tf.data.experimental.save(test_spectrogram_ds, os.path.join(save_dir, 'test_spectrogram_ds'))
 
 print("Datasets saved successfully.")
+for example_spectrograms, example_spect_labels in train_spectrogram_ds.take(1):
+  break
+input_shape = example_spectrograms.shape[1:]
+logging.info(f'dimension of spectrogram {input_shape}')
 
