@@ -1,4 +1,4 @@
-python3 preprocess.py --dim_init 20
+python3 preprocess.py --drop_frac 0.5
 python3 generate_similarity_matrix_acoustic.py --sub_unit 20 --num_n 10 --ta 0 
 python3 generate_similarity_matrix_word.py --tw 0.5 
 python3 build_kws_graph.py
