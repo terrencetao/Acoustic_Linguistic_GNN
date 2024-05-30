@@ -1,5 +1,5 @@
-python3 preprocess.py --drop_frac 0.5
-python3 generate_similarity_matrix_acoustic.py --sub_unit 20 --num_n 10 --ta 0 
+python3 preprocess.py --drop_freq 0.5 --drop_int 0.3
+python3 generate_similarity_matrix_acoustic.py --sub_unit 10 --num_n 10 --ta 0 
 python3 generate_similarity_matrix_word.py --tw 0.5 
 python3 build_kws_graph.py
 python3 gnn_model.py --input_folder ''  --graph_file saved_graphs/kws_graph.dgl
