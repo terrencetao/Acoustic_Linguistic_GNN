@@ -36,8 +36,8 @@ def extract_spectrograms(dataset):
 # Function to compute DTW distance between two spectrograms using dtaidistance
 def compute_dtw_distance(spectrogram1, spectrogram2):
     distances = []
-    for k in range(spectrogram1.shape[1]):  # iterate over frequency bins
-        d = dtw.distance(spectrogram1[:, k], spectrogram2[:, k])
+    for k in range(spectrogram1.shape[0]):  # iterate over frequency bins
+        d = dtw.distance(spectrogram1[k, :], spectrogram2[k, :])
         distances.append(d)
     return np.mean(distances)
 
