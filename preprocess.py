@@ -38,7 +38,7 @@ def sampler(spectrogram, dim, drop=None ):
   return spectrogram_downsampled
 
 def drop_out(spectrogram, drop_int=None, drop_freq=None ):
-  spectrogram_downsampled =  tf.zeros_like
+  spectrogram_downsampled =  tf.zeros_like(spectrogram)
   if drop_int:
      spectrogram_downsampled =  sampler(spectrogram, dim=1, drop=drop_int )
   if drop_freq:
