@@ -17,15 +17,31 @@ seed = 42
 tf.random.set_seed(seed)
 np.random.seed(seed)
 
+def drof_freq(spectrogram, drop_fraction):
+  drop_fraction = 0.5  # Fraction of frequency bins to drop
 
+# Calculate the number of frequencies to keep
+  num_frequencies = spectrogram.shape[2]
+  num_to_keep = int(num_frequencies * (1 - drop_fraction))
+ 
+# Randomly select indices for the frequency dimension to keep
+  frequency_indices = np.random.choice(num_frequencies, num_to_keep, replace=False)
 
-def get_spectrogram(waveform, dim):
+# Sort the indices (optional, to maintain some order)
+  frequency_indices = np.sort(frequency_indices)
+
+# Downsample the spectrogram by selecting the random subset of frequencies
+  spectrogram_downsampled = tf.gather(spectrogram, frequency_indices, axis=2)
+  
+  return spectrogram_downsampled
+
+def get_spectrogram(waveform, drop_fraction):
   # Convert the waveform to a spectrogram via a STFT.
   spectrogram = tf.signal.stft(
       waveform, frame_length=255, frame_step=128)
   # Obtain the magnitude of the STFT.
   
-  spectrogram = tf.abs(spectrogram[:,:dim,:])
+  spectrogram = tf.abs(drof_freq(spectrogram, drop_fraction))
   
   # Add a `channels` dimension, so that the spectrogram can be used
   # as image-like input data with convolution layers (which expect
@@ -44,9 +60,11 @@ def squeeze(audio, labels):
   return audio, labels
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dim_init', help='number for training', required=True)  
+parser.add_argument('--drop_freq', help='dim frequency ', required=True)  
+
 args = parser.parse_args()
-dim = int(args.dim_init) 
+drop_freq = float(args.drop_freq) 
+
 
 DATASET_PATH = 'data/mini_speech_commands'
 
@@ -94,9 +112,9 @@ test_ds = val_ds.shard(num_shards=2, index=0)
 val_ds = val_ds.shard(num_shards=2, index=1)
 
 
-train_spectrogram_ds = make_spec_ds(train_ds,dim)
-val_spectrogram_ds = make_spec_ds(val_ds,dim)
-test_spectrogram_ds = make_spec_ds(test_ds,dim)
+train_spectrogram_ds = make_spec_ds(train_ds,drop_freq)
+val_spectrogram_ds = make_spec_ds(val_ds,drop_freq)
+test_spectrogram_ds = make_spec_ds(test_ds,drop_freq)
 
 
 
