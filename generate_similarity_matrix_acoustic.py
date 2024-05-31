@@ -103,33 +103,8 @@ def compute_iqr_thresholds(similarity_matrix, labels):
     return iqr_thresholds
     
 
-import numpy as np
 
-def filter_similarity_matrix(similarity_matrix, labels, threshold=0, alpha=2, k=None):
-    # Make a copy of the similarity matrix to avoid modifying the original
-    filtered_matrix = similarity_matrix.copy()
-    # Get the size of the matrix
-    n = similarity_matrix.shape[0]
-    
-    for i in range(n):
-        # Get the indices of the values greater than the threshold
-        valid_indices = np.where(similarity_matrix[i, :] > threshold)[0]
-        
-        if k is not None and len(valid_indices) > k:
-            # Sort valid indices based on the similarity values in descending order
-            sorted_indices = valid_indices[np.argsort(similarity_matrix[i, valid_indices])[-k:]]
-        else:
-            sorted_indices = valid_indices
-        
-        for j in range(n):
-            
-            if i == j or j not in sorted_indices:
-                filtered_matrix[i, j] = 0
-            elif labels[i] == labels[j]:
-                filtered_matrix[i, j] = alpha * similarity_matrix[i, j]
-           
-    
-    return filtered_matrix
+
 
     
 
@@ -137,8 +112,7 @@ def filter_similarity_matrix(similarity_matrix, labels, threshold=0, alpha=2, k=
 parser = argparse.ArgumentParser()
   
 parser.add_argument('--sub_units', help='fraction of data', required=True)    
-parser.add_argument('--num_n', help='number of neighbors for filering acoustic graph', required=True)
-parser.add_argument('--ta', help='acoustic similarity threshold', required=True)
+
 args = parser.parse_args()
 sub_units = int(args.sub_units)    
  
@@ -173,23 +147,25 @@ median_distances = compute_median_distances(similarity_matrix, subset_labels)
 #bornes_inferieures_iqr = compute_iqr_thresholds(similarity_matrix, subset_labels)
 # Filter the similarity matrix based on the median thresholds and set diagonal to zero
 
-medianes = np.array(list(median_distances.values()))
-nan_mask = np.isnan(medianes)
-filtered_similarity_matrix = filter_similarity_matrix(similarity_matrix, subset_labels, threshold=int(args.ta), k=int(args.num_n))
+#medianes = np.array(list(median_distances.values()))
+#nan_mask = np.isnan(medianes)
+#filtered_similarity_matrix = filter_similarity_matrix(similarity_matrix, subset_labels, threshold=int(args.ta), k=int(args.num_n))
 
 print("Filtered similarity matrix computed successfully.")
 
 # Convert subset_labels to a NumPy array
 subset_labels = np.array(subset_labels)
 # Append labels as an additional column
-matrix_with_labels = np.hstack((subset_labels[:, np.newaxis], filtered_similarity_matrix))
+matrix_with_labels = np.hstack((subset_labels[:, np.newaxis], similarity_matrix))
 
 # Save the matrix with labels
-np.save('filtered_similarity_matrix_with_labels.npy', matrix_with_labels)
+np.save('similarity_matrix_with_labels.npy', matrix_with_labels)
 np.save('subset_spectrogram.npy', subset_spectrograms )
+np.save('subset_label.npy', subset_labels )
 
 
-print("Filtered similarity matrix computed successfully.")
+
+print("Acoustic similarity matrix computed successfully.")
 
 
 

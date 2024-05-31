@@ -7,8 +7,10 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 import argparse
 import numpy as np
+import random
+import logging
 
-
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 def filter_similarity_matrix(similarity_matrix,  threshold=0, k=None):
@@ -35,9 +37,61 @@ def filter_similarity_matrix(similarity_matrix,  threshold=0, k=None):
     
     return filtered_matrix
     
+def create_label_matrix(graph, k):
+    # Assuming the 'label' feature is a node feature and stored as a tensor
+    labels = graph.ndata['label']
+    
+    # Get the unique labels
+    unique_labels = torch.unique(labels)
+    
+    # Create a binary matrix
+    num_nodes = graph.number_of_nodes()
+    num_labels = len(unique_labels)
+    
+    label_matrix = torch.zeros((num_nodes, num_labels), dtype=torch.float32)
+    
+    # Fill the binary matrix
+    for i in range(num_labels):
+        label_matrix[:, i] = (labels == unique_labels[i]).float()
+    
+    # Randomly select k values per column to stay as 1 and set the rest to 0
+    for j in range(num_labels):
+        ones_indices = torch.nonzero(label_matrix[:, j]).squeeze().tolist()
+        if isinstance(ones_indices, int):
+           ones_indices = [ones_indices]     
+        if len(ones_indices) > k:
+            keep_indices = random.sample(ones_indices, k)
+            set_zero_indices = list(set(ones_indices) - set(keep_indices))
+            label_matrix[set_zero_indices, j] = 0
+    
+    return label_matrix
+    
+def softmax_prob(method, graph, num_labels, threshold_probability=None, k=None):
+   
+    num_nodes = graph.number_of_nodes()
+  
+    softmax_probabilities = torch.zeros((num_nodes, num_labels), dtype=torch.float32)
+    
+    if method == 'ML':
+    
+      acoustic_model = tf.keras.models.load_model('models/model.keras')
+      softmax_probabilities = acoustic_model.predict(tf.convert_to_tensor(graph.ndata['feat'].cpu().numpy()))
+      softmax_probabilities=filter_similarity_matrix(softmax_probabilities,  threshold=threshold_probability, k=k)
+      
+      
+    elif method == 'fixed' :
+     softmax_probabilities = create_label_matrix(graph, k)
+     
+     
+    logging.info(f'{method} method for connection')
+    
+    return softmax_probabilities 
+      
+    
 parser = argparse.ArgumentParser()
 parser.add_argument('--twa', help='threshold for mixte graph', required=True)    
 parser.add_argument('--num_n', help='number of neigheibors for word', required=True)   
+parser.add_argument('--method', help='', required=False) 
 args = parser.parse_args()
     
 save_graph_dir = 'saved_graphs'
@@ -62,16 +116,16 @@ edge_weights2 = graph2.edata['weight']  # Assume edge weights are stored in 'wei
 # Step 1: Compute the softmax probabilities from a model
 # Example softmax probabilities for each acoustic node (random for demonstration purposes)
 num_acoustic_nodes = graph1.num_nodes()
+
 num_word_nodes = graph2.num_nodes()
 
-acoustic_model = tf.keras.models.load_model('models/model.keras')
-softmax_probabilities = acoustic_model.predict(tf.convert_to_tensor(graph1.ndata['feat'].cpu().numpy()))
+
 
 # Step 2: Define the threshold probability
 threshold_probability = float(args.twa)
 k= int(args.num_n)
 
-softmax_probabilities=filter_similarity_matrix(softmax_probabilities,  threshold=threshold_probability, k=k)
+softmax_probabilities=softmax_prob(args.method, graph1, num_word_nodes, threshold_probability, k)
 
 np.save('filtered_softmax_probabilities_words_acoustic.npy', softmax_probabilities)
 # Step 3: Create links between acoustic and word nodes based on probabilities exceeding the threshold
@@ -81,8 +135,9 @@ probabilities_acoustic_word = []
 
 for i in range(num_acoustic_nodes):
     for j in range(num_word_nodes):
-        links_acoustic_word.append((i, j))
-        probabilities_acoustic_word.append(softmax_probabilities[i, j])
+        if softmax_probabilities[i, j] > 0:
+          links_acoustic_word.append((i, j))
+          probabilities_acoustic_word.append(softmax_probabilities[i, j])
 
 
                 
