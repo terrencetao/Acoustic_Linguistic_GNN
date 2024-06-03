@@ -36,6 +36,7 @@ def filter_similarity_matrix(similarity_matrix, labels, threshold=0, alpha=2, k=
 parser = argparse.ArgumentParser()    
 parser.add_argument('--num_n', help='number of neighbors for filering acoustic graph', required=True)
 parser.add_argument('--ta', help='acoustic similarity threshold', required=True)
+parser.add_argument('--alpha', help='coeficient', required=True)
 args = parser.parse_args()
 # Load the filtered similarity matrix with labels
 matrix_with_labels = np.load('similarity_matrix_with_labels.npy')
@@ -45,7 +46,7 @@ labels = matrix_with_labels[:, 0]
 similarity_matrix = matrix_with_labels[:, 1:]
 subset_labels = np.load('subset_label.npy')
 
-filtered_similarity_matrix = filter_similarity_matrix(similarity_matrix, subset_labels, threshold=int(args.ta), k=int(args.num_n))
+filtered_similarity_matrix = filter_similarity_matrix(similarity_matrix, subset_labels, threshold=int(args.ta),alpha=float(args.alpha), k=int(args.num_n))
 
 print("Filtered similarity matrix computed successfully.")
 f_matrix_with_labels = np.hstack((subset_labels[:, np.newaxis], filtered_similarity_matrix))

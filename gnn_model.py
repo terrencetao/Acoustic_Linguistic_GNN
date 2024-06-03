@@ -121,65 +121,65 @@ def train_with_topological_loss(model, g, features, edge_weights,adj_matrix, epo
 
 
 
-
-parser = argparse.ArgumentParser()
-parser.add_argument('--input_folder', help ='source folder')
-parser.add_argument('--graph_file', help ='graph for trainning')
-args = parser.parse_args()
-input_folder = args.input_folder    
-graph_file = args.graph_file
-
-
-
-
-glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
-dgl_G = glist[0]  
-
-features = dgl_G.ndata['feat']
-labels = dgl_G.ndata['label']
-edge_weights = dgl_G.edata['weight']
-
-# Initialize the GCN model
-
-in_feats = features[0].shape[0] * features[0].shape[1]
-hidden_size = 64
-num_classes = len(labels.unique())  # Number of unique labels
-conv_param = [
-    # Paramètres de la première couche de convolution
-    (1, 3, (20,64)),  # Tuple: (nombre de canaux d'entrée, taille du noyau, forme de l'entrée)
-    32,
-    # Paramètres de la couche de pooling
-    (2)
-]
-
-print(num_classes)
-hidden_units = [32, 32]
-model1 = GCN(in_feats, hidden_size, num_classes, conv_param, hidden_units)
-model2 = GCN(in_feats, hidden_size, num_classes, conv_param, hidden_units)
-
-
-
-# Train the model
-
-train(model1, dgl_G, features,edge_weights, labels)
-
-# Define the file path for saving the model
-model_path = os.path.join('models',"gnn_model.pth")
-
-# Save the model
-torch.save(model1.state_dict(), model_path)
+if __name__ == "__main__":
+	parser = argparse.ArgumentParser()
+	parser.add_argument('--input_folder', help ='source folder')
+	parser.add_argument('--graph_file', help ='graph for trainning')
+	args = parser.parse_args()
+	input_folder = args.input_folder    
+	graph_file = args.graph_file
 
 
 
 
+	glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+	dgl_G = glist[0]  
+
+	features = dgl_G.ndata['feat']
+	labels = dgl_G.ndata['label']
+	edge_weights = dgl_G.edata['weight']
+
+	# Initialize the GCN model
+
+	in_feats = features[0].shape[0] * features[0].shape[1]
+	hidden_size = 64
+	num_classes = len(labels.unique())  # Number of unique labels
+	conv_param = [
+	    # Paramètres de la première couche de convolution
+	    (1, 3, (20,64)),  # Tuple: (nombre de canaux d'entrée, taille du noyau, forme de l'entrée)
+	    32,
+	    # Paramètres de la couche de pooling
+	    (2)
+	]
+
+	print(num_classes)
+	hidden_units = [32, 32]
+	model1 = GCN(in_feats, hidden_size, num_classes, conv_param, hidden_units)
+	model2 = GCN(in_feats, hidden_size, num_classes, conv_param, hidden_units)
 
 
-# Train the model with topological loss
-# Assume adj_matrix is the adjacency matrix of the graph
-adj_matrix = torch.tensor(nx.to_numpy_matrix(dgl.to_networkx(dgl_G)))
 
-adj_matrix = adj_matrix.float()
-features = features.float()
-train_with_topological_loss(model2, dgl_G, features, edge_weights,adj_matrix)
-model_path_sup = os.path.join('models',"gnn_model_unsup.pth")
-torch.save(model2.state_dict(), model_path_sup)
+	# Train the model
+
+	train(model1, dgl_G, features,edge_weights, labels)
+
+	# Define the file path for saving the model
+	model_path = os.path.join('models',"gnn_model.pth")
+
+	# Save the model
+	torch.save(model1.state_dict(), model_path)
+
+
+
+
+
+
+	# Train the model with topological loss
+	# Assume adj_matrix is the adjacency matrix of the graph
+	adj_matrix = torch.tensor(nx.to_numpy_matrix(dgl.to_networkx(dgl_G)))
+
+	adj_matrix = adj_matrix.float()
+	features = features.float()
+	train_with_topological_loss(model2, dgl_G, features, edge_weights,adj_matrix)
+	model_path_sup = os.path.join('models',"gnn_model_unsup.pth")
+	torch.save(model2.state_dict(), model_path_sup)
