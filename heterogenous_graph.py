@@ -65,7 +65,8 @@ def create_label_matrix(graph, k):
             label_matrix[set_zero_indices, j] = 0
     
     return label_matrix
-    
+
+
 def softmax_prob(method, graph, num_labels, threshold_probability=None, k=None):
    
     num_nodes = graph.number_of_nodes()
@@ -80,9 +81,15 @@ def softmax_prob(method, graph, num_labels, threshold_probability=None, k=None):
       
       
     elif method == 'fixed' :
-     softmax_probabilities = create_label_matrix(graph, k)
+      softmax_probabilities = create_label_matrix(graph, k)
      
-     
+    elif method == 'mixed':
+      acoustic_model = tf.keras.models.load_model('models/model.keras')
+      softmax_probabilities = acoustic_model.predict(tf.convert_to_tensor(graph.ndata['feat'].cpu().numpy()))
+      softmax_probabilities=filter_similarity_matrix(softmax_probabilities,  threshold=threshold_probability, k=2*k)
+      fixed_probabilities = create_label_matrix(graph, k)
+      softmax_probabilities[fixed_probabilities==1] = 1
+      
     logging.info(f'{method} method for connection')
     
     return softmax_probabilities 

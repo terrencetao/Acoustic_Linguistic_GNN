@@ -25,23 +25,28 @@ def sampler(spectrogram, dim, drop=None ):
 # Calculate the number of dim to keep
   num_dim = spectrogram.shape[dim]
   num_to_keep = int(num_dim * (1 - drop_fraction))
- 
+  if drop >0:
+    
 # Randomly select indices for the dim dimension to keep
-  indices = np.random.choice(num_dim, num_to_keep, replace=False)
+    indices = np.random.choice(num_dim, num_to_keep, replace=False)
 
 # Sort the indices (optional, to maintain some order)
-  indices = np.sort(indices)
+    indices = np.sort(indices)
 
 # Downsample the spectrogram by selecting the random subset of dim
-  spectrogram_downsampled = tf.gather(spectrogram, indices, axis=dim)
+    spectrogram_downsampled = tf.gather(spectrogram, indices, axis=dim)
   
-  return spectrogram_downsampled
+    return spectrogram_downsampled
+  else:
+    
+    return spectrogram
 
 def drop_out(spectrogram, drop_int=None, drop_freq=None ):
   spectrogram_downsampled =  tf.zeros_like(spectrogram)
-  if drop_int:
+  
+  if drop_int is not None: 
      spectrogram_downsampled =  sampler(spectrogram, dim=1, drop=drop_int )
-  if drop_freq:
+  if drop_freq is not None:
      spectrogram_downsampled = sampler(spectrogram_downsampled, dim=2, drop=drop_freq )
     
   return spectrogram_downsampled
@@ -144,5 +149,6 @@ print("Datasets saved successfully.")
 for example_spectrograms, example_spect_labels in train_spectrogram_ds.take(1):
   break
 input_shape = example_spectrograms.shape[1:]
+
 logging.info(f'dimension of spectrogram {input_shape}')
 

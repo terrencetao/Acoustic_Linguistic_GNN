@@ -102,80 +102,81 @@ def compute_iqr_thresholds(similarity_matrix, labels):
 
     return iqr_thresholds
     
+def sim_matrix(method,subset_labels=None, subset_spectrograms=None):
+   if method == 'dtw':
+      similarity_matrix = compute_dtw_similarity_matrix(subset_spectrograms)
+   elif method == 'fixed':
+   # Convert labels list to a NumPy array
+      labels_train_np = np.copy(subset_labels)
 
+# Create a comparison matrix
+      comparison_matrix = labels_train_np[:, None] == labels_train_np[None, :]
 
+# Convert boolean matrix to integer matrix (0 and 1)
+      similarity_matrix = comparison_matrix.astype(int)
 
-
+   return similarity_matrix
     
 
+if __name__ == "__main__":
+	parser = argparse.ArgumentParser()
+	  
+	parser.add_argument('--sub_units', help='fraction of data', required=True)    
+	parser.add_argument('--method', help='', required=True)
 
-parser = argparse.ArgumentParser()
-  
-parser.add_argument('--sub_units', help='fraction of data', required=True)    
+	args = parser.parse_args()
+	sub_units = int(args.sub_units)    
+	 
+	# Define the directory where datasets are saved
+	save_dir = 'saved_datasets'
 
-args = parser.parse_args()
-sub_units = int(args.sub_units)    
- 
-# Define the directory where datasets are saved
-save_dir = 'saved_datasets'
+	# Load the datasets
+	loaded_train_spectrogram_ds = tf.data.experimental.load(os.path.join(save_dir, 'train_spectrogram_ds'))
+	#loaded_val_spectrogram_ds = tf.data.experimental.load(os.path.join(save_dir, 'val_spectrogram_ds'))
+	#loaded_test_spectrogram_ds = tf.data.experimental.load(os.path.join(save_dir, 'test_spectrogram_ds'))
 
-# Load the datasets
-loaded_train_spectrogram_ds = tf.data.experimental.load(os.path.join(save_dir, 'train_spectrogram_ds'))
-loaded_val_spectrogram_ds = tf.data.experimental.load(os.path.join(save_dir, 'val_spectrogram_ds'))
-loaded_test_spectrogram_ds = tf.data.experimental.load(os.path.join(save_dir, 'test_spectrogram_ds'))
-
-print("Datasets loaded successfully.")
-
-
-# Extract spectrograms
-train_spectrograms, labels_train = extract_spectrograms(loaded_train_spectrogram_ds)
-#val_spectrograms, labels_val = extract_spectrograms(loaded_val_spectrogram_ds)
-#test_spectrograms, labels_test = extract_spectrograms(loaded_test_spectrogram_ds)
-
-  
+	print("Datasets loaded successfully.")
 
 
-## Compute DTW similarity matrix for a subset (e.g., first 100 spectrograms)
-subset_size = sub_units
-subset_spectrograms = train_spectrograms[:subset_size]
+	# Extract spectrograms
+	train_spectrograms, labels_train = extract_spectrograms(loaded_train_spectrogram_ds)
+	#val_spectrograms, labels_val = extract_spectrograms(loaded_val_spectrogram_ds)
+	#test_spectrograms, labels_test = extract_spectrograms(loaded_test_spectrogram_ds)
 
-subset_labels = labels_train[:subset_size]
-similarity_matrix = compute_dtw_similarity_matrix(subset_spectrograms)
+	  
 
-# Compute the median distances for each label group
-median_distances = compute_median_distances(similarity_matrix, subset_labels)
-#bornes_inferieures_iqr = compute_iqr_thresholds(similarity_matrix, subset_labels)
-# Filter the similarity matrix based on the median thresholds and set diagonal to zero
 
-#medianes = np.array(list(median_distances.values()))
-#nan_mask = np.isnan(medianes)
-#filtered_similarity_matrix = filter_similarity_matrix(similarity_matrix, subset_labels, threshold=int(args.ta), k=int(args.num_n))
+	## Compute DTW similarity matrix for a subset (e.g., first 100 spectrograms)
+	subset_size = sub_units
+	subset_spectrograms = train_spectrograms[:subset_size]
 
-print("Filtered similarity matrix computed successfully.")
-
-# Convert subset_labels to a NumPy array
-subset_labels = np.array(subset_labels)
-# Append labels as an additional column
-matrix_with_labels = np.hstack((subset_labels[:, np.newaxis], similarity_matrix))
-
-# Save the matrix with labels
-np.save('similarity_matrix_with_labels.npy', matrix_with_labels)
-np.save('subset_spectrogram.npy', subset_spectrograms )
-np.save('subset_label.npy', subset_labels )
+	subset_labels = labels_train[:subset_size]
+	# Convert subset_labels to a NumPy array
+	subset_labels = np.array(subset_labels)
 
 
 
-print("Acoustic similarity matrix computed successfully.")
+	# Compute the median distances for each label group
+	#median_distances = compute_median_distances(similarity_matrix, subset_labels)
+	#bornes_inferieures_iqr = compute_iqr_thresholds(similarity_matrix, subset_labels)
+	# Filter the similarity matrix based on the median thresholds and set diagonal to zero
+
+	#medianes = np.array(list(median_distances.values()))
+	#nan_mask = np.isnan(medianes)
+	#filtered_similarity_matrix = filter_similarity_matrix(similarity_matrix, subset_labels, threshold=int(args.ta), k=int(args.num_n))
+
+	similarity_matrix = sim_matrix(method=args.method,  subset_labels=subset_labels, subset_spectrograms=subset_spectrograms)
+
+	print(similarity_matrix)
+	# Append labels as an additional column
+	matrix_with_labels = np.hstack((subset_labels[:, np.newaxis], similarity_matrix))
+
+	# Save the matrix with labels
+	np.save('similarity_matrix_with_labels.npy', matrix_with_labels)
+	np.save('subset_spectrogram.npy', subset_spectrograms )
+	np.save('subset_label.npy', subset_labels )
 
 
 
-
-
-
-
-
-
-
-
-
+	print("Acoustic similarity matrix computed successfully.")
 

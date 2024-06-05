@@ -71,7 +71,7 @@ features_dic = {
 }
 in_feats = {'acoustic': features_dic['acoustic'].shape[1], 'word': features_dic['word'].shape[1]}
 hidden_size = 64
-out_feats = 8
+out_feats = 16
 
 # Initialize the model
 model = HeteroGCN(in_feats, hidden_size, out_feats)

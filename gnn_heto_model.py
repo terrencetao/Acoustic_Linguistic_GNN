@@ -90,7 +90,7 @@ def main(input_folder, graph_file, epochs):
     # Initialize the HeteroGCN model
     in_feats = {'acoustic': features['acoustic'].shape[1], 'word': features['word'].shape[1]}
     hidden_size = 64
-    out_feats = 8  # Set output feature size
+    out_feats = 16  # Set output feature size
     model = HeteroGCN(in_feats, hidden_size, out_feats)
     
     # Extract adjacency matrices
