@@ -24,6 +24,7 @@ parser.add_argument('--ta', help='method to compute a word similarity', required
 parser.add_argument('--alpha', help='method to compute a word similarity', required=True)
 parser.add_argument('--tw', help='method to compute a word similarity', required=True)
 parser.add_argument('--msw', help='method to compute a word similarity', required=True)
+parser.add_argument('--msa', help='method to compute heterogeneous similarity', required=True)
 args = parser.parse_args()
 
 
@@ -118,7 +119,7 @@ file_exists = os.path.isfile(csv_file)
 if not file_exists:
     with open(csv_file, mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['Supervised Model', 'Unsupervised Model', 'Heterogeneous Model', 'Spectrogram Baseline', 'twa'  ,'num_n_h' ,'mhg'  ,'num_n_a' ,'ta' ,'alpha' ,'tw' ,'msw'])
+        writer.writerow(['Supervised Model', 'Unsupervised Model', 'Heterogeneous Model', 'Spectrogram Baseline', 'twa'  ,'num_n_h' ,'mhg'  ,'num_n_a' ,'ta' ,'alpha' ,'tw' ,'msw','msa'])
 
 # Embeddings from supervised model
 node_embeddings_sup = torch.from_numpy(node_embeddings_sup)
@@ -150,5 +151,5 @@ accuracy_spectrogram = train_evaluate_svm(flattened_spectrograms, labels_np)
 # Write accuracy results to CSV file
 with open(csv_file, mode='a', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hetero, accuracy_spectrogram, float(args.twa)  ,float(args.num_n_h) ,args.mhg  , float(args.num_n_a) ,float(args.ta) ,float(args.alpha) ,float(args.tw) ,args.msw])
+    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hetero, accuracy_spectrogram, float(args.twa)  ,float(args.num_n_h) ,args.mhg  , float(args.num_n_a) ,float(args.ta) ,float(args.alpha) ,float(args.tw) ,args.msw, args.msa])
 
