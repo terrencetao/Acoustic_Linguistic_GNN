@@ -1,19 +1,9 @@
 Supervised Model,Unsupervised Model,Heterogeneous Model,Spectrogram Baseline,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa
-0.91,0.53,0.14,0.3,0.1,10,fixed,10,0,1,0.5,phon_count,fixed
-0.93,0.49,0.33,0.3,0.1,10,fixed,10,0,1,0.5,mixed,fixed
-0.89,0.51,0.42,0.3,0.1,10,fixed,10,0,1,0.5,semantics,fixed
-0.94,0.45,0.43,0.3,0.1,10,ML,10,0,1,0.5,phon_count,fixed
-0.93,0.44,0.3,0.3,0.1,10,ML,10,0,1,0.5,mixed,fixed
-0.91,0.5,0.34,0.3,0.1,10,ML,10,0,1,0.5,semantics,fixed
-0.93,0.53,0.27,0.3,0.1,10,mixed,10,0,1,0.5,phon_count,fixed
-0.94,0.49,0.19,0.3,0.1,10,mixed,10,0,1,0.5,mixed,fixed
-0.88,0.51,0.27,0.3,0.1,10,mixed,10,0,1,0.5,semantics,fixed
-0.91,0.37,0.22,0.3,0.1,10.0,fixed,10.0,0.0,1.0,0.5,phon_count,mixed
-0.97,0.32,0.39,0.3,0.1,10.0,fixed,10.0,0.0,1.0,0.5,mixed,mixed
-0.88,0.49,0.18,0.3,0.1,10.0,fixed,10.0,0.0,1.0,0.5,semantics,mixed
-0.9,0.28,0.25,0.3,0.1,10.0,ML,10.0,0.0,1.0,0.5,phon_count,mixed
-0.94,0.42,0.35,0.3,0.1,10.0,ML,10.0,0.0,1.0,0.5,mixed,mixed
-0.95,0.42,0.09,0.3,0.1,10.0,ML,10.0,0.0,1.0,0.5,semantics,mixed
-0.94,0.3,0.31,0.3,0.1,10.0,mixed,10.0,0.0,1.0,0.5,phon_count,mixed
-0.93,0.33,0.26,0.3,0.1,10.0,mixed,10.0,0.0,1.0,0.5,mixed,mixed
-0.93,0.29,0.28,0.3,0.1,10.0,mixed,10.0,0.0,1.0,0.5,semantics,mixed
+1.0,1.0,0.4,0.1,0.1,10.0,fixed,10.0,0.0,1.0,0.5,phon_count,fixed
+1.0,1.0,0.5,0.1,0.1,10.0,fixed,10.0,0.0,1.0,0.5,mixed,fixed
+1.0,0.9,0.5,0.1,0.1,10.0,fixed,10.0,0.0,1.0,0.5,semantics,fixed
+1.0,0.9,0.4,0.1,0.1,10.0,ML,10.0,0.0,1.0,0.5,phon_count,fixed
+1.0,0.9,0.7,0.1,0.1,10.0,ML,10.0,0.0,1.0,0.5,mixed,fixed
+1.0,1.0,0.9,0.1,0.1,10.0,ML,10.0,0.0,1.0,0.5,semantics,fixed
+0.9,1.0,0.6,0.1,0.1,10.0,mixed,10.0,0.0,1.0,0.5,phon_count,fixed
+1.0,1.0,0.3,0.1,0.1,10.0,mixed,10.0,0.0,1.0,0.5,mixed,fixed
