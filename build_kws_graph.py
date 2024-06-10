@@ -9,6 +9,7 @@ from generate_similarity_matrix_acoustic import compute_distance_for_pair, compu
 from joblib import Parallel, delayed
 from tqdm import tqdm
 
+np.random.seed(42)
     
 def filter_similarity_matrix(similarity_matrix, labels, threshold=0, alpha=2, k=None):
     filtered_matrix = similarity_matrix.copy()

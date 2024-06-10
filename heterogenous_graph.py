@@ -11,7 +11,8 @@ import random
 import logging
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
+random.seed(42)
+np.random.seed(42)
 
 def filter_similarity_matrix(similarity_matrix,  threshold=0, k=None):
     # Make a copy of the similarity matrix to avoid modifying the original
