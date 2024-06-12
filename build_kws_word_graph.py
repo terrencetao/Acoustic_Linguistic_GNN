@@ -5,7 +5,7 @@ import dgl
 import pickle
 import torch
 import os
-
+import argparse 
     
 def build_dgl_graph(nx_graph):
     # Extract edges with weights from the NetworkX graph
@@ -30,8 +30,15 @@ def build_dgl_graph(nx_graph):
     
     return dgl_graph
     
+parser = argparse.ArgumentParser()
+parser.add_argument('--method', help='empty or full', required=True)    
+args = parser.parse_args()
+
+
 # Load the filtered similarity matrix with labels
 similarity_matrix = np.load('filtered_similarity_matrix_word.npy')
+if args.method == 'empty':
+   similarity_matrix = np.zeros_like(similarity_matrix)
 word_embeddings=np.load('word_embedding.npy')
 print(similarity_matrix.shape)
 # Load label_names from the file to verify
@@ -52,7 +59,7 @@ print("Number of edges:", dgl_graph.number_of_edges())
 
 # Add node features and labels to DGL graph
 dgl_graph.ndata['feat'] = torch.tensor(word_embeddings, dtype=torch.float32)
-dgl_graph.ndata['label'] = torch.tensor([label_names.index(label) for label in label_names], dtype=torch.long)
+#dgl_graph.ndata['label'] = torch.tensor([label_names.index(label) for label in label_names], dtype=torch.long)
 
 # Save the DGL graph
 save_dir = "saved_graphs"

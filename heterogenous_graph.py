@@ -9,6 +9,7 @@ import argparse
 import numpy as np
 import random
 import logging
+import pickle
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 random.seed(42)
@@ -59,7 +60,8 @@ def create_label_matrix(graph, k):
     for j in range(num_labels):
         ones_indices = torch.nonzero(label_matrix[:, j]).squeeze().tolist()
         if isinstance(ones_indices, int):
-           ones_indices = [ones_indices]     
+           ones_indices = [ones_indices]  
+        print(k)   
         if len(ones_indices) > k:
             keep_indices = random.sample(ones_indices, k)
             set_zero_indices = list(set(ones_indices) - set(keep_indices))
@@ -67,12 +69,34 @@ def create_label_matrix(graph, k):
     
     return label_matrix
 
-
-def softmax_prob(method, graph, num_labels, threshold_probability=None, k=None):
+def create_phon_matrix(graph, label_name, phon_idx):
+    # Assuming the 'label' feature is a node feature and stored as a tensor
+    labels = graph.ndata['label']
+    # Get the label names for each node
+    labels_names = label_name[labels]
+    # Get the unique labels
+    unique_labels = torch.unique(labels)
+    
+    # Create a binary matrix
+    num_nodes = graph.number_of_nodes()
+    num_phons = len(phon_idx)
+    
+    phon_matrix = torch.zeros((num_nodes, num_phons), dtype=torch.float32)
+    
+    # Fill the binary matrix
+    for i in range(num_nodes):
+        node_label_name = labels_names[i]
+        for j in range(num_phons):
+            if phon_idx[j] in node_label_name:
+                phon_matrix[i, j] = 1.0
+     
+    return phon_matrix
+        
+def softmax_prob(method, graph, num_labels, label_name=None, threshold_probability=None, k=None,idx_phon=None):
    
     num_nodes = graph.number_of_nodes()
   
-    softmax_probabilities = torch.zeros((num_nodes, num_labels), dtype=torch.float32)
+    #softmax_probabilities = torch.zeros((num_nodes, num_labels), dtype=torch.float32)
     
     if method == 'ML':
     
@@ -89,10 +113,13 @@ def softmax_prob(method, graph, num_labels, threshold_probability=None, k=None):
       softmax_probabilities = acoustic_model.predict(tf.convert_to_tensor(graph.ndata['feat'].cpu().numpy()))
       softmax_probabilities=filter_similarity_matrix(softmax_probabilities,  threshold=threshold_probability, k=2*k)
       fixed_probabilities = create_label_matrix(graph, k)
-      softmax_probabilities[fixed_probabilities==1] = 1
+      softmax_probabilities[fixed_probabilities==1] = 1.0
+    
+    elif method == 'folle': 
+      softmax_probabilities = create_phon_matrix(graph, label_name, idx_phon)
       
     logging.info(f'{method} method for connection')
-    
+      
     return softmax_probabilities 
       
     
@@ -100,6 +127,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--twa', help='threshold for mixte graph', required=True)    
 parser.add_argument('--num_n', help='number of neigheibors for word', required=True)   
 parser.add_argument('--method', help='', required=False) 
+parser.add_argument('--msw', help='method to compute a word similarity', required=False)
+
 args = parser.parse_args()
     
 save_graph_dir = 'saved_graphs'
@@ -127,13 +156,21 @@ num_acoustic_nodes = graph1.num_nodes()
 
 num_word_nodes = graph2.num_nodes()
 
-
+with open('label_names.pkl', 'rb') as f:
+   all_label_names = pickle.load(f)
+   
+   
+with open('phon_idx.pkl', 'rb') as f:
+   phon_idx = pickle.load(f)
+idx_phon = {v: k for k, v in phon_idx.items()}
 
 # Step 2: Define the threshold probability
 threshold_probability = float(args.twa)
 k= int(args.num_n)
 
-softmax_probabilities=softmax_prob(args.method, graph1, num_word_nodes, threshold_probability, k)
+softmax_probabilities=softmax_prob(
+  method = 'folle' if args.msw == 'phon_coo' else args.method, 
+graph = graph1, num_labels = num_word_nodes, label_name = all_label_names, threshold_probability=threshold_probability,k= k, idx_phon=idx_phon)
 
 np.save('filtered_softmax_probabilities_words_acoustic.npy', softmax_probabilities)
 # Step 3: Create links between acoustic and word nodes based on probabilities exceeding the threshold
@@ -141,8 +178,9 @@ links_acoustic_word = []
 probabilities_acoustic_word = []
 
 
-for i in range(num_acoustic_nodes):
-    for j in range(num_word_nodes):
+
+for i in range(softmax_probabilities.shape[0]):
+    for j in range(softmax_probabilities.shape[1]):
         if softmax_probabilities[i, j] > 0:
           links_acoustic_word.append((i, j))
           probabilities_acoustic_word.append(softmax_probabilities[i, j])
@@ -163,7 +201,7 @@ hetero_graph = dgl.heterograph(data_dict)
 hetero_graph.nodes['acoustic'].data['feat'] = graph1.ndata['feat']
 hetero_graph.nodes['word'].data['feat'] = graph2.ndata['feat']
 hetero_graph.nodes['acoustic'].data['label'] = graph1.ndata['label']
-hetero_graph.nodes['word'].data['label'] = graph2.ndata['label']
+#hetero_graph.nodes['word'].data['label'] = graph2.ndata['label']
 
 # Add edge weights
 hetero_graph.edges['sim_tic'].data['weight'] = edge_weights1

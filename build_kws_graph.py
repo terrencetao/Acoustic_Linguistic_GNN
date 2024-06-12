@@ -83,8 +83,8 @@ def k_nearest_neighbors(similarity_matrix, k, spectrogram, alpha, distance_funct
     n = similarity_matrix.shape[0]
     knn_matrix = np.zeros_like(similarity_matrix)
     
-    def process_row(i,m):
-        valid_indices = np.where(similarity_matrix[i, :] == m)[0]
+    def process_row(i):
+        valid_indices = np.where(similarity_matrix[i, :] != 0)[0]
         if len(valid_indices) > 0:
             distances = np.array([distance_function(spectrogram,i, j)[2] for j in valid_indices])
             nearest_indices = valid_indices[np.argsort(distances)[:k]]

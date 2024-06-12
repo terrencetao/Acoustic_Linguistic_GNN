@@ -125,6 +125,8 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--input_folder', help ='source folder')
 	parser.add_argument('--graph_file', help ='graph for trainning')
+	parser.add_argument('--epochs', help='number of epochs', required=True)
+	 
 	args = parser.parse_args()
 	input_folder = args.input_folder    
 	graph_file = args.graph_file
@@ -161,7 +163,7 @@ if __name__ == "__main__":
 
 	# Train the model
 
-	train(model1, dgl_G, features,edge_weights, labels)
+	train(model1, dgl_G, features,edge_weights, labels,int(args.epochs))
 
 	# Define the file path for saving the model
 	model_path = os.path.join('models',"gnn_model.pth")
@@ -180,6 +182,6 @@ if __name__ == "__main__":
 
 	adj_matrix = adj_matrix.float()
 	features = features.float()
-	train_with_topological_loss(model2, dgl_G, features, edge_weights,adj_matrix)
+	train_with_topological_loss(model2, dgl_G, features, edge_weights,adj_matrix, int(args.epochs))
 	model_path_sup = os.path.join('models',"gnn_model_unsup.pth")
 	torch.save(model2.state_dict(), model_path_sup)

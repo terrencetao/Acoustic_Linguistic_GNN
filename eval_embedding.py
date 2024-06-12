@@ -25,6 +25,7 @@ parser.add_argument('--alpha', help='method to compute a word similarity', requi
 parser.add_argument('--tw', help='method to compute a word similarity', required=True)
 parser.add_argument('--msw', help='method to compute a word similarity', required=True)
 parser.add_argument('--msa', help='method to compute heterogeneous similarity', required=True)
+parser.add_argument('--mgw', help='method to build word graph ', required=True)
 parser.add_argument('--drop_freq', help='dim frequency ', required=False)  
 parser.add_argument('--drop_int', help='dim amplitude ', required=False) 
 parser.add_argument('--sub_units', help='fraction of data', required=True)  
@@ -112,6 +113,7 @@ def train_evaluate_svm(embeddings, labels):
     
     return accuracy
 
+os.makedirs('accuracy', exist_ok=True)
 # CSV file path
 csv_file = f'accuracy_results_{args.sub_units}_{args.drop_freq}_{args.drop_int}.csv'
 
@@ -122,7 +124,7 @@ file_exists = os.path.isfile(f'accuracy/{csv_file}')
 if not file_exists:
     with open(f'accuracy/{csv_file}', mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['Supervised Model', 'Unsupervised Model', 'Heterogeneous Model', 'Spectrogram Baseline', 'twa'  ,'num_n_h' ,'mhg'  ,'num_n_a' ,'ta' ,'alpha' ,'tw' ,'msw','msa'])
+        writer.writerow(['Supervised Model', 'Unsupervised Model', 'Heterogeneous Model', 'Spectrogram Baseline', 'twa'  ,'num_n_h' ,'mhg'  ,'num_n_a' ,'ta' ,'alpha' ,'tw' ,'msw','msa','mgw'])
 
 # Embeddings from supervised model
 node_embeddings_sup = torch.from_numpy(node_embeddings_sup)
@@ -154,5 +156,5 @@ accuracy_spectrogram = train_evaluate_svm(flattened_spectrograms, labels_np)
 # Write accuracy results to CSV file
 with open(f'accuracy/{csv_file}', mode='a', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hetero, accuracy_spectrogram, float(args.twa)  ,float(args.num_n_h) ,args.mhg  , float(args.num_n_a) ,float(args.ta) ,float(args.alpha) ,float(args.tw) ,args.msw, args.msa])
+    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hetero, accuracy_spectrogram, float(args.twa)  ,float(args.num_n_h) ,args.mhg  , float(args.num_n_a) ,float(args.ta) ,float(args.alpha) ,float(args.tw) ,args.msw, args.msa, args.mgw])
 
