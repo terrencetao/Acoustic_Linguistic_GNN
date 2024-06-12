@@ -63,8 +63,14 @@ def compute_cooccurrence_matrix(words, window=1):
                     idx2 = letter_to_index[letter2]
                     cooccurrence_matrix[idx1, idx2] += 1
     
-    return cooccurrence_matrix, letters
-
+    return normalize_matrix(cooccurrence_matrix), letters
+    
+def normalize_matrix(matrix):
+    row_sums = matrix.sum(axis=1, keepdims=True)
+    normalized_matrix = matrix / row_sums
+    normalized_matrix[np.isnan(normalized_matrix)] = 0  # Replace NaN with 0
+    return normalized_matrix
+    
 # Function to compute the one-hot representation of letters
 def compute_one_hot_representation(words):
     # Set of all unique letters
@@ -83,6 +89,9 @@ def compute_one_hot_representation(words):
     one_hot_matrix = np.eye(size, dtype=int)
     
     return one_hot_matrix, letters
+ 
+ 
+ 
     
 def simi_matrix(method = 'semantics'):
 
