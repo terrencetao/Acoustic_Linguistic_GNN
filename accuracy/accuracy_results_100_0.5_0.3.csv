@@ -1,9 +1,2 @@
-Supervised Model,Unsupervised Model,Heterogeneous Model,Spectrogram Baseline,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw
-0.9,0.95,0.5,0.05,0.1,20.0,fixed,20.0,0.0,1.0,0.5,phon_coo,fixed,empty
-0.85,0.95,0.7,0.05,0.1,20.0,fixed,20.0,0.0,1.0,0.5,phon_coo,fixed,full
-0.9,0.95,0.6,0.05,0.1,20.0,fixed,20.0,0.0,1.0,0.5,phon_suit,fixed,empty
-0.85,0.95,0.55,0.05,0.1,20.0,fixed,20.0,0.0,1.0,0.5,phon_suit,fixed,full
-0.95,0.95,0.6,0.05,0.1,20.0,fixed,20.0,0.0,1.0,0.5,phon_count,fixed,empty
-0.9,0.95,0.55,0.05,0.1,20.0,fixed,20.0,0.0,1.0,0.5,phon_count,fixed,full
-0.85,0.95,0.5,0.05,0.1,20.0,fixed,20.0,0.0,1.0,0.5,mixed,fixed,empty
-0.85,0.95,0.7,0.05,0.1,20.0,fixed,20.0,0.0,1.0,0.5,mixed,fixed,full
+Supervised Model,Unsupervised Model,Heterogeneous Model,Spectrogram Baseline,CNN Model,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw
+0.8,0.95,0.65,0.05,0.15,0.1,10.0,fixed,10.0,0.0,1.0,0.5,phon_coo,fixed,full
