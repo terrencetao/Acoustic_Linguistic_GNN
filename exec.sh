@@ -25,6 +25,7 @@ for alpha in $(seq 1.0 0.5 2.0);do
 
 	python3 gnn_model.py --input_folder ''  --graph_file saved_graphs/kws_graph.dgl --epochs 1000
 	python gnn_heto_model.py --input_folder '' --graph_file saved_graphs/hetero_graph.dgl --epochs 2000
+	python gnn_heto_with_attention_model.py --input_folder '' --graph_file saved_graphs/hetero_graph.dgl --epochs 2000
 
 	python eval_embedding.py --twa 0.1 --num_n_h $num --mhg $mhg  --num_n_a $num --ta 0 --alpha $alpha --tw 0.5  --msw $msw --msa $msa --mgw $mgw --sub_unit $unit --drop_freq 0.5 --drop_int 0.3
         done

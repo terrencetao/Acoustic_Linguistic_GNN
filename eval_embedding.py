@@ -4,6 +4,7 @@ import dgl
 import numpy as np
 import csv
 from gnn_heto_model import HeteroGCN
+from gnn_heto_with_attention_model import HeteroGCNWithAllAttention
 from gnn_model import GCN
 from sklearn import svm
 from sklearn.metrics import accuracy_score
@@ -89,6 +90,7 @@ model = HeteroGCN(in_feats, hidden_size, out_feats)
 model.load_state_dict(torch.load(os.path.join(model_folder, "hetero_gnn_model.pth")))
 model.eval()
 
+
 # Extract acoustic node representations
 with torch.no_grad():
     embeddings = model(hetero_graph, features_dic)
@@ -96,6 +98,19 @@ with torch.no_grad():
 
 # Extract labels for training
 labels_np = labels.numpy()
+
+
+num_heads = 4
+model_attention_path = os.path.join(model_folder, "hetero_gnn_with_all_attention_model.pth")
+model_attention = HeteroGCNWithAllAttention(in_feats, hidden_size, out_feats, num_heads=num_heads)
+model_attention.load_state_dict(torch.load(model_attention_path))
+model_attention.eval()
+
+# Extract acoustic node representations
+with torch.no_grad():
+    embeddings_attention = model_attention(hetero_graph, features_dic)
+    acoustic_embeddings_attention = embeddings_attention['acoustic']
+
 
 # Function to split data into train and test sets
 def train_test_split_data(embeddings, labels, test_size=0.2, random_state=42):
@@ -180,7 +195,7 @@ file_exists = os.path.isfile(f'accuracy/{csv_file}')
 if not file_exists:
     with open(f'accuracy/{csv_file}', mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['Supervised Model', 'Unsupervised Model', 'Heterogeneous Model', 'Spectrogram Baseline', 'CNN Model', 'twa', 'num_n_h', 'mhg', 'num_n_a', 'ta', 'alpha', 'tw', 'msw', 'msa', 'mgw'])
+        writer.writerow(['Supervised Model', 'Unsupervised Model', 'Heterogeneous Model','Heterogeneous attention Model', 'Spectrogram Baseline', 'CNN Model', 'twa', 'num_n_h', 'mhg', 'num_n_a', 'ta', 'alpha', 'tw', 'msw', 'msa', 'mgw'])
 
 # Embeddings from supervised model
 node_embeddings_sup = torch.from_numpy(node_embeddings_sup)
@@ -196,6 +211,10 @@ accuracy_unsup = train_evaluate_svm(node_embeddings_unsup, labels_np)
 # Train and evaluate SVM for heterogeneous model embeddings
 acoustic_embeddings_np = acoustic_embeddings.detach().numpy()
 accuracy_hetero = train_evaluate_svm(acoustic_embeddings_np, labels_np)
+
+# Train and evaluate SVM on the new heterogeneous attention model embeddings
+accuracy_attention = train_evaluate_svm(acoustic_embeddings_attention.numpy(), labels_np)
+print(f"Accuracy of the Heterogeneous Attention Model: {accuracy_attention:.4f}")
 
 # Spectrogram baseline embeddings
 def flatten_spectrograms(spectrograms):
@@ -229,5 +248,5 @@ print(f'CNN Model Accuracy: {accuracy_cnn}')
 # Write accuracy results to CSV file
 with open(f'accuracy/{csv_file}', mode='a', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hetero, accuracy_spectrogram, accuracy_cnn, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw])
+    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hetero, accuracy_attention,accuracy_spectrogram, accuracy_cnn, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw])
 
