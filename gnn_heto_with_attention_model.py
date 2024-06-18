@@ -134,13 +134,4 @@ if __name__ == "__main__":
     main(args.input_folder, args.graph_file, int(args.epochs))
 
 
-# Parse arguments and run main
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--input_folder', help='source folder', required=True)
-    parser.add_argument('--graph_file', help='graph for training', required=True)
-    parser.add_argument('--epochs', help='number of epochs', required=True, type=int)
-    args = parser.parse_args()
-    
-    main(args.input_folder, args.graph_file, args.epochs)
 

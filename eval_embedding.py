@@ -14,7 +14,9 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 from torch.utils.data import DataLoader, TensorDataset
+import logging
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def load_graphs(path):
     return dgl.load_graphs(path)
@@ -55,17 +57,19 @@ conv_param = [(1, 3, (20, 64)), 32, 2]
 hidden_units = [32, 32]
 
 # Load supervised GCN model
+logging.info(f'Load supervised GCN model')
 model_sup_path = os.path.join(model_folder, "gnn_model.pth")
 loaded_model_sup = GCN(in_feats, hidden_size, num_classes, conv_param, hidden_units)
 loaded_model_sup.load_state_dict(torch.load(model_sup_path))
 
 edge_weights = dgl_G.edata['weight']
-
+logging.info(f'Extract acoustic node representations')
 with torch.no_grad():
     loaded_model_sup.eval()
     node_embeddings_sup = loaded_model_sup(dgl_G, features, edge_weights).numpy()
 
 # Load unsupervised GCN model
+logging.info(f'Load unsupervised GCN model')
 model_unsup_path = os.path.join(model_folder, "gnn_model_unsup.pth")
 loaded_model_unsup = GCN(in_feats, hidden_size, num_classes, conv_param, hidden_units)
 loaded_model_unsup.load_state_dict(torch.load(model_unsup_path))
@@ -92,6 +96,7 @@ model.eval()
 
 
 # Extract acoustic node representations
+logging.info(f'Extract acoustic node representations')
 with torch.no_grad():
     embeddings = model(hetero_graph, features_dic)
     acoustic_embeddings = embeddings['acoustic']
@@ -101,12 +106,14 @@ labels_np = labels.numpy()
 
 
 num_heads = 4
-model_attention_path = os.path.join(model_folder, "hetero_gnn_with_all_attention_model.pth")
+logging.info(f'Load unsupervised GCN attention model')
+model_attention_path = os.path.join(model_folder, "hetero_gcn_with_attention_model.pth")
 model_attention = HeteroGCNWithAllAttention(in_feats, hidden_size, out_feats, num_heads=num_heads)
 model_attention.load_state_dict(torch.load(model_attention_path))
 model_attention.eval()
 
 # Extract acoustic node representations
+logging.info(f'Extract acoustic node representations')
 with torch.no_grad():
     embeddings_attention = model_attention(hetero_graph, features_dic)
     acoustic_embeddings_attention = embeddings_attention['acoustic']
@@ -202,19 +209,25 @@ node_embeddings_sup = torch.from_numpy(node_embeddings_sup)
 node_embeddings_sup = node_embeddings_sup.numpy()
 
 # Train and evaluate SVM for supervised embeddings
+logging.info(f'Train and evaluate SVM for supervised embeddings')
 accuracy_sup = train_evaluate_svm(node_embeddings_sup, labels_np)
 
 # Train and evaluate SVM for unsupervised embeddings
+logging.info(f'Train and evaluate SVM for unsupervised embeddings')
 node_embeddings_unsup = loaded_model_unsup(dgl_G, features, edge_weights).detach().numpy()
 accuracy_unsup = train_evaluate_svm(node_embeddings_unsup, labels_np)
 
 # Train and evaluate SVM for heterogeneous model embeddings
+logging.info(f'Train and evaluate SVM for heterogeneous model embeddings')
 acoustic_embeddings_np = acoustic_embeddings.detach().numpy()
 accuracy_hetero = train_evaluate_svm(acoustic_embeddings_np, labels_np)
+logging.info(f"Accuracy of the Heterogeneous Model: {accuracy_hetero:.4f}")
 
 # Train and evaluate SVM on the new heterogeneous attention model embeddings
-accuracy_attention = train_evaluate_svm(acoustic_embeddings_attention.numpy(), labels_np)
-print(f"Accuracy of the Heterogeneous Attention Model: {accuracy_attention:.4f}")
+logging.info(f'Train and evaluate SVM on the new heterogeneous attention model embeddings')
+#accuracy_attention = train_evaluate_svm(acoustic_embeddings_attention.numpy(), labels_np)
+accuracy_attention =0.0
+logging.info(f"Accuracy of the Heterogeneous Attention Model: {accuracy_attention:.4f}")
 
 # Spectrogram baseline embeddings
 def flatten_spectrograms(spectrograms):
@@ -237,15 +250,17 @@ train_loader = DataLoader(TensorDataset(X_train, y_train), batch_size=32, shuffl
 test_loader = DataLoader(TensorDataset(X_test, y_test), batch_size=32, shuffle=False)
 
 # Define and train the CNN model
+logging.info(f'train the CNN model')
 input_shape = spectrograms_tensor.shape[1:]  # (1, height, width)
 cnn_model = SimpleCNN(input_shape, num_classes)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(cnn_model.parameters(), lr=0.001)
 train_cnn(cnn_model, train_loader, criterion, optimizer)
 accuracy_cnn = evaluate_cnn(cnn_model, test_loader)
-print(f'CNN Model Accuracy: {accuracy_cnn}')
+logging.info(f'CNN Model Accuracy: {accuracy_cnn}')
 
 # Write accuracy results to CSV file
+logging.info(f'Write accuracy results to CSV file')
 with open(f'accuracy/{csv_file}', mode='a', newline='') as file:
     writer = csv.writer(file)
     writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hetero, accuracy_attention,accuracy_spectrogram, accuracy_cnn, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw])
