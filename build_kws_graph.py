@@ -109,7 +109,7 @@ def k_nearest_neighbors(similarity_matrix, k, spectrogram, alpha, distance_funct
     
 def filtered_matrix(method, subset_labels, similarity_matrix,spectrogram, threshold=None, alpha=None, k=None, distance_function=None):
     filtered_similarity_matrix = np.zeros_like(similarity_matrix)
-    if method == 'dtw':
+    if method == 'dtw': 
         filtered_similarity_matrix = filter_similarity_matrix(similarity_matrix, subset_labels, threshold, alpha, k)
     elif method == 'fixed':
         filtered_similarity_matrix = randomly_select_k(similarity_matrix, k)
