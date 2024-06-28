@@ -1,6 +1,6 @@
 #python3 preprocess.py --drop_freq 0.5 --drop_int 0.3 --feature spec  run this one time
 
-for unit in $(seq 1000 1000 3000);do
+for unit in $(seq 2000 1000 3000);do
 python3 generate_similarity_matrix_acoustic.py --sub_unit $unit --method fixed 
 
 

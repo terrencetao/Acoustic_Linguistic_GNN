@@ -15,4 +15,4 @@
 #SBATCH --mail-user=Yannick.Yomie_Nzeuhang@univ-lemans.fr
 #SBATCH --output=%x.%j.out
 
-echo "Hello, go!"
+echo ./exec.sh
