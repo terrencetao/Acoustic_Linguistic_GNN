@@ -7,7 +7,7 @@
 #SBATCH --cpus-per-task=10
 # Durée maximale d'exécution du job (HH:MM)
 #SBATCH -w cpu48
-#SBATCH --time=00:01
+#SBATCH --time=100:01
 # Nom du fichier de sortie (%x sera remplacé par le nom du job et %j par le numéro du job)
 #SBATCH --output=output_%x.%j.out
 # Types de notifications par email (BEGIN, END, FAIL, ou ALL pour toutes)
