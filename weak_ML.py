@@ -8,10 +8,11 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--epochs', help='number of epochs', required=True)
+parser.add_argument('--dataset', help='name of dataset', required=True)
 args = parser.parse_args()
 
 # Load the datasets
-save_dir = 'saved_datasets'
+save_dir = os.path.join('saved_datasets',args.dataset)
 
 # Load label_names from the file to verify
 with open('label_names.pkl', 'rb') as f:

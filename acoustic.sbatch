@@ -13,6 +13,6 @@
 # Types de notifications par email (BEGIN, END, FAIL, ou ALL pour toutes)
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=Yannick.Yomie_Nzeuhang@univ-lemans.fr
-#SBATCH --output=%x.%j.out
+
 
 echo ./exec.sh

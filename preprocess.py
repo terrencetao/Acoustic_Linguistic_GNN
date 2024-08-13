@@ -168,7 +168,7 @@ test_spectrogram_ds = make_spec_ds(test_ds, feature, drop_int, drop_freq)
 
 
 # Define the directory to save the datasets
-save_dir = 'saved_datasets'
+save_dir = 'saved_datasets/google_command'
 os.makedirs(save_dir, exist_ok=True)
 
 

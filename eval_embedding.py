@@ -36,6 +36,7 @@ parser.add_argument('--mgw', help='method to build word graph ', required=True)
 parser.add_argument('--drop_freq', help='dim frequency ', required=False)  
 parser.add_argument('--drop_int', help='dim amplitude ', required=False) 
 parser.add_argument('--sub_units', help='fraction of data', required=True)  
+parser.add_argument('--dataset', help='name of dataset', required=True)
 args = parser.parse_args()
 
 
@@ -192,8 +193,12 @@ def evaluate_cnn(model, test_loader):
     return correct / total
 
 os.makedirs('accuracy', exist_ok=True)
+#dataset
+dataset = args.dataset
+os.makedirs(f'accuracy/{dataset}', exist_ok=True)
+
 # CSV file path
-csv_file = f'accuracy_results_{args.sub_units}_{args.drop_freq}_{args.drop_int}.csv'
+csv_file = f'{dataset}/accuracy_{args.sub_units}_{args.drop_freq}_{args.drop_int}.csv'
 
 # Check if the CSV file exists
 file_exists = os.path.isfile(f'accuracy/{csv_file}')

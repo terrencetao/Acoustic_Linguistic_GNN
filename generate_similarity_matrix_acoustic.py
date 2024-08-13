@@ -123,16 +123,17 @@ if __name__ == "__main__":
 	  
 	parser.add_argument('--sub_units', help='fraction of data', required=True)    
 	parser.add_argument('--method', help='', required=True)
+	parser.add_argument('--dataset', help='name of dataset', required=True)
 
 	args = parser.parse_args()
 	sub_units = int(args.sub_units)    
 	 
 	# Define the directory where datasets are saved
-	save_dir = 'saved_datasets'
+	save_dir = os.path.join('saved_datasets',args.dataset)
 
 	# Load the datasets
 	loaded_train_spectrogram_ds = tf.data.experimental.load(os.path.join(save_dir, 'train_spectrogram_ds'))
-	#loaded_val_spectrogram_ds = tf.data.experimental.load(os.path.join(save_dir, 'val_spectrogram_ds'))
+	loaded_val_spectrogram_ds = tf.data.experimental.load(os.path.join(save_dir, 'val_spectrogram_ds'))
 	#loaded_test_spectrogram_ds = tf.data.experimental.load(os.path.join(save_dir, 'test_spectrogram_ds'))
 
 	print("Datasets loaded successfully.")
@@ -140,7 +141,7 @@ if __name__ == "__main__":
 
 	# Extract spectrograms
 	train_spectrograms, labels_train = extract_spectrograms(loaded_train_spectrogram_ds)
-	#val_spectrograms, labels_val = extract_spectrograms(loaded_val_spectrogram_ds)
+	val_spectrograms, labels_val = extract_spectrograms(loaded_val_spectrogram_ds)
 	#test_spectrograms, labels_test = extract_spectrograms(loaded_test_spectrogram_ds)
 
 	  
@@ -149,11 +150,13 @@ if __name__ == "__main__":
 	## Compute DTW similarity matrix for a subset (e.g., first 100 spectrograms)
 	subset_size = sub_units
 	subset_spectrograms = train_spectrograms[:subset_size]
-
+	subset_val_spectrograms = val_spectrograms[:subset_size]
+        
 	subset_labels = labels_train[:subset_size]
+	subset_val_labels = labels_val[:subset_size]
 	# Convert subset_labels to a NumPy array
 	subset_labels = np.array(subset_labels)
-
+	subset_val_labels = np.array(subset_val_labels)
 
 
 	# Compute the median distances for each label group
@@ -175,6 +178,8 @@ if __name__ == "__main__":
 	np.save('similarity_matrix_with_labels.npy', matrix_with_labels)
 	np.save('subset_spectrogram.npy', subset_spectrograms )
 	np.save('subset_label.npy', subset_labels )
+	np.save('subset_val_spectrogram.npy', subset_val_spectrograms )
+	np.save('subset_val_label.npy', subset_val_labels )
 
 
 

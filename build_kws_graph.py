@@ -43,16 +43,37 @@ def randomly_select_k(matrix, k, alpha=1):
         new_matrix[i, selected_indices] = alpha*matrix[i, selected_indices]
 
     np.fill_diagonal(new_matrix, 0)
-    return new_matrix
+    return new_matrix, ones_indices
     
     
 def random_dtw(matrix, k, spectrogram, alpha, distance_function, n_jobs=-1):
+    """
+    Perform random Dynamic Time Warping (DTW) distance calculations on a given matrix.
+    
+    Parameters:
+    matrix (np.ndarray): Input matrix of size (n, n) where n is the number of nodes.
+    k (int): Number of nearest neighbors to consider.
+    spectrogram (np.ndarray): Spectrogram data for distance calculation.
+    alpha (float): Parameter for the randomly_select_k function.
+    distance_function (function): Custom distance function that takes (spectrogram, i, j) as arguments and returns a distance.
+    n_jobs (int): Number of jobs for parallel processing. Default is -1 (use all processors).
+    
+    Returns:
+    np.ndarray: Updated matrix with calculated distances.
+    """
+    
     # Ensure randomly_select_k is properly defined
-    random_matrix = randomly_select_k(matrix, k, alpha).astype(np.float64)
+    random_matrix, ones = randomly_select_k(matrix, k, alpha)
+    random_matrix = random_matrix.astype(np.float64)
     n = matrix.shape[0]
+    
+    # Flatten 'ones' and convert to set for efficient lookups
+    ones_set = set(ones.flatten())
     
     def process_row(i):
         valid_indices = np.where(matrix[i, :] == 0)[0]
+        # Exclude indices contained in ones
+        valid_indices = [idx for idx in valid_indices if idx not in ones_set]
         if len(valid_indices) > 0:
             k_actual = min(k, len(valid_indices))  # Ensure no replacement if not enough valid indices
             selected_indices = np.random.choice(valid_indices, k_actual, replace=False)
@@ -65,7 +86,6 @@ def random_dtw(matrix, k, spectrogram, alpha, distance_function, n_jobs=-1):
     
     with Parallel(n_jobs=n_jobs) as parallel:
         results = list(tqdm(parallel(delayed(process_row)(i) for i in range(n)), total=n))
-    
     
     for i, nearest_indices, distances in results:
         if len(nearest_indices) > 0:
