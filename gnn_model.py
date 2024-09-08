@@ -15,19 +15,30 @@ import torch
 import torch.nn as nn
 import networkx as nx
 import dgl
+import logging
+import numpy as np
 
 class CNN(nn.Module):
     def __init__(self, conv_param, hidden_units):
         super(CNN, self).__init__()
-        self.conv1 = nn.Conv2d(in_channels=conv_param[0][0], out_channels=conv_param[1], kernel_size=conv_param[0][1], padding='same')
+        
+        self.input_shape = conv_param[0][2]  # Save input shape for later use
+        
+        # Initialize the first convolutional layer
+        self.conv1 = nn.Conv2d(
+            in_channels=conv_param[0][0], 
+            out_channels=conv_param[1], 
+            kernel_size=conv_param[0][1], 
+            padding=conv_param[0][1] // 2  # Manually calculating padding for 'same'
+        )
+        
         self.relu = nn.ReLU()
         self.pool = nn.MaxPool2d(kernel_size=conv_param[2])
         self.flatten = nn.Flatten()
-        self.input_shape = conv_param[0][2]
 
-        # Détermination de la taille de l'entrée des couches linéaires
+        # Determine the size of the input for the linear layers
         num_conv_features = self._calculate_conv_features(conv_param)
-        self.linear_layers = self._create_linear_layers(num_conv_features, hidden_units)
+        self.linear_layers = self._create_linear_layers(11904, hidden_units)
 
     def forward(self, x):
         x = self.conv1(x)
@@ -35,32 +46,28 @@ class CNN(nn.Module):
         x = self.pool(x)
         x = self.flatten(x)
 
-        # Appliquer les couches linéaires
+        # Apply the linear layers
         for layer in self.linear_layers:
             x = layer(x)
             x = self.relu(x)
         return x
 
-   
-    def _calculate_conv_features(self, conv_param):
-        # Calculer le nombre de caractéristiques extraites par les couches de convolution
-        dummy_input = torch.zeros((1,conv_param[0][0], *self.input_shape))  # Exemple d'entrée (taille arbitraire)
-        conv_output = self.conv1(dummy_input)
-        conv_output = self.relu(conv_output)
-        conv_output = self.pool(conv_output)
-        conv_output = self.flatten(conv_output)
-        return conv_output.size(1)
-       
+    
 
     def _create_linear_layers(self, num_conv_features, hidden_units):
-        # Créer des couches linéaires en fonction du nombre de caractéristiques extraites par les couches de convolution
-        layers = []
-        for i in range(len(hidden_units)):
-            if i == 0:
-                layers.append(nn.Linear(num_conv_features, hidden_units[i]))
-            else:
-                layers.append(nn.Linear(hidden_units[i-1], hidden_units[i]))
+        # Adjust the first layer to match the output size from the convolutional layers
+        layers = [nn.Linear(num_conv_features, hidden_units[0])]
+        for i in range(1, len(hidden_units)):
+           layers.append(nn.Linear(hidden_units[i-1], hidden_units[i]))
         return nn.ModuleList(layers)
+    
+    def _calculate_conv_features(self, conv_param):
+        # Calculate based on actual input dimensions
+        dummy_input = torch.zeros((1, conv_param[0][0], *self.input_shape))
+        conv_output = self.conv1(dummy_input)
+        conv_output = self.pool(conv_output)
+        return int(np.prod(conv_output.size()))  # Total number of features after convolution and pooling
+
 
 
 # Define the GCN model
@@ -119,9 +126,44 @@ def train_with_topological_loss(model, g, features, edge_weights,adj_matrix, epo
         if epoch % 10 == 0:
             print(f'Epoch {epoch}, Loss: {loss.item()}')
 
+def unsupervised_loss(embeddings, g, negative_samples=5):
+    positive_loss = 0
+    negative_loss = 0
+
+    for node in range(g.number_of_nodes()):
+        # Positive sampling
+        neighbors = g.successors(node)
+        for neighbor in neighbors:
+            pos_similarity = F.cosine_similarity(embeddings[node].unsqueeze(0), embeddings[neighbor].unsqueeze(0))
+            positive_loss += -torch.log(torch.sigmoid(pos_similarity))
+
+        # Negative sampling
+        for _ in range(negative_samples):
+            neg_node = torch.randint(0, g.number_of_nodes(), (1,))
+            neg_similarity = F.cosine_similarity(embeddings[node].unsqueeze(0), embeddings[neg_node].unsqueeze(0))
+            negative_loss += -torch.log(1 - torch.sigmoid(neg_similarity))
+
+    # Sum the losses and return a scalar
+    loss = (positive_loss + negative_loss) / g.number_of_nodes()
+    return loss.sum()  # Ensure that the loss is a scalar
+
+
+# Define the training function with GraphSAGE-like unsupervised loss
+def train_with_unsupervised_loss(model, g, features, edge_weights, negative_samples=5, epochs=100, lr=0.01):
+    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+    for epoch in range(epochs):
+        model.train()
+        embeddings = model(g, features, edge_weights)
+        loss = unsupervised_loss(embeddings, g, negative_samples)
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+        if epoch % 10 == 0:
+            print(f'Epoch {epoch}, Loss: {loss.item()}')
 
 
 if __name__ == "__main__":
+	logging.info(f' ----------------------------------------------------- GNN MODEL TRAINNING STEP  -----------------------------------------------')
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--input_folder', help ='source folder')
 	parser.add_argument('--graph_file', help ='graph for trainning')
@@ -143,21 +185,25 @@ if __name__ == "__main__":
 
 	# Initialize the GCN model
 
-	in_feats = features[0].shape[0] * features[0].shape[1]
+	#in_feats = features[0].shape[0] * features[0].shape[1]
+	in_feats = features[0].shape[0] 
+	print(in_feats)
 	hidden_size = 64
 	num_classes = len(labels.unique())  # Number of unique labels
 	conv_param = [
-	    # Paramètres de la première couche de convolution
-	    (1, 3, (20,64)),  # Tuple: (nombre de canaux d'entrée, taille du noyau, forme de l'entrée)
-	    32,
-	    # Paramètres de la couche de pooling
-	    (2)
-	]
+    # Parameters for the first convolutional layer
+    (1, 3, (20, 64)),  # Tuple: (number of input channels, kernel size, input shape)
+    32,
+    # Parameters for the pooling layer
+    2
+]
+
 
 	print(num_classes)
 	hidden_units = [32, 32]
 	model1 = GCN(in_feats, hidden_size, num_classes, conv_param, hidden_units)
 	model2 = GCN(in_feats, hidden_size, num_classes, conv_param, hidden_units)
+	model3 = GCN(in_feats, hidden_size, num_classes, conv_param, hidden_units)
 
 
 
@@ -183,5 +229,12 @@ if __name__ == "__main__":
 	adj_matrix = adj_matrix.float()
 	features = features.float()
 	train_with_topological_loss(model2, dgl_G, features, edge_weights,adj_matrix, int(args.epochs))
-	model_path_sup = os.path.join('models',"gnn_model_unsup.pth")
-	torch.save(model2.state_dict(), model_path_sup)
+	model_path_unsup = os.path.join('models',"gnn_model_unsup.pth")
+	torch.save(model2.state_dict(), model_path_unsup)
+	
+	
+	# Train the model with unsupervised loss
+	#train_with_unsupervised_loss(model3, dgl_G, features, edge_weights, negative_samples=5, epochs=int(args.epochs), lr=0.01)
+	# Save the model
+	#model_path_unsup = os.path.join('models',"gnn_model_unsup_sage.pth")
+	#torch.save(model3.state_dict(), model_path_unsup)

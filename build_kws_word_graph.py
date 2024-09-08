@@ -32,6 +32,7 @@ def build_dgl_graph(nx_graph):
     
 parser = argparse.ArgumentParser()
 parser.add_argument('--method', help='empty or full', required=True)    
+parser.add_argument('--dataset', help='name of dataset', required=True)
 args = parser.parse_args()
 
 
@@ -62,7 +63,7 @@ dgl_graph.ndata['feat'] = torch.tensor(word_embeddings, dtype=torch.float32)
 #dgl_graph.ndata['label'] = torch.tensor([label_names.index(label) for label in label_names], dtype=torch.long)
 
 # Save the DGL graph
-save_dir = "saved_graphs"
+save_dir = os.path.join('saved_graphs',args.dataset)
 
 dgl.save_graphs(os.path.join(save_dir,'dgl_words_graph.bin'), [dgl_graph])
 

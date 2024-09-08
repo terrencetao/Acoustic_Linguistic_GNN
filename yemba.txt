@@ -1,0 +1,3 @@
+- Experimentation sur les donnees d'apprentissages
+- Experimentations pour verifier si le graphe peut generaliser sur un graphe bien construit
+- Utiliser les k plus proches voisins 

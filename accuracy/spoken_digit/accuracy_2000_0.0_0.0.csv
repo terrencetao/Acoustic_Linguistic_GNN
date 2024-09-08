@@ -1,0 +1,2 @@
+Supervised Model,Unsupervised Model,Unsupervised Model sage,Heterogeneous Model,Heterogeneous sage Model,Heterogeneous attention Model,Spectrogram Baseline,CNN Model,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw,mma
+0.9625,0.840625,0.0,0.915625,0.0,0.0,0.0,0.9,0.6,49.0,dnn,9.0,0.5,2.0,0.5,phon_count,knn,full,fixed

@@ -5,6 +5,8 @@ import gensim.downloader as api
 import eng_to_ipa as ipa
 from sklearn.feature_extraction.text import CountVectorizer
 import logging
+import pandas as pd
+import os 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 def levenshtein_distance(s1, s2):
@@ -72,7 +74,7 @@ def normalize_matrix(matrix):
     return normalized_matrix
     
 # Function to compute the one-hot representation of letters
-def compute_one_hot_representation(words):
+def compute_one_hot_representation(words,dataset):
     # Set of all unique letters
     letters = set(''.join(words))
     
@@ -82,7 +84,7 @@ def compute_one_hot_representation(words):
     # Map letters to indices
     letter_to_index = {letter: idx for idx, letter in enumerate(letters)}
      # Save label_names to a file using pickle
-    with open('phon_idx.pkl', 'wb') as f:
+    with open(f'phon_idx_{dataset}.pkl', 'wb') as f:
         pickle.dump(letter_to_index, f)
     # Initialize the one-hot representation matrix
     size = len(letters)
@@ -90,23 +92,30 @@ def compute_one_hot_representation(words):
     
     return one_hot_matrix, letters
  
- 
+def get_phonetique_from_yemba(xlsx_path):
+    df = pd.read_excel(xlsx_path)
+    # Clean the phonetique_encoded column
+    df['phonetique_encoded'] = df['phonetique_encoded'].apply(lambda x: x.replace('[', '').replace(']', ''))
+    yemba_to_phonetique = dict(zip(df['yemba_encoded'], df['phonetique_encoded']))
+    return yemba_to_phonetique
  
     
-def simi_matrix(method = 'semantics'):
+def simi_matrix(method = 'semantics', dataset=None, method_ac='mixed', sub_units=61):
 
 
 # Load label_names from the file to verify
   # Load label_names from the file to verify
-  with open('label_names.pkl', 'rb') as f:
+  with open(f'label_names_{dataset}.pkl', 'rb') as f:
     all_label_names = pickle.load(f)
-  sub_label_names = np.load('subset_label.npy')
+  sub_label_names = np.load(os.path.join('saved_matrix',dataset, method_ac,f'subset_label_{sub_units}.npy'))
   
   label_names = set(all_label_names[sub_label_names])
   # Save label_names to a file using pickle
   with open('subset_label_names.pkl', 'wb') as f:
     pickle.dump(label_names, f)
-
+ 
+  xlsx_path = f'data/yemba/corpus_words.xlsx' 
+  
   if method == 'semantics':
 # Load the GloVe Twitter embeddings
     glove_vectors = api.load('glove-twitter-25')
@@ -118,7 +127,11 @@ def simi_matrix(method = 'semantics'):
     similarity_matrix = np.dot(word_embeddings, word_embeddings.T)
   elif method == 'phon_count':
     # Convert words to their phoneme representations
-    phoneme_words = [ipa.convert(word) for word in label_names]
+    if dataset=='yemba_command':
+       yemba_to_phonetique_mapping = get_phonetique_from_yemba(xlsx_path)
+       phoneme_words = [yemba_to_phonetique_mapping.get(word) for word in label_names]
+    else:
+       phoneme_words = [ipa.convert(word) for word in label_names]
 
 
 # Initialize CountVectorizer
@@ -138,7 +151,11 @@ def simi_matrix(method = 'semantics'):
 # Retrieve embeddings for each word in the list
     word_embeddings = np.array([glove_vectors[word] for word in label_names])
     # Convert words to their phoneme representations
-    phoneme_words = [ipa.convert(word) for word in label_names]
+    if dataset=='yemba_command':
+       yemba_to_phonetique_mapping = get_phonetique_from_yemba(xlsx_path)
+       phoneme_words = [yemba_to_phonetique_mapping.get(word) for word in label_names]
+    else:
+       phoneme_words = [ipa.convert(word) for word in label_names]
 
 
 # Initialize CountVectorizer
@@ -154,14 +171,19 @@ def simi_matrix(method = 'semantics'):
     glove_vectors = api.load('glove-twitter-25')
     # Convert words to their phoneme representations
     word_embeddings = np.array([glove_vectors[word] for word in label_names])
-    phoneme_words = [ipa.convert(word) for word in label_names]
+    # Convert words to their phoneme representations
+    if dataset=='yemba_command':
+       yemba_to_phonetique_mapping = get_phonetique_from_yemba(xlsx_path)
+       phoneme_words = [yemba_to_phonetique_mapping.get(word) for word in label_names]
+    else:
+       phoneme_words = [ipa.convert(word) for word in label_names]
     similarity_matrix = compute_edit_distance_matrix(phoneme_words)
     
   elif method == 'phon_coo':
     similarity_matrix, letters = compute_cooccurrence_matrix(label_names)
    
 # Compute the one-hot representation
-    word_embeddings, letters = compute_one_hot_representation(label_names)
+    word_embeddings, letters = compute_one_hot_representation(label_names, dataset)
     
     
     
@@ -183,9 +205,13 @@ def simi_matrix(method = 'semantics'):
 parser = argparse.ArgumentParser()
 parser.add_argument('--tw', help='word similarity threshold', required=True)
 parser.add_argument('--method', help='method to compute a word similarity', required=True)
+parser.add_argument('--dataset', help='name of current dataset', required=True)
+parser.add_argument('--method_sim_ac', help='', required=True)
+parser.add_argument('--sub_units', help='fraction of data', required=True)  
 
 args = parser.parse_args()
-similarity_matrix, word_embeddings = simi_matrix(method = args.method)
+
+similarity_matrix, word_embeddings = simi_matrix(method = args.method,dataset=args.dataset, method_ac = args.method_sim_ac, sub_units =args.sub_units)
 print(similarity_matrix.shape)
 
 norms = np.linalg.norm(word_embeddings, axis=1)

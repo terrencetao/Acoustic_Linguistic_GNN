@@ -10,6 +10,10 @@ import numpy as np
 import random
 import logging
 import pickle
+import math
+import torch.nn.functional as F
+from weak_ML2 import SimpleCNN
+from weakDense import SimpleDense
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 random.seed(42)
@@ -95,46 +99,91 @@ def create_phon_matrix(graph, label_name, phon_idx):
 def softmax_prob(method, graph, num_labels, label_name=None, threshold_probability=None, k=None,idx_phon=None):
    
     num_nodes = graph.number_of_nodes()
-  
+    
     #softmax_probabilities = torch.zeros((num_nodes, num_labels), dtype=torch.float32)
     
     if method == 'ML':
-    
-      acoustic_model = tf.keras.models.load_model('models/model.keras')
-      softmax_probabilities = acoustic_model.predict(tf.convert_to_tensor(graph.ndata['feat'].cpu().numpy()))
-      softmax_probabilities=filter_similarity_matrix(softmax_probabilities,  threshold=threshold_probability, k=k)
+       #Load the PyTorch model
+       acoustic_model = torch.load('models/cnn.pth')
+       acoustic_model.eval()  # Set the model to evaluation mode
+
+# Convert node features to a PyTorch tensor
+       node_features = torch.tensor(graph.ndata['feat'].cpu().numpy(), dtype=torch.float32)
+       node_features = node_features.view(node_features.shape[0],1 , node_features.shape[1], node_features.shape[2])
+# Predict softmax probabilities
+       with torch.no_grad():  # Disable gradient calculation
+          logits = acoustic_model(node_features)
+          softmax_probabilities = F.softmax(logits, dim=1)
+
+# Filter the softmax probabilities
+       softmax_probabilities = filter_similarity_matrix(softmax_probabilities.numpy(), threshold=threshold_probability, k=k)
       
       
     elif method == 'fixed' :
       softmax_probabilities = create_label_matrix(graph, k)
      
     elif method == 'mixed':
-      acoustic_model = tf.keras.models.load_model('models/model.keras')
-      softmax_probabilities = acoustic_model.predict(tf.convert_to_tensor(graph.ndata['feat'].cpu().numpy()))
-      softmax_probabilities=filter_similarity_matrix(softmax_probabilities,  threshold=threshold_probability, k=2*k)
-      fixed_probabilities = create_label_matrix(graph, k)
-      softmax_probabilities[fixed_probabilities==1] = 1.0
+      #Load the PyTorch model
+       acoustic_model = torch.load('models/cnn.pth')
+       acoustic_model.eval()  # Set the model to evaluation mode
+
+# Convert node features to a PyTorch tensor
+       node_features = torch.tensor(graph.ndata['feat'].cpu().numpy(), dtype=torch.float32)
+       node_features = node_features.view(node_features.shape[0],1 , node_features.shape[1], node_features.shape[2])
+# Predict softmax probabilities
+       with torch.no_grad():  # Disable gradient calculation
+          logits = acoustic_model(node_features)
+          softmax_probabilities = F.softmax(logits, dim=1)
+       softmax_probabilities = filter_similarity_matrix(softmax_probabilities.numpy(), threshold=threshold_probability, k=k)
+       fixed_probabilities = create_label_matrix(graph, k)
+       softmax_probabilities[fixed_probabilities==1] = 1.0
     
     elif method == 'folle': 
       softmax_probabilities = create_phon_matrix(graph, label_name, idx_phon)
       
-    logging.info(f'{method} method for connection')
+    
+    
+    elif method == 'dnn':
+       # Load the PyTorch model (DNN)
+      acoustic_model = torch.load('models/dense.pth')
+      acoustic_model.eval()  # Set the model to evaluation mode
+
+      # Convert node features to a PyTorch tensor
+      node_features = torch.tensor(graph.ndata['feat'].cpu().numpy(), dtype=torch.float32)
+
+# No need to reshape, since node_features are now vectors
+# node_features shape: [num_nodes, feature_dim]
+
+# Predict softmax probabilities
+      with torch.no_grad():  # Disable gradient calculation
+         logits = acoustic_model(node_features)  # Pass the node feature vectors directly into the DNN
+         softmax_probabilities = F.softmax(logits, dim=1)  # Apply softmax to get probabilities
+
+# Filter the softmax probabilities (assuming you have a filter_similarity_matrix function)
+      softmax_probabilities = filter_similarity_matrix(softmax_probabilities.numpy(), threshold=threshold_probability, k=k)
       
+    logging.info(f'{method} method for connection')
     return softmax_probabilities 
       
 if __name__ == "__main__":    
     parser = argparse.ArgumentParser()
     parser.add_argument('--twa', help='threshold for mixte graph', required=True)    
     parser.add_argument('--num_n', help='number of neigheibors for word', required=True)   
+    parser.add_argument('--num_n_ac', help='number of neigheibors for word', required=True)
     parser.add_argument('--method', help='', required=False) 
+    parser.add_argument('--method_sim', help='', required=False) 
+    parser.add_argument('--method_acou', help='', required=False) 
     parser.add_argument('--msw', help='method to compute a word similarity', required=False)
-
+    parser.add_argument('--sub_units', help='fraction of data', required=True) 
+    parser.add_argument('--dataset', help='name of dataset', required=True)
     args = parser.parse_args()
     
-    save_graph_dir = 'saved_graphs'
+    save_graph_dir = os.path.join('saved_graphs',args.dataset,args.method_sim, args.method_acou)
 # Load the simple DGL graphs
-    glist1, label_dict = load_graphs(os.path.join(save_graph_dir,"kws_graph.dgl"))
-    glist2, _ = load_graphs(os.path.join(save_graph_dir, "dgl_words_graph.bin"))
+    if not os.path.isfile(os.path.join(save_graph_dir,f"kws_graph_{args.num_n_ac}_{args.sub_units}.dgl")):
+      print('no')
+    glist1, label_dict = load_graphs(os.path.join(save_graph_dir,f"kws_graph_{args.num_n_ac}_{args.sub_units}.dgl"))
+    glist2, _ = load_graphs(os.path.join('saved_graphs',args.dataset, "dgl_words_graph.bin"))
 
     dgl_G_acoustic = glist1[0]
     dgl_G_words = glist2[0]
@@ -156,17 +205,19 @@ if __name__ == "__main__":
 
     num_word_nodes = graph2.num_nodes()
 
-    with open('label_names.pkl', 'rb') as f:
+    with open(f'label_names_{args.dataset}.pkl', 'rb') as f:
         all_label_names = pickle.load(f)
    
-   
-    with open('phon_idx.pkl', 'rb') as f:
-        phon_idx = pickle.load(f)
-    idx_phon = {v: k for k, v in phon_idx.items()}
+    if  os.path.isfile(f'phon_idx_{args.dataset}.pkl'):
+       with open(f'phon_idx_{args.dataset}.pkl', 'rb') as f:
+          phon_idx = pickle.load(f)
+       idx_phon = {v: k for k, v in phon_idx.items()}
+    else :
+       idx_phon = None
 
 # Step 2: Define the threshold probability
     threshold_probability = float(args.twa)
-    k= int(args.num_n)
+    k= math.floor(int(args.num_n))
 
     softmax_probabilities=softmax_prob(
      method = 'folle' if args.msw == 'phon_coo' else args.method, 
@@ -178,7 +229,7 @@ if __name__ == "__main__":
     links_acoustic_word = []
     probabilities_acoustic_word = []
 
-
+    
 
     for i in range(softmax_probabilities.shape[0]):
         for j in range(softmax_probabilities.shape[1]):
@@ -186,7 +237,7 @@ if __name__ == "__main__":
                  links_acoustic_word.append((i, j))
                  probabilities_acoustic_word.append(softmax_probabilities[i, j])
 
-
+    print(len(links_acoustic_word))
                 
 # Combine the edges into a data dictionary for the heterogeneous graph
     data_dict = {
@@ -233,10 +284,10 @@ if __name__ == "__main__":
 
 
 # Define the directory to save the graph
-    save_dir = "saved_graphs"
+    save_dir = os.path.join('saved_graphs',args.dataset,args.method_sim, args.method_acou,args.method)
 
 # Create the directory if it does not exist
     os.makedirs(save_dir, exist_ok=True)
 
 # Save the heterogeneous graph
-    dgl.save_graphs(os.path.join(save_dir, "hetero_graph.dgl"), hetero_graph)
+    dgl.save_graphs(os.path.join(save_dir, f"hetero_graph_{args.num_n}_{args.sub_units}.dgl"), hetero_graph)
