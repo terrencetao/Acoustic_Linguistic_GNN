@@ -60,8 +60,8 @@ subset_val_labels = np.load(os.path.join(matrix_folder,f'subset_val_label_{args.
 subset_val_spectrograms = np.load(os.path.join(matrix_folder,f'subset_val_spectrogram_{args.sub_units}.npy'))
 
 # Define the input features size
-#in_feats = features[0].shape[0] * features[0].shape[1]
-in_feats = features[0].shape[0]
+in_feats = features[0].shape[0] * features[0].shape[1]
+
 hidden_size = 64
 num_classes = len(torch.unique(labels))
 conv_param = [(1, 3, (20, 64)), 32, 2]
@@ -77,8 +77,8 @@ edge_weights = dgl_G.edata['weight']
 logging.info(f'Extract acoustic node representations')
 with torch.no_grad():
     loaded_model_sup.eval()
-    node_embeddings_sup = loaded_model_sup(dgl_G, features, edge_weights).numpy()
-
+    _,node_embeddings_sup = loaded_model_sup(dgl_G, features, edge_weights)
+    node_embeddings_sup  = node_embeddings_sup.numpy()
 # Load unsupervised GCN model
 logging.info(f'Load unsupervised GCN model')
 model_unsup_path = os.path.join(model_folder, "gnn_model_unsup.pth")
@@ -86,10 +86,10 @@ loaded_model_unsup = GCN(in_feats, hidden_size, num_classes, conv_param, hidden_
 #loaded_model_unsup.load_state_dict(torch.load(model_unsup_path))
 
 # Load unsupervised sage GCN model
-#logging.info(f'Load unsupervised sage GCN model')
-#model_unsup_path_sage = os.path.join(model_folder, "gnn_model_unsup_sage.pth")
-#loaded_model_unsup_sage = GCN(in_feats, hidden_size, num_classes, conv_param, hidden_units)
-#loaded_model_unsup_sage.load_state_dict(torch.load(model_unsup_path_sage))
+#logging.info(f'Load hibrid GCN model')
+model_hibrid_path = os.path.join(model_folder, "gnn_model_hibrid.pth")
+loaded_model_hibrid = GCN(in_feats, hidden_size, num_classes, conv_param, hidden_units)
+loaded_model_hibrid.load_state_dict(torch.load(model_hibrid_path))
 
 # Load the heterogeneous graph
 glists, _ = dgl.load_graphs(os.path.join(graph_folder, args.mhg, f"hetero_graph_{args.num_n_h}_{args.sub_units}.dgl"))
@@ -101,11 +101,12 @@ features_dic = {
     'word': hetero_graph.nodes['word'].data['feat']
 }
 in_feats = {'acoustic': features_dic['acoustic'].shape[1], 'word': features_dic['word'].shape[1]}
-hidden_size = 64
-out_feats = 16
+hidden_size = 512
+linear_hidden_size = 64
+out_feats = len(labels.unique())
 
 # Initialize the model
-model = HeteroGCN(in_feats, hidden_size, out_feats)
+model = HeteroGCN(in_feats, hidden_size, out_feats, linear_hidden_size)
 #model_sage = HeteroGCN(in_feats, hidden_size, out_feats)
 # Load the pre-trained model state
 model.load_state_dict(torch.load(os.path.join(model_folder, "hetero_gnn_model.pth")))
@@ -116,7 +117,7 @@ model.eval()
 # Extract acoustic node representations
 logging.info(f'Extract acoustic node representations')
 with torch.no_grad():
-    embeddings = model(hetero_graph, features_dic)
+    _,embeddings = model(hetero_graph, features_dic)
     acoustic_embeddings = embeddings['acoustic']
 
 #with torch.no_grad():
@@ -179,7 +180,7 @@ file_exists = os.path.isfile(f'accuracy/{csv_file}')
 if not file_exists:
     with open(f'accuracy/{csv_file}', mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['Supervised Model', 'Unsupervised Model','Unsupervised Model sage', 'Heterogeneous Model', 'Heterogeneous sage Model','Heterogeneous attention Model', 'Spectrogram Baseline', 'CNN Model', 'twa', 'num_n_h', 'mhg', 'num_n_a', 'ta', 'alpha', 'tw', 'msw', 'msa', 'mgw','mma'])
+        writer.writerow(['Supervised Model', 'Unsupervised Model','Hibrid Model', 'Heterogeneous Model', 'Heterogeneous sage Model','Heterogeneous attention Model', 'Spectrogram Baseline', 'CNN Model', 'twa', 'num_n_h', 'mhg', 'num_n_a', 'ta', 'alpha', 'tw', 'msw', 'msa', 'mgw','mma'])
 
 # Embeddings from supervised model
 node_embeddings_sup = torch.from_numpy(node_embeddings_sup)
@@ -191,14 +192,16 @@ accuracy_sup = train_evaluate_svm(node_embeddings_sup, labels_np)
 
 # Train and evaluate SVM for unsupervised embeddings
 logging.info(f'Train and evaluate SVM for unsupervised embeddings')
-node_embeddings_unsup = loaded_model_unsup(dgl_G, features, edge_weights).detach().numpy()
+_,node_embeddings_unsup = loaded_model_unsup(dgl_G, features, edge_weights)
+node_embeddings_unsup = node_embeddings_unsup.detach().numpy()
 accuracy_unsup = train_evaluate_svm(node_embeddings_unsup, labels_np)
 
-# Train and evaluate SVM for unsupervised sage embeddings
-#logging.info(f'Train and evaluate SVM for unsupervised  sage embeddings')
-#node_embeddings_unsup_sage = loaded_model_unsup_sage(dgl_G, features, edge_weights).detach().numpy()
-#accuracy_unsup_sage = train_evaluate_svm(node_embeddings_unsup_sage, labels_np)
-accuracy_unsup_sage = 0.0
+# Train and evaluate SVM for hibrid embeddings
+logging.info(f'Train and evaluate SVM for hibrid embeddings')
+_,node_embeddings_hibrid = loaded_model_hibrid(dgl_G, features, edge_weights)
+node_embeddings_hibrid = node_embeddings_hibrid.detach().numpy()
+accuracy_hibrid = train_evaluate_svm(node_embeddings_hibrid, labels_np)
+
 # Train and evaluate SVM for heterogeneous model embeddings
 logging.info(f'Train and evaluate SVM for heterogeneous model embeddings')
 acoustic_embeddings_np = acoustic_embeddings.detach().numpy()
@@ -241,13 +244,13 @@ test_loader = DataLoader(TensorDataset(X_test, y_test), batch_size=32, shuffle=F
 # Define and train the CNN model
 logging.info(f'train the CNN model')
 
-cnn_model = torch.load('models/dense.pth')
+cnn_model = torch.load('models/cnn.pth')
 accuracy_cnn = evaluate_dense(cnn_model, test_loader)
-logging.info(f'DNN Model Accuracy: {accuracy_cnn}')
+logging.info(f'CNN Model Accuracy: {accuracy_cnn}')
 
 # Write accuracy results to CSV file
 logging.info(f'Write accuracy results to CSV file')
 with open(f'accuracy/{csv_file}', mode='a', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_unsup_sage, accuracy_hetero,accuracy_hetero_sage, accuracy_attention,accuracy_spectrogram, accuracy_cnn, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw,args.mma])
+    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hibrid, accuracy_hetero,accuracy_hetero_sage, accuracy_attention,accuracy_spectrogram, accuracy_cnn, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw,args.mma])
 

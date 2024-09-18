@@ -7,35 +7,51 @@ import argparse
 import os
 import networkx as nx
 import logging
+from torch.optim import lr_scheduler
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 # Define the HeteroGCN model
+# Define the HeteroGCN model with additional linear layers
 class HeteroGCN(nn.Module):
-    def __init__(self, in_feats, hidden_size, out_feats):
+    def __init__(self, in_feats, hidden_size, out_feats, linear_hidden_size):
         super(HeteroGCN, self).__init__()
+        
+        # Graph convolutional layers
         self.conv1 = HeteroGraphConv({
             'sim_tic': SAGEConv(in_feats['acoustic'], hidden_size, 'mean'),
             'sim_w': SAGEConv(in_feats['word'], hidden_size, 'mean'),
             'related_to': SAGEConv(in_feats['acoustic'], hidden_size, 'mean')
         }, aggregate='mean')
+        
         self.conv2 = HeteroGraphConv({
-            'sim_tic': SAGEConv(hidden_size, out_feats, 'mean'),
-            'sim_w': SAGEConv(hidden_size, out_feats, 'mean'),
-            'related_to': SAGEConv(hidden_size, out_feats, 'mean')
+            'sim_tic': SAGEConv(hidden_size, 128, 'mean'),
+            'sim_w': SAGEConv(hidden_size, 128, 'mean'),
+            'related_to': SAGEConv(hidden_size, 128, 'mean')
         }, aggregate='mean')
+        
+        # Three linear layers
+        self.linear1 = nn.Linear(128, linear_hidden_size)
+        self.linear2 = nn.Linear(linear_hidden_size, linear_hidden_size)
+        self.linear3 = nn.Linear(linear_hidden_size, out_feats)
 
-    #def forward(self, g, inputs):
-    #    h = self.conv1(g, inputs)
-    #    h = {k: F.relu(v) for k, v in h.items()}
-    #    h = self.conv2(g, h)
-    #    return h
     def forward(self, g, inputs):
         # Get edge weights
         edge_weights = {etype: g.edges[etype].data['weight'] for etype in g.etypes}
+        
+        # Graph convolution layers
         h = self.conv1(g, inputs, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
         h = {k: F.relu(v) for k, v in h.items()}
         h = self.conv2(g, h, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
-        return h
+        embeddings = h
+        # Process each node type separately through linear layers
+        h['acoustic'] = F.relu(self.linear1(h['acoustic']))
+        h['acoustic'] = F.relu(self.linear2(h['acoustic']))
+        h['acoustic'] = self.linear3(h['acoustic'])
+        
+        
+        
+        return h['acoustic'],embeddings
+
 
 # Define a custom topological loss function
 def topological_loss(embeddings_acoustic, embeddings_word, adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word):
@@ -64,7 +80,7 @@ def train_with_topological_loss(model, g, features, adj_matrix_acoustic, adj_mat
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
     for epoch in range(epochs):
         model.train()
-        embeddings = model(g, features)
+        _,embeddings = model(g, features)
         loss = topological_loss(
             embeddings['acoustic'], embeddings['word'], 
             adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word
@@ -75,7 +91,44 @@ def train_with_topological_loss(model, g, features, adj_matrix_acoustic, adj_mat
         if epoch % 10 == 0:
             print(f'Epoch {epoch}, Loss: {loss.item()}')
 
+
+
+# Define the training function with topological loss for heterogeneous graph
+def train_with_topological_loss_cross_loss(model, g, features, adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word, labels, epochs=100, lr=0.001):
+    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+    scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=5, verbose=True)
+   
+    
+    
+    for epoch in range(epochs):
+        # Forward pass: Get the logits and embeddings from the model
+        embeddings = model(g, features)
+        
+        # Topological loss computation for each node type
+        
+        logits, embeddings = model(g, features)
+        loss = F.cross_entropy(logits, labels) + topological_loss( embeddings['acoustic'], embeddings['word'], adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word)
+
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+        
+        # Update the learning rate scheduler
+        scheduler.step(loss)
+        
+        # Log loss and optionally other metrics every 10 epochs
+        if epoch % 10 == 0 or epoch==epochs:
+            # You can also compute accuracy here
+            _, predicted = torch.max(logits, 1)
+            correct = (predicted == labels).sum().item()
+            accuracy = correct / labels.size(0)
+            
+            print(f'Epoch {epoch}, Loss: {loss.item()}, Accuracy: {accuracy*100:.2f}%')
+    
+    return model
+
 # Main function to load graph, prepare data, and train model
+
 def main(input_folder, graph_file, epochs):
     # Load the heterogeneous graph
     glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
@@ -86,38 +139,33 @@ def main(input_folder, graph_file, epochs):
         'acoustic': hetero_graph.nodes['acoustic'].data['feat'],
         'word': hetero_graph.nodes['word'].data['feat']
     }
-    
+    labels = hetero_graph.nodes['acoustic'].data['label']
     # Initialize the HeteroGCN model
     in_feats = {'acoustic': features['acoustic'].shape[1], 'word': features['word'].shape[1]}
-    hidden_size = 64
-    out_feats = 16  # Set output feature size
-    model = HeteroGCN(in_feats, hidden_size, out_feats)
+    hidden_size = 512
+    linear_hidden_size = 64  # Set linear hidden size
+    out_feats = len(labels.unique())  # Set output feature size
+    model = HeteroGCN(in_feats, hidden_size, out_feats, linear_hidden_size)
     
-    # Extract adjacency matrices
+    # Extract adjacency matrices and other training details (unchanged)
     adj_matrix_acoustic = torch.tensor(nx.to_numpy_matrix(hetero_graph['acoustic', 'sim_tic', 'acoustic'].to_networkx()))
     adj_matrix_word = torch.tensor(nx.to_numpy_matrix(hetero_graph['word', 'sim_w', 'word'].to_networkx()))
-    
-    # Build the adjacency matrix for acoustic-word relations
     num_acoustic_nodes = hetero_graph.num_nodes('acoustic')
     num_word_nodes = hetero_graph.num_nodes('word')
     adj_matrix_acoustic_word = torch.zeros(num_acoustic_nodes, num_word_nodes)
-    
     src, dst = hetero_graph.edges(etype=('acoustic', 'related_to', 'word'))
     adj_matrix_acoustic_word[src, dst] = 1 
 
-    # Convert adjacency matrices to float
+    # Convert matrices to float
     adj_matrix_acoustic = adj_matrix_acoustic.float()
     adj_matrix_word = adj_matrix_word.float()
     adj_matrix_acoustic_word = adj_matrix_acoustic_word.float()
-
-    # Convert features to float
     features = {k: v.float() for k, v in features.items()}
     
- 
-    # Train the model with topological loss
-    train_with_topological_loss(
+    # Train the model
+    model = train_with_topological_loss_cross_loss(
         model, hetero_graph, features, 
-        adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word,
+        adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word,labels,
         epochs
     )
     
@@ -125,6 +173,7 @@ def main(input_folder, graph_file, epochs):
     model_path = os.path.join('models', "hetero_gnn_model.pth")
     torch.save(model.state_dict(), model_path)
     logging.info(f'Model saved to {model_path}')
+
 
 # Parse arguments and run main
 if __name__ == "__main__":

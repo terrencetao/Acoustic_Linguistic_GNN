@@ -11,7 +11,7 @@ from tqdm import tqdm
 
 np.random.seed(42)
     
-def filter_similarity_matrix(similarity_matrix, labels, threshold=0, alpha=2, k=None):
+def filter_similarity_matrix(similarity_matrix, labels, threshold=0, alpha=1, k=None):
     filtered_matrix = similarity_matrix.copy()
     n = similarity_matrix.shape[0]
     
@@ -82,14 +82,14 @@ def random_dtw(matrix, k, spectrogram, alpha, distance_function, n_jobs=-1):
     random_matrix = random_matrix.astype(np.float64)
     n = matrix.shape[0]
     
-    def process_row(i):
+    def process_row(i,k):
         # Only consider the upper triangle
         valid_indices = np.where(matrix[i, i+1:] == 0)[0] + (i + 1)
         valid_indices = [idx for idx in valid_indices if idx not in ones[i]]
         
         if len(valid_indices) > 0:
             k_actual = min(k, len(valid_indices))  # Ensure no replacement if not enough valid indices
-            selected_indices = valid_indices  # You can randomly select k_actual if needed
+            selected_indices = np.random.choice(valid_indices, k_actual, replace=False)  # You can randomly select k_actual if needed
             distances = np.array([distance_function(spectrogram, i, j)[2] for j in selected_indices])
             sorted_indices = selected_indices[np.argsort(distances)[:k_actual]]
             sorted_distances = np.sort(distances)[:k_actual]
@@ -98,7 +98,7 @@ def random_dtw(matrix, k, spectrogram, alpha, distance_function, n_jobs=-1):
             return i, np.array([]), np.array([])
     
     with Parallel(n_jobs=n_jobs) as parallel:
-        results = list(parallel(delayed(process_row)(i) for i in tqdm(range(n))))
+        results = list(parallel(delayed(process_row)(i,1) for i in tqdm(range(n))))
     
     for i, nearest_indices, distances in results:
         if len(nearest_indices) > 0:
@@ -117,7 +117,7 @@ def k_nearest_neighbors(similarity_matrix, k, spectrogram, alpha, distance_funct
     n = similarity_matrix.shape[0]
     knn_matrix = np.zeros_like(similarity_matrix)
     
-    def process_row(i, x):
+    def process_row(i, x, k):
         valid_indices = np.where(similarity_matrix[i, i+1:] == x)[0] + (i + 1)
         if len(valid_indices) > 0:
             distances = np.array([distance_function(spectrogram, i, j)[2] for j in valid_indices])
@@ -127,19 +127,26 @@ def k_nearest_neighbors(similarity_matrix, k, spectrogram, alpha, distance_funct
             return i, np.array([]), np.array([])
     
     with Parallel(n_jobs=n_jobs) as parallel:
-        results = list(tqdm(parallel(delayed(process_row)(i, 1) for i in range(n)), total=n))
+        results = list(tqdm(parallel(delayed(process_row)(i, 1 ,k) for i in range(n)), total=n))
     
     for i, nearest_indices, distances in results:
         if len(nearest_indices)>0:
            knn_matrix[i, nearest_indices] = 1
     
+    def process_row2(i, x, k):
+        valid_indices = np.where(similarity_matrix[i, i+1:] == x)[0] + (i + 1)
+        if len(valid_indices) > 0:
+            distances = np.array([distance_function(spectrogram, i, j)[2] for j in valid_indices])
+            nearest_indices = valid_indices[np.argsort(distances)[:-k]]
+            return i, nearest_indices, distances[np.argsort(distances)[:k]]
+        else:
+            return i, np.array([]), np.array([])
     with Parallel(n_jobs=n_jobs) as parallel:
-        results = list(tqdm(parallel(delayed(process_row)(i, 0) for i in range(n)), total=n))
+        results = list(tqdm(parallel(delayed(process_row2)(i, 0, 1) for i in range(n)), total=n))
         
     for i, nearest_indices, distances in results:
         if len(nearest_indices)>0:
-           knn_matrix[i, nearest_indices] = np.exp(-distances)
-    
+           knn_matrix[i, nearest_indices] = -1
     # Mirror the upper triangle into the lower triangle using vectorized NumPy operation
     lower_indices = np.tril_indices(n, -1)  # Get lower triangular indices
     knn_matrix[lower_indices] = knn_matrix.T[lower_indices]  # Mirror the upper triangle

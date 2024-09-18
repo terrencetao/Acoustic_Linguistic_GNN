@@ -89,14 +89,14 @@ def compute_dtw_distance(spectrogram1, spectrogram2):
     return np.mean(distances)
 
 # Wrapper function for parallel processing
-def compute_distance_for_pair(spectrograms, i, j, d='vgg'):
+def compute_distance_for_pair(spectrograms, i, j, d='dtw'):
     if d=='dtw':
        distance = distance_dtw(spectrograms[i], spectrograms[j])
     elif d=='vgg':
        distance = vgg_distance(spectrograms[i], spectrograms[j])
     return i, j, distance
 
-def compute_dtw_similarity_matrix(spectrograms, d='vgg'):
+def compute_dtw_similarity_matrix(spectrograms, d='dtw'):
     num_spectrograms = len(spectrograms)
     similarity_matrix = np.zeros((num_spectrograms, num_spectrograms))
     
