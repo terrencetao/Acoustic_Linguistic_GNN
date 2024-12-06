@@ -92,7 +92,7 @@ loaded_model_hibrid = GCN(in_feats, hidden_size, num_classes, conv_param, hidden
 loaded_model_hibrid.load_state_dict(torch.load(model_hibrid_path))
 
 # Load the heterogeneous graph
-glists, _ = dgl.load_graphs(os.path.join(graph_folder, args.mhg, f"hetero_graph_{args.num_n_h}_{args.sub_units}.dgl"))
+glists, _ = dgl.load_graphs(os.path.join(graph_folder, args.mhg, args.msw,f"hetero_graph_{args.num_n_a}_{args.num_n_h}_{args.sub_units}.dgl"))
 hetero_graph = glists[0]
 
 # Load the heterogeneous GCN model
@@ -180,7 +180,7 @@ file_exists = os.path.isfile(f'accuracy/{csv_file}')
 if not file_exists:
     with open(f'accuracy/{csv_file}', mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['Supervised Model', 'Unsupervised Model','Hibrid Model', 'Heterogeneous Model', 'Heterogeneous sage Model','Heterogeneous attention Model', 'Spectrogram Baseline', 'CNN Model', 'twa', 'num_n_h', 'mhg', 'num_n_a', 'ta', 'alpha', 'tw', 'msw', 'msa', 'mgw','mma'])
+        writer.writerow(['Supervised Model', 'Unsupervised Model','Hibrid Model', 'Heterogeneous Model', 'Heterogeneous sage Model','Heterogeneous attention Model', 'Spectrogram Baseline', 'CNN Model', 'DNN Model','twa', 'num_n_h', 'mhg', 'num_n_a', 'ta', 'alpha', 'tw', 'msw', 'msa', 'mgw','mma'])
 
 # Embeddings from supervised model
 node_embeddings_sup = torch.from_numpy(node_embeddings_sup)
@@ -245,12 +245,16 @@ test_loader = DataLoader(TensorDataset(X_test, y_test), batch_size=32, shuffle=F
 logging.info(f'train the CNN model')
 
 cnn_model = torch.load('models/cnn.pth')
-accuracy_cnn = evaluate_dense(cnn_model, test_loader)
+cnn_model = torch.load('models/cnn.pth')
+dnn_model = torch.load('models/dense.pth')
+accuracy_cnn = evaluate_cnn(cnn_model, test_loader)
+accuracy_dnn = evaluate_dense(dnn_model, test_loader)
 logging.info(f'CNN Model Accuracy: {accuracy_cnn}')
+logging.info(f'DNN Model Accuracy: {accuracy_dnn}')
 
 # Write accuracy results to CSV file
 logging.info(f'Write accuracy results to CSV file')
 with open(f'accuracy/{csv_file}', mode='a', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hibrid, accuracy_hetero,accuracy_hetero_sage, accuracy_attention,accuracy_spectrogram, accuracy_cnn, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw,args.mma])
+    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hibrid, accuracy_hetero,accuracy_hetero_sage, accuracy_attention,accuracy_spectrogram, accuracy_cnn, accuracy_dnn, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw,args.mma])
 

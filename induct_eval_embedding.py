@@ -136,7 +136,11 @@ def add_new_nodes_to_graph_randomly2(dgl_G, new_node_spectrograms, k, n_jobs=-1)
     
     return dgl_G, num_existing_nodes
 
-def add_new_nodes_to_graph_knn(dgl_G, new_node_spectrograms, k, distance_function, n_jobs=-1):
+def add_new_nodes_to_graph_knn(dgl_G, new_node_spectrograms, k, distance_function,ml,dnn, add, n_jobs=-1):
+    if add=='ML':
+       AM = ml
+    elif add=='dnn':
+       AM = dnn
     num_existing_nodes = dgl_G.number_of_nodes()
     num_new_nodes = new_node_spectrograms.shape[0]
     
@@ -148,11 +152,12 @@ def add_new_nodes_to_graph_knn(dgl_G, new_node_spectrograms, k, distance_functio
     dgl_G.ndata['feat'][num_existing_nodes:num_existing_nodes + num_new_nodes] = new_features
 
     existing_features = dgl_G.ndata['feat'][:num_existing_nodes].numpy()
+
     def process_new_node(new_node_index):
         new_node_spectrogram = new_node_spectrograms[new_node_index - num_existing_nodes]
         
         # Compute distances to all existing nodes
-        distances = [distance_function(new_node_spectrogram, existing_features[i]) for i in range(num_existing_nodes)]
+        distances = [distance_function(AM,new_node_spectrogram, existing_features[i]) for i in range(num_existing_nodes)]
         
         # Select the k nearest neighbors
         nearest_indices = np.argsort(distances)[:k]
@@ -169,11 +174,10 @@ def add_new_nodes_to_graph_knn(dgl_G, new_node_spectrograms, k, distance_functio
     all_edges = Parallel(n_jobs=n_jobs)(delayed(process_new_node)(new_node_index) for new_node_index in tqdm(range(num_existing_nodes, num_existing_nodes + num_new_nodes)))
     
     # Flatten the list of edges and add them to the graph
-    print(len(all_edges[1]))
     src_nodes, dst_nodes, weights = zip(*[(src, dst, weight) for edges in all_edges for src, dst, weight in edges])
     dgl_G.add_edges(src_nodes, dst_nodes, {'weight': torch.tensor(weights, dtype=torch.float32)})
 
-    return dgl_G, num_existing_nodes
+    return dgl_G, num_existing_nodes    
     
     
 def add_new_nodes_to_graph_random(dgl_G, new_node_spectrograms, new_node_labels, existing_node_labels, k, n_jobs=-1):
@@ -298,7 +302,7 @@ def add_new_acoustic_nodes_to_hetero_graph(hetero_graph, homograph, new_node_spe
     return hetero_graph, num_existing_acoustic_nodes
 
     
-def add_new_nodes_to_hetero_graph_knn(hetero_graph, new_node_spectrograms, k, distance_function, n_jobs=-1):
+def add_new_nodes_to_hetero_graph_knn(hetero_graph, new_node_spectrograms, k, distance_function,ml, add, n_jobs=-1):
     # Work with 'acoustic' node type specifically
     num_existing_nodes = hetero_graph.num_nodes('acoustic')
     num_new_nodes = new_node_spectrograms.shape[0]
@@ -313,12 +317,16 @@ def add_new_nodes_to_hetero_graph_knn(hetero_graph, new_node_spectrograms, k, di
     hetero_graph.nodes['acoustic'].data['feat'][num_existing_nodes:num_existing_nodes + num_new_nodes] = flattened_new_features
 
     existing_features = hetero_graph.nodes['acoustic'].data['feat'][:num_existing_nodes].numpy()
-
+    print(existing_features.shape)
+    if add == 'ML':
+       existing_features = existing_features.reshape(existing_features.shape[0], 124, 13)
+       flattened_new_features = new_features
+    print(existing_features.shape)
     def process_new_node(new_node_index):
         new_node_spectrogram = flattened_new_features[new_node_index - num_existing_nodes]
         
         # Compute distances to all existing 'acoustic' nodes
-        distances = [distance_function(new_node_spectrogram, existing_features[i]) for i in range(num_existing_nodes)]
+        distances = [distance_function(ml,new_node_spectrogram, existing_features[i]) for i in range(num_existing_nodes)]
         
         # Select the k nearest neighbors
         nearest_indices = np.argsort(distances)[:k]
@@ -327,13 +335,13 @@ def add_new_nodes_to_hetero_graph_knn(hetero_graph, new_node_spectrograms, k, di
         for i in nearest_indices:
             distance = distances[i]
             similarity = np.exp(-distance)
-            edges.append((new_node_index, i, similarity))
-            edges.append((i, new_node_index, similarity))
+            edges.append((new_node_index, i, 1))
+            edges.append((i, new_node_index, 1))
         return edges
 
     # Use joblib to parallelize the processing of new nodes
     all_edges = Parallel(n_jobs=n_jobs)(delayed(process_new_node)(new_node_index) for new_node_index in tqdm(range(num_existing_nodes, num_existing_nodes + num_new_nodes)))
-
+    print(k)
     # Flatten the list of edges and add them to the graph
     for edges in all_edges:
         src, dst, weights = zip(*edges)
@@ -343,13 +351,27 @@ def add_new_nodes_to_hetero_graph_knn(hetero_graph, new_node_spectrograms, k, di
     
 
 
-def add_new_acoustic_nodes_to_hetero_graph_knn(hetero_graph, new_node_spectrograms, k, distance_function, ml_model, threshold_probability, n_jobs=-1):
+def add_new_acoustic_nodes_to_hetero_graph_knn(hetero_graph, new_node_spectrograms, k, distance_function, ml_model, ml_dense, threshold_probability, add, n_jobs=-1):
+    if add =='dnn':
     # Step 1: Add new acoustic nodes and connect to existing acoustic nodes using KNN
-    hetero_graph, num_existing_acoustic_nodes = add_new_nodes_to_hetero_graph_knn(
+       hetero_graph, num_existing_acoustic_nodes = add_new_nodes_to_hetero_graph_knn(
         hetero_graph, 
         new_node_spectrograms, 
         k, 
         distance_function, 
+        ml_dense,
+        add,
+        n_jobs
+    )
+    elif add == 'ML':
+       # Step 1: Add new acoustic nodes and connect to existing acoustic nodes using KNN
+       hetero_graph, num_existing_acoustic_nodes = add_new_nodes_to_hetero_graph_knn(
+        hetero_graph, 
+        new_node_spectrograms, 
+        k, 
+        distance_function, 
+        ml_model,
+        add,
         n_jobs
     )
     
@@ -644,6 +666,7 @@ parser.add_argument('--drop_freq', help='dim frequency ', required=False)
 parser.add_argument('--drop_int', help='dim amplitude ', required=False) 
 parser.add_argument('--sub_units', help='fraction of data', required=True)  
 parser.add_argument('--dataset', help='name of dataset', required=True)
+parser.add_argument('--add', help='model to add a new node in graph dnn or ML', required=True)
 args = parser.parse_args()
 
 
@@ -656,7 +679,7 @@ glist, label_dict = load_graphs(os.path.join(graph_folder,f"kws_graph_{args.num_
 dgl_G = glist[0]
 
 features = dgl_G.ndata['feat']
-print(features.shape)
+
 labels = dgl_G.ndata['label']
 subset_val_labels = np.load(os.path.join(matrix_folder,f'subset_val_label_{args.sub_units}.npy'))
 subset_val_spectrograms = np.load(os.path.join(matrix_folder,f'subset_val_spectrogram_{args.sub_units}.npy'))
@@ -676,19 +699,19 @@ model_sup_path = os.path.join(model_folder, "gnn_model.pth")
 loaded_model_sup = GCN(in_feats, hidden_size, num_classes, conv_param, hidden_units)
 loaded_model_sup.load_state_dict(torch.load(model_sup_path))
 
-kws_graph_path_val = os.path.join(graph_folder, f"kws_graph_val_{args.num_n_a}_{args.sub_units}.dgl")
+kws_graph_path_val = os.path.join(graph_folder, args.add, f"kws_graph_val_{args.num_n_a}_{args.sub_units}.dgl")
 
 # Extract labels for training
 labels_np = labels.numpy()
 val_labels_np = subset_val_labels
 acoustic_model = torch.load('models/cnn.pth')
+ml_dense = torch.load('models/dense.pth')
 if not os.path.isfile(kws_graph_path_val):
   logging.info(f'Extract acoustic node representations from supervised GCN')
-  dgl_G, num_existing_nodes = add_new_nodes_to_graph_knn(dgl_G, new_node_spectrograms=subset_val_spectrograms,  k=math.floor(2*int(args.num_n_a)), distance_function=distance_dtw)
-  #dgl_G, num_existing_nodes = add_new_nodes_to_graph_random(dgl_G, new_node_spectrograms=subset_val_spectrograms, new_node_labels=val_labels_np, existing_node_labels=labels_np, k=math.floor(int(args.num_n_a)/4), n_jobs=-1)
-  #dgl_G, num_existing_nodes= add_new_nodes_to_graph_randomly2(dgl_G, new_node_spectrograms=subset_val_spectrograms, k=1500, n_jobs=-1)
-  print(dgl_G.number_of_nodes())
-  kws_graph_path_val = os.path.join(graph_folder, f"kws_graph_val_{args.num_n_a}_{args.sub_units}.dgl")
+  dgl_G, num_existing_nodes = add_new_nodes_to_graph_knn(dgl_G, new_node_spectrograms=subset_val_spectrograms,  k=math.floor(int(args.num_n_a)/2), distance_function=ml_distance, ml=acoustic_model,
+  dnn=ml_dense, add=args.add)
+  
+  kws_graph_path_val = os.path.join(graph_folder, args.add, f"kws_graph_val_{args.num_n_a}_{args.sub_units}.dgl")
   dgl.save_graphs(kws_graph_path_val, [dgl_G])
   print(f"dgl val save successfully")
 else:
@@ -696,7 +719,6 @@ else:
   num_existing_nodes = dgl_G.number_of_nodes()
   glist, label_dict= load_graphs(kws_graph_path_val)
   dgl_G = glist[0]
-#print(dgl_G.number_of_nodes())
 node_embeddings_sup, node_val_embeddings_sup = generate_embeddings(gcn_model=loaded_model_sup, 
                                                 dgl_G=dgl_G,num_existing_nodes=num_existing_nodes, new_node_spectrograms=subset_val_spectrograms, 
                                                )
@@ -719,7 +741,7 @@ loaded_model_hibrid.load_state_dict(torch.load(model_hibrid_path))
 
 
 # Load the heterogeneous graph
-glists, _ = dgl.load_graphs(os.path.join(graph_folder, args.mhg, f"hetero_graph_{args.num_n_h}_{args.sub_units}.dgl"))
+glists, _ = dgl.load_graphs(os.path.join(graph_folder, args.mhg,args.msw,  f"hetero_graph_{args.num_n_a}_{args.num_n_h}_{args.sub_units}.dgl"))
 hetero_graph = glists[0]
 
 # Load the heterogeneous GCN model
@@ -743,7 +765,8 @@ model.eval()
 # Extract acoustic node representations
 logging.info(f'Extract acoustic node representations from hetero GCN')
 
-hetero_graph_path_val = os.path.join(graph_folder, args.mhg, f"hetero_graph_val_{args.mhg}_{args.num_n_h}_{args.sub_units}.dgl")
+hetero_graph_path_val = os.path.join(graph_folder, args.mhg,args.msw, args.add, f"hetero_graph_val_{args.mhg}_{args.num_n_a}_{args.num_n_h}_{args.sub_units}.dgl")
+
 if not os.path.isfile(hetero_graph_path_val):
 # Add new 'acoustic' nodes to the graph
     #hetero_graph, num_existing_acoustic_nodes = add_new_acoustic_nodes_to_hetero_graph(
@@ -762,13 +785,16 @@ if not os.path.isfile(hetero_graph_path_val):
     #                   k=int(args.num_n_h), 
     #                    ml_model=acoustic_model, 
     #                    threshold_probability=float(args.twa), n_jobs=-1)
+    print(args.num_n_h)
     hetero_graph, num_existing_acoustic_nodes = add_new_acoustic_nodes_to_hetero_graph_knn(
                                 hetero_graph, 
                                  new_node_spectrograms=subset_val_spectrograms, 
                                   k=int(args.num_n_h),
-                                distance_function= vgg_distance, 
+                                distance_function= ml_distance, 
                                  ml_model=acoustic_model, 
+                                 ml_dense = ml_dense,
                                   threshold_probability=float(args.twa), 
+                                  add = args.add,
                                   n_jobs=-1)
     
     
@@ -819,7 +845,7 @@ file_exists = os.path.isfile(f'accuracy/{csv_file}')
 if not file_exists:
     with open(f'accuracy/{csv_file}', mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['Supervised Model', 'Unsupervised Model','Unsupervised sage Model', 'Heterogeneous Model','Heterogeneous sage Model','Heterogeneous attention Model', 'Spectrogram Baseline', 'CNN Model', 'twa', 'num_n_h', 'mhg', 'num_n_a', 'ta', 'alpha', 'tw', 'msw', 'msa', 'mgw', 'mma'])
+        writer.writerow(['Supervised Model', 'Unsupervised Model','Unsupervised sage Model', 'Heterogeneous Model','Heterogeneous sage Model','Heterogeneous attention Model', 'Spectrogram Baseline', 'CNN Model','DNN Model', 'twa', 'num_n_h', 'mhg', 'num_n_a', 'ta', 'alpha', 'tw', 'msw', 'msa', 'mgw', 'mma', 'add'])
 
 
 
@@ -885,12 +911,15 @@ test_loader = DataLoader(TensorDataset(X_test, y_test), batch_size=32, shuffle=F
 logging.info(f'train the CNN model')
 input_shape = val_spectrograms_tensor.shape[1:]  # (1, height, width)
 cnn_model = torch.load('models/cnn.pth')
-accuracy_cnn = evaluate_dense(cnn_model, test_loader)
+dnn_model = torch.load('models/dense.pth')
+accuracy_cnn = evaluate_cnn(cnn_model, test_loader)
+accuracy_dnn = evaluate_dense(dnn_model, test_loader)
 logging.info(f'CNN Model Accuracy: {accuracy_cnn}')
+logging.info(f'DNN Model Accuracy: {accuracy_dnn}')
 
 # Write accuracy results to CSV file
 logging.info(f'Write accuracy results to CSV file')
 with open(f'accuracy/{csv_file}', mode='a', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hibrid, accuracy_hetero, accuracy_hetero_sage, accuracy_attention,accuracy_spectrogram, accuracy_cnn, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw, args.mma])
+    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hibrid, accuracy_hetero, accuracy_hetero_sage, accuracy_attention,accuracy_spectrogram, accuracy_cnn, accuracy_dnn, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw, args.mma, args.add])
 

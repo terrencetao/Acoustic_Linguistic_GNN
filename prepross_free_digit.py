@@ -174,7 +174,7 @@ def make_spec_ds(ds,feature,drop_int=None, drop_freq=None,vgg_ffn_model=None):
       num_parallel_calls=tf.data.AUTOTUNE)
   elif feature == 'mfcc':
      return ds.map(
-      map_func=lambda audio,label: (get_mfcc(audio, 16000, drop_int, drop_freq), label),
+      map_func=lambda audio,label: (get_mfcc(audio, 8000, drop_int, drop_freq), label),
       num_parallel_calls=tf.data.AUTOTUNE)
   elif feature == 'vgg':
       return ds.map(

@@ -1,4 +1,0 @@
-Supervised Model,Unsupervised Model,Heterogeneous Model,Heterogeneous attention Model,Spectrogram Baseline,CNN Model,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw
-0.02,0.02,0.02,0.0,0.08,0.05333333333333334,0.1,1.0,ML,1.0,0.0,2.0,0.5,phon_count,mixed,full
-0.02,0.02,0.02,0.0,0.08,0.05333333333333334,0.1,1.0,ML,1.0,0.0,2.0,0.5,phon_count,mixed,full
-0.02,0.02,0.02,0.0,0.08,0.05333333333333334,0.2,1.0,ML,1.0,0.0,2.0,0.5,phon_count,mixed,full

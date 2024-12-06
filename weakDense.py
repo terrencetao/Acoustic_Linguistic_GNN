@@ -22,8 +22,8 @@ class SimpleDense(nn.Module):
     def forward(self, x):
         x = self.flatten(x)
         x = F.relu(self.fc1(x))
-        x = self.dropout(x)
         x = F.relu(self.fc2(x))
+        #x = self.dropout(x)
         x = self.fc3(x)
         return F.log_softmax(x, dim=1)  # Softmax for multi-class classification
 

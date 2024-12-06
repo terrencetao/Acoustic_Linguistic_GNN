@@ -223,7 +223,7 @@ if __name__ == "__main__":
         f_matrix_with_labels = np.hstack((subset_labels[:, np.newaxis], filtered_similarity_matrix))
     #print(filtered_similarity_matrix)
         print("Filtered similarity matrix computed successfully.")
-        np.save(os.path.join(matrix_dir,f'filtered_matrix_with_labels_{sub_units}.npy'), f_matrix_with_labels)
+        np.save(os.path.join(matrix_dir,f'filtered_matrix_with_labels_{args.num_n}_{sub_units}.npy'), f_matrix_with_labels)
 
         G = nx.Graph()
         num_nodes = filtered_similarity_matrix.shape[0]

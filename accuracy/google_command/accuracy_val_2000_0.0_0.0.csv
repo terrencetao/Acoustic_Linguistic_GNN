@@ -1,2 +1,18 @@
-Supervised Model,Unsupervised Model,Unsupervised sage Model,Heterogeneous Model,Heterogeneous sage Model,Heterogeneous attention Model,Spectrogram Baseline,CNN Model,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw,mma
-0.3975,0.265,0.3625,0.3075,0.0,0.0,0.4625,0.525,0.6,62.0,ML,124.0,0.0,1.0,0.5,phon_count,knn,full,fixed
+Supervised Model,Unsupervised Model,Unsupervised sage Model,Heterogeneous Model,Heterogeneous sage Model,Heterogeneous attention Model,Spectrogram Baseline,CNN Model,DNN Model,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw,mma,add
+0.635,0.615,0.65,0.6275,0.0,0.0,0.4625,0.7225,0.6325,0.1,62.0,dnn,124.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.6325,0.62,0.645,0.1225,0.0,0.0,0.4625,0.7025,0.6875,0.1,37.0,dnn,124.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.6325,0.62,0.645,0.6575,0.0,0.0,0.4625,0.7025,0.6875,0.1,37.0,fixed,124.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.6375,0.6025,0.6375,0.6575,0.0,0.0,0.4625,0.7525,0.6975,0.1,24.0,dnn,124.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.6375,0.6025,0.6375,0.66,0.0,0.0,0.4625,0.7525,0.6975,0.1,24.0,fixed,124.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.6175,0.445,0.6475,0.63,0.0,0.0,0.4625,0.6975,0.6975,0.1,12.0,dnn,12.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.6175,0.445,0.6475,0.675,0.0,0.0,0.4625,0.6975,0.6975,0.1,12.0,fixed,12.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.6425,0.63,0.645,0.6225,0.0,0.0,0.4625,0.665,0.695,0.1,62.0,dnn,124.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.6425,0.63,0.645,0.6775,0.0,0.0,0.4625,0.665,0.695,0.1,31.0,dnn,124.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.6425,0.63,0.645,0.6575,0.0,0.0,0.4625,0.665,0.695,0.1,20.0,dnn,124.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.6425,0.63,0.645,0.635,0.0,0.0,0.4625,0.665,0.695,0.1,15.0,dnn,124.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.6425,0.63,0.645,0.6625,0.0,0.0,0.4625,0.665,0.695,0.1,12.0,dnn,124.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.6425,0.63,0.645,0.68,0.0,0.0,0.4625,0.665,0.695,0.1,62.0,fixed,124.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.6425,0.63,0.645,0.6725,0.0,0.0,0.4625,0.665,0.695,0.1,31.0,fixed,124.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.6425,0.63,0.645,0.6825,0.0,0.0,0.4625,0.665,0.695,0.1,20.0,fixed,124.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.6425,0.63,0.645,0.6425,0.0,0.0,0.4625,0.665,0.695,0.1,15.0,fixed,124.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.6425,0.63,0.645,0.635,0.0,0.0,0.4625,0.665,0.695,0.1,12.0,fixed,124.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn

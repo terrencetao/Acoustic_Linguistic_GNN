@@ -180,7 +180,7 @@ if __name__ == "__main__":
     
     save_graph_dir = os.path.join('saved_graphs',args.dataset,args.method_sim, args.method_acou)
 # Load the simple DGL graphs
-    if not os.path.isfile(os.path.join(save_graph_dir,f"kws_graph_{args.num_n_ac}_{args.sub_units}.dgl")):
+    if not os.path.isfile(os.path.join(save_graph_dir, args.msw, f"kws_graph_{args.num_n_ac}_{args.sub_units}.dgl")):
       print('no')
     glist1, label_dict = load_graphs(os.path.join(save_graph_dir,f"kws_graph_{args.num_n_ac}_{args.sub_units}.dgl"))
     glist2, _ = load_graphs(os.path.join('saved_graphs',args.dataset, "dgl_words_graph.bin"))
@@ -246,6 +246,7 @@ if __name__ == "__main__":
     ('acoustic', 'related_to', 'word'): (torch.tensor([src for src, dst in links_acoustic_word]), torch.tensor([dst for src, dst in links_acoustic_word]))
 }
 
+    
 # Create the heterogeneous graph
     hetero_graph = dgl.heterograph(data_dict)
 
@@ -284,10 +285,10 @@ if __name__ == "__main__":
 
 
 # Define the directory to save the graph
-    save_dir = os.path.join('saved_graphs',args.dataset,args.method_sim, args.method_acou,args.method)
+    save_dir = os.path.join('saved_graphs',args.dataset,args.method_sim, args.method_acou,args.method,args.msw)
 
 # Create the directory if it does not exist
     os.makedirs(save_dir, exist_ok=True)
 
 # Save the heterogeneous graph
-    dgl.save_graphs(os.path.join(save_dir, f"hetero_graph_{args.num_n}_{args.sub_units}.dgl"), hetero_graph)
+    dgl.save_graphs(os.path.join(save_dir, f"hetero_graph_{args.num_n_ac}_{args.num_n}_{args.sub_units}.dgl"), hetero_graph)

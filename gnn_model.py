@@ -78,6 +78,7 @@ class GCN(nn.Module):
         self.layers_1 = nn.Linear(128, 64) 
         self.layers_2 = nn.Linear(64, 32)
         self.layers_3 = nn.Linear(32, num_classes)
+        self.dropout = nn.Dropout(0.5)
     def forward(self, g, features, edge_weights):
         #x = self.cnn(features.unsqueeze(1)).squeeze(1)
         x = self.flatten(features)  # Assuming features have already gone through CNN
@@ -86,6 +87,7 @@ class GCN(nn.Module):
         x = self.conv2(g, x, edge_weights)
         x = F.relu(self.layers_1(x)) # Logits from linear layer
         x = F.relu(self.layers_2(x)) # Logits from linear layer
+        #x = self.dropout(x)
         x = self.layers_3(x)
         
         
@@ -274,7 +276,7 @@ if __name__ == "__main__":
 
 
 	print(num_classes)
-	print(labels)
+	#print(labels)
 	hidden_units = [32, 32]
 	model1 = GCN(in_feats, hidden_size, num_classes, conv_param, hidden_units)
 	model2 = GCN(in_feats, hidden_size, num_classes, conv_param, hidden_units)

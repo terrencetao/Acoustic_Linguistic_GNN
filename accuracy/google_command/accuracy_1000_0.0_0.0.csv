@@ -1,2 +1,17 @@
-Supervised Model,Unsupervised Model,Hibrid Model,Heterogeneous Model,Heterogeneous sage Model,Heterogeneous attention Model,Spectrogram Baseline,CNN Model,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw,mma
-0.975,0.91875,0.9625,1.0,0.0,0.0,0.0,0.7375,0.6,31.0,ML,62.0,0.5,1.0,0.5,phon_count,knn,full,fixed
+Supervised Model,Unsupervised Model,Hibrid Model,Heterogeneous Model,Heterogeneous sage Model,Heterogeneous attention Model,Spectrogram Baseline,CNN Model,DNN Model,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw,mma
+0.96875,0.9375,0.98125,0.9875,0.0,0.0,0.0,1.0,1.0,0.1,31.0,dnn,62.0,0.5,1.0,0.5,phon_count,knn,full,fixed
+0.96875,0.9375,0.98125,0.60625,0.0,0.0,0.0,1.0,1.0,0.1,31.0,fixed,62.0,0.5,1.0,0.5,phon_count,knn,full,fixed
+0.9875,0.91875,0.98125,0.9875,0.0,0.0,0.0,1.0,1.0,0.1,6.0,dnn,62.0,0.5,1.0,0.5,phon_count,knn,full,fixed
+0.9875,0.925,0.98125,0.9875,0.0,0.0,0.0,1.0,1.0,0.1,6.0,fixed,62.0,0.5,1.0,0.5,phon_count,knn,full,fixed
+0.875,0.61875,0.975,1.0,0.0,0.0,0.0,1.0,1.0,0.1,6.0,dnn,6.0,0.5,1.0,0.5,phon_count,knn,full,fixed
+0.875,0.55625,0.975,1.0,0.0,0.0,0.0,1.0,1.0,0.1,6.0,fixed,6.0,0.5,1.0,0.5,phon_count,knn,full,fixed
+0.95625,0.91875,0.98125,0.99375,0.0,0.0,0.0,1.0,1.0,0.1,31.0,dnn,62.0,0.5,1.0,0.5,phon_count,knn,full,fixed
+0.95625,0.9375,0.98125,1.0,0.0,0.0,0.0,1.0,1.0,0.1,15.0,dnn,62.0,0.5,1.0,0.5,phon_count,knn,full,fixed
+0.95625,0.925,0.98125,1.0,0.0,0.0,0.0,1.0,1.0,0.1,10.0,dnn,62.0,0.5,1.0,0.5,phon_count,knn,full,fixed
+0.95625,0.9125,0.98125,0.975,0.0,0.0,0.0,1.0,1.0,0.1,7.0,dnn,62.0,0.5,1.0,0.5,phon_count,knn,full,fixed
+0.95625,0.93125,0.98125,1.0,0.0,0.0,0.0,1.0,1.0,0.1,6.0,dnn,62.0,0.5,1.0,0.5,phon_count,knn,full,fixed
+0.95625,0.9125,0.98125,1.0,0.0,0.0,0.0,1.0,1.0,0.1,31.0,fixed,62.0,0.5,1.0,0.5,phon_count,knn,full,fixed
+0.95625,0.9125,0.98125,0.975,0.0,0.0,0.0,1.0,1.0,0.1,15.0,fixed,62.0,0.5,1.0,0.5,phon_count,knn,full,fixed
+0.95625,0.9375,0.98125,0.99375,0.0,0.0,0.0,1.0,1.0,0.1,10.0,fixed,62.0,0.5,1.0,0.5,phon_count,knn,full,fixed
+0.95625,0.93125,0.98125,0.98125,0.0,0.0,0.0,1.0,1.0,0.1,7.0,fixed,62.0,0.5,1.0,0.5,phon_count,knn,full,fixed
+0.95625,0.93125,0.98125,1.0,0.0,0.0,0.0,1.0,1.0,0.1,6.0,fixed,62.0,0.5,1.0,0.5,phon_count,knn,full,fixed

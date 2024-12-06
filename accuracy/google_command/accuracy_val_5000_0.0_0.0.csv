@@ -1,0 +1,15 @@
+Supervised Model,Unsupervised Model,Unsupervised sage Model,Heterogeneous Model,Heterogeneous sage Model,Heterogeneous attention Model,Spectrogram Baseline,CNN Model,DNN Model,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw,mma,add
+0.581,0.569,0.596,0.627,0.0,0.0,0.512,0.804,0.77,0.1,93.0,dnn,312.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.581,0.569,0.596,0.647,0.0,0.0,0.512,0.804,0.77,0.1,93.0,fixed,312.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.639,0.425,0.645,0.684,0.0,0.0,0.512,0.804,0.757,0.1,31.0,dnn,31.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.639,0.425,0.645,0.614,0.0,0.0,0.512,0.804,0.757,0.1,31.0,fixed,31.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.598,0.56,0.592,0.761,0.0,0.0,0.512,0.802,0.79,0.1,156.0,dnn,312.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.598,0.56,0.592,0.76,0.0,0.0,0.512,0.802,0.79,0.1,78.0,dnn,312.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.598,0.56,0.592,0.747,0.0,0.0,0.512,0.802,0.79,0.1,52.0,dnn,312.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.598,0.56,0.592,0.744,0.0,0.0,0.512,0.802,0.79,0.1,39.0,dnn,312.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.598,0.56,0.592,0.633,0.0,0.0,0.512,0.802,0.79,0.1,31.0,dnn,312.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.598,0.56,0.592,0.758,0.0,0.0,0.512,0.802,0.79,0.1,156.0,fixed,312.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.598,0.56,0.592,0.764,0.0,0.0,0.512,0.802,0.79,0.1,78.0,fixed,312.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.598,0.56,0.592,0.754,0.0,0.0,0.512,0.802,0.79,0.1,52.0,fixed,312.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.598,0.56,0.592,0.689,0.0,0.0,0.512,0.802,0.79,0.1,39.0,fixed,312.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn
+0.598,0.56,0.592,0.655,0.0,0.0,0.512,0.802,0.79,0.1,31.0,fixed,312.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn

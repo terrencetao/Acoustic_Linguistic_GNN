@@ -111,7 +111,7 @@ def simi_matrix(method = 'semantics', dataset=None, method_ac='mixed', sub_units
   
   label_names = set(all_label_names[sub_label_names])
   # Save label_names to a file using pickle
-  with open('subset_label_names.pkl', 'wb') as f:
+  with open('subset_label_names_{dataset}.pkl', 'wb') as f:
     pickle.dump(label_names, f)
  
   xlsx_path = f'data/yemba/corpus_words.xlsx' 
@@ -127,7 +127,7 @@ def simi_matrix(method = 'semantics', dataset=None, method_ac='mixed', sub_units
     similarity_matrix = np.dot(word_embeddings, word_embeddings.T)
   elif method == 'phon_count':
     # Convert words to their phoneme representations
-    if dataset=='yemba_command':
+    if dataset=='yemba_command' or dataset=='yemba_command_small':
        yemba_to_phonetique_mapping = get_phonetique_from_yemba(xlsx_path)
        phoneme_words = [yemba_to_phonetique_mapping.get(word) for word in label_names]
     else:
@@ -180,10 +180,21 @@ def simi_matrix(method = 'semantics', dataset=None, method_ac='mixed', sub_units
     similarity_matrix = compute_edit_distance_matrix(phoneme_words)
     
   elif method == 'phon_coo':
-    similarity_matrix, letters = compute_cooccurrence_matrix(label_names)
+    #glove_vectors = api.load('glove-twitter-25')
+    # Convert words to their phoneme representations
+    #word_embeddings = np.array([glove_vectors[word] for word in label_names])
+    # Convert words to their phoneme representations
+    if dataset=='yemba_command':
+       yemba_to_phonetique_mapping = get_phonetique_from_yemba(xlsx_path)
+       phoneme_words = [yemba_to_phonetique_mapping.get(word) for word in label_names]
+    else:
+       phoneme_words = [ipa.convert(word) for word in label_names]
+    similarity_matrix = compute_edit_distance_matrix(phoneme_words)
+    
+    similarity_matrix, letters = compute_cooccurrence_matrix(phoneme_words)
    
 # Compute the one-hot representation
-    word_embeddings, letters = compute_one_hot_representation(label_names, dataset)
+    word_embeddings, letters = compute_one_hot_representation(phoneme_words, dataset)
     
     
     

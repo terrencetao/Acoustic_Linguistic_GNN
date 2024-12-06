@@ -31,8 +31,9 @@ class HeteroGCN(nn.Module):
         
         # Three linear layers
         self.linear1 = nn.Linear(128, linear_hidden_size)
-        self.linear2 = nn.Linear(linear_hidden_size, linear_hidden_size)
-        self.linear3 = nn.Linear(linear_hidden_size, out_feats)
+        self.linear2 = nn.Linear(linear_hidden_size, 32)
+        self.linear3 = nn.Linear(32, out_feats)
+        self.dropout = nn.Dropout(0.5)
 
     def forward(self, g, inputs):
         # Get edge weights
@@ -46,6 +47,7 @@ class HeteroGCN(nn.Module):
         # Process each node type separately through linear layers
         h['acoustic'] = F.relu(self.linear1(h['acoustic']))
         h['acoustic'] = F.relu(self.linear2(h['acoustic']))
+        #h['acoustic'] = self.dropout(h['acoustic'])
         h['acoustic'] = self.linear3(h['acoustic'])
         
         
