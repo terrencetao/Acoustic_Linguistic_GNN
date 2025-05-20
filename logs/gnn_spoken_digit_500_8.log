@@ -1,0 +1,28 @@
+/home/yannick/anaconda3/envs/gnn_acoustic/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:60: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn(
+1612
+10
+Epoch 0, Loss: 5.786134719848633, Accuracy: 10.50%
+Epoch 10, Loss: 2.245805263519287, Accuracy: 16.00%
+Epoch 20, Loss: 2.0984954833984375, Accuracy: 28.00%
+Epoch 30, Loss: 1.9287691116333008, Accuracy: 34.75%
+Epoch 40, Loss: 1.77046537399292, Accuracy: 39.25%
+Epoch 50, Loss: 1.5312690734863281, Accuracy: 50.00%
+Epoch 60, Loss: 1.295751929283142, Accuracy: 60.00%
+Epoch 70, Loss: 1.1143351793289185, Accuracy: 63.75%
+Epoch 80, Loss: 0.9234982132911682, Accuracy: 70.50%
+Epoch 90, Loss: 0.7608548998832703, Accuracy: 76.50%
+Epoch 0, Loss: 0.447174072265625, Accuracy: 10.00%
+Epoch 10, Loss: 0.2951752543449402, Accuracy: 9.00%
+Epoch 20, Loss: 0.28074464201927185, Accuracy: 9.00%
+Epoch 30, Loss: 0.27447906136512756, Accuracy: 9.00%
+Epoch 40, Loss: 0.27017879486083984, Accuracy: 8.00%
+Epoch 50, Loss: 0.2674621045589447, Accuracy: 9.25%
+Epoch 60, Loss: 0.26557767391204834, Accuracy: 8.75%
+Epoch 70, Loss: 0.2642645835876465, Accuracy: 8.50%
+Epoch 80, Loss: 0.26331958174705505, Accuracy: 8.50%
+Epoch 90, Loss: 0.2634452283382416, Accuracy: 8.00%
+Traceback (most recent call last):
+  File "gnn_model.py", line 313, in <module>
+    model3 = train_with_topological_and_cross_loss(model3, dgl_G, features, edge_weights,adj_matrix, labels, int(args.epochs), int(args.lamb))
+ValueError: invalid literal for int() with base 10: '1.0'

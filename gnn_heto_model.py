@@ -96,7 +96,7 @@ def train_with_topological_loss(model, g, features, adj_matrix_acoustic, adj_mat
 
 
 # Define the training function with topological loss for heterogeneous graph
-def train_with_topological_loss_cross_loss(model, g, features, adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word, labels, epochs=100, lr=0.001):
+def train_with_topological_loss_cross_loss(model, g, features, adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word, labels, epochs=100, lr=0.001, lamb=1):
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
     scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=5, verbose=True)
    
@@ -109,7 +109,7 @@ def train_with_topological_loss_cross_loss(model, g, features, adj_matrix_acoust
         # Topological loss computation for each node type
         
         logits, embeddings = model(g, features)
-        loss = F.cross_entropy(logits, labels) + topological_loss( embeddings['acoustic'], embeddings['word'], adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word)
+        loss = F.cross_entropy(logits, labels) + lamb*topological_loss( embeddings['acoustic'], embeddings['word'], adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word)
 
         optimizer.zero_grad()
         loss.backward()
@@ -131,7 +131,7 @@ def train_with_topological_loss_cross_loss(model, g, features, adj_matrix_acoust
 
 # Main function to load graph, prepare data, and train model
 
-def main(input_folder, graph_file, epochs):
+def main(input_folder, graph_file, epochs, lamb):
     # Load the heterogeneous graph
     glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
     hetero_graph = glist[0]
@@ -168,7 +168,7 @@ def main(input_folder, graph_file, epochs):
     model = train_with_topological_loss_cross_loss(
         model, hetero_graph, features, 
         adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word,labels,
-        epochs
+        epochs, lamb=lamb
     )
     
     # Save the model
@@ -182,7 +182,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--input_folder', help='source folder', required=True)
     parser.add_argument('--graph_file', help='graph for training', required=True)
+    parser.add_argument('--lamb', help ='hyperparameter for objective fonction')
     parser.add_argument('--epochs', help='number of epochs', required=True)
     args = parser.parse_args()
     
-    main(args.input_folder, args.graph_file, int(args.epochs))
+    main(args.input_folder, args.graph_file, int(args.epochs), int(args.lamb))

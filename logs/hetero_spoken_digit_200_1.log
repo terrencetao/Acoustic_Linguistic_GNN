@@ -1,0 +1,13 @@
+/home/yannick/anaconda3/envs/gnn_acoustic/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:60: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn(
+2025-05-19 16:15:00,049 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 12.873202323913574, Accuracy: 10.00%
+Epoch 10, Loss: 3.4811437129974365, Accuracy: 20.62%
+Epoch 20, Loss: 2.431058168411255, Accuracy: 30.00%
+Epoch 30, Loss: 2.0001471042633057, Accuracy: 51.25%
+Epoch 40, Loss: 1.6182788610458374, Accuracy: 60.62%
+Epoch 50, Loss: 1.3156672716140747, Accuracy: 80.00%
+Epoch 60, Loss: 1.0605518817901611, Accuracy: 90.00%
+Epoch 70, Loss: 0.8586936593055725, Accuracy: 94.38%
+Epoch 80, Loss: 0.705569863319397, Accuracy: 97.50%
+Epoch 90, Loss: 0.5892271995544434, Accuracy: 98.75%

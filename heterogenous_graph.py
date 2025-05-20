@@ -169,7 +169,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--twa', help='threshold for mixte graph', required=True)    
     parser.add_argument('--num_n', help='number of neigheibors for word', required=True)   
-    parser.add_argument('--num_n_ac', help='number of neigheibors for word', required=True)
+    parser.add_argument('--num_n_ac', help='number of neigheibors for acoustic', required=True)
+    parser.add_argument('--k_out', help='number of negative neigheibors for acoustic', required=True)
     parser.add_argument('--method', help='', required=False) 
     parser.add_argument('--method_sim', help='', required=False) 
     parser.add_argument('--method_acou', help='', required=False) 
@@ -180,9 +181,9 @@ if __name__ == "__main__":
     
     save_graph_dir = os.path.join('saved_graphs',args.dataset,args.method_sim, args.method_acou)
 # Load the simple DGL graphs
-    if not os.path.isfile(os.path.join(save_graph_dir, args.msw, f"kws_graph_{args.num_n_ac}_{args.sub_units}.dgl")):
+    if not os.path.isfile(os.path.join(save_graph_dir, args.msw, f"kws_graph_{args.num_n_ac}_{args.k_out}_{args.sub_units}.dgl")):
       print('no')
-    glist1, label_dict = load_graphs(os.path.join(save_graph_dir,f"kws_graph_{args.num_n_ac}_{args.sub_units}.dgl"))
+    glist1, label_dict = load_graphs(os.path.join(save_graph_dir,f"kws_graph_{args.num_n_ac}_{args.k_out}_{args.sub_units}.dgl"))
     glist2, _ = load_graphs(os.path.join('saved_graphs',args.dataset, "dgl_words_graph.bin"))
 
     dgl_G_acoustic = glist1[0]
@@ -291,4 +292,4 @@ if __name__ == "__main__":
     os.makedirs(save_dir, exist_ok=True)
 
 # Save the heterogeneous graph
-    dgl.save_graphs(os.path.join(save_dir, f"hetero_graph_{args.num_n_ac}_{args.num_n}_{args.sub_units}.dgl"), hetero_graph)
+    dgl.save_graphs(os.path.join(save_dir, f"hetero_graph_{args.num_n_ac}_{args.k_out}_{args.num_n}_{args.sub_units}.dgl"), hetero_graph)

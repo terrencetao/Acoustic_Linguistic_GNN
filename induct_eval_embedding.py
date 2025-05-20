@@ -655,6 +655,10 @@ parser.add_argument('--twa', help='word similarity threshold', required=True)
 parser.add_argument('--num_n_h', help='method to compute a word similarity', required=True)
 parser.add_argument('--mhg', help='method to compute a word similarity', required=True)
 parser.add_argument('--num_n_a', help='method to compute a word similarity', required=True)
+parser.add_argument('--k_out', help='method to compute a word similarity', required=True)
+parser.add_argument('--k_inf', help='method to compute a word similarity', required=True)
+parser.add_argument('--lamb', help ='hyperparameter for objective fonction')
+parser.add_argument('--density', help ='desenty intra cluster')
 parser.add_argument('--ta', help='method to compute a word similarity', required=True)
 parser.add_argument('--alpha', help='method to compute a word similarity', required=True)
 parser.add_argument('--tw', help='method to compute a word similarity', required=True)
@@ -675,7 +679,7 @@ graph_folder = os.path.join('saved_graphs',args.dataset,args.mma,args.msa)
 model_folder = 'models'
 matrix_folder = os.path.join('saved_matrix',args.dataset, args.mma)
 # Load the homogeneous graph
-glist, label_dict = load_graphs(os.path.join(graph_folder,f"kws_graph_{args.num_n_a}_{args.sub_units}.dgl"))
+glist, label_dict = load_graphs(os.path.join(graph_folder,f"kws_graph_{args.num_n_a}_{args.k_out}_{args.sub_units}.dgl"))
 dgl_G = glist[0]
 
 features = dgl_G.ndata['feat']
@@ -699,7 +703,7 @@ model_sup_path = os.path.join(model_folder, "gnn_model.pth")
 loaded_model_sup = GCN(in_feats, hidden_size, num_classes, conv_param, hidden_units)
 loaded_model_sup.load_state_dict(torch.load(model_sup_path))
 
-kws_graph_path_val = os.path.join(graph_folder, args.add, f"kws_graph_val_{args.num_n_a}_{args.sub_units}.dgl")
+kws_graph_path_val = os.path.join(graph_folder, args.add, f"kws_graph_val_{args.num_n_a}_{args.k_out}_{args.k_inf}_{args.sub_units}.dgl")
 
 # Extract labels for training
 labels_np = labels.numpy()
@@ -708,10 +712,10 @@ acoustic_model = torch.load('models/cnn.pth')
 ml_dense = torch.load('models/dense.pth')
 if not os.path.isfile(kws_graph_path_val):
   logging.info(f'Extract acoustic node representations from supervised GCN')
-  dgl_G, num_existing_nodes = add_new_nodes_to_graph_knn(dgl_G, new_node_spectrograms=subset_val_spectrograms,  k=math.floor(int(args.num_n_a)/2), distance_function=ml_distance, ml=acoustic_model,
+  dgl_G, num_existing_nodes = add_new_nodes_to_graph_knn(dgl_G, new_node_spectrograms=subset_val_spectrograms,  k=int(args.k_inf), distance_function=ml_distance, ml=acoustic_model,
   dnn=ml_dense, add=args.add)
   
-  kws_graph_path_val = os.path.join(graph_folder, args.add, f"kws_graph_val_{args.num_n_a}_{args.sub_units}.dgl")
+  kws_graph_path_val = os.path.join(graph_folder, args.add, f"kws_graph_val_{args.num_n_a}_{args.k_out}_{args.k_inf}_{args.sub_units}.dgl")
   dgl.save_graphs(kws_graph_path_val, [dgl_G])
   print(f"dgl val save successfully")
 else:
@@ -741,7 +745,7 @@ loaded_model_hibrid.load_state_dict(torch.load(model_hibrid_path))
 
 
 # Load the heterogeneous graph
-glists, _ = dgl.load_graphs(os.path.join(graph_folder, args.mhg,args.msw,  f"hetero_graph_{args.num_n_a}_{args.num_n_h}_{args.sub_units}.dgl"))
+glists, _ = dgl.load_graphs(os.path.join(graph_folder, args.mhg,args.msw,  f"hetero_graph_{args.num_n_a}_{args.k_out}_{args.num_n_h}_{args.sub_units}.dgl"))
 hetero_graph = glists[0]
 
 # Load the heterogeneous GCN model
@@ -765,7 +769,7 @@ model.eval()
 # Extract acoustic node representations
 logging.info(f'Extract acoustic node representations from hetero GCN')
 
-hetero_graph_path_val = os.path.join(graph_folder, args.mhg,args.msw, args.add, f"hetero_graph_val_{args.mhg}_{args.num_n_a}_{args.num_n_h}_{args.sub_units}.dgl")
+hetero_graph_path_val = os.path.join(graph_folder, args.mhg,args.msw, args.add, f"hetero_graph_val_{args.mhg}_{args.num_n_a}_{args.k_out}{args.num_n_h}_{args.sub_units}.dgl")
 
 if not os.path.isfile(hetero_graph_path_val):
 # Add new 'acoustic' nodes to the graph
@@ -845,7 +849,7 @@ file_exists = os.path.isfile(f'accuracy/{csv_file}')
 if not file_exists:
     with open(f'accuracy/{csv_file}', mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['Supervised Model', 'Unsupervised Model','Unsupervised sage Model', 'Heterogeneous Model','Heterogeneous sage Model','Heterogeneous attention Model', 'Spectrogram Baseline', 'CNN Model','DNN Model', 'twa', 'num_n_h', 'mhg', 'num_n_a', 'ta', 'alpha', 'tw', 'msw', 'msa', 'mgw', 'mma', 'add'])
+        writer.writerow(['Supervised Model', 'Unsupervised Model','Unsupervised sage Model', 'Heterogeneous Model','Heterogeneous sage Model','Heterogeneous attention Model', 'Spectrogram Baseline', 'CNN Model','DNN Model', 'twa', 'num_n_h', 'mhg', 'num_n_a', 'ta', 'alpha', 'tw', 'msw', 'msa', 'mgw', 'mma', 'add','k_out', 'k_inf', 'lambda', 'density'])
 
 
 
@@ -921,5 +925,5 @@ logging.info(f'DNN Model Accuracy: {accuracy_dnn}')
 logging.info(f'Write accuracy results to CSV file')
 with open(f'accuracy/{csv_file}', mode='a', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hibrid, accuracy_hetero, accuracy_hetero_sage, accuracy_attention,accuracy_spectrogram, accuracy_cnn, accuracy_dnn, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw, args.mma, args.add])
+    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hibrid, accuracy_hetero, accuracy_hetero_sage, accuracy_attention,accuracy_spectrogram, accuracy_cnn, accuracy_dnn, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw, args.mma, args.add, args.k_out, args.k_inf, args.lamb, args.density])
 

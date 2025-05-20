@@ -113,51 +113,77 @@ def random_dtw(matrix, k, spectrogram, alpha, distance_function, n_jobs=-1):
     return random_matrix
 
 
-def k_nearest_neighbors(similarity_matrix, k, spectrogram, alpha, distance_function, n_jobs=-1):
+def k_nearest_neighbors(similarity_matrix, k_in, spectrogram, distance_function, k_out=1,n_jobs=-1):
+    """
+    Compute k-nearest neighbors matrix based on similarity matrix and distance function.
+    
+    For similar pairs (similarity_matrix[i,j] == 1), keeps the k_in nearest neighbors.
+    For dissimilar pairs (similarity_matrix[i,j] == 0), keeps the k_out most distant neighbors.
+    
+    Args:
+        similarity_matrix: Square matrix where 1 indicates similarity, 0 indicates dissimilarity
+        k_in: Number of nearest neighbors to keep for similar pairs
+        spectrogram: Input data used for distance calculation
+        distance_function: Function that computes distance between two items in spectrogram
+        n_jobs: Number of parallel jobs
+        k_out: Number of most distant neighbors to keep for dissimilar pairs
+        
+    Returns:
+        knn_matrix: Symmetric matrix where:
+            - 1 indicates a kept similar pair
+            - -1 indicates a kept dissimilar pair
+            - 0 indicates no relation
+    """
     n = similarity_matrix.shape[0]
     knn_matrix = np.zeros_like(similarity_matrix)
     
-    def process_row(i, x, k):
-        valid_indices = np.where(similarity_matrix[i, i+1:] == x)[0] + (i + 1)
+    def process_similar(i):
+        """Process similar items (where similarity_matrix[i,j] == 1)"""
+        # Get indices of similar items above the diagonal
+        valid_indices = np.where(similarity_matrix[i, i+1:] == 1)[0] + (i + 1)
         if len(valid_indices) > 0:
+            # Calculate distances to these similar items
             distances = np.array([distance_function(spectrogram, i, j)[2] for j in valid_indices])
-            nearest_indices = valid_indices[np.argsort(distances)[:k]]
-            return i, nearest_indices, distances[np.argsort(distances)[:k]]
-        else:
-            return i, np.array([]), np.array([])
+            # Get k_in nearest similar items (smallest distances)
+            nearest_indices = valid_indices[np.argsort(distances)[:k_in]]
+            return i, nearest_indices
+        return i, np.array([])
     
-    with Parallel(n_jobs=n_jobs) as parallel:
-        results = list(tqdm(parallel(delayed(process_row)(i, 1 ,k) for i in range(n)), total=n))
-    
-    for i, nearest_indices, distances in results:
-        if len(nearest_indices)>0:
-           knn_matrix[i, nearest_indices] = 1
-    
-    def process_row2(i, x, k):
-        valid_indices = np.where(similarity_matrix[i, i+1:] == x)[0] + (i + 1)
+    def process_dissimilar(i):
+        """Process dissimilar items (where similarity_matrix[i,j] == 0)"""
+        # Get indices of dissimilar items above the diagonal
+        valid_indices = np.where(similarity_matrix[i, i+1:] == 0)[0] + (i + 1)
         if len(valid_indices) > 0:
+            # Calculate distances to these dissimilar items
             distances = np.array([distance_function(spectrogram, i, j)[2] for j in valid_indices])
-            nearest_indices = valid_indices[np.argsort(distances)[:-k]]
-            return i, nearest_indices, distances[np.argsort(distances)[:k]]
-        else:
-            return i, np.array([]), np.array([])
-    with Parallel(n_jobs=n_jobs) as parallel:
-        results = list(tqdm(parallel(delayed(process_row2)(i, 0, 1) for i in range(n)), total=n))
-        
-    for i, nearest_indices, distances in results:
-        if len(nearest_indices)>0:
-           knn_matrix[i, nearest_indices] = -1
-    # Mirror the upper triangle into the lower triangle using vectorized NumPy operation
-    lower_indices = np.tril_indices(n, -1)  # Get lower triangular indices
-    knn_matrix[lower_indices] = knn_matrix.T[lower_indices]  # Mirror the upper triangle
-
-    np.fill_diagonal(knn_matrix, 0)  # Set the diagonal to zero t
+            # Get k_out most dissimilar items (largest distances)
+            # Using argsort()[::-1] to sort in descending order
+            farthest_indices = valid_indices[np.argsort(distances)[-k_out:][::-1]]
+            return i, farthest_indices
+        return i, np.array([])
     
-   
+    # Process similar items in parallel
+    with Parallel(n_jobs=n_jobs) as parallel:
+        results = parallel(delayed(process_similar)(i) for i in tqdm(range(n), desc="Processing similar items"))
+        for i, nearest_indices in results:
+            if len(nearest_indices)>0:
+               knn_matrix[i, nearest_indices] = 1
+    
+    # Process dissimilar items in parallel
+    with Parallel(n_jobs=n_jobs) as parallel:
+        results = parallel(delayed(process_dissimilar)(i) for i in tqdm(range(n), desc="Processing dissimilar items"))
+        for i, farthest_indices in results:
+            if len(farthest_indices)>0:
+               knn_matrix[i, farthest_indices] = -1
+    
+    # Make matrix symmetric by copying upper triangle to lower triangle
+    knn_matrix = np.triu(knn_matrix) + np.triu(knn_matrix, 1).T
+    np.fill_diagonal(knn_matrix, 0)
+    
     return knn_matrix
 
     
-def filtered_matrix(method, subset_labels, similarity_matrix,spectrogram, threshold=None, alpha=None, k=None, distance_function=None):
+def filtered_matrix(method, subset_labels, similarity_matrix,spectrogram, threshold=None, alpha=None, k=None,k_out=None, distance_function=None):
     filtered_similarity_matrix = np.zeros_like(similarity_matrix)
     if method == 'dtw': 
         filtered_similarity_matrix = filter_similarity_matrix(similarity_matrix, subset_labels, threshold, alpha, k)
@@ -170,7 +196,7 @@ def filtered_matrix(method, subset_labels, similarity_matrix,spectrogram, thresh
     elif method == 'knn':
         if distance_function is None:
             raise ValueError("Distance function must be provided for 'knn' method")
-        filtered_similarity_matrix = k_nearest_neighbors(similarity_matrix, k, spectrogram,alpha, distance_function)
+        filtered_similarity_matrix = k_nearest_neighbors(similarity_matrix=similarity_matrix,k_in = k, spectrogram = spectrogram, distance_function = distance_function, k_out=k_out)
     else:
         raise ValueError("Unsupported method: choose from 'dtw', 'fixed', 'mixed', or 'knn'")
 
@@ -188,6 +214,7 @@ def build_dgl_graph(nx_graph):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--num_n', help='number of neighbors for filtering acoustic graph', type=int, required=True)
+    parser.add_argument('--k_out', help='number of negative  neighbors for filtering acoustic graph', type=int, required=True)
     parser.add_argument('--ta', help='acoustic similarity threshold', type=float, default=0)
     parser.add_argument('--alpha', help='coefficient', type=float, default=2)
     parser.add_argument('--method', help='method for filtering', choices=['dtw', 'fixed', 'mixed', 'knn'], required=True)
@@ -207,7 +234,7 @@ if __name__ == "__main__":
     #print(subset_spectrogram[0])
     save_dir = os.path.join('saved_graphs',args.dataset,args.method_sim, args.method)
     os.makedirs(save_dir, exist_ok=True)
-    kws_graph_path = os.path.join(save_dir, f"kws_graph_{args.num_n}_{sub_units}.dgl")
+    kws_graph_path = os.path.join(save_dir, f"kws_graph_{args.num_n}_{args.k_out}_{sub_units}.dgl")
     if not os.path.isfile(kws_graph_path):
         filtered_similarity_matrix = filtered_matrix(
         method=args.method,
@@ -215,7 +242,8 @@ if __name__ == "__main__":
         similarity_matrix=similarity_matrix,
         threshold=args.ta,
         alpha=args.alpha,
-        k=args.num_n,
+        k=int(args.num_n),
+        k_out = int(args.k_out),
         spectrogram = subset_spectrogram,
         distance_function=compute_distance_for_pair if args.method == 'knn' or args.method == 'mixed'  else None
     )
@@ -223,7 +251,7 @@ if __name__ == "__main__":
         f_matrix_with_labels = np.hstack((subset_labels[:, np.newaxis], filtered_similarity_matrix))
     #print(filtered_similarity_matrix)
         print("Filtered similarity matrix computed successfully.")
-        np.save(os.path.join(matrix_dir,f'filtered_matrix_with_labels_{args.num_n}_{sub_units}.npy'), f_matrix_with_labels)
+        np.save(os.path.join(matrix_dir,f'filtered_matrix_with_labels_{args.num_n}_{args.k_out}_{sub_units}.npy'), f_matrix_with_labels)
 
         G = nx.Graph()
         num_nodes = filtered_similarity_matrix.shape[0]
@@ -232,8 +260,8 @@ if __name__ == "__main__":
         for i in range(num_nodes):
            for j in range(i + 1, num_nodes):
               similarity = filtered_similarity_matrix[i, j]
-              if similarity > 0:
-                G.add_edge(i, j, weight=similarity)
+              #if similarity > 0:
+              G.add_edge(i, j, weight=similarity)
 
         dgl_G = build_dgl_graph(G)
         dgl_G.ndata['label'] = torch.tensor(labels, dtype=torch.long)

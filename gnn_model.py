@@ -172,7 +172,7 @@ def train_with_topological_loss(model, g, features, edge_weights,adj_matrix, lab
             print(f'Epoch {epoch}, Loss: {loss.item()}, Accuracy: {accuracy*100:.2f}%')
     return model
 
-def train_with_topological_and_cross_loss(model, g, features, edge_weights,adj_matrix, labels, epochs=100, lr=0.001):
+def train_with_topological_and_cross_loss(model, g, features, edge_weights,adj_matrix, labels, epochs=100, lr=0.001, lamb=1):
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
     scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=5, verbose=True)
     labels_np = labels.numpy()
@@ -183,7 +183,7 @@ def train_with_topological_and_cross_loss(model, g, features, edge_weights,adj_m
     for epoch in range(epochs):
         
         logits, embeddings = model(g, features, edge_weights)
-        loss = F.cross_entropy(logits, labels) + topological_loss(embeddings, adj_matrix)
+        loss = F.cross_entropy(logits, labels) + lamb*topological_loss(embeddings, adj_matrix)
 
         optimizer.zero_grad()
         loss.backward()
@@ -243,12 +243,13 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 	parser.add_argument('--input_folder', help ='source folder')
 	parser.add_argument('--graph_file', help ='graph for trainning')
+	parser.add_argument('--lamb', help ='hyperparameter for objective fonction')
 	parser.add_argument('--epochs', help='number of epochs', required=True)
 	 
 	args = parser.parse_args()
 	input_folder = args.input_folder    
 	graph_file = args.graph_file
-
+        
 
 
 
@@ -309,7 +310,7 @@ if __name__ == "__main__":
 	model_path_unsup = os.path.join('models',"gnn_model_unsup.pth")
 	torch.save(model2.state_dict(), model_path_unsup)
 	
-	model3 = train_with_topological_and_cross_loss(model3, dgl_G, features, edge_weights,adj_matrix, labels, int(args.epochs))
+	model3 = train_with_topological_and_cross_loss(model3, dgl_G, features, edge_weights,adj_matrix, labels, int(args.epochs), int(args.lamb))
 	model_path_hibrid = os.path.join('models',"gnn_model_hibrid.pth")
 	torch.save(model3.state_dict(), model_path_hibrid)
 	
