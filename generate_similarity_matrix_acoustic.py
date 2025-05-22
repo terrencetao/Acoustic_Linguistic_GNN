@@ -283,7 +283,7 @@ if __name__ == "__main__":
 		print(len(subset_labels))
 		subset_val_spectrograms, subset_val_labels = stratified_sample(val_spectrograms, labels_val, subset_size-math.floor(subset_size*0.8))
 
-		# Proceed with the rest of your code as before
+		
 		# Convert lists to numpy arrays if needed
 		subset_spectrograms = np.array(subset_spectrograms)
 		subset_val_spectrograms = np.array(subset_val_spectrograms)

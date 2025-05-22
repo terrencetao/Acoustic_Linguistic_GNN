@@ -504,3 +504,352 @@ Traceback (most recent call last):
   File "/home/yannick/.local/lib/python3.10/site-packages/torch/optim/adam.py", line 439, in _single_tensor_adam
     denom = (exp_avg_sq.sqrt() / bias_correction2_sqrt).add_(eps)
 KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 126, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 80, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/spoken_digit/fixed/knn/dnn/phon_count/hetero_graph_24_24_24_500.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 152, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 99, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/spoken_digit/fixed/knn/dnn/phon_count/hetero_graph_24_24_24_500.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 126, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 80, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/spoken_digit/fixed/knn/fixed/phon_count/hetero_graph_24_24_24_500.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 152, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 99, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/spoken_digit/fixed/knn/fixed/phon_count/hetero_graph_24_24_24_500.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 126, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 80, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/spoken_digit/fixed/knn/dnn/phon_count/hetero_graph_24_24_24_500.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 152, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 99, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/spoken_digit/fixed/knn/dnn/phon_count/hetero_graph_24_24_24_500.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 126, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 80, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/spoken_digit/fixed/knn/fixed/phon_count/hetero_graph_24_24_24_500.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 152, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 99, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/spoken_digit/fixed/knn/fixed/phon_count/hetero_graph_24_24_24_500.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 126, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 80, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/spoken_digit/fixed/knn/dnn/phon_count/hetero_graph_24_24_24_500.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 152, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 99, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/spoken_digit/fixed/knn/dnn/phon_count/hetero_graph_24_24_24_500.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 126, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 80, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/spoken_digit/fixed/knn/fixed/phon_count/hetero_graph_24_24_24_500.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 152, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 99, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/spoken_digit/fixed/knn/fixed/phon_count/hetero_graph_24_24_24_500.dgl does not exist.
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+Epoch 0, Loss: 4.584989547729492, Accuracy: 9.75%
+Epoch 10, Loss: 2.7426211833953857, Accuracy: 12.50%
+Epoch 20, Loss: 2.4949896335601807, Accuracy: 14.25%
+Epoch 30, Loss: 2.398864507675171, Accuracy: 16.50%
+Epoch 40, Loss: 2.317315101623535, Accuracy: 18.75%
+Epoch 50, Loss: 2.2228243350982666, Accuracy: 23.00%
+Epoch 60, Loss: 2.115262985229492, Accuracy: 26.50%
+Epoch 70, Loss: 1.9328923225402832, Accuracy: 39.00%
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 126, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 107, in main
+    model = train_with_topological_loss_cross_loss(
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 67, in train_with_topological_loss_cross_loss
+    loss.backward()
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_tensor.py", line 522, in backward
+    torch.autograd.backward(
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/__init__.py", line 266, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/function.py", line 289, in apply
+    return user_fn(self, *args)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/backend/pytorch/sparse.py", line 211, in backward
+    dX = gspmm(g_rev, "mul", "sum", dZ, Y)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/backend/pytorch/sparse.py", line 1032, in gspmm
+    return GSpMM.apply(*args)
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/function.py", line 553, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/backend/pytorch/sparse.py", line 165, in forward
+    out, (argX, argY) = _gspmm(gidx, op, reduce_op, X, Y)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/_sparse_ops.py", line 239, in _gspmm
+    _CAPI_DGLKernelSpMM(
+KeyboardInterrupt
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 12:05:43,006 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 7.521524429321289, Accuracy: 9.50%
+Epoch 10, Loss: 2.558185577392578, Accuracy: 19.00%
+Epoch 20, Loss: 2.022371768951416, Accuracy: 33.00%
+Epoch 30, Loss: 1.6332159042358398, Accuracy: 51.75%
+Epoch 40, Loss: 1.3403549194335938, Accuracy: 64.50%
+Epoch 50, Loss: 1.1216486692428589, Accuracy: 74.00%
+Epoch 60, Loss: 0.9345431327819824, Accuracy: 81.75%
+Epoch 70, Loss: 0.7756831645965576, Accuracy: 87.00%
+Epoch 80, Loss: 0.6458975672721863, Accuracy: 91.00%
+Epoch 90, Loss: 0.5363385677337646, Accuracy: 93.50%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 12:07:02,201 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 21.6126, MSE: 21.3908
+Epoch 10, Loss: 3.1449, MSE: 2.9129
+Epoch 20, Loss: 0.6477, MSE: 0.4142
+Epoch 30, Loss: 0.5253, MSE: 0.2918
+Epoch 40, Loss: 0.4866, MSE: 0.2530
+Epoch 50, Loss: 0.4810, MSE: 0.2474
+Epoch 60, Loss: 0.4764, MSE: 0.2428
+Epoch 70, Loss: 0.4727, MSE: 0.2392
+Epoch 80, Loss: 0.4697, MSE: 0.2362
+Epoch 90, Loss: 0.4672, MSE: 0.2337
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 12:07:38,373 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 8.22731876373291, Accuracy: 7.25%
+Epoch 10, Loss: 3.14667010307312, Accuracy: 13.25%
+Epoch 20, Loss: 2.3732895851135254, Accuracy: 22.50%
+Epoch 30, Loss: 2.1610615253448486, Accuracy: 28.25%
+Epoch 40, Loss: 2.0025107860565186, Accuracy: 39.25%
+Epoch 50, Loss: 1.857387661933899, Accuracy: 48.50%
+Epoch 60, Loss: 1.6900551319122314, Accuracy: 53.75%
+Epoch 70, Loss: 1.5822255611419678, Accuracy: 47.00%
+Epoch 80, Loss: 1.286240577697754, Accuracy: 68.75%
+Epoch 90, Loss: 1.0340561866760254, Accuracy: 77.75%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 12:08:58,036 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 389.4306, MSE: 389.2116
+Epoch 10, Loss: 13.4832, MSE: 13.2521
+Epoch 20, Loss: 0.9681, MSE: 0.7345
+Epoch 30, Loss: 0.7420, MSE: 0.5079
+Epoch 40, Loss: 0.5590, MSE: 0.3247
+Epoch 50, Loss: 0.4500, MSE: 0.2156
+Epoch 60, Loss: 0.3426, MSE: 0.1082
+Epoch 70, Loss: 0.2890, MSE: 0.0547
+Epoch 80, Loss: 0.2682, MSE: 0.0338
+Epoch 90, Loss: 0.2646, MSE: 0.0303
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 12:15:16,719 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 11.154083251953125, Accuracy: 9.50%
+Epoch 10, Loss: 3.0166268348693848, Accuracy: 14.00%
+Epoch 20, Loss: 2.4726877212524414, Accuracy: 18.00%
+Epoch 30, Loss: 2.2281904220581055, Accuracy: 27.50%
+Epoch 40, Loss: 2.0236058235168457, Accuracy: 42.00%
+Epoch 50, Loss: 1.8640474081039429, Accuracy: 49.25%
+Epoch 60, Loss: 1.7037487030029297, Accuracy: 56.75%
+Epoch 70, Loss: 1.5340379476547241, Accuracy: 62.50%
+Epoch 80, Loss: 1.3616206645965576, Accuracy: 66.25%
+Epoch 90, Loss: 1.181083083152771, Accuracy: 73.50%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 12:16:38,155 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 437.6486, MSE: 437.4324
+Epoch 10, Loss: 17.0992, MSE: 16.8711
+Epoch 20, Loss: 1.9331, MSE: 1.7002
+Epoch 30, Loss: 1.8511, MSE: 1.6177
+Epoch 40, Loss: 1.4115, MSE: 1.1781
+Epoch 50, Loss: 1.3424, MSE: 1.1090
+Epoch 60, Loss: 1.2758, MSE: 1.0424
+Epoch 70, Loss: 1.2120, MSE: 0.9786
+Epoch 80, Loss: 1.1516, MSE: 0.9183
+Epoch 90, Loss: 1.0951, MSE: 0.8617
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 12:17:14,961 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 10.798847198486328, Accuracy: 11.00%
+Epoch 10, Loss: 3.4115772247314453, Accuracy: 11.25%
+Epoch 20, Loss: 2.449640989303589, Accuracy: 19.50%
+Epoch 30, Loss: 2.2590746879577637, Accuracy: 21.50%
+Epoch 40, Loss: 2.0637552738189697, Accuracy: 38.50%
+Epoch 50, Loss: 1.8734800815582275, Accuracy: 48.50%
+Epoch 60, Loss: 1.6684536933898926, Accuracy: 59.25%
+Epoch 70, Loss: 1.4532736539840698, Accuracy: 68.50%
+Epoch 80, Loss: 1.333677053451538, Accuracy: 63.25%
+Epoch 90, Loss: 1.11850106716156, Accuracy: 74.25%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 12:18:34,843 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 10.7494, MSE: 10.5304
+Epoch 10, Loss: 9.0888, MSE: 8.8599
+Epoch 20, Loss: 4.7634, MSE: 4.5292
+Epoch 30, Loss: 1.0619, MSE: 0.8269
+Epoch 40, Loss: 0.9202, MSE: 0.6851
+Epoch 50, Loss: 0.8543, MSE: 0.6192
+Epoch 60, Loss: 0.8258, MSE: 0.5907
+Epoch 70, Loss: 0.7999, MSE: 0.5648
+Epoch 80, Loss: 0.7697, MSE: 0.5346
+Epoch 90, Loss: 0.7383, MSE: 0.5032
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 12:24:44,169 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 7.8893818855285645, Accuracy: 10.00%
+Epoch 10, Loss: 3.2903552055358887, Accuracy: 13.00%
+Epoch 20, Loss: 2.6907169818878174, Accuracy: 18.00%
+Epoch 30, Loss: 2.22659969329834, Accuracy: 26.50%
+Epoch 40, Loss: 2.0244698524475098, Accuracy: 41.50%
+Epoch 50, Loss: 1.8384310007095337, Accuracy: 48.75%
+Epoch 60, Loss: 1.670920968055725, Accuracy: 56.75%
+Epoch 70, Loss: 1.4987189769744873, Accuracy: 64.75%
+Epoch 80, Loss: 1.3246599435806274, Accuracy: 72.25%
+Epoch 90, Loss: 1.1541748046875, Accuracy: 78.25%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 12:26:03,804 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 481.3545, MSE: 481.1378
+Epoch 10, Loss: 8.4526, MSE: 8.2270
+Epoch 20, Loss: 1.5906, MSE: 1.3640
+Epoch 30, Loss: 2.3760, MSE: 2.1493
+Epoch 40, Loss: 2.1887, MSE: 1.9620
+Epoch 50, Loss: 2.1827, MSE: 1.9560
+Epoch 60, Loss: 2.1810, MSE: 1.9544
+Epoch 70, Loss: 2.1791, MSE: 1.9525
+Epoch 80, Loss: 2.1771, MSE: 1.9504
+Epoch 90, Loss: 2.1749, MSE: 1.9482
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 12:48:25,368 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 14.469134330749512, Accuracy: 9.50%
+Epoch 10, Loss: 2.8874144554138184, Accuracy: 12.25%
+Epoch 20, Loss: 2.335890054702759, Accuracy: 20.50%
+Epoch 30, Loss: 2.091358184814453, Accuracy: 32.25%
+Epoch 40, Loss: 1.8728646039962769, Accuracy: 43.50%
+Epoch 50, Loss: 1.6454331874847412, Accuracy: 54.25%
+Epoch 60, Loss: 1.4175617694854736, Accuracy: 65.75%
+Epoch 70, Loss: 1.1978795528411865, Accuracy: 74.25%
+Epoch 80, Loss: 1.0079482793807983, Accuracy: 80.25%
+Epoch 90, Loss: 0.8702328205108643, Accuracy: 86.00%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 12:49:43,423 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 264.6396, MSE: 264.4210
+Epoch 10, Loss: 29.1566, MSE: 28.9324
+Epoch 20, Loss: 1.3369, MSE: 1.1106
+Epoch 30, Loss: 0.9837, MSE: 0.7572
+Epoch 40, Loss: 0.8613, MSE: 0.6348
+Epoch 50, Loss: 0.8522, MSE: 0.6257
+Epoch 60, Loss: 0.8520, MSE: 0.6254
+Epoch 70, Loss: 0.8517, MSE: 0.6252
+Epoch 80, Loss: 0.8514, MSE: 0.6249
+Epoch 90, Loss: 0.8511, MSE: 0.6245
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 12:54:18,843 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 10.855374336242676, Accuracy: 9.75%
+Epoch 10, Loss: 2.743630886077881, Accuracy: 19.50%
+Epoch 20, Loss: 2.4100584983825684, Accuracy: 17.75%
+Epoch 30, Loss: 2.2619009017944336, Accuracy: 16.50%
+Epoch 40, Loss: 2.041649103164673, Accuracy: 29.75%
+Epoch 50, Loss: 1.8155665397644043, Accuracy: 46.00%
+Epoch 60, Loss: 1.9062831401824951, Accuracy: 34.50%
+Epoch 70, Loss: 1.5438759326934814, Accuracy: 61.50%
+Epoch 80, Loss: 1.484928011894226, Accuracy: 59.00%
+Epoch 90, Loss: 1.448352336883545, Accuracy: 62.75%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+Epoch 0, Loss: 148.3858, MSE: 148.1662
+Epoch 10, Loss: 5.0732, MSE: 4.8523
+Epoch 20, Loss: 3.5832, MSE: 3.3621
+Epoch 30, Loss: 2.8275, MSE: 2.6063
+Epoch 40, Loss: 2.7810, MSE: 2.5598
+Epoch 50, Loss: 2.7791, MSE: 2.5579
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 152, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 132, in main
+    model = train_edge_regression(
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 69, in train_edge_regression
+    optimizer.step()
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/optim/optimizer.py", line 385, in wrapper
+    out = func(*args, **kwargs)
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/optim/optimizer.py", line 76, in _use_grad
+    ret = func(self, *args, **kwargs)
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/optim/adam.py", line 166, in step
+    adam(
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/optim/adam.py", line 316, in adam
+    func(params,
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/optim/adam.py", line 441, in _single_tensor_adam
+    param.addcdiv_(exp_avg, denom, value=-step_size)
+KeyboardInterrupt

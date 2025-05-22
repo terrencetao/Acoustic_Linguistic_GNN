@@ -255,7 +255,7 @@ if __name__ == "__main__":
     hetero_graph.nodes['acoustic'].data['feat'] = graph1.ndata['feat']
     hetero_graph.nodes['word'].data['feat'] = graph2.ndata['feat']
     hetero_graph.nodes['acoustic'].data['label'] = graph1.ndata['label']
-#hetero_graph.nodes['word'].data['label'] = graph2.ndata['label']
+    hetero_graph.nodes['word'].data['label'] = graph2.ndata['label']
 
 # Add edge weights
     hetero_graph.edges['sim_tic'].data['weight'] = edge_weights1

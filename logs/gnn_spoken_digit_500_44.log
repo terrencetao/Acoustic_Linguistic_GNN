@@ -1,0 +1,104 @@
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+1612
+10
+Epoch 0, Loss: 6.214198589324951, Accuracy: 10.75%
+Epoch 10, Loss: 2.272442102432251, Accuracy: 13.00%
+Epoch 20, Loss: 2.2340123653411865, Accuracy: 16.50%
+Epoch 30, Loss: 2.1999404430389404, Accuracy: 16.25%
+Epoch 40, Loss: 2.1224594116210938, Accuracy: 22.25%
+Epoch 50, Loss: 1.9862676858901978, Accuracy: 27.75%
+Epoch 60, Loss: 1.834092378616333, Accuracy: 36.50%
+Epoch 70, Loss: 1.6826820373535156, Accuracy: 40.25%
+Epoch 80, Loss: 1.5522780418395996, Accuracy: 44.50%
+Epoch 90, Loss: 1.3883486986160278, Accuracy: 52.50%
+Epoch 0, Loss: 0.4292603135108948, Accuracy: 10.25%
+Epoch 10, Loss: 0.31884804368019104, Accuracy: 8.50%
+Epoch 20, Loss: 0.29059386253356934, Accuracy: 11.00%
+Epoch 30, Loss: 0.2792518138885498, Accuracy: 10.75%
+Epoch 40, Loss: 0.27375978231430054, Accuracy: 11.25%
+Epoch 50, Loss: 0.2703455686569214, Accuracy: 11.75%
+Epoch 60, Loss: 0.26819732785224915, Accuracy: 10.50%
+Epoch 70, Loss: 0.26685401797294617, Accuracy: 10.75%
+Epoch 80, Loss: 0.2654188573360443, Accuracy: 10.75%
+Epoch 90, Loss: 0.2642585337162018, Accuracy: 10.50%
+Epoch 0, Loss: 4.805570125579834, Accuracy: 14.50%
+Epoch 10, Loss: 3.252573251724243, Accuracy: 10.00%
+Epoch 20, Loss: 3.0010969638824463, Accuracy: 10.00%
+Epoch 30, Loss: 2.884645700454712, Accuracy: 10.00%
+Epoch 40, Loss: 2.835660457611084, Accuracy: 10.25%
+Epoch 50, Loss: 2.8110406398773193, Accuracy: 9.75%
+Epoch 60, Loss: 2.8035953044891357, Accuracy: 9.75%
+Epoch 70, Loss: 2.801743984222412, Accuracy: 10.25%
+Epoch 80, Loss: 2.801356077194214, Accuracy: 10.25%
+Epoch 90, Loss: 2.801331043243408, Accuracy: 10.25%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+1612
+10
+Epoch 0, Loss: 12.591992378234863, Accuracy: 10.75%
+Epoch 10, Loss: 2.3905742168426514, Accuracy: 14.75%
+Epoch 20, Loss: 2.1622424125671387, Accuracy: 25.25%
+Epoch 30, Loss: 2.0156354904174805, Accuracy: 29.00%
+Epoch 40, Loss: 1.8622699975967407, Accuracy: 40.25%
+Epoch 50, Loss: 1.6420860290527344, Accuracy: 47.00%
+Epoch 60, Loss: 1.3472509384155273, Accuracy: 58.25%
+Epoch 70, Loss: 1.0103862285614014, Accuracy: 68.75%
+Epoch 80, Loss: 0.7241702079772949, Accuracy: 83.00%
+Epoch 90, Loss: 0.5039539933204651, Accuracy: 88.00%
+Epoch 0, Loss: 0.4048803150653839, Accuracy: 10.25%
+Epoch 10, Loss: 0.3180132806301117, Accuracy: 7.50%
+Epoch 20, Loss: 0.28854188323020935, Accuracy: 10.25%
+Epoch 30, Loss: 0.2792750597000122, Accuracy: 10.50%
+Epoch 40, Loss: 0.2729847729206085, Accuracy: 10.75%
+Epoch 50, Loss: 0.26992547512054443, Accuracy: 13.25%
+Epoch 60, Loss: 0.26757895946502686, Accuracy: 14.00%
+Epoch 70, Loss: 0.26642292737960815, Accuracy: 13.50%
+Epoch 80, Loss: 0.264510840177536, Accuracy: 13.25%
+Epoch 90, Loss: 0.26397883892059326, Accuracy: 13.25%
+Epoch 0, Loss: 7.550166606903076, Accuracy: 15.50%
+Epoch 10, Loss: 3.5008037090301514, Accuracy: 10.25%
+Epoch 20, Loss: 3.40463924407959, Accuracy: 10.25%
+Epoch 30, Loss: 3.39882493019104, Accuracy: 10.25%
+Epoch 40, Loss: 3.3987057209014893, Accuracy: 10.25%
+Epoch 50, Loss: 3.3987045288085938, Accuracy: 10.25%
+Epoch 60, Loss: 3.3987045288085938, Accuracy: 10.25%
+Epoch 70, Loss: 3.3987045288085938, Accuracy: 10.25%
+Epoch 80, Loss: 3.3987045288085938, Accuracy: 10.25%
+Epoch 90, Loss: 3.3987045288085938, Accuracy: 10.25%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+1612
+10
+Epoch 0, Loss: 5.6408562660217285, Accuracy: 9.25%
+Epoch 10, Loss: 2.301450490951538, Accuracy: 17.00%
+Epoch 20, Loss: 2.1970152854919434, Accuracy: 19.25%
+Epoch 30, Loss: 2.1205294132232666, Accuracy: 25.00%
+Epoch 40, Loss: 2.0127153396606445, Accuracy: 29.25%
+Epoch 50, Loss: 1.904638409614563, Accuracy: 33.00%
+Epoch 60, Loss: 1.74928879737854, Accuracy: 41.50%
+Epoch 70, Loss: 1.5694993734359741, Accuracy: 48.50%
+Epoch 80, Loss: 1.3555570840835571, Accuracy: 57.50%
+Epoch 90, Loss: 1.1075944900512695, Accuracy: 64.50%
+Epoch 0, Loss: 0.4416820704936981, Accuracy: 9.00%
+Epoch 10, Loss: 0.3306705951690674, Accuracy: 9.25%
+Epoch 20, Loss: 0.29889845848083496, Accuracy: 10.25%
+Epoch 30, Loss: 0.280291348695755, Accuracy: 11.25%
+Epoch 40, Loss: 0.273957759141922, Accuracy: 12.00%
+Epoch 50, Loss: 0.2704918086528778, Accuracy: 10.75%
+Epoch 60, Loss: 0.2678530216217041, Accuracy: 11.25%
+Epoch 70, Loss: 0.26601991057395935, Accuracy: 11.25%
+Epoch 80, Loss: 0.26511523127555847, Accuracy: 10.75%
+Epoch 90, Loss: 0.2639710307121277, Accuracy: 10.75%
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 309, in <module>
+    model2 = train_with_topological_loss(model2, dgl_G, features, edge_weights,adj_matrix, labels, int(args.epochs))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 159, in train_with_topological_loss
+    loss.backward()
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_tensor.py", line 522, in backward
+    torch.autograd.backward(
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/__init__.py", line 266, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/function.py", line 277, in apply
+    def apply(self, *args):
+KeyboardInterrupt

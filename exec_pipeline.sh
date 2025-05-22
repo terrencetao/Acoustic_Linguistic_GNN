@@ -8,12 +8,12 @@ declare -A UNIT_DIVISORS=( ["spoken_digit"]=10 ["google_command"]=8 ["yemba_comm
 
 #################################### CONFIGURATION #################################################
 DATASETS=("spoken_digit" "google_command" "yemba_command_small")
-UNITS=$(seq 500 500 3000)
+UNITS=$(seq 3000 500 3000)
 METHOD_MMA="fixed"
 METHOD_MSA="knn"
 ALPHAS=(1.0)
 NS=$(seq 0.5 0.1 1.0) #density
-LAMB_VALUES=$(seq 0.5 0.1 1.0)
+LAMB_VALUES=$(seq 0.9 0.1 1.0)
 MHG_METHODS=("dnn" "fixed")
 MSW_METHODS=("phon_count")
 MGW_METHODS=("full")
@@ -34,8 +34,8 @@ generate_acoustic_similarity() {
   if [ ! -f "$outfile" ]; then
     python3 generate_similarity_matrix_acoustic.py --sub_unit "$unit" --method "$mma" --dataset "$dataset"
   fi
-  #python3 weakDense.py --epochs 100 --method_sim $mma --sub_unit $unit --dataset $dataset
-  #python3 weak_ML2.py --epochs 100 --method_sim $mma --sub_unit $unit --dataset $dataset
+  python3 weakDense.py --epochs 100 --method_sim $mma --sub_unit $unit --dataset $dataset
+  python3 weak_ML2.py --epochs 100 --method_sim $mma --sub_unit $unit --dataset $dataset
 }
 
 generate_word_similarity() {
@@ -58,7 +58,7 @@ build_homogeneous_graph() {
   div=${UNIT_DIVISORS[$dataset]}
   num=$(echo "$n*($unit/$div - 1)" | bc | awk '{print int($0)}')
 
-  for ko in $(seq "$num" 1 "$num"); do
+  for ko in $(seq 0 1 "$num"); do
     python3 build_kws_graph.py --num_n "$num" --k_out "$ko" --ta 0 --alpha "$alpha" --method "$msa" --dataset "$dataset" --sub_units "$unit" --method_sim "$mma"
 
     for lamb in $LAMB_VALUES; do
@@ -91,7 +91,8 @@ build_heterogeneous_graph_and_eval() {
         for twa in "${TWAS[@]}"; do
           for p in $(seq "${PS[0]}" 2 "${PS[1]}"); do
          
-            num_n_h=$(echo "$n*($unit/$div - 1)/$p" | bc | awk '{print int($0)}')
+            #num_n_h=$(echo "$n*($unit/$div - 1)/$p" | bc | awk '{print int($0)}')
+            num_n_h=$(echo "($unit/$div - 1)/$p" | bc | awk '{print int($0)}')
             printf "NUM_N_H: %.2f\n" "$num_n_h"
 
             python3 heterogenous_graph.py --twa "$twa" --num_n "$num_n_h" --method "$mhg" --msw "$msw" \

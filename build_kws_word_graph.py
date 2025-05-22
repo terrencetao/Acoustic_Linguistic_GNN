@@ -43,7 +43,7 @@ if args.method == 'empty':
 word_embeddings=np.load('word_embedding.npy')
 print(similarity_matrix.shape)
 # Load label_names from the file to verify
-with open('subset_label_names.pkl', 'rb') as f:
+with open('subset_label_names_{dataset}.pkl', 'rb') as f:
     label_names = pickle.load(f)
 label_names = list(label_names)    
     
@@ -60,7 +60,7 @@ print("Number of edges:", dgl_graph.number_of_edges())
 
 # Add node features and labels to DGL graph
 dgl_graph.ndata['feat'] = torch.tensor(word_embeddings, dtype=torch.float32)
-#dgl_graph.ndata['label'] = torch.tensor([label_names.index(label) for label in label_names], dtype=torch.long)
+dgl_graph.ndata['label'] = torch.tensor([label_names.index(label) for label in label_names], dtype=torch.long)
 
 # Save the DGL graph
 save_dir = os.path.join('saved_graphs',args.dataset)

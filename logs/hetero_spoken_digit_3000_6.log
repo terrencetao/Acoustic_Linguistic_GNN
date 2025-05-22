@@ -1,0 +1,95 @@
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 126, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 80, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/spoken_digit/fixed/knn/dnn/phon_count/hetero_graph_149_6_299_3000.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 152, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 99, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/spoken_digit/fixed/knn/dnn/phon_count/hetero_graph_149_6_299_3000.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 126, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 80, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/spoken_digit/fixed/knn/fixed/phon_count/hetero_graph_149_6_299_3000.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 152, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 99, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/spoken_digit/fixed/knn/fixed/phon_count/hetero_graph_149_6_299_3000.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 126, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 80, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/spoken_digit/fixed/knn/dnn/phon_count/hetero_graph_149_6_299_3000.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 152, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 99, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/spoken_digit/fixed/knn/dnn/phon_count/hetero_graph_149_6_299_3000.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 1, in <module>
+    import dgl
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/__init__.py", line 14, in <module>
+    from .backend import backend_name, load_backend  # usort: skip
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/backend/__init__.py", line 122, in <module>
+    load_backend(get_preferred_backend())
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/backend/__init__.py", line 37, in load_backend
+    import torch
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/__init__.py", line 1854, in <module>
+    from . import _meta_registrations
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_meta_registrations.py", line 9, in <module>
+    from torch._decomp import (
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_decomp/__init__.py", line 243, in <module>
+    import torch._decomp.decompositions
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_decomp/decompositions.py", line 11, in <module>
+    import torch._prims as prims
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_prims/__init__.py", line 15, in <module>
+    from torch._prims.debug_prims import register_debug_prims
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_prims/debug_prims.py", line 5, in <module>
+    from torch._custom_op.impl import custom_op
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_custom_op/impl.py", line 8, in <module>
+    from torchgen.model import FunctionSchema, OperatorName, SchemaKind, BaseType, ListType, BaseTy
+  File "/home/yannick/.local/lib/python3.10/site-packages/torchgen/model.py", line 426, in <module>
+    class NativeFunction:
+  File "/usr/lib/python3.10/dataclasses.py", line 1175, in wrap
+    return _process_class(cls, init, repr, eq, order, unsafe_hash,
+  File "/usr/lib/python3.10/dataclasses.py", line 1024, in _process_class
+    _init_fn(all_init_fields,
+  File "/usr/lib/python3.10/dataclasses.py", line 579, in _init_fn
+    return _create_fn('__init__',
+  File "/usr/lib/python3.10/dataclasses.py", line 432, in _create_fn
+    exec(txt, globals, ns)
+  File "<string>", line 1, in <module>
+KeyboardInterrupt

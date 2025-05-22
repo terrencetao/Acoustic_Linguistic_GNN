@@ -110,7 +110,7 @@ def simi_matrix(method = 'semantics', dataset=None, method_ac='mixed', sub_units
   sub_label_names = np.load(os.path.join('saved_matrix',dataset, method_ac,f'subset_label_{sub_units}.npy'))
   
   label_names = set(all_label_names[sub_label_names])
-  # Save label_names to a file using pickle
+   #Save label_names to a file using pickle
   with open('subset_label_names_{dataset}.pkl', 'wb') as f:
     pickle.dump(label_names, f)
  
