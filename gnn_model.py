@@ -302,7 +302,7 @@ if __name__ == "__main__":
 
 	# Train the model with topological loss
 	# Assume adj_matrix is the adjacency matrix of the graph
-	adj_matrix = torch.tensor(nx.to_numpy_matrix(dgl.to_networkx(dgl_G)))
+	adj_matrix = torch.tensor(nx.to_numpy_array(dgl.to_networkx(dgl_G)))
 
 	adj_matrix = adj_matrix.float()
 	features = features.float()
@@ -310,7 +310,7 @@ if __name__ == "__main__":
 	model_path_unsup = os.path.join('models',"gnn_model_unsup.pth")
 	torch.save(model2.state_dict(), model_path_unsup)
 	
-	model3 = train_with_topological_and_cross_loss(model3, dgl_G, features, edge_weights,adj_matrix, labels, int(args.epochs), int(args.lamb))
+	model3 = train_with_topological_and_cross_loss(model3, dgl_G, features, edge_weights,adj_matrix, labels, int(args.epochs), float(args.lamb))
 	model_path_hibrid = os.path.join('models',"gnn_model_hibrid.pth")
 	torch.save(model3.state_dict(), model_path_hibrid)
 	

@@ -1,0 +1,506 @@
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-21 21:19:41,149 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 7.90347146987915, Accuracy: 8.75%
+Epoch 10, Loss: 3.0024468898773193, Accuracy: 11.25%
+Epoch 20, Loss: 2.294647216796875, Accuracy: 27.00%
+Epoch 30, Loss: 1.9923250675201416, Accuracy: 36.00%
+Epoch 40, Loss: 1.656135082244873, Accuracy: 58.00%
+Epoch 50, Loss: 1.4373866319656372, Accuracy: 70.75%
+Epoch 60, Loss: 1.2382971048355103, Accuracy: 78.75%
+Epoch 70, Loss: 1.0606683492660522, Accuracy: 83.75%
+Epoch 80, Loss: 0.9047030806541443, Accuracy: 87.50%
+Epoch 90, Loss: 0.7697616815567017, Accuracy: 91.00%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-21 21:20:59,526 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 67.7839, MSE: 67.5653
+Epoch 10, Loss: 93.7741, MSE: 93.5495
+Epoch 20, Loss: 1.1045, MSE: 0.8777
+Epoch 30, Loss: 1.2420, MSE: 1.0151
+Epoch 40, Loss: 1.1350, MSE: 0.9081
+Epoch 50, Loss: 1.1295, MSE: 0.9026
+Epoch 60, Loss: 1.1292, MSE: 0.9023
+Epoch 70, Loss: 1.1289, MSE: 0.9020
+Epoch 80, Loss: 1.1285, MSE: 0.9016
+Epoch 90, Loss: 1.1282, MSE: 0.9013
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-21 21:21:48,035 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 15.319580078125, Accuracy: 10.25%
+Epoch 10, Loss: 3.001073122024536, Accuracy: 13.25%
+Epoch 20, Loss: 2.3847267627716064, Accuracy: 19.00%
+Epoch 30, Loss: 2.2100138664245605, Accuracy: 27.50%
+Epoch 40, Loss: 2.0617995262145996, Accuracy: 38.25%
+Epoch 50, Loss: 1.9130089282989502, Accuracy: 45.00%
+Epoch 60, Loss: 1.7463780641555786, Accuracy: 57.25%
+Epoch 70, Loss: 1.5497921705245972, Accuracy: 66.75%
+Epoch 80, Loss: 1.4471629858016968, Accuracy: 68.00%
+Epoch 90, Loss: 1.3811743259429932, Accuracy: 70.75%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-21 21:23:12,079 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 79.2044, MSE: 78.9936
+Epoch 10, Loss: 17.0517, MSE: 16.8352
+Epoch 20, Loss: 17.6022, MSE: 17.3805
+Epoch 30, Loss: 1.5818, MSE: 1.3598
+Epoch 40, Loss: 1.2783, MSE: 1.0563
+Epoch 50, Loss: 1.2346, MSE: 1.0125
+Epoch 60, Loss: 1.2183, MSE: 0.9963
+Epoch 70, Loss: 1.1868, MSE: 0.9647
+Epoch 80, Loss: 1.1555, MSE: 0.9334
+Epoch 90, Loss: 1.1291, MSE: 0.9070
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-21 21:26:13,682 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 8.676589965820312, Accuracy: 10.25%
+Epoch 10, Loss: 3.1547842025756836, Accuracy: 10.75%
+Epoch 20, Loss: 2.435605049133301, Accuracy: 19.75%
+Epoch 30, Loss: 2.291605234146118, Accuracy: 24.50%
+Epoch 40, Loss: 2.1425483226776123, Accuracy: 36.50%
+Epoch 50, Loss: 1.9886473417282104, Accuracy: 41.00%
+Epoch 60, Loss: 1.8858641386032104, Accuracy: 44.00%
+Epoch 70, Loss: 1.7671353816986084, Accuracy: 51.00%
+Epoch 80, Loss: 1.6217310428619385, Accuracy: 57.75%
+Epoch 90, Loss: 1.4736988544464111, Accuracy: 70.25%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-21 21:27:42,664 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 29.8280, MSE: 29.5667
+Epoch 10, Loss: 301.4116, MSE: 301.1458
+Epoch 20, Loss: 62.1890, MSE: 61.9233
+Epoch 30, Loss: 59.8923, MSE: 59.6267
+Epoch 40, Loss: 59.8118, MSE: 59.5462
+Epoch 50, Loss: 59.7666, MSE: 59.5010
+Epoch 60, Loss: 59.7193, MSE: 59.4536
+Epoch 70, Loss: 59.6698, MSE: 59.4041
+Epoch 80, Loss: 59.6185, MSE: 59.3529
+Epoch 90, Loss: 59.5658, MSE: 59.3002
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-21 21:28:31,308 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 11.673181533813477, Accuracy: 9.50%
+Epoch 10, Loss: 3.045398712158203, Accuracy: 13.50%
+Epoch 20, Loss: 2.4422903060913086, Accuracy: 15.75%
+Epoch 30, Loss: 2.259331226348877, Accuracy: 26.25%
+Epoch 40, Loss: 2.0374794006347656, Accuracy: 38.50%
+Epoch 50, Loss: 1.8188469409942627, Accuracy: 49.75%
+Epoch 60, Loss: 1.620106816291809, Accuracy: 60.00%
+Epoch 70, Loss: 1.4428088665008545, Accuracy: 61.25%
+Epoch 80, Loss: 1.2513129711151123, Accuracy: 72.25%
+Epoch 90, Loss: 1.057439923286438, Accuracy: 80.50%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-21 21:29:58,242 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 109.5983, MSE: 109.3342
+Epoch 10, Loss: 84.9165, MSE: 84.6434
+Epoch 20, Loss: 30.2037, MSE: 29.9289
+Epoch 30, Loss: 8.2544, MSE: 7.9795
+Epoch 40, Loss: 1.7885, MSE: 1.5137
+Epoch 50, Loss: 0.5639, MSE: 0.2891
+Epoch 60, Loss: 0.5714, MSE: 0.2966
+Epoch 70, Loss: 0.5244, MSE: 0.2496
+Epoch 80, Loss: 0.5236, MSE: 0.2489
+Epoch 90, Loss: 0.5236, MSE: 0.2488
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-21 21:33:13,997 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 8.888019561767578, Accuracy: 10.25%
+Epoch 10, Loss: 2.7755632400512695, Accuracy: 12.50%
+Epoch 20, Loss: 2.2836203575134277, Accuracy: 31.50%
+Epoch 30, Loss: 2.034759759902954, Accuracy: 40.25%
+Epoch 40, Loss: 1.7773847579956055, Accuracy: 50.25%
+Epoch 50, Loss: 1.5500853061676025, Accuracy: 67.00%
+Epoch 60, Loss: 1.3233596086502075, Accuracy: 70.00%
+Epoch 70, Loss: 1.127363920211792, Accuracy: 78.25%
+Epoch 80, Loss: 0.9822994470596313, Accuracy: 83.25%
+Epoch 90, Loss: 0.804523229598999, Accuracy: 90.25%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-21 21:34:33,956 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 149.2835, MSE: 148.9789
+Epoch 10, Loss: 1.1166, MSE: 0.7948
+Epoch 20, Loss: 5.9770, MSE: 5.6534
+Epoch 30, Loss: 3.3781, MSE: 3.0545
+Epoch 40, Loss: 3.3206, MSE: 2.9969
+Epoch 50, Loss: 3.3184, MSE: 2.9948
+Epoch 60, Loss: 3.3173, MSE: 2.9936
+Epoch 70, Loss: 3.3160, MSE: 2.9923
+Epoch 80, Loss: 3.3146, MSE: 2.9909
+Epoch 90, Loss: 3.3131, MSE: 2.9894
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-21 21:35:18,097 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 12.121000289916992, Accuracy: 10.50%
+Epoch 10, Loss: 4.059953212738037, Accuracy: 12.00%
+Epoch 20, Loss: 2.613222122192383, Accuracy: 19.75%
+Epoch 30, Loss: 2.264805316925049, Accuracy: 30.25%
+Epoch 40, Loss: 2.0140795707702637, Accuracy: 47.00%
+Epoch 50, Loss: 1.7646825313568115, Accuracy: 53.50%
+Epoch 60, Loss: 1.5181448459625244, Accuracy: 62.00%
+Epoch 70, Loss: 1.298169493675232, Accuracy: 71.50%
+Epoch 80, Loss: 1.1701514720916748, Accuracy: 74.25%
+Epoch 90, Loss: 0.9172917008399963, Accuracy: 85.75%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-21 21:36:38,011 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 499.7744, MSE: 499.4733
+Epoch 10, Loss: 42.3197, MSE: 42.0107
+Epoch 20, Loss: 10.2490, MSE: 9.9347
+Epoch 30, Loss: 4.6821, MSE: 4.3668
+Epoch 40, Loss: 0.6611, MSE: 0.3457
+Epoch 50, Loss: 0.6336, MSE: 0.3182
+Epoch 60, Loss: 0.6330, MSE: 0.3176
+Epoch 70, Loss: 0.6306, MSE: 0.3152
+Epoch 80, Loss: 0.6273, MSE: 0.3119
+Epoch 90, Loss: 0.6240, MSE: 0.3086
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-21 21:39:34,505 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 9.688817977905273, Accuracy: 10.25%
+Epoch 10, Loss: 2.7228453159332275, Accuracy: 13.25%
+Epoch 20, Loss: 2.587397336959839, Accuracy: 8.50%
+Epoch 30, Loss: 2.531438112258911, Accuracy: 14.50%
+Epoch 40, Loss: 2.4480552673339844, Accuracy: 20.25%
+Epoch 50, Loss: 2.3167800903320312, Accuracy: 28.25%
+Epoch 60, Loss: 2.279928207397461, Accuracy: 21.00%
+Epoch 70, Loss: 2.0989155769348145, Accuracy: 40.00%
+Epoch 80, Loss: 1.8556814193725586, Accuracy: 48.00%
+Epoch 90, Loss: 1.6229467391967773, Accuracy: 61.00%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-21 21:40:58,481 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 15.4112, MSE: 15.0611
+Epoch 10, Loss: 45.1543, MSE: 44.7895
+Epoch 20, Loss: 2.6496, MSE: 2.2825
+Epoch 30, Loss: 2.0260, MSE: 1.6589
+Epoch 40, Loss: 1.8910, MSE: 1.5239
+Epoch 50, Loss: 1.7501, MSE: 1.3829
+Epoch 60, Loss: 1.6151, MSE: 1.2479
+Epoch 70, Loss: 1.4912, MSE: 1.1240
+Epoch 80, Loss: 1.3807, MSE: 1.0135
+Epoch 90, Loss: 1.2834, MSE: 0.9162
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-21 21:41:43,852 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 10.610146522521973, Accuracy: 12.00%
+Epoch 10, Loss: 2.653672933578491, Accuracy: 11.00%
+Epoch 20, Loss: 2.552725315093994, Accuracy: 7.75%
+Epoch 30, Loss: 2.551320791244507, Accuracy: 9.50%
+Epoch 40, Loss: 2.5289173126220703, Accuracy: 9.50%
+Epoch 50, Loss: 2.504453420639038, Accuracy: 9.75%
+Epoch 60, Loss: 2.4966769218444824, Accuracy: 9.25%
+Epoch 70, Loss: 2.488253116607666, Accuracy: 9.50%
+Epoch 80, Loss: 2.481265068054199, Accuracy: 10.00%
+Epoch 90, Loss: 2.4748852252960205, Accuracy: 9.75%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 08:19:01,306 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 10.990285873413086, Accuracy: 9.50%
+Epoch 10, Loss: 2.7372376918792725, Accuracy: 12.25%
+Epoch 20, Loss: 2.2610199451446533, Accuracy: 22.00%
+Epoch 30, Loss: 1.9769426584243774, Accuracy: 37.75%
+Epoch 40, Loss: 1.7531957626342773, Accuracy: 52.00%
+Epoch 50, Loss: 1.5205752849578857, Accuracy: 63.75%
+Epoch 60, Loss: 1.42764413356781, Accuracy: 58.50%
+Epoch 70, Loss: 1.1855804920196533, Accuracy: 69.50%
+Epoch 80, Loss: 0.9073283076286316, Accuracy: 81.00%
+Epoch 90, Loss: 0.7104698419570923, Accuracy: 87.75%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 08:20:44,239 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 591.0674, MSE: 590.8477
+Epoch 10, Loss: 9.4075, MSE: 9.1814
+Epoch 20, Loss: 0.6919, MSE: 0.4622
+Epoch 30, Loss: 0.6652, MSE: 0.4344
+Epoch 40, Loss: 0.6475, MSE: 0.4166
+Epoch 50, Loss: 0.6207, MSE: 0.3899
+Epoch 60, Loss: 0.5934, MSE: 0.3626
+Epoch 70, Loss: 0.5715, MSE: 0.3407
+Epoch 80, Loss: 0.5559, MSE: 0.3250
+Epoch 90, Loss: 0.5451, MSE: 0.3143
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 08:27:40,474 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 7.8235931396484375, Accuracy: 14.25%
+Epoch 10, Loss: 2.7255804538726807, Accuracy: 11.25%
+Epoch 20, Loss: 2.438504219055176, Accuracy: 15.25%
+Epoch 30, Loss: 2.3675167560577393, Accuracy: 16.50%
+Epoch 40, Loss: 2.3301239013671875, Accuracy: 19.00%
+Epoch 50, Loss: 2.279388904571533, Accuracy: 19.50%
+Epoch 60, Loss: 2.226422071456909, Accuracy: 23.00%
+Epoch 70, Loss: 2.1434879302978516, Accuracy: 28.75%
+Epoch 80, Loss: 2.0676300525665283, Accuracy: 35.00%
+Epoch 90, Loss: 1.9719898700714111, Accuracy: 42.25%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 08:29:20,819 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 35.9973, MSE: 35.7799
+Epoch 10, Loss: 22.3287, MSE: 22.1022
+Epoch 20, Loss: 15.1657, MSE: 14.9372
+Epoch 30, Loss: 2.6866, MSE: 2.4580
+Epoch 40, Loss: 2.2085, MSE: 1.9799
+Epoch 50, Loss: 1.8831, MSE: 1.6545
+Epoch 60, Loss: 1.5700, MSE: 1.3414
+Epoch 70, Loss: 1.2957, MSE: 1.0671
+Epoch 80, Loss: 1.0812, MSE: 0.8526
+Epoch 90, Loss: 0.9177, MSE: 0.6891
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 08:30:41,132 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 9.030705451965332, Accuracy: 10.50%
+Epoch 10, Loss: 3.841662645339966, Accuracy: 14.75%
+Epoch 20, Loss: 2.5836663246154785, Accuracy: 19.00%
+Epoch 30, Loss: 2.2560713291168213, Accuracy: 24.50%
+Epoch 40, Loss: 2.090427875518799, Accuracy: 37.25%
+Epoch 50, Loss: 1.894779086112976, Accuracy: 41.50%
+Epoch 60, Loss: 1.5992671251296997, Accuracy: 56.25%
+Epoch 70, Loss: 1.328994631767273, Accuracy: 62.00%
+Epoch 80, Loss: 0.8920832276344299, Accuracy: 82.75%
+Epoch 90, Loss: 0.634660005569458, Accuracy: 89.75%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 08:32:19,161 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 5.6616, MSE: 5.4416
+Epoch 10, Loss: 10.0135, MSE: 9.7941
+Epoch 20, Loss: 7.8849, MSE: 7.6652
+Epoch 30, Loss: 7.7133, MSE: 7.4936
+Epoch 40, Loss: 7.7042, MSE: 7.4846
+Epoch 50, Loss: 7.7008, MSE: 7.4811
+Epoch 60, Loss: 7.6970, MSE: 7.4773
+Epoch 70, Loss: 7.6929, MSE: 7.4733
+Epoch 80, Loss: 7.6886, MSE: 7.4690
+Epoch 90, Loss: 7.6842, MSE: 7.4645
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 08:39:12,265 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 12.425175666809082, Accuracy: 10.00%
+Epoch 10, Loss: 2.993454933166504, Accuracy: 13.50%
+Epoch 20, Loss: 2.3628311157226562, Accuracy: 17.50%
+Epoch 30, Loss: 1.9785895347595215, Accuracy: 41.25%
+Epoch 40, Loss: 1.6853314638137817, Accuracy: 51.00%
+Epoch 50, Loss: 1.4434938430786133, Accuracy: 62.25%
+Epoch 60, Loss: 1.2018693685531616, Accuracy: 71.50%
+Epoch 70, Loss: 0.9800901412963867, Accuracy: 80.75%
+Epoch 80, Loss: 0.776939332485199, Accuracy: 86.25%
+Epoch 90, Loss: 0.7321912050247192, Accuracy: 84.25%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 08:40:50,871 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 14.7037, MSE: 14.4885
+Epoch 10, Loss: 31.5383, MSE: 31.3187
+Epoch 20, Loss: 14.7307, MSE: 14.5089
+Epoch 30, Loss: 0.8118, MSE: 0.5897
+Epoch 40, Loss: 0.8431, MSE: 0.6209
+Epoch 50, Loss: 0.6031, MSE: 0.3809
+Epoch 60, Loss: 0.6006, MSE: 0.3784
+Epoch 70, Loss: 0.6004, MSE: 0.3782
+Epoch 80, Loss: 0.6001, MSE: 0.3779
+Epoch 90, Loss: 0.5998, MSE: 0.3776
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 08:41:53,627 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 12.910691261291504, Accuracy: 11.50%
+Epoch 10, Loss: 2.633106231689453, Accuracy: 9.75%
+Epoch 20, Loss: 2.3892788887023926, Accuracy: 16.75%
+Epoch 30, Loss: 2.2669341564178467, Accuracy: 24.25%
+Epoch 40, Loss: 2.1198718547821045, Accuracy: 31.00%
+Epoch 50, Loss: 1.9484584331512451, Accuracy: 37.50%
+Epoch 60, Loss: 1.7430047988891602, Accuracy: 49.50%
+Epoch 70, Loss: 1.526194453239441, Accuracy: 61.00%
+Epoch 80, Loss: 1.2929258346557617, Accuracy: 70.25%
+Epoch 90, Loss: 1.0664085149765015, Accuracy: 77.00%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+Epoch 0, Loss: 36.4017, MSE: 36.1855
+Epoch 10, Loss: 120.6622, MSE: 120.4399
+Epoch 20, Loss: 19.9163, MSE: 19.6937
+Epoch 30, Loss: 7.1458, MSE: 6.9231
+Epoch 40, Loss: 2.1864, MSE: 1.9636
+Epoch 50, Loss: 1.2417, MSE: 1.0189
+Epoch 60, Loss: 1.2487, MSE: 1.0259
+Epoch 70, Loss: 1.2444, MSE: 1.0216
+Epoch 80, Loss: 1.2441, MSE: 1.0213
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 152, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 132, in main
+    model = train_edge_regression(
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 68, in train_edge_regression
+    loss.backward()
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_tensor.py", line 522, in backward
+    torch.autograd.backward(
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/__init__.py", line 266, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/function.py", line 277, in apply
+    def apply(self, *args):
+KeyboardInterrupt
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 08:47:47,369 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 24.46251678466797, Accuracy: 10.25%
+Epoch 10, Loss: 2.7079296112060547, Accuracy: 12.75%
+Epoch 20, Loss: 2.2195146083831787, Accuracy: 29.00%
+Epoch 30, Loss: 1.96135675907135, Accuracy: 35.75%
+Epoch 40, Loss: 1.7049416303634644, Accuracy: 51.75%
+Epoch 50, Loss: 1.5007612705230713, Accuracy: 63.00%
+Epoch 60, Loss: 1.3053632974624634, Accuracy: 71.50%
+Epoch 70, Loss: 1.118402361869812, Accuracy: 78.25%
+Epoch 80, Loss: 0.9576626420021057, Accuracy: 82.75%
+Epoch 90, Loss: 0.8141064047813416, Accuracy: 88.25%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 08:49:27,492 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 5.3747, MSE: 5.1571
+Epoch 10, Loss: 24.1909, MSE: 23.9690
+Epoch 20, Loss: 7.1728, MSE: 6.9507
+Epoch 30, Loss: 6.9811, MSE: 6.7590
+Epoch 40, Loss: 6.9745, MSE: 6.7524
+Epoch 50, Loss: 6.9709, MSE: 6.7488
+Epoch 60, Loss: 6.9671, MSE: 6.7450
+Epoch 70, Loss: 6.9630, MSE: 6.7409
+Epoch 80, Loss: 6.9587, MSE: 6.7367
+Epoch 90, Loss: 6.9543, MSE: 6.7322
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 08:50:30,452 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 12.80202865600586, Accuracy: 10.25%
+Epoch 10, Loss: 3.509779930114746, Accuracy: 13.25%
+Epoch 20, Loss: 2.639498233795166, Accuracy: 22.00%
+Epoch 30, Loss: 2.0912814140319824, Accuracy: 32.75%
+Epoch 40, Loss: 1.8450989723205566, Accuracy: 47.00%
+Epoch 50, Loss: 1.626493215560913, Accuracy: 57.50%
+Epoch 60, Loss: 1.4164316654205322, Accuracy: 66.75%
+Epoch 70, Loss: 1.22614324092865, Accuracy: 72.75%
+Epoch 80, Loss: 1.0502067804336548, Accuracy: 80.75%
+Epoch 90, Loss: 0.8951436877250671, Accuracy: 86.25%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 08:52:09,152 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 226.8916, MSE: 226.6724
+Epoch 10, Loss: 40.2525, MSE: 40.0276
+Epoch 20, Loss: 5.7947, MSE: 5.5652
+Epoch 30, Loss: 1.9506, MSE: 1.7201
+Epoch 40, Loss: 0.6475, MSE: 0.4168
+Epoch 50, Loss: 1.1514, MSE: 0.9208
+Epoch 60, Loss: 1.0314, MSE: 0.8007
+Epoch 70, Loss: 1.0285, MSE: 0.7979
+Epoch 80, Loss: 1.0279, MSE: 0.7973
+Epoch 90, Loss: 1.0272, MSE: 0.7966
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 08:55:57,510 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 12.542539596557617, Accuracy: 11.50%
+Epoch 10, Loss: 2.9156463146209717, Accuracy: 15.75%
+Epoch 20, Loss: 2.342750072479248, Accuracy: 25.75%
+Epoch 30, Loss: 2.1404216289520264, Accuracy: 30.50%
+Epoch 40, Loss: 1.8859466314315796, Accuracy: 47.50%
+Epoch 50, Loss: 1.616324543952942, Accuracy: 62.50%
+Epoch 60, Loss: 1.3029252290725708, Accuracy: 71.50%
+Epoch 70, Loss: 1.058029294013977, Accuracy: 79.75%
+Epoch 80, Loss: 0.8337746858596802, Accuracy: 88.00%
+Epoch 90, Loss: 0.6574127078056335, Accuracy: 91.50%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 08:57:36,272 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 93.7905, MSE: 93.5341
+Epoch 10, Loss: 25.8848, MSE: 25.6130
+Epoch 20, Loss: 6.8232, MSE: 6.5495
+Epoch 30, Loss: 2.3830, MSE: 2.1093
+Epoch 40, Loss: 2.2230, MSE: 1.9493
+Epoch 50, Loss: 2.2189, MSE: 1.9453
+Epoch 60, Loss: 2.2179, MSE: 1.9442
+Epoch 70, Loss: 2.2167, MSE: 1.9430
+Epoch 80, Loss: 2.2154, MSE: 1.9418
+Epoch 90, Loss: 2.2142, MSE: 1.9405
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 08:58:54,369 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 9.517759323120117, Accuracy: 9.25%
+Epoch 10, Loss: 2.577183961868286, Accuracy: 15.50%
+Epoch 20, Loss: 2.432443380355835, Accuracy: 14.00%
+Epoch 30, Loss: 2.3903868198394775, Accuracy: 17.00%
+Epoch 40, Loss: 2.3082664012908936, Accuracy: 20.00%
+Epoch 50, Loss: 2.2421796321868896, Accuracy: 22.50%
+Epoch 60, Loss: 2.254155158996582, Accuracy: 22.25%
+Epoch 70, Loss: 2.2371201515197754, Accuracy: 30.00%
+Epoch 80, Loss: 2.2338743209838867, Accuracy: 29.50%
+Epoch 90, Loss: 2.2336912155151367, Accuracy: 29.50%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 09:00:33,121 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 234.2448, MSE: 233.9771
+Epoch 10, Loss: 79.0338, MSE: 78.7671
+Epoch 20, Loss: 20.5776, MSE: 20.3064
+Epoch 30, Loss: 8.5003, MSE: 8.2285
+Epoch 40, Loss: 6.7868, MSE: 6.5150
+Epoch 50, Loss: 6.7265, MSE: 6.4547
+Epoch 60, Loss: 6.7228, MSE: 6.4509
+Epoch 70, Loss: 6.7186, MSE: 6.4468
+Epoch 80, Loss: 6.7141, MSE: 6.4422
+Epoch 90, Loss: 6.7092, MSE: 6.4374
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 09:04:37,372 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 7.408915042877197, Accuracy: 9.50%
+Epoch 10, Loss: 2.8699898719787598, Accuracy: 9.75%
+Epoch 20, Loss: 2.72088360786438, Accuracy: 10.75%
+Epoch 30, Loss: 2.4325618743896484, Accuracy: 23.25%
+Epoch 40, Loss: 2.2867844104766846, Accuracy: 26.50%
+Epoch 50, Loss: 2.193352222442627, Accuracy: 33.25%
+Epoch 60, Loss: 2.0927278995513916, Accuracy: 37.00%
+Epoch 70, Loss: 1.976381540298462, Accuracy: 39.50%
+Epoch 80, Loss: 1.7950304746627808, Accuracy: 53.75%
+Epoch 90, Loss: 1.665651559829712, Accuracy: 56.50%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 09:06:15,924 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 7.1523, MSE: 6.8437
+Epoch 10, Loss: 35.5146, MSE: 35.2040
+Epoch 20, Loss: 16.5446, MSE: 16.2336
+Epoch 30, Loss: 16.1026, MSE: 15.7915
+Epoch 40, Loss: 16.0858, MSE: 15.7748
+Epoch 50, Loss: 16.0765, MSE: 15.7655
+Epoch 60, Loss: 16.0666, MSE: 15.7556
+Epoch 70, Loss: 16.0562, MSE: 15.7452
+Epoch 80, Loss: 16.0455, MSE: 15.7345
+Epoch 90, Loss: 16.0345, MSE: 15.7234
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+2025-05-22 09:07:05,765 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 11.450250625610352, Accuracy: 8.75%
+Epoch 10, Loss: 3.6982390880584717, Accuracy: 10.00%
+Epoch 20, Loss: 2.481231451034546, Accuracy: 23.25%
+Epoch 30, Loss: 2.1023788452148438, Accuracy: 36.50%
+Epoch 40, Loss: 1.8089371919631958, Accuracy: 56.25%
+Epoch 50, Loss: 1.558347463607788, Accuracy: 65.25%
+Epoch 60, Loss: 1.3189340829849243, Accuracy: 75.00%
+Epoch 70, Loss: 1.1165330410003662, Accuracy: 81.00%
+Epoch 80, Loss: 0.9317988157272339, Accuracy: 86.50%
+Epoch 90, Loss: 0.764436662197113, Accuracy: 89.50%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+Epoch 0, Loss: 285.0728, MSE: 284.7641
+Epoch 10, Loss: 74.5817, MSE: 74.2569
+Epoch 20, Loss: 20.0136, MSE: 19.6885
+Epoch 30, Loss: 7.8710, MSE: 7.5460
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 152, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 132, in main
+    model = train_edge_regression(
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 69, in train_edge_regression
+    optimizer.step()
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/optim/optimizer.py", line 385, in wrapper
+    out = func(*args, **kwargs)
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/optim/optimizer.py", line 76, in _use_grad
+    ret = func(self, *args, **kwargs)
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/optim/adam.py", line 166, in step
+    adam(
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/optim/adam.py", line 316, in adam
+    func(params,
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/optim/adam.py", line 439, in _single_tensor_adam
+    denom = (exp_avg_sq.sqrt() / bias_correction2_sqrt).add_(eps)
+KeyboardInterrupt

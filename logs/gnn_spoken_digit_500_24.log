@@ -1,0 +1,385 @@
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+1612
+10
+Epoch 0, Loss: 8.077402114868164, Accuracy: 10.25%
+Epoch 10, Loss: 2.5764217376708984, Accuracy: 13.25%
+Epoch 20, Loss: 2.132741689682007, Accuracy: 17.25%
+Epoch 30, Loss: 1.9974586963653564, Accuracy: 31.00%
+Epoch 40, Loss: 1.8084309101104736, Accuracy: 38.00%
+Epoch 50, Loss: 1.6040798425674438, Accuracy: 49.25%
+Epoch 60, Loss: 1.3773069381713867, Accuracy: 55.50%
+Epoch 70, Loss: 1.1438469886779785, Accuracy: 63.25%
+Epoch 80, Loss: 0.9252358078956604, Accuracy: 76.50%
+Epoch 90, Loss: 0.7253134250640869, Accuracy: 82.50%
+Epoch 0, Loss: 0.43904751539230347, Accuracy: 9.50%
+Epoch 10, Loss: 0.31326159834861755, Accuracy: 9.25%
+Epoch 20, Loss: 0.28546032309532166, Accuracy: 13.50%
+Epoch 30, Loss: 0.277727872133255, Accuracy: 11.50%
+Epoch 40, Loss: 0.27161848545074463, Accuracy: 11.50%
+Epoch 50, Loss: 0.269159734249115, Accuracy: 11.75%
+Epoch 60, Loss: 0.2673438787460327, Accuracy: 12.00%
+Epoch 70, Loss: 0.2660428285598755, Accuracy: 12.50%
+Epoch 80, Loss: 0.26503095030784607, Accuracy: 12.50%
+Epoch 90, Loss: 0.26417627930641174, Accuracy: 12.50%
+Epoch 0, Loss: 5.409482479095459, Accuracy: 10.50%
+Epoch 10, Loss: 4684.2783203125, Accuracy: 10.25%
+Epoch 20, Loss: 3999.796875, Accuracy: 10.25%
+Epoch 30, Loss: 3988.801513671875, Accuracy: 10.25%
+Epoch 40, Loss: 3988.421875, Accuracy: 10.25%
+Epoch 50, Loss: 3988.41552734375, Accuracy: 10.25%
+Epoch 60, Loss: 3988.41552734375, Accuracy: 10.25%
+Epoch 70, Loss: 3988.41552734375, Accuracy: 10.25%
+Epoch 80, Loss: 3988.41552734375, Accuracy: 10.25%
+Epoch 90, Loss: 3988.41552734375, Accuracy: 10.25%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+1612
+10
+Epoch 0, Loss: 6.4060821533203125, Accuracy: 9.50%
+Epoch 10, Loss: 2.4302780628204346, Accuracy: 13.00%
+Epoch 20, Loss: 2.197497606277466, Accuracy: 15.50%
+Epoch 30, Loss: 2.081463098526001, Accuracy: 25.50%
+Epoch 40, Loss: 1.9578230381011963, Accuracy: 32.50%
+Epoch 50, Loss: 1.8098130226135254, Accuracy: 35.25%
+Epoch 60, Loss: 1.6278866529464722, Accuracy: 44.75%
+Epoch 70, Loss: 1.4168696403503418, Accuracy: 56.00%
+Epoch 80, Loss: 1.1798148155212402, Accuracy: 68.00%
+Epoch 90, Loss: 0.9518988132476807, Accuracy: 75.25%
+Epoch 0, Loss: 0.42437857389450073, Accuracy: 14.00%
+Epoch 10, Loss: 0.30405575037002563, Accuracy: 6.75%
+Epoch 20, Loss: 0.2823183238506317, Accuracy: 9.25%
+Epoch 30, Loss: 0.2737630307674408, Accuracy: 9.75%
+Epoch 40, Loss: 0.2690211832523346, Accuracy: 10.00%
+Epoch 50, Loss: 0.26656025648117065, Accuracy: 11.25%
+Epoch 60, Loss: 0.2650708854198456, Accuracy: 11.00%
+Epoch 70, Loss: 0.2639014720916748, Accuracy: 10.25%
+Epoch 80, Loss: 0.26320773363113403, Accuracy: 9.00%
+Epoch 90, Loss: 0.26305893063545227, Accuracy: 10.00%
+Epoch 0, Loss: 11.425450325012207, Accuracy: 10.50%
+Epoch 10, Loss: 221.01443481445312, Accuracy: 10.00%
+Epoch 20, Loss: 78.8130111694336, Accuracy: 10.00%
+Epoch 30, Loss: 75.9146728515625, Accuracy: 10.00%
+Epoch 40, Loss: 75.82173919677734, Accuracy: 10.00%
+Epoch 50, Loss: 75.81969451904297, Accuracy: 10.00%
+Epoch 60, Loss: 75.81969451904297, Accuracy: 10.00%
+Epoch 70, Loss: 75.81969451904297, Accuracy: 10.00%
+Epoch 80, Loss: 75.81966400146484, Accuracy: 10.00%
+Epoch 90, Loss: 75.81964111328125, Accuracy: 10.00%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+1612
+10
+Epoch 0, Loss: 16.55767822265625, Accuracy: 9.75%
+Epoch 10, Loss: 2.356411933898926, Accuracy: 10.50%
+Epoch 20, Loss: 2.0820741653442383, Accuracy: 22.25%
+Epoch 30, Loss: 1.9028761386871338, Accuracy: 31.50%
+Epoch 40, Loss: 1.6955763101577759, Accuracy: 37.25%
+Epoch 50, Loss: 1.4717514514923096, Accuracy: 47.75%
+Epoch 60, Loss: 1.2486753463745117, Accuracy: 58.25%
+Epoch 70, Loss: 1.058377742767334, Accuracy: 66.00%
+Epoch 80, Loss: 0.851178765296936, Accuracy: 75.50%
+Epoch 90, Loss: 0.7149335741996765, Accuracy: 80.00%
+Epoch 0, Loss: 0.4485432505607605, Accuracy: 10.50%
+Epoch 10, Loss: 0.31232568621635437, Accuracy: 12.00%
+Epoch 20, Loss: 0.28271692991256714, Accuracy: 10.25%
+Epoch 30, Loss: 0.27260687947273254, Accuracy: 11.25%
+Epoch 40, Loss: 0.26863402128219604, Accuracy: 11.25%
+Epoch 50, Loss: 0.26594915986061096, Accuracy: 11.00%
+Epoch 60, Loss: 0.26444512605667114, Accuracy: 10.50%
+Epoch 70, Loss: 0.2651999592781067, Accuracy: 10.75%
+Epoch 80, Loss: 0.2631435692310333, Accuracy: 9.50%
+Epoch 90, Loss: 0.2623644769191742, Accuracy: 10.75%
+Epoch 0, Loss: 11.29821491241455, Accuracy: 10.00%
+Epoch 10, Loss: 399.3232421875, Accuracy: 9.75%
+Epoch 20, Loss: 180.00836181640625, Accuracy: 10.00%
+Epoch 30, Loss: 177.21624755859375, Accuracy: 10.00%
+Epoch 40, Loss: 177.12718200683594, Accuracy: 10.00%
+Epoch 50, Loss: 177.12521362304688, Accuracy: 10.00%
+Epoch 60, Loss: 177.1251983642578, Accuracy: 10.00%
+Epoch 70, Loss: 177.12515258789062, Accuracy: 10.00%
+Epoch 80, Loss: 177.12513732910156, Accuracy: 10.00%
+Epoch 90, Loss: 177.1250762939453, Accuracy: 10.00%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+1612
+10
+Epoch 0, Loss: 7.7067975997924805, Accuracy: 6.50%
+Epoch 10, Loss: 2.3626112937927246, Accuracy: 13.00%
+Epoch 20, Loss: 2.1767117977142334, Accuracy: 22.25%
+Epoch 30, Loss: 2.0540413856506348, Accuracy: 30.25%
+Epoch 40, Loss: 1.9083935022354126, Accuracy: 39.00%
+Epoch 50, Loss: 1.7311854362487793, Accuracy: 48.00%
+Epoch 60, Loss: 1.498258352279663, Accuracy: 56.75%
+Epoch 70, Loss: 1.2117340564727783, Accuracy: 69.50%
+Epoch 80, Loss: 0.9492896199226379, Accuracy: 75.25%
+Epoch 90, Loss: 0.6905759572982788, Accuracy: 83.50%
+Epoch 0, Loss: 0.4507662057876587, Accuracy: 10.00%
+Epoch 10, Loss: 0.3200254440307617, Accuracy: 9.25%
+Epoch 20, Loss: 0.29296278953552246, Accuracy: 7.75%
+Epoch 30, Loss: 0.2786051630973816, Accuracy: 8.75%
+Epoch 40, Loss: 0.2727876901626587, Accuracy: 8.75%
+Epoch 50, Loss: 0.26910483837127686, Accuracy: 10.50%
+Epoch 60, Loss: 0.2668204605579376, Accuracy: 10.25%
+Epoch 70, Loss: 0.26526182889938354, Accuracy: 9.25%
+Epoch 80, Loss: 0.26396656036376953, Accuracy: 10.00%
+Epoch 90, Loss: 0.26317617297172546, Accuracy: 9.50%
+Epoch 0, Loss: 4.833611965179443, Accuracy: 14.50%
+Epoch 10, Loss: 1145.5064697265625, Accuracy: 10.25%
+Epoch 20, Loss: 3.7912509441375732, Accuracy: 10.00%
+Epoch 30, Loss: 3.482069253921509, Accuracy: 10.25%
+Epoch 40, Loss: 3.236088514328003, Accuracy: 10.00%
+Epoch 50, Loss: 3.0859365463256836, Accuracy: 10.00%
+Epoch 60, Loss: 3.0023224353790283, Accuracy: 10.00%
+Epoch 70, Loss: 2.948565721511841, Accuracy: 10.00%
+Epoch 80, Loss: 2.9052770137786865, Accuracy: 10.25%
+Epoch 90, Loss: 2.865565538406372, Accuracy: 10.25%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+1612
+10
+Epoch 0, Loss: 6.892407417297363, Accuracy: 11.00%
+Epoch 10, Loss: 2.264050006866455, Accuracy: 17.50%
+Epoch 20, Loss: 2.131810426712036, Accuracy: 25.00%
+Epoch 30, Loss: 2.0108063220977783, Accuracy: 29.75%
+Epoch 40, Loss: 1.8533515930175781, Accuracy: 36.75%
+Epoch 50, Loss: 1.64070725440979, Accuracy: 45.50%
+Epoch 60, Loss: 1.3827606439590454, Accuracy: 58.25%
+Epoch 70, Loss: 1.0927937030792236, Accuracy: 67.50%
+Epoch 80, Loss: 0.8661095499992371, Accuracy: 75.50%
+Epoch 90, Loss: 0.6432168483734131, Accuracy: 85.00%
+Epoch 0, Loss: 0.4352310597896576, Accuracy: 10.25%
+Epoch 10, Loss: 0.3056877553462982, Accuracy: 9.75%
+Epoch 20, Loss: 0.28073960542678833, Accuracy: 8.75%
+Epoch 30, Loss: 0.2719666361808777, Accuracy: 12.50%
+Epoch 40, Loss: 0.26858222484588623, Accuracy: 11.25%
+Epoch 50, Loss: 0.2663685977458954, Accuracy: 11.25%
+Epoch 60, Loss: 0.2649689316749573, Accuracy: 11.25%
+Epoch 70, Loss: 0.2636145055294037, Accuracy: 13.00%
+Epoch 80, Loss: 0.2626132667064667, Accuracy: 12.25%
+Epoch 90, Loss: 0.26226088404655457, Accuracy: 12.25%
+Epoch 0, Loss: 11.305497169494629, Accuracy: 9.75%
+Epoch 10, Loss: 328.0909118652344, Accuracy: 10.25%
+Epoch 20, Loss: 73.31816864013672, Accuracy: 10.25%
+Epoch 30, Loss: 71.34504699707031, Accuracy: 10.25%
+Epoch 40, Loss: 71.28765106201172, Accuracy: 10.25%
+Epoch 50, Loss: 71.28643798828125, Accuracy: 10.25%
+Epoch 60, Loss: 71.28640747070312, Accuracy: 10.25%
+Epoch 70, Loss: 71.28640747070312, Accuracy: 10.25%
+Epoch 80, Loss: 71.28640747070312, Accuracy: 10.25%
+Epoch 90, Loss: 71.28641510009766, Accuracy: 10.25%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+1612
+10
+Epoch 0, Loss: 12.407151222229004, Accuracy: 9.50%
+Epoch 10, Loss: 2.484537124633789, Accuracy: 11.50%
+Epoch 20, Loss: 2.242126703262329, Accuracy: 19.50%
+Epoch 30, Loss: 2.098339319229126, Accuracy: 24.75%
+Epoch 40, Loss: 1.9010725021362305, Accuracy: 32.25%
+Epoch 50, Loss: 1.6312081813812256, Accuracy: 38.25%
+Epoch 60, Loss: 1.3629364967346191, Accuracy: 51.50%
+Epoch 70, Loss: 1.1366573572158813, Accuracy: 57.75%
+Epoch 80, Loss: 0.9185845851898193, Accuracy: 71.25%
+Epoch 90, Loss: 0.7173246145248413, Accuracy: 80.50%
+Epoch 0, Loss: 0.4352600574493408, Accuracy: 9.25%
+Epoch 10, Loss: 0.3133067488670349, Accuracy: 12.75%
+Epoch 20, Loss: 0.28620538115501404, Accuracy: 12.50%
+Epoch 30, Loss: 0.2757391631603241, Accuracy: 11.25%
+Epoch 40, Loss: 0.27151358127593994, Accuracy: 9.75%
+Epoch 50, Loss: 0.2686602771282196, Accuracy: 12.25%
+Epoch 60, Loss: 0.26677918434143066, Accuracy: 12.00%
+Epoch 70, Loss: 0.26551294326782227, Accuracy: 11.75%
+Epoch 80, Loss: 0.26460132002830505, Accuracy: 12.25%
+Epoch 90, Loss: 0.263793408870697, Accuracy: 13.00%
+Epoch 0, Loss: 9.164397239685059, Accuracy: 9.75%
+Epoch 10, Loss: 141.48544311523438, Accuracy: 10.25%
+Epoch 20, Loss: 69.62922668457031, Accuracy: 10.25%
+Epoch 30, Loss: 67.4072265625, Accuracy: 10.25%
+Epoch 40, Loss: 67.33245086669922, Accuracy: 10.25%
+Epoch 50, Loss: 67.33067321777344, Accuracy: 10.25%
+Epoch 60, Loss: 67.33067321777344, Accuracy: 10.25%
+Epoch 70, Loss: 67.33062744140625, Accuracy: 10.25%
+Epoch 80, Loss: 67.33059692382812, Accuracy: 10.25%
+Epoch 90, Loss: 67.33058166503906, Accuracy: 10.25%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+1612
+10
+Epoch 0, Loss: 4.613623142242432, Accuracy: 10.50%
+Epoch 10, Loss: 2.3955180644989014, Accuracy: 12.25%
+Epoch 20, Loss: 2.1993327140808105, Accuracy: 22.75%
+Epoch 30, Loss: 2.079979419708252, Accuracy: 29.00%
+Epoch 40, Loss: 1.9689162969589233, Accuracy: 34.50%
+Epoch 50, Loss: 1.8202804327011108, Accuracy: 44.25%
+Epoch 60, Loss: 1.6234973669052124, Accuracy: 50.25%
+Epoch 70, Loss: 1.380454659461975, Accuracy: 55.50%
+Epoch 80, Loss: 1.1639882326126099, Accuracy: 59.00%
+Epoch 90, Loss: 0.9364256262779236, Accuracy: 68.75%
+Epoch 0, Loss: 0.43252256512641907, Accuracy: 10.00%
+Epoch 10, Loss: 0.30175209045410156, Accuracy: 7.50%
+Epoch 20, Loss: 0.282352089881897, Accuracy: 7.50%
+Epoch 30, Loss: 0.275657057762146, Accuracy: 8.50%
+Epoch 40, Loss: 0.2718189060688019, Accuracy: 8.75%
+Epoch 50, Loss: 0.26918959617614746, Accuracy: 7.25%
+Epoch 60, Loss: 0.2676343619823456, Accuracy: 7.50%
+Epoch 70, Loss: 0.26654481887817383, Accuracy: 7.50%
+Epoch 80, Loss: 0.2656039893627167, Accuracy: 8.00%
+Epoch 90, Loss: 0.26487305760383606, Accuracy: 7.50%
+Epoch 0, Loss: 5.417181968688965, Accuracy: 7.25%
+Epoch 10, Loss: 8813.6728515625, Accuracy: 15.00%
+Epoch 20, Loss: 4817.10986328125, Accuracy: 15.00%
+Epoch 30, Loss: 4741.462890625, Accuracy: 15.00%
+Epoch 40, Loss: 4738.8828125, Accuracy: 15.00%
+Epoch 50, Loss: 4738.8271484375, Accuracy: 15.00%
+Epoch 60, Loss: 4738.8271484375, Accuracy: 15.00%
+Epoch 70, Loss: 4738.8271484375, Accuracy: 15.00%
+Epoch 80, Loss: 4738.8271484375, Accuracy: 15.00%
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 313, in <module>
+    model3 = train_with_topological_and_cross_loss(model3, dgl_G, features, edge_weights,adj_matrix, labels, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 189, in train_with_topological_and_cross_loss
+    loss.backward()
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_tensor.py", line 522, in backward
+    torch.autograd.backward(
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/__init__.py", line 266, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/function.py", line 277, in apply
+    def apply(self, *args):
+KeyboardInterrupt
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+1612
+10
+Epoch 0, Loss: 6.026977062225342, Accuracy: 8.00%
+Epoch 10, Loss: 2.3344273567199707, Accuracy: 14.75%
+Epoch 20, Loss: 2.134765863418579, Accuracy: 20.75%
+Epoch 30, Loss: 1.9751249551773071, Accuracy: 34.75%
+Epoch 40, Loss: 1.8041154146194458, Accuracy: 41.00%
+Epoch 50, Loss: 1.6106568574905396, Accuracy: 49.50%
+Epoch 60, Loss: 1.4060945510864258, Accuracy: 55.75%
+Epoch 70, Loss: 1.1946349143981934, Accuracy: 62.25%
+Epoch 80, Loss: 0.9802930951118469, Accuracy: 69.25%
+Epoch 90, Loss: 0.7731812000274658, Accuracy: 77.00%
+Epoch 0, Loss: 0.4199106991291046, Accuracy: 8.50%
+Epoch 10, Loss: 0.2950243055820465, Accuracy: 8.50%
+Epoch 20, Loss: 0.2775813341140747, Accuracy: 9.00%
+Epoch 30, Loss: 0.27050748467445374, Accuracy: 7.75%
+Epoch 40, Loss: 0.26707032322883606, Accuracy: 7.50%
+Epoch 50, Loss: 0.2658812999725342, Accuracy: 6.75%
+Epoch 60, Loss: 0.26459088921546936, Accuracy: 8.00%
+Epoch 70, Loss: 0.2634662091732025, Accuracy: 8.00%
+Epoch 80, Loss: 0.2628304660320282, Accuracy: 7.75%
+Epoch 90, Loss: 0.2623065412044525, Accuracy: 8.25%
+Epoch 0, Loss: 8.834095001220703, Accuracy: 7.75%
+Epoch 10, Loss: 308.3844299316406, Accuracy: 10.50%
+Epoch 20, Loss: 239.4559783935547, Accuracy: 10.00%
+Epoch 30, Loss: 237.82481384277344, Accuracy: 10.00%
+Epoch 40, Loss: 237.7627410888672, Accuracy: 10.00%
+Epoch 50, Loss: 237.76132202148438, Accuracy: 10.00%
+Epoch 60, Loss: 237.76132202148438, Accuracy: 10.00%
+Epoch 70, Loss: 237.7612762451172, Accuracy: 10.00%
+Epoch 80, Loss: 237.7612762451172, Accuracy: 10.00%
+Epoch 90, Loss: 237.7612762451172, Accuracy: 10.00%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+1612
+10
+Epoch 0, Loss: 9.830304145812988, Accuracy: 10.25%
+Epoch 10, Loss: 2.3138997554779053, Accuracy: 17.25%
+Epoch 20, Loss: 2.121188163757324, Accuracy: 23.25%
+Epoch 30, Loss: 1.9770913124084473, Accuracy: 31.00%
+Epoch 40, Loss: 1.8291417360305786, Accuracy: 40.00%
+Epoch 50, Loss: 1.660009741783142, Accuracy: 46.00%
+Epoch 60, Loss: 1.4588541984558105, Accuracy: 52.25%
+Epoch 70, Loss: 1.2759209871292114, Accuracy: 56.25%
+Epoch 80, Loss: 1.0812684297561646, Accuracy: 65.00%
+Epoch 90, Loss: 0.9000669121742249, Accuracy: 70.50%
+Epoch 0, Loss: 0.4371369183063507, Accuracy: 11.00%
+Epoch 10, Loss: 0.30422261357307434, Accuracy: 11.50%
+Epoch 20, Loss: 0.28122401237487793, Accuracy: 9.50%
+Epoch 30, Loss: 0.2730666995048523, Accuracy: 12.00%
+Epoch 40, Loss: 0.26911798119544983, Accuracy: 9.75%
+Epoch 50, Loss: 0.2668966054916382, Accuracy: 10.00%
+Epoch 60, Loss: 0.2652174234390259, Accuracy: 10.75%
+Epoch 70, Loss: 0.2641531229019165, Accuracy: 10.75%
+Epoch 80, Loss: 0.26355502009391785, Accuracy: 10.75%
+Epoch 90, Loss: 0.26312384009361267, Accuracy: 11.00%
+Epoch 0, Loss: 5.930908679962158, Accuracy: 10.25%
+Epoch 10, Loss: 193.5116424560547, Accuracy: 9.50%
+Epoch 20, Loss: 136.00201416015625, Accuracy: 10.25%
+Epoch 30, Loss: 134.42776489257812, Accuracy: 10.25%
+Epoch 40, Loss: 134.37649536132812, Accuracy: 10.25%
+Epoch 50, Loss: 134.37530517578125, Accuracy: 10.25%
+Epoch 60, Loss: 134.3752899169922, Accuracy: 10.25%
+Epoch 70, Loss: 134.3752899169922, Accuracy: 10.25%
+Epoch 80, Loss: 134.3752899169922, Accuracy: 10.25%
+Epoch 90, Loss: 134.3752899169922, Accuracy: 10.25%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+1612
+10
+Epoch 0, Loss: 10.566219329833984, Accuracy: 8.00%
+Epoch 10, Loss: 2.444672107696533, Accuracy: 11.50%
+Epoch 20, Loss: 2.187274694442749, Accuracy: 23.00%
+Epoch 30, Loss: 2.1090402603149414, Accuracy: 27.00%
+Epoch 40, Loss: 1.993132472038269, Accuracy: 26.75%
+Epoch 50, Loss: 1.8496716022491455, Accuracy: 36.00%
+Epoch 60, Loss: 1.6514027118682861, Accuracy: 44.25%
+Epoch 70, Loss: 1.384016513824463, Accuracy: 57.25%
+Epoch 80, Loss: 1.120253324508667, Accuracy: 67.00%
+Epoch 90, Loss: 0.7060895562171936, Accuracy: 85.00%
+Epoch 0, Loss: 0.43358761072158813, Accuracy: 10.50%
+Epoch 10, Loss: 0.3077796995639801, Accuracy: 10.75%
+Epoch 20, Loss: 0.2853156626224518, Accuracy: 11.75%
+Epoch 30, Loss: 0.2766464650630951, Accuracy: 9.75%
+Epoch 40, Loss: 0.2718941271305084, Accuracy: 9.00%
+Epoch 50, Loss: 0.26922333240509033, Accuracy: 9.50%
+Epoch 60, Loss: 0.26738613843917847, Accuracy: 10.00%
+Epoch 70, Loss: 0.26593294739723206, Accuracy: 9.25%
+Epoch 80, Loss: 0.2652422785758972, Accuracy: 9.75%
+Epoch 90, Loss: 0.26410767436027527, Accuracy: 9.25%
+Epoch 0, Loss: 6.0560302734375, Accuracy: 10.25%
+Epoch 10, Loss: 46.834110260009766, Accuracy: 4.00%
+Epoch 20, Loss: 17.347476959228516, Accuracy: 10.00%
+Epoch 30, Loss: 15.315045356750488, Accuracy: 10.25%
+Epoch 40, Loss: 15.303741455078125, Accuracy: 10.25%
+Epoch 50, Loss: 15.303533554077148, Accuracy: 10.25%
+Epoch 60, Loss: 15.3035306930542, Accuracy: 10.25%
+Epoch 70, Loss: 15.30352783203125, Accuracy: 10.25%
+Epoch 80, Loss: 15.303529739379883, Accuracy: 10.25%
+Epoch 90, Loss: 15.303526878356934, Accuracy: 10.25%
+/home/yannick/.local/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+1612
+10
+Epoch 0, Loss: 4.166589736938477, Accuracy: 7.00%
+Epoch 10, Loss: 2.2332396507263184, Accuracy: 15.50%
+Epoch 20, Loss: 2.126068353652954, Accuracy: 23.50%
+Epoch 30, Loss: 2.0135090351104736, Accuracy: 31.00%
+Epoch 40, Loss: 1.8671479225158691, Accuracy: 37.00%
+Epoch 50, Loss: 1.721747875213623, Accuracy: 38.75%
+Epoch 60, Loss: 1.426916480064392, Accuracy: 48.50%
+Epoch 70, Loss: 1.1356480121612549, Accuracy: 67.00%
+Epoch 80, Loss: 0.8826989531517029, Accuracy: 75.00%
+Epoch 90, Loss: 0.6393163204193115, Accuracy: 84.50%
+Epoch 0, Loss: 0.4385865330696106, Accuracy: 12.00%
+Epoch 10, Loss: 0.31024909019470215, Accuracy: 8.25%
+Epoch 20, Loss: 0.2811385691165924, Accuracy: 13.75%
+Epoch 30, Loss: 0.27363890409469604, Accuracy: 14.00%
+Epoch 40, Loss: 0.2701096534729004, Accuracy: 12.25%
+Epoch 50, Loss: 0.2677004933357239, Accuracy: 12.00%
+Epoch 60, Loss: 0.2659236192703247, Accuracy: 12.25%
+Epoch 70, Loss: 0.26520341634750366, Accuracy: 13.75%
+Epoch 80, Loss: 0.26403942704200745, Accuracy: 13.75%
+Epoch 90, Loss: 0.2631406784057617, Accuracy: 11.75%
+Epoch 0, Loss: 6.551416873931885, Accuracy: 8.50%
+Epoch 10, Loss: 456.0374450683594, Accuracy: 10.25%
+Epoch 20, Loss: 81.46994018554688, Accuracy: 9.50%
+Epoch 30, Loss: 79.706298828125, Accuracy: 9.50%
+Epoch 40, Loss: 79.63835144042969, Accuracy: 9.50%
+Epoch 50, Loss: 79.63661193847656, Accuracy: 9.50%
+Epoch 60, Loss: 79.63662719726562, Accuracy: 9.50%
+Epoch 70, Loss: 79.6365966796875, Accuracy: 9.50%
+Epoch 80, Loss: 79.6365966796875, Accuracy: 9.50%
+Epoch 90, Loss: 79.6365737915039, Accuracy: 9.50%

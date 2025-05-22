@@ -4,6 +4,7 @@ import dgl
 import numpy as np
 import csv
 from gnn_heto_model import HeteroGCN
+from gnn_heto_link_pred_model import HeteroLinkGCN
 from gnn_heto_with_attention_model import HeteroGCNWithAllAttention
 from gnn_model import GCN
 from sklearn import svm
@@ -114,7 +115,9 @@ model = HeteroGCN(in_feats, hidden_size, out_feats, linear_hidden_size)
 # Load the pre-trained model state
 model.load_state_dict(torch.load(os.path.join(model_folder, "hetero_gnn_model.pth")))
 model.eval()
-
+model_hetero_regressor = HeteroLinkGCN(in_feats, hidden_size, linear_hidden_size)
+model_hetero_regressor.load_state_dict(torch.load(os.path.join(model_folder, "hetero_gnn_edge_regressor.pth")))
+model_hetero_regressor.eval()
 #model_sage.load_state_dict(torch.load(os.path.join(model_folder, "hetero_gnn_model_unsupervised.pth")))
 #model_sage.eval()
 # Extract acoustic node representations
@@ -122,6 +125,10 @@ logging.info(f'Extract acoustic node representations')
 with torch.no_grad():
     _,embeddings = model(hetero_graph, features_dic)
     acoustic_embeddings = embeddings['acoustic']
+    
+with torch.no_grad():
+    embeddings_hetero_regressor = model_hetero_regressor(hetero_graph, features_dic)
+    acoustic_embeddings_hetero_regressor = embeddings_hetero_regressor['acoustic']
 
 #with torch.no_grad():
 #    embeddings_sage = model_sage(hetero_graph, features_dic)
@@ -183,7 +190,7 @@ file_exists = os.path.isfile(f'accuracy/{csv_file}')
 if not file_exists:
     with open(f'accuracy/{csv_file}', mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['Supervised Model', 'Unsupervised Model','Hibrid Model', 'Heterogeneous Model', 'Heterogeneous sage Model','Heterogeneous attention Model', 'Spectrogram Baseline', 'CNN Model', 'DNN Model','twa', 'num_n_h', 'mhg', 'num_n_a', 'ta', 'alpha', 'tw', 'msw', 'msa', 'mgw','mma', 'k_out', 'lambda', 'density'])
+        writer.writerow(['Supervised Model', 'Unsupervised Model','Hibrid Model', 'Heterogeneous Model','Heterogeneous regressor Model', 'Heterogeneous sage Model','Heterogeneous attention Model', 'Spectrogram Baseline', 'CNN Model', 'DNN Model','twa', 'num_n_h', 'mhg', 'num_n_a', 'ta', 'alpha', 'tw', 'msw', 'msa', 'mgw','mma', 'k_out', 'lambda', 'density'])
 
 # Embeddings from supervised model
 node_embeddings_sup = torch.from_numpy(node_embeddings_sup)
@@ -210,6 +217,10 @@ logging.info(f'Train and evaluate SVM for heterogeneous model embeddings')
 acoustic_embeddings_np = acoustic_embeddings.detach().numpy()
 accuracy_hetero = train_evaluate_svm(acoustic_embeddings_np, labels_np)
 logging.info(f"Accuracy of the Heterogeneous Model: {accuracy_hetero:.4f}")
+
+acoustic_embeddings_regressor_np = acoustic_embeddings_hetero_regressor.detach().numpy()
+accuracy_hetero_regressor = train_evaluate_svm(acoustic_embeddings_regressor_np, labels_np)
+logging.info(f"Accuracy of the Heterogeneous regressor Model: {accuracy_hetero_regressor:.4f}")
 
 # Train and evaluate SVM for heterogeneous model embeddings
 #logging.info(f'Train and evaluate SVM for heterogeneous sage model embeddings')
@@ -259,5 +270,5 @@ logging.info(f'DNN Model Accuracy: {accuracy_dnn}')
 logging.info(f'Write accuracy results to CSV file')
 with open(f'accuracy/{csv_file}', mode='a', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hibrid, accuracy_hetero,accuracy_hetero_sage, accuracy_attention,accuracy_spectrogram, accuracy_cnn, accuracy_dnn, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw,args.mma, args.k_out, args.lamb, args.density])
+    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hibrid, accuracy_hetero,accuracy_hetero_regressor,accuracy_hetero_sage, accuracy_attention,accuracy_spectrogram, accuracy_cnn, accuracy_dnn, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw,args.mma, args.k_out, args.lamb, args.density])
 
