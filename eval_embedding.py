@@ -258,8 +258,8 @@ test_loader = DataLoader(TensorDataset(X_test, y_test), batch_size=32, shuffle=F
 # Define and train the CNN model
 logging.info(f'train the CNN model')
 
-cnn_model = torch.load('models/cnn.pth',weigths_only=False)
-dnn_model = torch.load('models/dense.pth', weigths_only=False)
+cnn_model = torch.load('models/cnn.pth',weights_only=False)
+dnn_model = torch.load('models/dense.pth', weights_only=False)
 accuracy_cnn = evaluate_cnn(cnn_model, test_loader)
 accuracy_dnn = evaluate_dense(dnn_model, test_loader)
 logging.info(f'CNN Model Accuracy: {accuracy_cnn}')

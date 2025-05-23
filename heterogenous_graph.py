@@ -104,7 +104,7 @@ def softmax_prob(method, graph, num_labels, label_name=None, threshold_probabili
     
     if method == 'ML':
        #Load the PyTorch model
-       acoustic_model = torch.load('models/cnn.pth', weigths_only=False )
+       acoustic_model = torch.load('models/cnn.pth', weights_only=False )
        acoustic_model.eval()  # Set the model to evaluation mode
 
 # Convert node features to a PyTorch tensor
@@ -124,7 +124,7 @@ def softmax_prob(method, graph, num_labels, label_name=None, threshold_probabili
      
     elif method == 'mixed':
       #Load the PyTorch model
-       acoustic_model = torch.load('models/cnn.pth', weigths_only=False)
+       acoustic_model = torch.load('models/cnn.pth', weights_only=False)
        acoustic_model.eval()  # Set the model to evaluation mode
 
 # Convert node features to a PyTorch tensor
@@ -145,7 +145,7 @@ def softmax_prob(method, graph, num_labels, label_name=None, threshold_probabili
     
     elif method == 'dnn':
        # Load the PyTorch model (DNN)
-      acoustic_model = torch.load('models/dense.pth', weigths_only=False)
+      acoustic_model = torch.load('models/dense.pth', weights_only=False)
       acoustic_model.eval()  # Set the model to evaluation mode
 
       # Convert node features to a PyTorch tensor

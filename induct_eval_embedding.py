@@ -612,8 +612,8 @@ kws_graph_path_val = os.path.join(graph_folder, args.add, f"kws_graph_val_{args.
 # Extract labels for training
 labels_np = labels.numpy()
 val_labels_np = subset_val_labels
-acoustic_model = torch.load('models/cnn.pth', weigths_only=False)
-ml_dense = torch.load('models/dense.pth', weigths_only=False)
+acoustic_model = torch.load('models/cnn.pth', weights_only=False)
+ml_dense = torch.load('models/dense.pth', weights_only=False)
 if not os.path.isfile(kws_graph_path_val):
   logging.info(f'Extract acoustic node representations from supervised GCN')
   dgl_G, num_existing_nodes = add_new_nodes_to_graph_knn(dgl_G, new_node_spectrograms=subset_val_spectrograms,  k=int(args.k_inf), distance_function=ml_distance, ml=acoustic_model,
@@ -855,8 +855,8 @@ test_loader = DataLoader(TensorDataset(X_test, y_test), batch_size=32, shuffle=F
 # Define and train the CNN model
 logging.info(f'train the CNN model')
 input_shape = val_spectrograms_tensor.shape[1:]  # (1, height, width)
-cnn_model = torch.load('models/cnn.pth', weigths_only=False)
-dnn_model = torch.load('models/dense.pth', weigths_only=False)
+cnn_model = torch.load('models/cnn.pth', weights_only=False)
+dnn_model = torch.load('models/dense.pth', weights_only=False)
 accuracy_cnn = evaluate_cnn(cnn_model, test_loader)
 accuracy_dnn = evaluate_dense(dnn_model, test_loader)
 logging.info(f'CNN Model Accuracy: {accuracy_cnn}')
