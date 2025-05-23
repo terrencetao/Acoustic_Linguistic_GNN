@@ -43,7 +43,7 @@ if args.method == 'empty':
 word_embeddings=np.load('word_embedding.npy')
 print(similarity_matrix.shape)
 # Load label_names from the file to verify
-with open(f'subset_label_names_{dataset}.pkl', 'rb') as f:
+with open(f'subset_label_names_{args.dataset}.pkl', 'rb') as f:
     label_names = pickle.load(f)
 label_names = list(label_names)    
     
