@@ -30,7 +30,7 @@ class HeteroLinkGCN(nn.Module):
 
         # MLP to predict edge weight
         self.edge_predictor = nn.Sequential(
-            nn.Linear(2 * 128, linear_hidden_size),
+            nn.Linear(4 * 128, linear_hidden_size),
             nn.ReLU(),
             nn.Linear(linear_hidden_size, 1)
         )
@@ -59,7 +59,10 @@ def generate_negative_edges(g, num_samples, src_type='acoustic', dst_type='word'
 def predict_edge_weights(model, acoustic_embeddings, word_embeddings, src, dst):
     src_embed = acoustic_embeddings[src]
     dst_embed = word_embeddings[dst]
-    edge_features = torch.cat([src_embed, dst_embed], dim=1)
+    diff = torch.abs(src_embed - dst_embed)
+    prod = src_embed * dst_embed
+    edge_features = torch.cat([src_embed, dst_embed, diff, prod], dim=1)
+
     predicted_weights = model.edge_predictor(edge_features).squeeze()
     return predicted_weights
 
