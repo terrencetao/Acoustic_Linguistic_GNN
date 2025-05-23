@@ -111,7 +111,7 @@ def simi_matrix(method = 'semantics', dataset=None, method_ac='mixed', sub_units
   
   label_names = set(all_label_names[sub_label_names])
    #Save label_names to a file using pickle
-  with open('subset_label_names_{dataset}.pkl', 'wb') as f:
+  with open(f'subset_label_names_{dataset}.pkl', 'wb') as f:
     pickle.dump(label_names, f)
  
   xlsx_path = f'data/yemba/corpus_words.xlsx' 
