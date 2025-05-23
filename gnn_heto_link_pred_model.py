@@ -28,11 +28,12 @@ class HeteroLinkGCN(nn.Module):
             'related_to': SAGEConv(hidden_size, 128, 'mean')
         }, aggregate='mean')
 
-        # MLP to predict edge weight
+        # MLP for binary classification (link exists or not)
         self.edge_predictor = nn.Sequential(
             nn.Linear(4 * 128, linear_hidden_size),
             nn.ReLU(),
-            nn.Linear(linear_hidden_size, 1)
+            nn.Linear(linear_hidden_size, 1),
+            nn.Sigmoid()  # Sortie entre 0 et 1
         )
 
     def forward(self, g, inputs):
@@ -42,43 +43,22 @@ class HeteroLinkGCN(nn.Module):
         h = self.conv2(g, h, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
         return h  # embeddings
 
-def generate_negative_edges(g, num_samples, src_type='acoustic', dst_type='word', etype='related_to'):
-    src_nodes = torch.arange(g.num_nodes(src_type))
-    dst_nodes = torch.arange(g.num_nodes(dst_type))
-    existing_edges = set(zip(*g.edges(etype=etype)))
-    
-    negatives = []
-    while len(negatives) < num_samples:
-        src = torch.randint(0, g.num_nodes(src_type), (1,)).item()
-        dst = torch.randint(0, g.num_nodes(dst_type), (1,)).item()
-        if (src, dst) not in existing_edges:
-            negatives.append((src, dst))
-            existing_edges.add((src, dst))  # pour éviter les doublons
-    return torch.tensor([i[0] for i in negatives]), torch.tensor([i[1] for i in negatives])
-
-def predict_edge_weights(model, acoustic_embeddings, word_embeddings, src, dst):
-    src_embed = acoustic_embeddings[src]
-    dst_embed = word_embeddings[dst]
-    diff = torch.abs(src_embed - dst_embed)
-    prod = src_embed * dst_embed
-    edge_features = torch.cat([src_embed, dst_embed, diff, prod], dim=1)
-
-    predicted_weights = model.edge_predictor(edge_features).squeeze()
-    return predicted_weights
+  
 
 
-def train_edge_regression(model, g, features, true_edge_weights, src, dst, adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word, epochs=100, lr=0.001, lamb=1.0):
+def train_link_prediction(model, g, features, true_edge_labels, src, dst, adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word, epochs=100, lr=0.001, lamb=1.0):
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
     scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=5)
+    criterion = nn.BCELoss()  # puisque on applique sigmoid dans le modèle
 
     for epoch in range(epochs):
         model.train()
         embeddings = model(g, features)
-        pred_weights = predict_edge_weights(model, embeddings['acoustic'], embeddings['word'], src, dst)
+        pred_probs = predict_edge_probabilities(model, embeddings['acoustic'], embeddings['word'], src, dst)
 
-        regression_loss = F.mse_loss(pred_weights, true_edge_weights)
+        classification_loss = criterion(pred_probs, true_edge_labels)
         topo_loss = topological_loss(embeddings['acoustic'], embeddings['word'], adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word)
-        loss = regression_loss + lamb * topo_loss
+        loss = classification_loss + lamb * topo_loss
 
         optimizer.zero_grad()
         loss.backward()
@@ -86,11 +66,12 @@ def train_edge_regression(model, g, features, true_edge_weights, src, dst, adj_m
         scheduler.step(loss)
 
         if epoch % 10 == 0 or epoch == epochs:
-            print(f"Epoch {epoch}, Loss: {loss.item():.4f}, MSE: {regression_loss.item():.4f}")
+            print(f"Epoch {epoch}, Loss: {loss.item():.4f}, BCE Loss: {classification_loss.item():.4f}")
 
     return model
-
-
+    
+    
+    
 def topological_loss(embeddings_acoustic, embeddings_word,
                      adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word, lamb_1=0):
     # Acoustic similarity
@@ -108,7 +89,32 @@ def topological_loss(embeddings_acoustic, embeddings_word,
    
 
     return loss_acoustic + lamb_1*loss_word
+    
+    
 
+def generate_negative_edges(g, num_samples, src_type='acoustic', dst_type='word', etype='related_to'):
+    src_nodes = torch.arange(g.num_nodes(src_type))
+    dst_nodes = torch.arange(g.num_nodes(dst_type))
+    existing_edges = set(zip(*g.edges(etype=etype)))
+    
+    negatives = []
+    while len(negatives) < num_samples:
+        src = torch.randint(0, g.num_nodes(src_type), (1,)).item()
+        dst = torch.randint(0, g.num_nodes(dst_type), (1,)).item()
+        if (src, dst) not in existing_edges:
+            negatives.append((src, dst))
+            existing_edges.add((src, dst))  # pour éviter les doublons
+    return torch.tensor([i[0] for i in negatives]), torch.tensor([i[1] for i in negatives])
+
+def predict_edge_probabilities(model, acoustic_embeddings, word_embeddings, src, dst):
+    src_embed = acoustic_embeddings[src]
+    dst_embed = word_embeddings[dst]
+    diff = torch.abs(src_embed - dst_embed)
+    prod = src_embed * dst_embed
+    edge_features = torch.cat([src_embed, dst_embed, diff, prod], dim=1)
+
+    predicted_probs = model.edge_predictor(edge_features).squeeze()
+    return predicted_probs
 
 
 def main(input_folder, graph_file, epochs, lamb):
@@ -123,7 +129,7 @@ def main(input_folder, graph_file, epochs, lamb):
     # Get edge data
     # Positifs
     src_pos, dst_pos = hetero_graph.edges(etype=('acoustic', 'related_to', 'word'))
-    weights_pos = hetero_graph.edges['related_to'].data['weight'].squeeze()
+    weights_pos = torch.ones(len(src_pos))
 
     # Négatifs (autant que les positifs, ou plus/moins si tu veux)
     src_neg, dst_neg = generate_negative_edges(hetero_graph, num_samples=len(src_pos))
@@ -155,7 +161,7 @@ def main(input_folder, graph_file, epochs, lamb):
     features = {k: v.float() for k, v in features.items()}
     true_edge_weights = true_edge_weights.float()
 
-    model = train_edge_regression(
+    model = train_link_prediction(
         model, hetero_graph, features, true_edge_weights, src, dst,
         adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word,
         epochs, lamb=lamb
@@ -176,4 +182,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+
+
+
 

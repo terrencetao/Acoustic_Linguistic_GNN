@@ -453,71 +453,85 @@ def generate_embeddings_hetero_regressor(gcn_model, hetero_graph, num_existing_a
     
 
 
-def evaluate_acoustic_word_link_prediction_topk(gcn_model, hetero_graph,
-                                                num_existing_acoustic_nodes,
-                                                labels_acoustic, labels_word,
-                                                top_k=5):
-    """
-    Predict links and compute top-1 and top-K accuracy between new acoustic and word nodes.
 
-    Parameters:
-    - gcn_model (HeteroLinkGCN): Trained GNN model.
-    - hetero_graph (DGLHeteroGraph): The heterogeneous graph.
-    - num_existing_acoustic_nodes (int): Count of original acoustic nodes.
-    - labels_acoustic (List[int] or np.ndarray): Labels of new acoustic nodes.
-    - labels_word (List[int] or np.ndarray): Labels of word nodes.
-    - top_k (int): Top-K value for top-K accuracy.
 
-    Returns:
-    - accuracy_top1 (float): Top-1 accuracy.
-    - accuracy_topk (float): Top-K accuracy.
+def evaluate_link_prediction_classification_topk(
+    gcn_model,
+    hetero_graph,
+    num_existing_acoustic_nodes,
+    labels_acoustic,
+    labels_word,
+    top_k=5
+):
     """
+    Évaluation du modèle pour la prédiction binaire de liens (existe ou pas) entre
+    les nouveaux nœuds acoustiques et les nœuds word.
+
+    Retourne top-1 et top-k accuracy.
+
+    Paramètres :
+    - gcn_model : le modèle GNN entraîné.
+    - hetero_graph : graphe hétérogène DGL.
+    - num_existing_acoustic_nodes : nombre de nœuds acoustiques avant ajout.
+    - labels_acoustic : labels (classes) des nouveaux nœuds acoustiques.
+    - labels_word : labels (classes) des nœuds word.
+    - top_k : valeur de K pour l'accuracy top-K.
+
+    Retour :
+    - accuracy_top1, accuracy_topk
+    """
+
     gcn_model.eval()
     device = next(gcn_model.parameters()).device
 
     with torch.no_grad():
-        # Step 1: Compute embeddings
+        # Étape 1 : Récupération des features
         features_dic = {
             'acoustic': hetero_graph.nodes['acoustic'].data['feat'].to(device),
             'word': hetero_graph.nodes['word'].data['feat'].to(device)
         }
+
+        # Étape 2 : Calcul des embeddings
         embeddings = gcn_model(hetero_graph, features_dic)
         emb_acoustic = embeddings['acoustic']
         emb_word = embeddings['word']
 
-        # Step 2: New acoustic embeddings
+        # Étape 3 : Embeddings des nouveaux nœuds acoustiques
         new_emb_acoustic = emb_acoustic[num_existing_acoustic_nodes:]
         num_new = new_emb_acoustic.shape[0]
         num_words = emb_word.shape[0]
 
-        # Step 3: Predict scores
+        # Étape 4 : Prédire les liens pour chaque nouveau nœud
         pred_scores = []
         for i in range(num_new):
             acoustic_vec = new_emb_acoustic[i].repeat(num_words, 1)
             diff = torch.abs(acoustic_vec - emb_word)
             prod = acoustic_vec * emb_word
-            combined = torch.cat([acoustic_vec, emb_word, diff, prod], dim=1)
-            scores = gcn_model.edge_predictor(combined).squeeze()
-            pred_scores.append(scores)
+            edge_features = torch.cat([acoustic_vec, emb_word, diff, prod], dim=1)
 
-        pred_scores = torch.stack(pred_scores)  # [num_new, num_words]
+            # prédiction binaire : probabilité d’un lien entre (acoustic_i, word_j)
+            score = gcn_model.edge_predictor(edge_features).squeeze()  # (num_words,)
+            pred_scores.append(score)
 
-        # Step 4: Top-K predictions
+        pred_scores = torch.stack(pred_scores)  # (num_new, num_words)
+
+        # Étape 5 : top-K prédiction
         topk_indices = torch.topk(pred_scores, k=top_k, dim=1).indices.cpu().numpy()
 
         correct_top1 = 0
         correct_topk = 0
 
-        for i in range(len(labels_acoustic)):
+        for i in range(num_new):
             true_label = labels_acoustic[i]
-            pred_labels_topk = [labels_word[idx] for idx in topk_indices[i]]
-            if true_label == pred_labels_topk[0]:
+            predicted_word_labels = [labels_word[j] for j in topk_indices[i]]
+
+            if predicted_word_labels[0] == true_label:
                 correct_top1 += 1
-            if true_label in pred_labels_topk:
+            if true_label in predicted_word_labels:
                 correct_topk += 1
 
-        accuracy_top1 = correct_top1 / len(labels_acoustic)
-        accuracy_topk = correct_topk / len(labels_acoustic)
+        accuracy_top1 = correct_top1 / num_new
+        accuracy_topk = correct_topk / num_new
 
         return accuracy_top1, accuracy_topk
 
@@ -770,7 +784,7 @@ file_exists = os.path.isfile(f'accuracy/{csv_file}')
 if not file_exists:
     with open(f'accuracy/{csv_file}', mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['Supervised Model', 'Unsupervised Model','Unsupervised sage Model', 'Heterogeneous Model','Heterogeneous regressor Model','Link prediction','Heterogeneous sage Model','Heterogeneous attention Model', 'Spectrogram Baseline', 'CNN Model','DNN Model', 'twa', 'num_n_h', 'mhg', 'num_n_a', 'ta', 'alpha', 'tw', 'msw', 'msa', 'mgw', 'mma', 'add','k_out', 'k_inf', 'lambda', 'density'])
+        writer.writerow(['Supervised Model', 'Unsupervised Model','Unsupervised sage Model', 'Heterogeneous Model','Heterogeneous regressor Model','Link prediction','link prediction topk','Heterogeneous sage Model','Heterogeneous attention Model', 'Spectrogram Baseline', 'CNN Model','DNN Model', 'twa', 'num_n_h', 'mhg', 'num_n_a', 'ta', 'alpha', 'tw', 'msw', 'msa', 'mgw', 'mma', 'add','k_out', 'k_inf', 'lambda', 'density'])
 
 
 
@@ -810,7 +824,7 @@ logging.info(f'Link predictor accuracy')
 #existing_emb, new_emb = generate_embeddings_hetero_regressor(gcn_model=model_hetero_regressor, hetero_graph=hetero_graph_regressor, num_existing_acoustic_nodes=num_existing_acoustic_nodes)
 
 
-acc_pred_link, acc_topk  = evaluate_acoustic_word_link_prediction_topk(
+acc_pred_link, acc_topk  = evaluate_link_prediction_classification_topk(
     gcn_model=model_hetero_regressor,
     hetero_graph=hetero_regressor_graph,
     num_existing_acoustic_nodes=num_existing_acoustic_nodes,
@@ -868,5 +882,5 @@ logging.info(f'DNN Model Accuracy: {accuracy_dnn}')
 logging.info(f'Write accuracy results to CSV file')
 with open(f'accuracy/{csv_file}', mode='a', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hibrid, accuracy_hetero, accuracy_hetero_regressor,acc_pred_link, accuracy_hetero_sage, accuracy_attention,accuracy_spectrogram, accuracy_cnn, accuracy_dnn, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw, args.mma, args.add, args.k_out, args.k_inf, args.lamb, args.density])
+    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hibrid, accuracy_hetero, accuracy_hetero_regressor,acc_pred_link,acc_topk, accuracy_hetero_sage, accuracy_attention,accuracy_spectrogram, accuracy_cnn, accuracy_dnn, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw, args.mma, args.add, args.k_out, args.k_inf, args.lamb, args.density])
 

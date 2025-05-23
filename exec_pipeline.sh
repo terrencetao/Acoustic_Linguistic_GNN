@@ -7,8 +7,8 @@ mkdir -p logs
 declare -A UNIT_DIVISORS=( ["spoken_digit"]=10 ["google_command"]=8 ["yemba_command_small"]=13 )
 
 #################################### CONFIGURATION #################################################
-DATASETS=("spoken_digit" "google_command" "yemba_command_small")
-UNITS=$(seq 500 500 3000)
+DATASETS=( "google_command" "spoken_digit" "yemba_command_small")
+UNITS=$(seq 300 500 3000)
 METHOD_MMA="fixed"
 METHOD_MSA="knn"
 ALPHAS=(1.0)
@@ -18,7 +18,7 @@ MHG_METHODS=("fixed" "dnn")
 MSW_METHODS=("phon_count")
 MGW_METHODS=("full")
 TWAS=(0.1)
-PS=(1 2 4) # proportion of number of link between the graphs
+PS=(2 4) # proportion of number of link between the graphs
 ####################################################################################################
 
 preprocess_dataset() {
@@ -91,8 +91,8 @@ build_heterogeneous_graph_and_eval() {
         for twa in "${TWAS[@]}"; do
           for p in $(seq "${PS[0]}" 2 "${PS[1]}"); do
          
-            #num_n_h=$(echo "$n*($unit/$div - 1)/$p" | bc | awk '{print int($0)}')
-            num_n_h=$(echo "($unit/$div - 1)/$p" | bc | awk '{print int($0)}')
+            num_n_h=$(echo "$n*($unit/$div - 1)/$p" | bc | awk '{print int($0)}')
+            #num_n_h=$(echo "($unit/$div - 1)/$p" | bc | awk '{print int($0)}')
             printf "NUM_N_H: %.2f\n" "$num_n_h"
 
             python3 heterogenous_graph.py --twa "$twa" --num_n "$num_n_h" --method "$mhg" --msw "$msw" \
