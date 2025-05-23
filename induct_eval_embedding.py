@@ -494,7 +494,9 @@ def evaluate_acoustic_word_link_prediction_topk(gcn_model, hetero_graph,
         pred_scores = []
         for i in range(num_new):
             acoustic_vec = new_emb_acoustic[i].repeat(num_words, 1)
-            combined = torch.cat([acoustic_vec, emb_word], dim=1)
+            diff = torch.abs(acoustic_vec - emb_word)
+            prod = acoustic_vec * emb_word
+            combined = torch.cat([acoustic_vec, emb_word, diff, prod], dim=1)
             scores = gcn_model.edge_predictor(combined).squeeze()
             pred_scores.append(scores)
 
