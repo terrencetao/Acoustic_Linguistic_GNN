@@ -54,7 +54,7 @@ def train_link_prediction(model, g, features, true_edge_labels, src, dst, adj_ma
     for epoch in range(epochs):
         model.train()
         embeddings = model(g, features)
-        pred_probs = predict_edge_probabilities(model, embeddings['acoustic'], embeddings['word'], src, dst)
+        pred_probs = predict_edge_probabilities_dot(model, embeddings['acoustic'], embeddings['word'], src, dst)
 
         classification_loss = criterion(pred_probs, true_edge_labels)
         topo_loss = topological_loss(embeddings['acoustic'], embeddings['word'], adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word)
@@ -116,7 +116,14 @@ def predict_edge_probabilities(model, acoustic_embeddings, word_embeddings, src,
     predicted_probs = model.edge_predictor(edge_features).squeeze()
     return predicted_probs
 
+def predict_edge_probabilities_dot(model, acoustic_embeddings, word_embeddings, src, dst):
+    src_embed = acoustic_embeddings[src]
+    dst_embed = word_embeddings[dst]
 
+    score = (src_embed * dst_embed).sum(dim=1)  # Dot product
+    prob = torch.sigmoid(score)
+    return prob
+    
 def main(input_folder, graph_file, epochs, lamb):
     glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
     hetero_graph = glist[0]

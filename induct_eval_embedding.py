@@ -505,13 +505,15 @@ def evaluate_link_prediction_classification_topk(
         pred_scores = []
         for i in range(num_new):
             acoustic_vec = new_emb_acoustic[i].repeat(num_words, 1)
-            diff = torch.abs(acoustic_vec - emb_word)
-            prod = acoustic_vec * emb_word
-            edge_features = torch.cat([acoustic_vec, emb_word, diff, prod], dim=1)
-
+            #diff = torch.abs(acoustic_vec - emb_word)
+            #prod = acoustic_vec * emb_word
+            #edge_features = torch.cat([acoustic_vec, emb_word, diff, prod], dim=1)
+            edge_features = torch.cat([acoustic_vec, emb_word], dim=1)
             # prédiction binaire : probabilité d’un lien entre (acoustic_i, word_j)
-            score = gcn_model.edge_predictor(edge_features).squeeze()  # (num_words,)
-            pred_scores.append(score)
+            #score = gcn_model.edge_predictor(edge_features).squeeze()  # (num_words,)
+            #pred_scores.append(score)
+            score = (acoustic_vec * emb_word).sum(dim=1)  # Dot product
+            pred_scores.append(torch.sigmoid(score))
 
         pred_scores = torch.stack(pred_scores)  # (num_new, num_words)
 
