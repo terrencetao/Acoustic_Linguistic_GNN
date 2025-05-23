@@ -98,7 +98,7 @@ class GCN(nn.Module):
             
 def train(model, g, features, edge_weights, labels, epochs=100, lr=0.001):
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-    scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=5, verbose=True)
+    scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=5)
     model.train()  # Set model to training mode
     for epoch in range(epochs):
         # Forward pass
@@ -142,7 +142,7 @@ def topological_loss(embeddings, adj_matrix):
 # Define the training function with topological loss
 def train_with_topological_loss(model, g, features, edge_weights,adj_matrix, labels, epochs=100, lr=0.001):
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-    scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=5, verbose=True)
+    scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=5)
    
         
         # Create a comparison matrix (1 for same labels, 0 otherwise)
@@ -174,7 +174,7 @@ def train_with_topological_loss(model, g, features, edge_weights,adj_matrix, lab
 
 def train_with_topological_and_cross_loss(model, g, features, edge_weights,adj_matrix, labels, epochs=100, lr=0.001, lamb=1):
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-    scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=5, verbose=True)
+    scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=5)
     labels_np = labels.numpy()
     # Create the similarity matrix for topological loss
     matrix = (labels_np[:, None] == labels_np[None, :]).astype(float)

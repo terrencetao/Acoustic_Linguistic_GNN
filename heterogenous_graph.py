@@ -65,7 +65,7 @@ def create_label_matrix(graph, k):
         ones_indices = torch.nonzero(label_matrix[:, j]).squeeze().tolist()
         if isinstance(ones_indices, int):
            ones_indices = [ones_indices]  
-        print(k)   
+         
         if len(ones_indices) > k:
             keep_indices = random.sample(ones_indices, k)
             set_zero_indices = list(set(ones_indices) - set(keep_indices))
@@ -104,7 +104,7 @@ def softmax_prob(method, graph, num_labels, label_name=None, threshold_probabili
     
     if method == 'ML':
        #Load the PyTorch model
-       acoustic_model = torch.load('models/cnn.pth')
+       acoustic_model = torch.load('models/cnn.pth', weigths_only=False )
        acoustic_model.eval()  # Set the model to evaluation mode
 
 # Convert node features to a PyTorch tensor
@@ -124,7 +124,7 @@ def softmax_prob(method, graph, num_labels, label_name=None, threshold_probabili
      
     elif method == 'mixed':
       #Load the PyTorch model
-       acoustic_model = torch.load('models/cnn.pth')
+       acoustic_model = torch.load('models/cnn.pth', weigths_only=False)
        acoustic_model.eval()  # Set the model to evaluation mode
 
 # Convert node features to a PyTorch tensor
@@ -145,7 +145,7 @@ def softmax_prob(method, graph, num_labels, label_name=None, threshold_probabili
     
     elif method == 'dnn':
        # Load the PyTorch model (DNN)
-      acoustic_model = torch.load('models/dense.pth')
+      acoustic_model = torch.load('models/dense.pth', weigths_only=False)
       acoustic_model.eval()  # Set the model to evaluation mode
 
       # Convert node features to a PyTorch tensor
@@ -181,8 +181,7 @@ if __name__ == "__main__":
     
     save_graph_dir = os.path.join('saved_graphs',args.dataset,args.method_sim, args.method_acou)
 # Load the simple DGL graphs
-    if not os.path.isfile(os.path.join(save_graph_dir, args.msw, f"kws_graph_{args.num_n_ac}_{args.k_out}_{args.sub_units}.dgl")):
-      print('no')
+    
     glist1, label_dict = load_graphs(os.path.join(save_graph_dir,f"kws_graph_{args.num_n_ac}_{args.k_out}_{args.sub_units}.dgl"))
     glist2, _ = load_graphs(os.path.join('saved_graphs',args.dataset, "dgl_words_graph.bin"))
 
@@ -238,7 +237,7 @@ if __name__ == "__main__":
                  links_acoustic_word.append((i, j))
                  probabilities_acoustic_word.append(softmax_probabilities[i, j])
 
-    print(len(links_acoustic_word))
+   
                 
 # Combine the edges into a data dictionary for the heterogeneous graph
     data_dict = {
@@ -282,7 +281,7 @@ if __name__ == "__main__":
     hetero_graph.nodes['word'].data['feat'] = padded_word_features
     hetero_graph.nodes['acoustic'].data['feat'] = flattened_acoustic_features 
 # Print the heterogeneous graph to verify
-    print(hetero_graph)
+    
 
 
 # Define the directory to save the graph

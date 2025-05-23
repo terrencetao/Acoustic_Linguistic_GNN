@@ -42,6 +42,19 @@ class HeteroLinkGCN(nn.Module):
         h = self.conv2(g, h, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
         return h  # embeddings
 
+def generate_negative_edges(g, num_samples, src_type='acoustic', dst_type='word', etype='related_to'):
+    src_nodes = torch.arange(g.num_nodes(src_type))
+    dst_nodes = torch.arange(g.num_nodes(dst_type))
+    existing_edges = set(zip(*g.edges(etype=etype)))
+    
+    negatives = []
+    while len(negatives) < num_samples:
+        src = torch.randint(0, g.num_nodes(src_type), (1,)).item()
+        dst = torch.randint(0, g.num_nodes(dst_type), (1,)).item()
+        if (src, dst) not in existing_edges:
+            negatives.append((src, dst))
+            existing_edges.add((src, dst))  # pour éviter les doublons
+    return torch.tensor([i[0] for i in negatives]), torch.tensor([i[1] for i in negatives])
 
 def predict_edge_weights(model, acoustic_embeddings, word_embeddings, src, dst):
     src_embed = acoustic_embeddings[src]
@@ -53,7 +66,7 @@ def predict_edge_weights(model, acoustic_embeddings, word_embeddings, src, dst):
 
 def train_edge_regression(model, g, features, true_edge_weights, src, dst, adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word, epochs=100, lr=0.001, lamb=1.0):
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-    scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=5, verbose=True)
+    scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=5)
 
     for epoch in range(epochs):
         model.train()
@@ -105,8 +118,18 @@ def main(input_folder, graph_file, epochs, lamb):
     }
 
     # Get edge data
-    src, dst = hetero_graph.edges(etype=('acoustic', 'related_to', 'word'))
-    true_edge_weights = hetero_graph.edges['related_to'].data['weight'].squeeze()
+    # Positifs
+    src_pos, dst_pos = hetero_graph.edges(etype=('acoustic', 'related_to', 'word'))
+    weights_pos = hetero_graph.edges['related_to'].data['weight'].squeeze()
+
+    # Négatifs (autant que les positifs, ou plus/moins si tu veux)
+    src_neg, dst_neg = generate_negative_edges(hetero_graph, num_samples=len(src_pos))
+    weights_neg = torch.zeros(len(src_neg))
+
+    # Fusionne
+    src = torch.cat([src_pos, src_neg], dim=0)
+    dst = torch.cat([dst_pos, dst_neg], dim=0)
+    true_edge_weights = torch.cat([weights_pos, weights_neg], dim=0)
 
     # Graph meta info
     in_feats = {ntype: features[ntype].shape[1] for ntype in features}
