@@ -18,7 +18,7 @@ MHG_METHODS=("fixed" "dnn")
 MSW_METHODS=("phon_count")
 MGW_METHODS=("full")
 TWAS=(0.1)
-PS=(0.25 0.5 1 2 4) # proportion of number of link between the graphs
+PS=(0.5 1 2 4) # proportion of number of link between the graphs
 ####################################################################################################
 
 preprocess_dataset() {
