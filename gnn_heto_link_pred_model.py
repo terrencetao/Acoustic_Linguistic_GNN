@@ -8,45 +8,57 @@ import os
 import networkx as nx
 import logging
 from torch.optim import lr_scheduler
+import pickle
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+class IdentityConv(nn.Module):
+    def __init__(self, out_dim):
+        super(IdentityConv, self).__init__()
+        self.out_dim = out_dim
+
+    def forward(self, graph, feat, edge_weight=None):
+        if isinstance(feat, tuple):
+            # On prend les features de destination (feat_dst)
+            return feat[1][:, :self.out_dim]
+        else:
+            return feat[:, :self.out_dim]
 
 class HeteroLinkGCN(nn.Module):
-    def __init__(self, in_feats, hidden_size, linear_hidden_size):
+    def __init__(self, in_feats, hidden_size,nombre_phon, linear_hidden_size):
         super(HeteroLinkGCN, self).__init__()
 
         self.conv1 = HeteroGraphConv({
-            'sim_tic': SAGEConv(in_feats['acoustic'], hidden_size, 'mean'),
-            'sim_w': SAGEConv(in_feats['word'], hidden_size, 'mean'),
-            'related_to': SAGEConv(in_feats['acoustic'], hidden_size, 'mean')
+            'sim_tic': SAGEConv(in_feats['acoustic'], nombre_phon, 'mean'),
+            'sim_w': IdentityConv(out_dim=nombre_phon),
+            'related_to': SAGEConv(in_feats['acoustic'], nombre_phon, 'mean')
         }, aggregate='mean')
 
         self.conv2 = HeteroGraphConv({
-            'sim_tic': SAGEConv(hidden_size, 128, 'mean'),
-            'sim_w': SAGEConv(hidden_size, 128, 'mean'),
-            'related_to': SAGEConv(hidden_size, 128, 'mean')
+            'sim_tic': SAGEConv(hidden_size, nombre_phon, 'mean'),
+            'sim_w': IdentityConv(out_dim=nombre_phon),
+            'related_to': SAGEConv(hidden_size, nombre_phon, 'mean')
         }, aggregate='mean')
 
         # MLP for binary classification (link exists or not)
-        self.edge_predictor = nn.Sequential(
-            nn.Linear(4 * 128, linear_hidden_size),
-            nn.ReLU(),
-            nn.Linear(linear_hidden_size, 1),
-            nn.Sigmoid()  # Sortie entre 0 et 1
-        )
+        #self.edge_predictor = nn.Sequential(
+        #    nn.Linear(4 * 128, linear_hidden_size),
+        #    nn.ReLU(),
+        #    nn.Linear(linear_hidden_size, 1),
+        #    nn.Sigmoid()  # Sortie entre 0 et 1
+        #)
 
     def forward(self, g, inputs):
         edge_weights = {etype: g.edges[etype].data['weight'] for etype in g.etypes}
         h = self.conv1(g, inputs, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
-        h = {k: F.relu(v) for k, v in h.items()}
-        h = self.conv2(g, h, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
+        #h = {k: F.relu(v) for k, v in h.items()}
+        #h = self.conv2(g, h, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
         return h  # embeddings
 
   
 
 
-def train_link_prediction(model, g, features, true_edge_labels, src, dst, adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word, epochs=100, lr=0.001, lamb=1.0):
+def train_link_prediction(model, g, features, true_edge_labels, src, dst, adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word, epochs=100, lr=0.0002, lamb=0):
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
     scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=5)
     criterion = nn.BCELoss()  # puisque on applique sigmoid dans le modèle
@@ -63,7 +75,7 @@ def train_link_prediction(model, g, features, true_edge_labels, src, dst, adj_ma
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        scheduler.step(loss)
+        #scheduler.step(classification_loss)
 
         if epoch % 10 == 0 or epoch == epochs:
             print(f"Epoch {epoch}, Loss: {loss.item():.4f}, BCE Loss: {classification_loss.item():.4f}")
@@ -92,7 +104,7 @@ def topological_loss(embeddings_acoustic, embeddings_word,
     
     
 
-def generate_negative_edges(g, num_samples, src_type='acoustic', dst_type='word', etype='related_to'):
+def generate_negative_edges(g, num_samples, src_type='word', dst_type='acoustic', etype='related_to'):
     src_nodes = torch.arange(g.num_nodes(src_type))
     dst_nodes = torch.arange(g.num_nodes(dst_type))
     existing_edges = set(zip(*g.edges(etype=etype)))
@@ -117,14 +129,14 @@ def predict_edge_probabilities(model, acoustic_embeddings, word_embeddings, src,
     return predicted_probs
 
 def predict_edge_probabilities_dot(model, acoustic_embeddings, word_embeddings, src, dst):
-    src_embed = acoustic_embeddings[src]
-    dst_embed = word_embeddings[dst]
+    dst_embed = acoustic_embeddings[dst]
+    src_embed = word_embeddings[src]
 
     score = (src_embed * dst_embed).sum(dim=1)  # Dot product
     prob = torch.sigmoid(score)
     return prob
     
-def main(input_folder, graph_file, epochs, lamb):
+def main(input_folder, graph_file, epochs, lamb, dataset):
     glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
     hetero_graph = glist[0]
 
@@ -132,10 +144,12 @@ def main(input_folder, graph_file, epochs, lamb):
         'acoustic': hetero_graph.nodes['acoustic'].data['feat'],
         'word': hetero_graph.nodes['word'].data['feat']
     }
-
+    with open(f'phon_idx_{dataset}.pkl', 'rb') as f:
+        phon_idx = pickle.load(f)
+    
     # Get edge data
     # Positifs
-    src_pos, dst_pos = hetero_graph.edges(etype=('acoustic', 'related_to', 'word'))
+    src_pos, dst_pos = hetero_graph.edges(etype=('word', 'related_to', 'acoustic'))
     weights_pos = torch.ones(len(src_pos))
 
     # Négatifs (autant que les positifs, ou plus/moins si tu veux)
@@ -146,20 +160,22 @@ def main(input_folder, graph_file, epochs, lamb):
     src = torch.cat([src_pos, src_neg], dim=0)
     dst = torch.cat([dst_pos, dst_neg], dim=0)
     true_edge_weights = torch.cat([weights_pos, weights_neg], dim=0)
+    perm = torch.randperm(len(src))
+    src, dst, true_edge_labels = src[perm], dst[perm], true_edge_weights[perm]  # shuffle
 
     # Graph meta info
     in_feats = {ntype: features[ntype].shape[1] for ntype in features}
     hidden_size = 512
     linear_hidden_size = 64
-
-    model = HeteroLinkGCN(in_feats, hidden_size, linear_hidden_size)
+    nb_phon = len(phon_idx)
+    model = HeteroLinkGCN(in_feats, hidden_size, nb_phon, linear_hidden_size)
 
     # Build adjacency matrices for topological loss
     adj_matrix_acoustic = torch.tensor(nx.to_numpy_array(hetero_graph['acoustic', 'sim_tic', 'acoustic'].to_networkx()))
     adj_matrix_word = torch.tensor(nx.to_numpy_array(hetero_graph['word', 'sim_w', 'word'].to_networkx()))
     num_acoustic = hetero_graph.num_nodes('acoustic')
     num_word = hetero_graph.num_nodes('word')
-    adj_matrix_acoustic_word = torch.zeros(num_acoustic, num_word)
+    adj_matrix_acoustic_word = torch.zeros(num_word, num_acoustic)
     adj_matrix_acoustic_word[src, dst] = 1
 
     adj_matrix_acoustic = adj_matrix_acoustic.float()
@@ -186,9 +202,10 @@ if __name__ == "__main__":
     parser.add_argument('--graph_file', help='graph for training', required=True)
     parser.add_argument('--lamb', help='hyperparameter for objective function', required=True)
     parser.add_argument('--epochs', help='number of epochs', required=True)
+    parser.add_argument('--dataset', help='name of dataset', required=True)
     args = parser.parse_args()
 
-    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb), args.dataset)
 
 
 

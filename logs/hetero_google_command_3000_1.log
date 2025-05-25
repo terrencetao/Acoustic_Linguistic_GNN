@@ -1,0 +1,72 @@
+2025-05-24 17:47:13,358 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 3.3821215629577637, Accuracy: 12.46%
+Epoch 10, Loss: 1.6836528778076172, Accuracy: 40.12%
+Epoch 20, Loss: 1.2888338565826416, Accuracy: 54.71%
+Epoch 30, Loss: 0.9950349926948547, Accuracy: 68.08%
+Epoch 40, Loss: 0.7671799063682556, Accuracy: 75.88%
+Epoch 50, Loss: 0.5989149212837219, Accuracy: 82.46%
+Epoch 60, Loss: 0.4623960256576538, Accuracy: 87.46%
+Epoch 70, Loss: 0.3338449001312256, Accuracy: 91.58%
+Epoch 80, Loss: 0.23228749632835388, Accuracy: 95.71%
+Epoch 90, Loss: 0.15498453378677368, Accuracy: 97.75%
+Epoch 100, Loss: 0.09839615970849991, Accuracy: 99.54%
+Epoch 110, Loss: 0.06363971531391144, Accuracy: 99.83%
+Epoch 120, Loss: 0.0415436290204525, Accuracy: 99.96%
+Epoch 130, Loss: 0.028193891048431396, Accuracy: 100.00%
+Epoch 140, Loss: 0.01947815902531147, Accuracy: 100.00%
+Epoch 150, Loss: 0.013868837617337704, Accuracy: 100.00%
+Epoch 160, Loss: 0.010076910257339478, Accuracy: 100.00%
+Epoch 170, Loss: 0.007584014907479286, Accuracy: 100.00%
+Epoch 180, Loss: 0.005870259832590818, Accuracy: 100.00%
+Epoch 190, Loss: 0.004658738151192665, Accuracy: 100.00%
+2025-05-24 18:24:41,347 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 24.8983, BCE Loss: 24.8983
+Epoch 10, Loss: 23.0976, BCE Loss: 23.0976
+Epoch 20, Loss: 20.1701, BCE Loss: 20.1701
+Epoch 30, Loss: 14.4401, BCE Loss: 14.4401
+Epoch 40, Loss: 11.9611, BCE Loss: 11.9611
+Epoch 50, Loss: 9.4278, BCE Loss: 9.4278
+Epoch 60, Loss: 8.1519, BCE Loss: 8.1519
+Epoch 70, Loss: 6.6205, BCE Loss: 6.6205
+Epoch 80, Loss: 5.6432, BCE Loss: 5.6432
+Epoch 90, Loss: 4.3620, BCE Loss: 4.3620
+Epoch 100, Loss: 3.2280, BCE Loss: 3.2280
+Epoch 110, Loss: 2.9317, BCE Loss: 2.9317
+Epoch 120, Loss: 2.3362, BCE Loss: 2.3362
+Epoch 130, Loss: 2.1384, BCE Loss: 2.1384
+Epoch 140, Loss: 1.9968, BCE Loss: 1.9968
+Epoch 150, Loss: 1.7914, BCE Loss: 1.7914
+Epoch 160, Loss: 1.6513, BCE Loss: 1.6513
+Epoch 170, Loss: 1.4714, BCE Loss: 1.4714
+Epoch 180, Loss: 1.3585, BCE Loss: 1.3585
+Epoch 190, Loss: 1.2824, BCE Loss: 1.2824
+Epoch 200, Loss: 1.2305, BCE Loss: 1.2305
+Epoch 210, Loss: 1.1861, BCE Loss: 1.1861
+Epoch 220, Loss: 1.1284, BCE Loss: 1.1284
+Epoch 230, Loss: 1.0927, BCE Loss: 1.0927
+Epoch 240, Loss: 1.0255, BCE Loss: 1.0255
+Epoch 250, Loss: 0.9868, BCE Loss: 0.9868
+Epoch 260, Loss: 0.9334, BCE Loss: 0.9334
+Epoch 270, Loss: 0.9102, BCE Loss: 0.9102
+Epoch 280, Loss: 0.8673, BCE Loss: 0.8673
+Epoch 290, Loss: 0.8273, BCE Loss: 0.8273
+Epoch 300, Loss: 0.7889, BCE Loss: 0.7889
+Epoch 310, Loss: 0.7341, BCE Loss: 0.7341
+Epoch 320, Loss: 0.7142, BCE Loss: 0.7142
+Epoch 330, Loss: 0.6953, BCE Loss: 0.6953
+Epoch 340, Loss: 0.6779, BCE Loss: 0.6779
+Epoch 350, Loss: 0.6623, BCE Loss: 0.6623
+Epoch 360, Loss: 0.6310, BCE Loss: 0.6310
+Epoch 370, Loss: 0.6186, BCE Loss: 0.6186
+Epoch 380, Loss: 0.6075, BCE Loss: 0.6075
+Epoch 390, Loss: 0.5971, BCE Loss: 0.5971
+Epoch 400, Loss: 0.5868, BCE Loss: 0.5868
+Epoch 410, Loss: 0.5778, BCE Loss: 0.5778
+Epoch 420, Loss: 0.5695, BCE Loss: 0.5695
+Epoch 430, Loss: 0.5617, BCE Loss: 0.5617
+Epoch 440, Loss: 0.5545, BCE Loss: 0.5545
+Epoch 450, Loss: 0.5477, BCE Loss: 0.5477
+Epoch 460, Loss: 0.5413, BCE Loss: 0.5413
+Epoch 470, Loss: 0.5354, BCE Loss: 0.5354
+Epoch 480, Loss: 0.5298, BCE Loss: 0.5298
+Epoch 490, Loss: 0.5245, BCE Loss: 0.5245

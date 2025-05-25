@@ -230,12 +230,14 @@ if __name__ == "__main__":
     probabilities_acoustic_word = []
 
     
-
+    labels_word = graph2.ndata['label'].tolist()
+    label_to_word_node = {label: idx for idx, label in enumerate(labels_word)}
     for i in range(softmax_probabilities.shape[0]):
         for j in range(softmax_probabilities.shape[1]):
             if softmax_probabilities[i, j] > 0:
-                 links_acoustic_word.append((i, j))
-                 probabilities_acoustic_word.append(softmax_probabilities[i, j])
+                word_node_id = label_to_word_node[j]  # utiliser le bon node ID
+                links_acoustic_word.append((i, word_node_id))
+                probabilities_acoustic_word.append(softmax_probabilities[i, j])
 
    
                 
@@ -243,7 +245,7 @@ if __name__ == "__main__":
     data_dict = {
     ('acoustic', 'sim_tic', 'acoustic'): (src1, dst1),
     ('word', 'sim_w', 'word'): (src2, dst2),
-    ('acoustic', 'related_to', 'word'): (torch.tensor([src for src, dst in links_acoustic_word]), torch.tensor([dst for src, dst in links_acoustic_word]))
+    ('word', 'related_to', 'acoustic'): (torch.tensor([dst for src, dst in links_acoustic_word]), torch.tensor([src for src, dst in links_acoustic_word]))
 }
 
     
@@ -282,7 +284,7 @@ if __name__ == "__main__":
     hetero_graph.nodes['acoustic'].data['feat'] = flattened_acoustic_features 
 # Print the heterogeneous graph to verify
     
-
+    print(hetero_graph)
 
 # Define the directory to save the graph
     save_dir = os.path.join('saved_graphs',args.dataset,args.method_sim, args.method_acou,args.method,args.msw)

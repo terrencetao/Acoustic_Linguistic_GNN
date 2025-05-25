@@ -18,7 +18,7 @@ from torch.utils.data import DataLoader, TensorDataset
 import logging
 from weak_ML2 import SimpleCNN, evaluate_cnn, train_cnn
 from weakDense import SimpleDense, evaluate_dense, train_dense
-
+import pickle
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def load_graphs(path):
@@ -99,6 +99,9 @@ loaded_model_hibrid.load_state_dict(torch.load(model_hibrid_path))
 glists, _ = dgl.load_graphs(os.path.join(graph_folder, args.mhg, args.msw,f"hetero_graph_{args.num_n_a}_{args.k_out}_{args.num_n_h}_{args.sub_units}.dgl"))
 hetero_graph = glists[0]
 
+with open(f'phon_idx_{args.dataset}.pkl', 'rb') as f:
+        phon_idx = pickle.load(f)
+        
 # Load the heterogeneous GCN model
 features_dic = {
     'acoustic': hetero_graph.nodes['acoustic'].data['feat'],
@@ -107,6 +110,7 @@ features_dic = {
 in_feats = {'acoustic': features_dic['acoustic'].shape[1], 'word': features_dic['word'].shape[1]}
 hidden_size = 512
 linear_hidden_size = 64
+nb_phon = len(phon_idx)
 out_feats = len(labels.unique())
 
 # Initialize the model
@@ -115,7 +119,7 @@ model = HeteroGCN(in_feats, hidden_size, out_feats, linear_hidden_size)
 # Load the pre-trained model state
 model.load_state_dict(torch.load(os.path.join(model_folder, "hetero_gnn_model.pth")))
 model.eval()
-model_hetero_regressor = HeteroLinkGCN(in_feats, hidden_size, linear_hidden_size)
+model_hetero_regressor = HeteroLinkGCN(in_feats, hidden_size,nb_phon, linear_hidden_size)
 model_hetero_regressor.load_state_dict(torch.load(os.path.join(model_folder, "hetero_gnn_edge_regressor.pth")))
 model_hetero_regressor.eval()
 #model_sage.load_state_dict(torch.load(os.path.join(model_folder, "hetero_gnn_model_unsupervised.pth")))
@@ -171,6 +175,75 @@ def train_evaluate_svm(embeddings, labels):
     
     return accuracy
 
+def evaluate_link_prediction_classification_topk(
+    gcn_model,
+    hetero_graph,
+    labels_acoustic,
+    labels_word,
+    top_k=5
+):
+    """
+    Évaluation du modèle pour la prédiction binaire de liens (existe ou pas) entre
+    les nouveaux nœuds acoustiques et les nœuds word.
+
+    Retourne top-1 et top-k accuracy.
+
+    Paramètres :
+    - gcn_model : le modèle GNN entraîné.
+    - hetero_graph : graphe hétérogène DGL.
+    - num_existing_acoustic_nodes : nombre de nœuds acoustiques avant ajout.
+    - labels_acoustic : labels (classes) des nouveaux nœuds acoustiques.
+    - labels_word : labels (classes) des nœuds word.
+    - top_k : valeur de K pour l'accuracy top-K.
+
+    Retour :
+    - accuracy_top1, accuracy_topk
+    """
+
+    gcn_model.eval()
+    device = next(gcn_model.parameters()).device
+
+    with torch.no_grad():
+        # Étape 1 : Récupération des features
+        features_dic = {
+            'acoustic': hetero_graph.nodes['acoustic'].data['feat'].to(device),
+            'word': hetero_graph.nodes['word'].data['feat'].to(device)
+        }
+
+        # Étape 2 : Calcul des embeddings
+        embeddings = gcn_model(hetero_graph, features_dic)
+        emb_acoustic = embeddings['acoustic']
+        emb_word = embeddings['word']
+        num_emb_a = emb_acoustic.shape[0]
+      
+
+        # Étape 4 : Prédire les liens pour chaque nouveau nœud
+        scores = torch.matmul(emb_acoustic, emb_word.T)  # produit scalaire entre tous les vecteurs
+
+        # Appliquer la sigmoid pour transformer les scores en probabilités
+        pred_scores = torch.sigmoid(scores)
+
+
+        # Étape 5 : top-K prédiction
+        topk_indices = torch.topk(pred_scores, k=top_k, dim=1).indices.cpu().numpy()
+
+        correct_top1 = 0
+        correct_topk = 0
+
+        for i in range(num_emb_a):
+            true_label = labels_acoustic[i]
+            predicted_word_labels = [labels_word[j] for j in topk_indices[i]]
+
+            if predicted_word_labels[0] == true_label:
+                correct_top1 += 1
+            if true_label in predicted_word_labels:
+                correct_topk += 1
+
+        accuracy_top1 = correct_top1 / num_emb_a
+        accuracy_topk = correct_topk / num_emb_a
+
+        return accuracy_top1, accuracy_topk
+
 
 
 
@@ -190,7 +263,7 @@ file_exists = os.path.isfile(f'accuracy/{csv_file}')
 if not file_exists:
     with open(f'accuracy/{csv_file}', mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['Supervised Model', 'Unsupervised Model','Hibrid Model', 'Heterogeneous Model','Heterogeneous regressor Model', 'Heterogeneous sage Model','Heterogeneous attention Model', 'Spectrogram Baseline', 'CNN Model', 'DNN Model','twa', 'num_n_h', 'mhg', 'num_n_a', 'ta', 'alpha', 'tw', 'msw', 'msa', 'mgw','mma', 'k_out', 'lambda', 'density'])
+        writer.writerow(['Supervised Model', 'Unsupervised Model','Hibrid Model', 'Heterogeneous Model','Heterogeneous regressor Model', 'Link prediction','link prediction topk','Heterogeneous sage Model','Heterogeneous attention Model', 'Spectrogram Baseline', 'CNN Model', 'DNN Model','twa', 'num_n_h', 'mhg', 'num_n_a', 'ta', 'alpha', 'tw', 'msw', 'msa', 'mgw','mma', 'k_out', 'lambda', 'density'])
 
 # Embeddings from supervised model
 node_embeddings_sup = torch.from_numpy(node_embeddings_sup)
@@ -221,6 +294,17 @@ logging.info(f"Accuracy of the Heterogeneous Model: {accuracy_hetero:.4f}")
 acoustic_embeddings_regressor_np = acoustic_embeddings_hetero_regressor.detach().numpy()
 accuracy_hetero_regressor = train_evaluate_svm(acoustic_embeddings_regressor_np, labels_np)
 logging.info(f"Accuracy of the Heterogeneous regressor Model: {accuracy_hetero_regressor:.4f}")
+
+acc_pred_link, acc_topk  = evaluate_link_prediction_classification_topk(
+    gcn_model=model_hetero_regressor,
+    hetero_graph=hetero_graph,
+    labels_acoustic=labels_np,
+    labels_word=hetero_graph.nodes['word'].data['label'],
+    top_k=3
+)
+
+print(f"Link prediction accuracy: {acc_pred_link:.4f}")
+print(f"Link prediction top_k: {acc_topk:.4f}")
 
 # Train and evaluate SVM for heterogeneous model embeddings
 #logging.info(f'Train and evaluate SVM for heterogeneous sage model embeddings')
@@ -269,5 +353,5 @@ logging.info(f'DNN Model Accuracy: {accuracy_dnn}')
 logging.info(f'Write accuracy results to CSV file')
 with open(f'accuracy/{csv_file}', mode='a', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hibrid, accuracy_hetero,accuracy_hetero_regressor,accuracy_hetero_sage, accuracy_attention,accuracy_spectrogram, accuracy_cnn, accuracy_dnn, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw,args.mma, args.k_out, args.lamb, args.density])
+    writer.writerow([accuracy_sup, accuracy_unsup, accuracy_hibrid, accuracy_hetero,accuracy_hetero_regressor,acc_pred_link,acc_topk,accuracy_hetero_sage, accuracy_attention,accuracy_spectrogram, accuracy_cnn, accuracy_dnn, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw,args.mma, args.k_out, args.lamb, args.density])
 

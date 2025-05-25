@@ -27,7 +27,7 @@ from weakDense import SimpleDense, evaluate_dense, train_dense
 import torch.nn.functional as F
 import numpy as np
 import copy
-     
+import pickle
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def load_graphs(path):
@@ -171,10 +171,10 @@ def add_new_acoustic_nodes_to_hetero_graph(hetero_graph, homograph, new_node_spe
         src, dst = zip(*all_edges)
         src = torch.tensor(src, dtype=torch.int64)
         dst = torch.tensor(dst, dtype=torch.int64)
-        hetero_graph.add_edges(src, dst, etype=('acoustic', 'related_to', 'word'))
+        hetero_graph.add_edges(src, dst, etype=('word', 'related_to', 'acoustic'))
         new_weights = torch.tensor(all_probabilities, dtype=torch.float32)
         if 'weight' not in hetero_graph.edges['related_to'].data:
-           num_existing_edges = hetero_graph.num_edges(('acoustic', 'related_to', 'word'))
+           num_existing_edges = hetero_graph.num_edges(('word', 'related_to', 'acoustic'))
            hetero_graph.edges['related_to'].data['weight'] = torch.zeros(num_existing_edges, dtype=torch.float32)
     
     # Assign new edge weights to the new edges only
@@ -296,10 +296,10 @@ def add_new_acoustic_nodes_to_hetero_graph_knn(hetero_graph, new_node_spectrogra
         src, dst = zip(*all_edges)
         src = torch.tensor(src, dtype=torch.int64)
         dst = torch.tensor(dst, dtype=torch.int64)
-        hetero_graph.add_edges(src, dst, etype=('acoustic', 'related_to', 'word'))
+        hetero_graph.add_edges(src, dst, etype=('word', 'related_to', 'acoustic'))
         new_weights = torch.tensor(all_probabilities, dtype=torch.float32)
         if 'weight' not in hetero_graph.edges['related_to'].data:
-           num_existing_edges = hetero_graph.num_edges(('acoustic', 'related_to', 'word'))
+           num_existing_edges = hetero_graph.num_edges(('word', 'related_to', 'acoustic'))
            hetero_graph.edges['related_to'].data['weight'] = torch.zeros(num_existing_edges, dtype=torch.float32)
     
     # Assign new edge weights to the new edges only
@@ -501,21 +501,14 @@ def evaluate_link_prediction_classification_topk(
         num_new = new_emb_acoustic.shape[0]
         num_words = emb_word.shape[0]
 
-        # Étape 4 : Prédire les liens pour chaque nouveau nœud
-        pred_scores = []
-        for i in range(num_new):
-            acoustic_vec = new_emb_acoustic[i].repeat(num_words, 1)
-            #diff = torch.abs(acoustic_vec - emb_word)
-            #prod = acoustic_vec * emb_word
-            #edge_features = torch.cat([acoustic_vec, emb_word, diff, prod], dim=1)
-            edge_features = torch.cat([acoustic_vec, emb_word], dim=1)
-            # prédiction binaire : probabilité d’un lien entre (acoustic_i, word_j)
-            #score = gcn_model.edge_predictor(edge_features).squeeze()  # (num_words,)
-            #pred_scores.append(score)
-            score = (acoustic_vec * emb_word).sum(dim=1)  # Dot product
-            pred_scores.append(torch.sigmoid(score))
+       
+        new_emb_acoustic = emb_acoustic[num_existing_acoustic_nodes:]
+        num_new = new_emb_acoustic.shape[0]
 
-        pred_scores = torch.stack(pred_scores)  # (num_new, num_words)
+        # Étape 4 : Prédiction des scores de lien (vectorisée)
+        # Produit scalaire : (num_new, dim) @ (dim, num_words) => (num_new, num_words)
+        scores = torch.matmul(new_emb_acoustic, emb_word.T)
+        pred_scores = torch.sigmoid(scores)  # (num_new, num_words)
 
         # Étape 5 : top-K prédiction
         topk_indices = torch.topk(pred_scores, k=top_k, dim=1).indices.cpu().numpy()
@@ -675,13 +668,18 @@ features_dic = {
     'acoustic': hetero_graph.nodes['acoustic'].data['feat'],
     'word': hetero_graph.nodes['word'].data['feat']
 }
+with open(f'phon_idx_{args.dataset}.pkl', 'rb') as f:
+        phon_idx = pickle.load(f)
+  
 in_feats = {'acoustic': features_dic['acoustic'].shape[1], 'word': features_dic['word'].shape[1]}
 hidden_size = 512
 linear_hidden_size = 64
+nb_phon = len(phon_idx)
 out_feats = len(labels.unique())
+
 # Initialize the model
 model = HeteroGCN(in_feats, hidden_size, out_feats, linear_hidden_size)
-model_hetero_regressor = HeteroLinkGCN(in_feats, hidden_size, linear_hidden_size)
+model_hetero_regressor = HeteroLinkGCN(in_feats, hidden_size,nb_phon, linear_hidden_size)
 #model_sage = HeteroGCN(in_feats, hidden_size, out_feats)
 # Load the pre-trained model state
 model.load_state_dict(torch.load(os.path.join(model_folder, "hetero_gnn_model.pth")))
@@ -804,10 +802,10 @@ logging.info(f"Accuracy of unsupervised Model: {accuracy_unsup:.4f}")
 
 # Train and evaluate SVM for Hibrid embeddings
 logging.info(f'Extract acoustic node representations From hibrid GNN')
-#node_embeddings_hibrid, node_val_embeddings_hibrid = generate_embeddings(gcn_model=loaded_model_hibrid, 
-#                                                dgl_G=dgl_G,num_existing_nodes=num_existing_nodes, new_node_spectrograms=subset_val_spectrograms, )
-#accuracy_hibrid = train_evaluate_svm(X_train=node_embeddings_hibrid, X_test=node_val_embeddings_hibrid, y_train=labels_np, y_test=val_labels_np)
-accuracy_hibrid = 0
+node_embeddings_hibrid, node_val_embeddings_hibrid = generate_embeddings(gcn_model=loaded_model_hibrid, 
+                                                dgl_G=dgl_G,num_existing_nodes=num_existing_nodes, new_node_spectrograms=subset_val_spectrograms, )
+accuracy_hibrid = train_evaluate_svm(X_train=node_embeddings_hibrid, X_test=node_val_embeddings_hibrid, y_train=labels_np, y_test=val_labels_np)
+
 logging.info(f"Accuracy of hibrid Model: {accuracy_hibrid:.4f}")
 
 # Train and evaluate SVM for heterogeneous model embeddings

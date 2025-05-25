@@ -27,7 +27,7 @@ class HeteroGCN(nn.Module):
             'related_to': SAGEConv(hidden_size, 128, 'mean')
         }, aggregate='mean')
 
-        self.linear1 = nn.Linear(128, linear_hidden_size)
+        self.linear1 = nn.Linear(hidden_size, linear_hidden_size)
         self.linear2 = nn.Linear(linear_hidden_size, 32)
         self.linear3 = nn.Linear(32, out_feats)
         self.dropout = nn.Dropout(0.5)
@@ -35,8 +35,8 @@ class HeteroGCN(nn.Module):
     def forward(self, g, inputs):
         edge_weights = {etype: g.edges[etype].data['weight'] for etype in g.etypes}
         h = self.conv1(g, inputs, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
-        h = {k: F.relu(v) for k, v in h.items()}
-        h = self.conv2(g, h, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
+        #h = {k: F.relu(v) for k, v in h.items()}
+        #h = self.conv2(g, h, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
         embeddings = h
 
         h['acoustic'] = F.relu(self.linear1(h['acoustic']))
@@ -95,8 +95,8 @@ def main(input_folder, graph_file, epochs, lamb):
     adj_matrix_word = torch.tensor(nx.to_numpy_array(hetero_graph['word', 'sim_w', 'word'].to_networkx()))
     num_acoustic_nodes = hetero_graph.num_nodes('acoustic')
     num_word_nodes = hetero_graph.num_nodes('word')
-    adj_matrix_acoustic_word = torch.zeros(num_acoustic_nodes, num_word_nodes)
-    src, dst = hetero_graph.edges(etype=('acoustic', 'related_to', 'word'))
+    adj_matrix_acoustic_word = torch.zeros(num_word_nodes, num_acoustic_nodes)
+    src, dst = hetero_graph.edges(etype=('word', 'related_to', 'acoustic'))
     adj_matrix_acoustic_word[src, dst] = 1
 
     adj_matrix_acoustic = adj_matrix_acoustic.float()

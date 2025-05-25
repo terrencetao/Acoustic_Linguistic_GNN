@@ -1,0 +1,188 @@
+1612
+8
+Epoch 0, Loss: 4.909474849700928, Accuracy: 12.12%
+Epoch 10, Loss: 1.9391319751739502, Accuracy: 27.94%
+Epoch 20, Loss: 1.6404515504837036, Accuracy: 40.88%
+Epoch 30, Loss: 1.2986559867858887, Accuracy: 53.81%
+Epoch 40, Loss: 0.9544419050216675, Accuracy: 67.06%
+Epoch 50, Loss: 0.6777646541595459, Accuracy: 76.25%
+Epoch 60, Loss: 0.45013388991355896, Accuracy: 85.75%
+Epoch 70, Loss: 0.2848627269268036, Accuracy: 91.94%
+Epoch 80, Loss: 0.16769368946552277, Accuracy: 96.25%
+Epoch 90, Loss: 0.09488314390182495, Accuracy: 98.56%
+Epoch 0, Loss: 0.36634811758995056, Accuracy: 11.81%
+Epoch 10, Loss: 0.2774513065814972, Accuracy: 12.56%
+Epoch 20, Loss: 0.26749467849731445, Accuracy: 11.06%
+Epoch 30, Loss: 0.26301872730255127, Accuracy: 12.31%
+Epoch 40, Loss: 0.2604444622993469, Accuracy: 12.00%
+Epoch 50, Loss: 0.25909048318862915, Accuracy: 11.94%
+Epoch 60, Loss: 0.2581554055213928, Accuracy: 12.50%
+Epoch 70, Loss: 0.2574528455734253, Accuracy: 12.50%
+Epoch 80, Loss: 0.25691723823547363, Accuracy: 12.69%
+Epoch 90, Loss: 0.25650423765182495, Accuracy: 12.62%
+Epoch 0, Loss: 3.3396215438842773, Accuracy: 12.38%
+Epoch 10, Loss: 3.3396215438842773, Accuracy: 12.38%
+Epoch 20, Loss: 3.3396215438842773, Accuracy: 12.38%
+Epoch 30, Loss: 3.3396215438842773, Accuracy: 12.38%
+Epoch 40, Loss: 3.3396215438842773, Accuracy: 12.38%
+Epoch 50, Loss: 3.3396215438842773, Accuracy: 12.38%
+Epoch 60, Loss: 3.3396215438842773, Accuracy: 12.38%
+Epoch 70, Loss: 3.3396215438842773, Accuracy: 12.38%
+Epoch 80, Loss: 3.3396215438842773, Accuracy: 12.38%
+Epoch 90, Loss: 3.3396215438842773, Accuracy: 12.38%
+1612
+8
+Epoch 0, Loss: 3.0175116062164307, Accuracy: 11.88%
+Epoch 10, Loss: 1.8283631801605225, Accuracy: 32.25%
+Epoch 20, Loss: 1.4073072671890259, Accuracy: 47.94%
+Epoch 30, Loss: 1.0308315753936768, Accuracy: 63.88%
+Epoch 40, Loss: 0.6955813765525818, Accuracy: 78.38%
+Epoch 50, Loss: 0.4391404688358307, Accuracy: 87.75%
+Epoch 60, Loss: 0.25236111879348755, Accuracy: 94.19%
+Epoch 70, Loss: 0.12475007027387619, Accuracy: 98.31%
+Epoch 80, Loss: 0.05778886750340462, Accuracy: 99.69%
+Epoch 90, Loss: 0.02780119888484478, Accuracy: 100.00%
+Epoch 0, Loss: 0.3827998638153076, Accuracy: 15.06%
+Epoch 10, Loss: 0.27486634254455566, Accuracy: 12.94%
+Epoch 20, Loss: 0.26686203479766846, Accuracy: 12.81%
+Epoch 30, Loss: 0.2627124488353729, Accuracy: 13.56%
+Epoch 40, Loss: 0.2604462504386902, Accuracy: 13.50%
+Epoch 50, Loss: 0.25911033153533936, Accuracy: 12.94%
+Epoch 60, Loss: 0.2581171989440918, Accuracy: 11.19%
+Epoch 70, Loss: 0.25741907954216003, Accuracy: 11.75%
+Epoch 80, Loss: 0.2569290101528168, Accuracy: 11.81%
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 309, in <module>
+    model2 = train_with_topological_loss(model2, dgl_G, features, edge_weights,adj_matrix, labels, int(args.epochs))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 159, in train_with_topological_loss
+    loss.backward()
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_tensor.py", line 522, in backward
+    torch.autograd.backward(
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/__init__.py", line 266, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/function.py", line 277, in apply
+    def apply(self, *args):
+KeyboardInterrupt
+1612
+8
+Epoch 0, Loss: 5.43668270111084, Accuracy: 12.38%
+Epoch 10, Loss: 2.076669216156006, Accuracy: 16.25%
+Epoch 20, Loss: 1.8454387187957764, Accuracy: 35.12%
+Epoch 30, Loss: 1.5092941522598267, Accuracy: 48.44%
+Epoch 40, Loss: 1.1120573282241821, Accuracy: 63.25%
+Epoch 50, Loss: 0.7901263236999512, Accuracy: 73.88%
+Epoch 60, Loss: 0.5391963124275208, Accuracy: 82.06%
+Epoch 70, Loss: 0.3529928922653198, Accuracy: 89.12%
+Epoch 80, Loss: 0.21722853183746338, Accuracy: 94.00%
+Epoch 90, Loss: 0.12469020485877991, Accuracy: 97.25%
+Epoch 100, Loss: 0.06589919328689575, Accuracy: 99.31%
+Epoch 110, Loss: 0.034597840160131454, Accuracy: 99.81%
+Epoch 120, Loss: 0.01918135955929756, Accuracy: 100.00%
+Epoch 130, Loss: 0.01174050010740757, Accuracy: 100.00%
+Epoch 140, Loss: 0.007971988059580326, Accuracy: 100.00%
+Epoch 150, Loss: 0.00586756132543087, Accuracy: 100.00%
+Epoch 160, Loss: 0.00457259314134717, Accuracy: 100.00%
+Epoch 170, Loss: 0.0037225247360765934, Accuracy: 100.00%
+Epoch 180, Loss: 0.003120886627584696, Accuracy: 100.00%
+Epoch 190, Loss: 0.0026693055406212807, Accuracy: 100.00%
+Epoch 0, Loss: 0.371080607175827, Accuracy: 12.88%
+Epoch 10, Loss: 0.2765788435935974, Accuracy: 10.44%
+Epoch 20, Loss: 0.26790663599967957, Accuracy: 10.25%
+Epoch 30, Loss: 0.2629874348640442, Accuracy: 10.31%
+Epoch 40, Loss: 0.2604774534702301, Accuracy: 9.50%
+Epoch 50, Loss: 0.25900566577911377, Accuracy: 9.56%
+Epoch 60, Loss: 0.2580207884311676, Accuracy: 9.56%
+Epoch 70, Loss: 0.2573489248752594, Accuracy: 9.69%
+Epoch 80, Loss: 0.25687745213508606, Accuracy: 10.00%
+Epoch 90, Loss: 0.2566133439540863, Accuracy: 10.00%
+Epoch 100, Loss: 0.256287544965744, Accuracy: 10.44%
+Epoch 110, Loss: 0.25606629252433777, Accuracy: 10.69%
+Epoch 120, Loss: 0.2559003531932831, Accuracy: 10.75%
+Epoch 130, Loss: 0.2557348608970642, Accuracy: 10.69%
+Epoch 140, Loss: 0.25567570328712463, Accuracy: 10.62%
+Epoch 150, Loss: 0.2557130753993988, Accuracy: 10.62%
+Epoch 160, Loss: 0.2556409537792206, Accuracy: 10.62%
+Epoch 170, Loss: 0.25563979148864746, Accuracy: 10.62%
+Epoch 180, Loss: 0.25563961267471313, Accuracy: 10.62%
+Epoch 190, Loss: 0.2556394040584564, Accuracy: 10.62%
+Epoch 0, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 10, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 20, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 30, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 40, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 50, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 60, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 70, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 80, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 90, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 100, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 110, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 120, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 130, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 140, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 150, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 160, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 170, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 180, Loss: 3.3599393367767334, Accuracy: 12.31%
+Epoch 190, Loss: 3.3599393367767334, Accuracy: 12.31%
+1612
+8
+Epoch 0, Loss: 2.96250581741333, Accuracy: 12.44%
+Epoch 10, Loss: 1.9665443897247314, Accuracy: 23.50%
+Epoch 20, Loss: 1.640821933746338, Accuracy: 37.31%
+Epoch 30, Loss: 1.2028989791870117, Accuracy: 59.56%
+Epoch 40, Loss: 0.8226836919784546, Accuracy: 73.25%
+Epoch 50, Loss: 0.5293049812316895, Accuracy: 84.00%
+Epoch 60, Loss: 0.3127141296863556, Accuracy: 91.75%
+Epoch 70, Loss: 0.16737058758735657, Accuracy: 97.00%
+Epoch 80, Loss: 0.07975804060697556, Accuracy: 99.19%
+Epoch 90, Loss: 0.03565191850066185, Accuracy: 99.75%
+Epoch 100, Loss: 0.016803031787276268, Accuracy: 99.94%
+Epoch 110, Loss: 0.00914071872830391, Accuracy: 99.94%
+Epoch 120, Loss: 0.005527648143470287, Accuracy: 100.00%
+Epoch 130, Loss: 0.0038161256816238165, Accuracy: 100.00%
+Epoch 140, Loss: 0.0028440626338124275, Accuracy: 100.00%
+Epoch 150, Loss: 0.0022129069548100233, Accuracy: 100.00%
+Epoch 160, Loss: 0.0017779356567189097, Accuracy: 100.00%
+Epoch 170, Loss: 0.0014836916234344244, Accuracy: 100.00%
+Epoch 180, Loss: 0.0012687327107414603, Accuracy: 100.00%
+Epoch 190, Loss: 0.001102413167245686, Accuracy: 100.00%
+Epoch 0, Loss: 0.3754722774028778, Accuracy: 11.12%
+Epoch 10, Loss: 0.2766062617301941, Accuracy: 12.69%
+Epoch 20, Loss: 0.2688698172569275, Accuracy: 12.19%
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 309, in <module>
+    model2 = train_with_topological_loss(model2, dgl_G, features, edge_weights,adj_matrix, labels, int(args.epochs))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 155, in train_with_topological_loss
+    logits, embeddings = model(g, features, edge_weights)
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 87, in forward
+    x = self.conv2(g, x, edge_weights)
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/nn/pytorch/conv/sageconv.py", line 237, in forward
+    graph.update_all(msg_fn, fn.mean("m", "neigh"))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/heterograph.py", line 5110, in update_all
+    ndata = core.message_passing(
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/core.py", line 398, in message_passing
+    ndata = invoke_gspmm(g, mfunc, rfunc)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/core.py", line 359, in invoke_gspmm
+    z = op(graph, x, y)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/ops/spmm.py", line 173, in func
+    return gspmm(g, binary_op, reduce_op, x, y)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/ops/spmm.py", line 79, in gspmm
+    ret = gspmm_internal(
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/backend/pytorch/sparse.py", line 1032, in gspmm
+    return GSpMM.apply(*args)
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/function.py", line 553, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/backend/pytorch/sparse.py", line 165, in forward
+    out, (argX, argY) = _gspmm(gidx, op, reduce_op, X, Y)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/_sparse_ops.py", line 239, in _gspmm
+    _CAPI_DGLKernelSpMM(
+KeyboardInterrupt
