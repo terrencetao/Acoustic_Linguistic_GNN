@@ -14,6 +14,7 @@ import math
 import torch.nn.functional as F
 from weak_ML2 import SimpleCNN
 from weakDense import SimpleDense
+from cnn_phoneme import MultiLabelCNN
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 random.seed(42)
@@ -164,7 +165,13 @@ def softmax_prob(method, graph, num_labels, label_name=None, threshold_probabili
       
     logging.info(f'{method} method for connection')
     return softmax_probabilities 
-      
+
+def phonetic_distribution(model, spec):
+    model.eval()
+    with torch.no_grad():
+        outputs = model(spec)     
+    return outputs
+    
 if __name__ == "__main__":    
     parser = argparse.ArgumentParser()
     parser.add_argument('--twa', help='threshold for mixte graph', required=True)    
@@ -264,17 +271,36 @@ if __name__ == "__main__":
     hetero_graph.edges['related_to'].data['weight'] = torch.tensor(probabilities_acoustic_word)
 
 
-# Flatten the features of the acoustic nodes
-    acoustic_features = hetero_graph.nodes['acoustic'].data['feat']
-    flattened_acoustic_features = acoustic_features.view(acoustic_features.shape[0], -1)  # Flatten the features
+    cnn_phoneme = torch.load('models/multilabel_cnn.pth', weights_only=False)
+    cnn_phoneme.eval()
 
+# 2. Préparation des features
+    acoustic_features = torch.tensor(
+    hetero_graph.nodes['acoustic'].data['feat'].cpu().numpy(), dtype=torch.float32
+    )
+
+    # Assure-toi que les features sont bien 4D : [N, 1, H, W]
+    acoustic_features = acoustic_features.view(
+    acoustic_features.shape[0], 1, acoustic_features.shape[1], acoustic_features.shape[2]
+)
+
+# 3. Passage dans le modèle
+    with torch.no_grad():
+       outputs = cnn_phoneme(acoustic_features)
+
+# 4. Si tu veux aplatir (flatten) les features pour les utiliser plus tard :
+    flattened_acoustic_features = outputs
+  
 # Determine the length of the flattened features
-    flattened_length = flattened_acoustic_features.shape[1]
+    print(outputs.shape)
+    
+    flatterned_length = flattened_acoustic_features[0].shape[0]
 
 # Pad the features of the word nodes to match the flattened length of acoustic features
     word_features = hetero_graph.nodes['word'].data['feat']
     word_feat_shape = word_features.shape
-    padded_word_features = torch.zeros((word_feat_shape[0], flattened_length))  # Initialize padded feature tensor
+    print(f'shape a word embedding before : {word_features.shape}')
+    padded_word_features = torch.zeros((word_feat_shape[0], flatterned_length))  # Initialize padded feature tensor
 
 # Copy existing word features into the padded tensor
     padded_word_features[:, :word_feat_shape[1]] = word_features
@@ -285,7 +311,8 @@ if __name__ == "__main__":
 # Print the heterogeneous graph to verify
     
     print(hetero_graph)
-
+    print(f'shape a word embedding : {padded_word_features.shape}')
+    print(f'shape an acoustic embedding : {flattened_acoustic_features.shape}')
 # Define the directory to save the graph
     save_dir = os.path.join('saved_graphs',args.dataset,args.method_sim, args.method_acou,args.method,args.msw)
 

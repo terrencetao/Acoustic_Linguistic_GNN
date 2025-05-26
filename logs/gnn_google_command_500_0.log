@@ -1,0 +1,105 @@
+1612
+8
+Epoch 0, Loss: 3.9443013668060303, Accuracy: 12.00%
+Epoch 10, Loss: 1.9741103649139404, Accuracy: 25.50%
+Epoch 20, Loss: 1.6592488288879395, Accuracy: 36.50%
+Epoch 30, Loss: 1.2439249753952026, Accuracy: 57.75%
+Epoch 40, Loss: 0.833903968334198, Accuracy: 77.50%
+Epoch 50, Loss: 0.4860411584377289, Accuracy: 89.75%
+Epoch 60, Loss: 0.23027050495147705, Accuracy: 96.50%
+Epoch 70, Loss: 0.09335719794034958, Accuracy: 99.00%
+Epoch 80, Loss: 0.03660355880856514, Accuracy: 100.00%
+Epoch 90, Loss: 0.01740969717502594, Accuracy: 100.00%
+Epoch 100, Loss: 0.010121268220245838, Accuracy: 100.00%
+Epoch 110, Loss: 0.006899883039295673, Accuracy: 100.00%
+Epoch 120, Loss: 0.0052132876589894295, Accuracy: 100.00%
+Epoch 130, Loss: 0.0041910032741725445, Accuracy: 100.00%
+Epoch 140, Loss: 0.0034972745925188065, Accuracy: 100.00%
+Epoch 150, Loss: 0.002988687250763178, Accuracy: 100.00%
+Epoch 160, Loss: 0.0025915084406733513, Accuracy: 100.00%
+Epoch 170, Loss: 0.002269505290314555, Accuracy: 100.00%
+Epoch 180, Loss: 0.002008159877732396, Accuracy: 100.00%
+Epoch 190, Loss: 0.0017906415741890669, Accuracy: 100.00%
+Epoch 0, Loss: 0.3980805575847626, Accuracy: 11.75%
+Epoch 10, Loss: 0.27547216415405273, Accuracy: 11.25%
+Epoch 20, Loss: 0.26746657490730286, Accuracy: 13.75%
+Epoch 30, Loss: 0.2626722753047943, Accuracy: 12.75%
+Epoch 40, Loss: 0.2603524923324585, Accuracy: 13.25%
+Epoch 50, Loss: 0.258807897567749, Accuracy: 15.00%
+Epoch 60, Loss: 0.2578524947166443, Accuracy: 14.00%
+Epoch 70, Loss: 0.25786277651786804, Accuracy: 13.50%
+Epoch 80, Loss: 0.25699561834335327, Accuracy: 13.75%
+Epoch 90, Loss: 0.25653529167175293, Accuracy: 13.50%
+Epoch 100, Loss: 0.25628936290740967, Accuracy: 14.50%
+Epoch 110, Loss: 0.25606048107147217, Accuracy: 14.75%
+Epoch 120, Loss: 0.2558954060077667, Accuracy: 15.00%
+Epoch 130, Loss: 0.25585538148880005, Accuracy: 15.25%
+Epoch 140, Loss: 0.2557966411113739, Accuracy: 15.25%
+Epoch 150, Loss: 0.25579097867012024, Accuracy: 15.25%
+Epoch 160, Loss: 0.2557907998561859, Accuracy: 15.25%
+Epoch 170, Loss: 0.25579068064689636, Accuracy: 15.25%
+Epoch 180, Loss: 0.2557905614376068, Accuracy: 15.25%
+Epoch 190, Loss: 0.25579044222831726, Accuracy: 15.25%
+Epoch 0, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 10, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 20, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 30, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 40, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 50, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 60, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 70, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 80, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 90, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 100, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 110, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 120, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 130, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 140, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 150, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 160, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 170, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 180, Loss: 5.474476337432861, Accuracy: 12.75%
+Epoch 190, Loss: 5.474476337432861, Accuracy: 12.75%
+1612
+8
+Epoch 0, Loss: 6.455721378326416, Accuracy: 15.00%
+Epoch 10, Loss: 1.8897210359573364, Accuracy: 27.00%
+Epoch 20, Loss: 1.4198880195617676, Accuracy: 54.25%
+Epoch 30, Loss: 0.865857720375061, Accuracy: 77.00%
+Epoch 40, Loss: 0.4717002809047699, Accuracy: 90.50%
+Epoch 50, Loss: 0.2256314903497696, Accuracy: 96.50%
+Epoch 60, Loss: 0.09611526131629944, Accuracy: 99.75%
+Epoch 70, Loss: 0.03824320435523987, Accuracy: 100.00%
+Epoch 80, Loss: 0.017251238226890564, Accuracy: 100.00%
+Epoch 90, Loss: 0.009588212706148624, Accuracy: 100.00%
+Epoch 100, Loss: 0.006331542041152716, Accuracy: 100.00%
+Epoch 110, Loss: 0.004732378292828798, Accuracy: 100.00%
+Epoch 120, Loss: 0.0037793561350554228, Accuracy: 100.00%
+Epoch 130, Loss: 0.0031425608322024345, Accuracy: 100.00%
+Epoch 140, Loss: 0.002682217862457037, Accuracy: 100.00%
+Epoch 150, Loss: 0.002328568836674094, Accuracy: 100.00%
+Epoch 160, Loss: 0.0020461769308894873, Accuracy: 100.00%
+Epoch 170, Loss: 0.001815955969505012, Accuracy: 100.00%
+Epoch 180, Loss: 0.0016246617306023836, Accuracy: 100.00%
+Epoch 190, Loss: 0.0014632630627602339, Accuracy: 100.00%
+Epoch 0, Loss: 0.4109202027320862, Accuracy: 9.50%
+Epoch 10, Loss: 0.2794692814350128, Accuracy: 13.00%
+Epoch 20, Loss: 0.2687186002731323, Accuracy: 11.00%
+Epoch 30, Loss: 0.26286351680755615, Accuracy: 8.75%
+Epoch 40, Loss: 0.2599833011627197, Accuracy: 11.00%
+Epoch 50, Loss: 0.2583701014518738, Accuracy: 10.75%
+Epoch 60, Loss: 0.2574072778224945, Accuracy: 11.00%
+Epoch 70, Loss: 0.2567841112613678, Accuracy: 10.00%
+Epoch 80, Loss: 0.2565937936306, Accuracy: 9.00%
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 309, in <module>
+    model2 = train_with_topological_loss(model2, dgl_G, features, edge_weights,adj_matrix, labels, int(args.epochs))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 159, in train_with_topological_loss
+    loss.backward()
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_tensor.py", line 522, in backward
+    torch.autograd.backward(
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/__init__.py", line 266, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/function.py", line 277, in apply
+    def apply(self, *args):
+KeyboardInterrupt

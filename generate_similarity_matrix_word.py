@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 import gensim.downloader as api
 import eng_to_ipa as ipa
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 import logging
 import pandas as pd
 import os 
@@ -91,6 +91,26 @@ def compute_one_hot_representation(words,dataset):
     one_hot_matrix = np.eye(size, dtype=int)
     
     return one_hot_matrix, letters
+    
+def compute_letter_frequencies(words, dataset):
+    # Concaténer tous les mots et compter les lettres
+    all_letters = ''.join(words)
+    letter_counts = Counter(all_letters)
+    
+    # Trier les lettres pour avoir un ordre cohérent
+    letters = sorted(letter_counts.keys())
+    
+    # Créer un mapping lettre → index
+    letter_to_index = {letter: idx for idx, letter in enumerate(letters)}
+    
+    # Sauvegarder le mapping dans un fichier
+    with open(f'phon_idx_{dataset}.pkl', 'wb') as f:
+        pickle.dump(letter_to_index, f)
+    
+    # Créer une liste de fréquences dans l'ordre des lettres triées
+    frequencies = [letter_counts[letter] for letter in letters]
+
+    return frequencies, letters, letter_to_index
  
 def get_phonetique_from_yemba(xlsx_path):
     df = pd.read_excel(xlsx_path)
@@ -126,6 +146,25 @@ def simi_matrix(method = 'semantics', dataset=None, method_ac='mixed', sub_units
 
     similarity_matrix = np.dot(word_embeddings, word_embeddings.T)
   elif method == 'phon_count':
+    # Convert words to their phoneme representations
+    if dataset=='yemba_command' or dataset=='yemba_command_small':
+       yemba_to_phonetique_mapping = get_phonetique_from_yemba(xlsx_path)
+       phoneme_words = [yemba_to_phonetique_mapping.get(word) for word in label_names]
+    else:
+       phoneme_words = [ipa.convert(word) for word in label_names]
+
+
+# Initialize CountVectorizer
+    vectorizer = CountVectorizer(analyzer='char', token_pattern=r'[^ ]')
+
+# Fit the vectorizer on the phoneme words and transform them to vectors
+    X = vectorizer.fit_transform(phoneme_words)
+
+
+# Retrieve embeddings for each word in the list
+    word_embeddings = X.toarray()
+    similarity_matrix = np.dot(word_embeddings, word_embeddings.T)
+  elif method == 'phon_freq':
     # Convert words to their phoneme representations
     if dataset=='yemba_command' or dataset=='yemba_command_small':
        yemba_to_phonetique_mapping = get_phonetique_from_yemba(xlsx_path)
@@ -236,6 +275,6 @@ similarity_matrix[similarity_matrix < threshold] = 0
 # Set diagonal to 0 to avoid self-loops
 np.fill_diagonal(similarity_matrix, 0)
 
-np.save('filtered_similarity_matrix_word.npy', similarity_matrix)
-np.save('word_embedding.npy', word_embeddings )
+np.save(f'filtered_similarity_matrix_word_{args.dataset}.npy', similarity_matrix)
+np.save(f'word_embedding_{args.dataset}.npy', word_embeddings )
 print("Filtered similarity matrix for word label computed successfully.")

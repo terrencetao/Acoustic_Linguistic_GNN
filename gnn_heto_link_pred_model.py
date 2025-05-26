@@ -39,6 +39,7 @@ class HeteroLinkGCN(nn.Module):
             'sim_w': IdentityConv(out_dim=nombre_phon),
             'related_to': SAGEConv(hidden_size, nombre_phon, 'mean')
         }, aggregate='mean')
+        
 
         # MLP for binary classification (link exists or not)
         #self.edge_predictor = nn.Sequential(

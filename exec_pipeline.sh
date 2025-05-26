@@ -8,7 +8,7 @@ declare -A UNIT_DIVISORS=( ["spoken_digit"]=10 ["google_command"]=8 ["yemba_comm
 
 #################################### CONFIGURATION #################################################
 DATASETS=( "google_command" "spoken_digit" "yemba_command_small")
-UNITS=$(seq 8000 500 8000)
+UNITS=$(seq 500 500 8000)
 METHOD_MMA="fixed"
 METHOD_MSA="knn"
 ALPHAS=(1.0)
@@ -36,8 +36,8 @@ generate_acoustic_similarity() {
   fi
   python3 weakDense.py --epochs 200 --method_sim $mma --sub_unit $unit --dataset $dataset
   python3 weak_ML2.py --epochs 200 --method_sim $mma --sub_unit $unit --dataset $dataset
+  python3 cnn_phoneme.py --epochs 200 --method_sim $mma --sub_unit $unit --dataset $dataset
 }
-
 generate_word_similarity() {
   dataset=$1
   unit=$2
@@ -58,7 +58,7 @@ build_homogeneous_graph() {
   div=${UNIT_DIVISORS[$dataset]}
   num=$(echo "$n*($unit/$div - 1)" | bc | awk '{print int($0)}')
 
-  for ko in $(seq 1 1 "$num"); do
+  for ko in $(seq 0 1 "$num"); do
     python3 build_kws_graph.py --num_n "$num" --k_out "$ko" --ta 0 --alpha "$alpha" --method "$msa" --dataset "$dataset" --sub_units "$unit" --method_sim "$mma"
 
     for lamb in $LAMB_VALUES; do
@@ -140,4 +140,3 @@ for dataset in "${DATASETS[@]}"; do
     done
   done
 done
-

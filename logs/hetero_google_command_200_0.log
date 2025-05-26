@@ -1,0 +1,122 @@
+Epoch 0, Loss: 2.086045742034912, Accuracy: 3.12%
+Epoch 10, Loss: 1.7652908563613892, Accuracy: 70.62%
+Epoch 20, Loss: 1.2086999416351318, Accuracy: 83.12%
+Epoch 30, Loss: 0.6199271082878113, Accuracy: 86.25%
+Epoch 40, Loss: 0.2370011806488037, Accuracy: 96.25%
+Epoch 50, Loss: 0.09756629168987274, Accuracy: 98.12%
+Epoch 60, Loss: 0.04206323251128197, Accuracy: 100.00%
+Epoch 70, Loss: 0.017337733879685402, Accuracy: 100.00%
+Epoch 80, Loss: 0.008482377976179123, Accuracy: 100.00%
+Epoch 90, Loss: 0.005371900741010904, Accuracy: 100.00%
+Epoch 100, Loss: 0.003950943239033222, Accuracy: 100.00%
+Epoch 110, Loss: 0.0031379524152725935, Accuracy: 100.00%
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 126, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 107, in main
+    model = train_with_topological_loss_cross_loss(
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 60, in train_with_topological_loss_cross_loss
+    logits, embeddings = model(g, features)
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 37, in forward
+    h = self.conv1(g, inputs, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/nn/pytorch/hetero.py", line 210, in forward
+    dstdata = self._get_module((stype, etype, dtype))(
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/nn/pytorch/conv/sageconv.py", line 237, in forward
+    graph.update_all(msg_fn, fn.mean("m", "neigh"))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/heterograph.py", line 5110, in update_all
+    ndata = core.message_passing(
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/core.py", line 398, in message_passing
+    ndata = invoke_gspmm(g, mfunc, rfunc)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/core.py", line 359, in invoke_gspmm
+    z = op(graph, x, y)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/ops/spmm.py", line 173, in func
+    return gspmm(g, binary_op, reduce_op, x, y)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/ops/spmm.py", line 79, in gspmm
+    ret = gspmm_internal(
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/backend/pytorch/sparse.py", line 1031, in gspmm
+    with _disable_autocast_if_enabled():
+KeyboardInterrupt
+2025-05-26 14:36:10,460 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 2.0895071029663086, Accuracy: 12.50%
+Epoch 10, Loss: 1.8619654178619385, Accuracy: 49.38%
+Epoch 20, Loss: 1.4306594133377075, Accuracy: 79.38%
+Epoch 30, Loss: 0.8160923719406128, Accuracy: 90.00%
+Epoch 40, Loss: 0.3107662498950958, Accuracy: 99.38%
+Epoch 50, Loss: 0.08585494011640549, Accuracy: 100.00%
+Epoch 60, Loss: 0.0247931070625782, Accuracy: 100.00%
+Epoch 70, Loss: 0.009747030213475227, Accuracy: 100.00%
+Epoch 80, Loss: 0.005378999747335911, Accuracy: 100.00%
+Epoch 90, Loss: 0.0037151952274143696, Accuracy: 100.00%
+Epoch 100, Loss: 0.0028935798909515142, Accuracy: 100.00%
+Epoch 110, Loss: 0.0024018888361752033, Accuracy: 100.00%
+Epoch 120, Loss: 0.002064814791083336, Accuracy: 100.00%
+Epoch 130, Loss: 0.0018101644236594439, Accuracy: 100.00%
+Epoch 140, Loss: 0.0016067232936620712, Accuracy: 100.00%
+Epoch 150, Loss: 0.001438790699467063, Accuracy: 100.00%
+Epoch 160, Loss: 0.001297395909205079, Accuracy: 100.00%
+Epoch 170, Loss: 0.0011766221141442657, Accuracy: 100.00%
+Epoch 180, Loss: 0.0010724132880568504, Accuracy: 100.00%
+Epoch 190, Loss: 0.0009818654507398605, Accuracy: 100.00%
+2025-05-26 14:36:25,562 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 1.5176, BCE Loss: 1.5176
+Epoch 10, Loss: 1.4218, BCE Loss: 1.4218
+Epoch 20, Loss: 1.3346, BCE Loss: 1.3346
+Epoch 30, Loss: 1.2568, BCE Loss: 1.2568
+Epoch 40, Loss: 1.1884, BCE Loss: 1.1884
+Epoch 50, Loss: 1.1286, BCE Loss: 1.1286
+Epoch 60, Loss: 1.0767, BCE Loss: 1.0767
+Epoch 70, Loss: 1.0320, BCE Loss: 1.0320
+Epoch 80, Loss: 0.9940, BCE Loss: 0.9940
+Epoch 90, Loss: 0.9617, BCE Loss: 0.9617
+Epoch 100, Loss: 0.9342, BCE Loss: 0.9342
+Epoch 110, Loss: 0.9103, BCE Loss: 0.9103
+Epoch 120, Loss: 0.8894, BCE Loss: 0.8894
+Epoch 130, Loss: 0.8707, BCE Loss: 0.8707
+Epoch 140, Loss: 0.8537, BCE Loss: 0.8537
+Epoch 150, Loss: 0.8383, BCE Loss: 0.8383
+Epoch 160, Loss: 0.8242, BCE Loss: 0.8242
+Epoch 170, Loss: 0.8112, BCE Loss: 0.8112
+Epoch 180, Loss: 0.7992, BCE Loss: 0.7992
+Epoch 190, Loss: 0.7881, BCE Loss: 0.7881
+Epoch 200, Loss: 0.7778, BCE Loss: 0.7778
+Epoch 210, Loss: 0.7681, BCE Loss: 0.7681
+Epoch 220, Loss: 0.7591, BCE Loss: 0.7591
+Epoch 230, Loss: 0.7507, BCE Loss: 0.7507
+Epoch 240, Loss: 0.7428, BCE Loss: 0.7428
+Epoch 250, Loss: 0.7353, BCE Loss: 0.7353
+Epoch 260, Loss: 0.7283, BCE Loss: 0.7283
+Epoch 270, Loss: 0.7216, BCE Loss: 0.7216
+Epoch 280, Loss: 0.7153, BCE Loss: 0.7153
+Epoch 290, Loss: 0.7094, BCE Loss: 0.7094
+Epoch 300, Loss: 0.7037, BCE Loss: 0.7037
+Epoch 310, Loss: 0.6983, BCE Loss: 0.6983
+Epoch 320, Loss: 0.6933, BCE Loss: 0.6933
+Epoch 330, Loss: 0.6884, BCE Loss: 0.6884
+Epoch 340, Loss: 0.6839, BCE Loss: 0.6839
+Epoch 350, Loss: 0.6796, BCE Loss: 0.6796
+Epoch 360, Loss: 0.6755, BCE Loss: 0.6755
+Epoch 370, Loss: 0.6716, BCE Loss: 0.6716
+Epoch 380, Loss: 0.6679, BCE Loss: 0.6679
+Epoch 390, Loss: 0.6645, BCE Loss: 0.6645
+Epoch 400, Loss: 0.6611, BCE Loss: 0.6611
+Epoch 410, Loss: 0.6580, BCE Loss: 0.6580
+Epoch 420, Loss: 0.6550, BCE Loss: 0.6550
+Epoch 430, Loss: 0.6522, BCE Loss: 0.6522
+Epoch 440, Loss: 0.6494, BCE Loss: 0.6494
+Epoch 450, Loss: 0.6468, BCE Loss: 0.6468
+Epoch 460, Loss: 0.6443, BCE Loss: 0.6443
+Epoch 470, Loss: 0.6420, BCE Loss: 0.6420
+Epoch 480, Loss: 0.6397, BCE Loss: 0.6397
+Epoch 490, Loss: 0.6375, BCE Loss: 0.6375
