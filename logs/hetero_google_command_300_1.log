@@ -1,271 +1,57 @@
-2025-05-27 16:50:17,015 - INFO - Model saved to models/hetero_gnn_model.pth
-Epoch 0, Loss: 3.626155376434326, Accuracy: 12.50%
-Epoch 10, Loss: 1.611719012260437, Accuracy: 41.67%
-Epoch 20, Loss: 0.7410376071929932, Accuracy: 77.92%
-Epoch 30, Loss: 0.28972917795181274, Accuracy: 97.92%
-Epoch 40, Loss: 0.09110703319311142, Accuracy: 99.58%
-Epoch 50, Loss: 0.029049279168248177, Accuracy: 100.00%
-Epoch 60, Loss: 0.0122516555711627, Accuracy: 100.00%
-Epoch 70, Loss: 0.006695207674056292, Accuracy: 100.00%
-Epoch 80, Loss: 0.004541974049061537, Accuracy: 100.00%
-Epoch 90, Loss: 0.003468187991529703, Accuracy: 100.00%
-2025-05-27 16:59:56,711 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
-Epoch 0, Loss: 35.6806, BCE Loss: 35.6806
-Epoch 10, Loss: 33.6190, BCE Loss: 33.6190
-Epoch 20, Loss: 28.9264, BCE Loss: 28.9264
-Epoch 30, Loss: 27.0239, BCE Loss: 27.0239
-Epoch 40, Loss: 23.2540, BCE Loss: 23.2540
-Epoch 50, Loss: 22.7637, BCE Loss: 22.7637
-Epoch 60, Loss: 22.7236, BCE Loss: 22.7236
-Epoch 70, Loss: 22.7219, BCE Loss: 22.7219
-Epoch 80, Loss: 22.7208, BCE Loss: 22.7208
-Epoch 90, Loss: 22.7204, BCE Loss: 22.7204
-Epoch 100, Loss: 22.7202, BCE Loss: 22.7202
-Epoch 110, Loss: 22.7201, BCE Loss: 22.7201
-Epoch 120, Loss: 22.7201, BCE Loss: 22.7201
-Epoch 130, Loss: 22.7201, BCE Loss: 22.7201
-Epoch 140, Loss: 22.7201, BCE Loss: 22.7201
-Epoch 150, Loss: 22.7201, BCE Loss: 22.7201
-Epoch 160, Loss: 22.7200, BCE Loss: 22.7200
-Epoch 170, Loss: 22.7200, BCE Loss: 22.7200
-Epoch 180, Loss: 22.7200, BCE Loss: 22.7200
-Epoch 190, Loss: 22.7200, BCE Loss: 22.7200
-2025-05-27 17:00:38,570 - INFO - Model saved to models/hetero_gnn_model.pth
-Epoch 0, Loss: 2.67781925201416, Accuracy: 12.50%
-Epoch 10, Loss: 1.72201406955719, Accuracy: 37.08%
-Epoch 20, Loss: 1.1129029989242554, Accuracy: 66.25%
-Epoch 30, Loss: 0.6341632008552551, Accuracy: 84.17%
-Epoch 40, Loss: 0.29351767897605896, Accuracy: 97.08%
-Epoch 50, Loss: 0.1140463724732399, Accuracy: 99.17%
-Epoch 60, Loss: 0.044571731239557266, Accuracy: 100.00%
-Epoch 70, Loss: 0.020169081166386604, Accuracy: 100.00%
-Epoch 80, Loss: 0.010910430923104286, Accuracy: 100.00%
-Epoch 90, Loss: 0.006913559045642614, Accuracy: 100.00%
-2025-05-27 17:10:09,698 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
-Epoch 0, Loss: 18.6145, BCE Loss: 18.6145
-Epoch 10, Loss: 12.6990, BCE Loss: 12.6990
-Epoch 20, Loss: 10.2510, BCE Loss: 10.2510
-Epoch 30, Loss: 9.1645, BCE Loss: 9.1645
-Epoch 40, Loss: 8.4925, BCE Loss: 8.4925
-Epoch 50, Loss: 7.6412, BCE Loss: 7.6412
-Epoch 60, Loss: 3.1681, BCE Loss: 3.1681
-Epoch 70, Loss: 2.3926, BCE Loss: 2.3926
-Epoch 80, Loss: 1.6701, BCE Loss: 1.6701
-Epoch 90, Loss: 1.5726, BCE Loss: 1.5726
-Epoch 100, Loss: 1.5444, BCE Loss: 1.5444
-Epoch 110, Loss: 1.5294, BCE Loss: 1.5294
-Epoch 120, Loss: 1.5209, BCE Loss: 1.5209
-Epoch 130, Loss: 1.5160, BCE Loss: 1.5160
-Epoch 140, Loss: 1.5126, BCE Loss: 1.5126
-Epoch 150, Loss: 1.5102, BCE Loss: 1.5102
-Epoch 160, Loss: 1.5083, BCE Loss: 1.5083
-Epoch 170, Loss: 1.5067, BCE Loss: 1.5067
-Epoch 180, Loss: 1.5054, BCE Loss: 1.5054
-Epoch 190, Loss: 1.5043, BCE Loss: 1.5043
-2025-05-27 17:10:51,582 - INFO - Model saved to models/hetero_gnn_model.pth
-Epoch 0, Loss: 3.139431953430176, Accuracy: 12.92%
-Epoch 10, Loss: 1.5507057905197144, Accuracy: 49.17%
-Epoch 20, Loss: 0.8185198903083801, Accuracy: 75.00%
-Epoch 30, Loss: 0.377537339925766, Accuracy: 93.33%
-Epoch 40, Loss: 0.13635413348674774, Accuracy: 99.58%
-Epoch 50, Loss: 0.046705491840839386, Accuracy: 100.00%
-Epoch 60, Loss: 0.019362330436706543, Accuracy: 100.00%
-Epoch 70, Loss: 0.010272985324263573, Accuracy: 100.00%
-Epoch 80, Loss: 0.006646796595305204, Accuracy: 100.00%
-Epoch 90, Loss: 0.0048676300793886185, Accuracy: 100.00%
-Epoch 0, Loss: 31.2830, BCE Loss: 31.2830
-Epoch 10, Loss: 47.2787, BCE Loss: 47.2787
-Epoch 20, Loss: 39.4567, BCE Loss: 39.4567
-Epoch 30, Loss: 37.7361, BCE Loss: 37.7361
+2025-05-28 14:38:20,683 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 2.707071542739868, Accuracy: 12.50%
+Epoch 10, Loss: 1.3650990724563599, Accuracy: 60.42%
+Epoch 20, Loss: 0.6957763433456421, Accuracy: 81.67%
+Epoch 30, Loss: 0.2576323449611664, Accuracy: 98.33%
+Epoch 40, Loss: 0.07780184596776962, Accuracy: 100.00%
+Epoch 50, Loss: 0.02550419606268406, Accuracy: 100.00%
+Epoch 60, Loss: 0.011305402033030987, Accuracy: 100.00%
+Epoch 70, Loss: 0.00659166369587183, Accuracy: 100.00%
+Epoch 80, Loss: 0.0046039908193051815, Accuracy: 100.00%
+Epoch 90, Loss: 0.003557892981916666, Accuracy: 100.00%
+2025-05-28 14:48:35,221 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 0.2767, MSE: 0.2767
+Epoch 10, Loss: 0.5000, MSE: 0.5000
+Epoch 20, Loss: 0.5000, MSE: 0.5000
+Epoch 30, Loss: 0.5000, MSE: 0.5000
+Epoch 40, Loss: 0.5000, MSE: 0.5000
+Epoch 50, Loss: 0.5000, MSE: 0.5000
+Epoch 60, Loss: 0.5000, MSE: 0.5000
+Epoch 70, Loss: 0.5000, MSE: 0.5000
+Epoch 80, Loss: 0.5000, MSE: 0.5000
+Epoch 90, Loss: 0.5000, MSE: 0.5000
+Epoch 100, Loss: 0.5000, MSE: 0.5000
+Epoch 110, Loss: 0.5000, MSE: 0.5000
+Epoch 120, Loss: 0.5000, MSE: 0.5000
+Epoch 130, Loss: 0.5000, MSE: 0.5000
+Epoch 140, Loss: 0.5000, MSE: 0.5000
+Epoch 150, Loss: 0.5000, MSE: 0.5000
+Epoch 160, Loss: 0.5000, MSE: 0.5000
+Epoch 170, Loss: 0.5000, MSE: 0.5000
+Epoch 180, Loss: 0.5000, MSE: 0.5000
+Epoch 190, Loss: 0.5000, MSE: 0.5000
+2025-05-28 14:49:19,967 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 2.546565532684326, Accuracy: 12.92%
+Epoch 10, Loss: 1.907134771347046, Accuracy: 27.50%
+Epoch 20, Loss: 1.4479069709777832, Accuracy: 48.75%
+Epoch 30, Loss: 0.9199166893959045, Accuracy: 73.75%
+Epoch 40, Loss: 0.45733746886253357, Accuracy: 91.67%
+Epoch 50, Loss: 0.17414921522140503, Accuracy: 97.92%
+Epoch 60, Loss: 0.05743707716464996, Accuracy: 100.00%
+Epoch 70, Loss: 0.02022487297654152, Accuracy: 100.00%
+Epoch 80, Loss: 0.009745782241225243, Accuracy: 100.00%
+Epoch 90, Loss: 0.006060128100216389, Accuracy: 100.00%
+Epoch 0, Loss: 0.2594, MSE: 0.2594
+Epoch 10, Loss: 0.5000, MSE: 0.5000
+Epoch 20, Loss: 0.5000, MSE: 0.5000
+Epoch 30, Loss: 0.5000, MSE: 0.5000
 Traceback (most recent call last):
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 208, in <module>
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 232, in <module>
     main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb), args.dataset)
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 187, in main
-    model = train_link_prediction(
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 76, in train_link_prediction
-    loss.backward()
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_tensor.py", line 522, in backward
-    torch.autograd.backward(
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/__init__.py", line 266, in backward
-    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
-KeyboardInterrupt
-2025-05-27 17:14:43,111 - INFO - Model saved to models/hetero_gnn_model.pth
-Epoch 0, Loss: 2.463517189025879, Accuracy: 10.42%
-Epoch 10, Loss: 1.5453251600265503, Accuracy: 41.25%
-Epoch 20, Loss: 0.6752925515174866, Accuracy: 82.50%
-Epoch 30, Loss: 0.18669891357421875, Accuracy: 98.75%
-Epoch 40, Loss: 0.03665634244680405, Accuracy: 100.00%
-Epoch 50, Loss: 0.010162008926272392, Accuracy: 100.00%
-Epoch 60, Loss: 0.004655156750231981, Accuracy: 100.00%
-Epoch 70, Loss: 0.0029248646460473537, Accuracy: 100.00%
-Epoch 80, Loss: 0.0021587531082332134, Accuracy: 100.00%
-Epoch 90, Loss: 0.0017548034666106105, Accuracy: 100.00%
-Traceback (most recent call last):
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 208, in <module>
-    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb), args.dataset)
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 187, in main
-    model = train_link_prediction(
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 69, in train_link_prediction
-    pred_probs = predict_edge_probabilities(model, embeddings['acoustic'], embeddings['word'], src, dst)
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 123, in predict_edge_probabilities
-    dst_embed = word_embeddings[dst]
-IndexError: index 48 is out of bounds for dimension 0 with size 8
-2025-05-27 17:20:02,143 - INFO - Model saved to models/hetero_gnn_model.pth
-Epoch 0, Loss: 2.3494443893432617, Accuracy: 12.08%
-Epoch 10, Loss: 1.6858524084091187, Accuracy: 35.42%
-Epoch 20, Loss: 0.9466008543968201, Accuracy: 75.42%
-Epoch 30, Loss: 0.3920694887638092, Accuracy: 91.67%
-Epoch 40, Loss: 0.11040377616882324, Accuracy: 99.58%
-Epoch 50, Loss: 0.029688354581594467, Accuracy: 100.00%
-Epoch 60, Loss: 0.010327626019716263, Accuracy: 100.00%
-Epoch 70, Loss: 0.005103568080812693, Accuracy: 100.00%
-Epoch 80, Loss: 0.0033322193194180727, Accuracy: 100.00%
-Epoch 90, Loss: 0.002491841558367014, Accuracy: 100.00%
-2025-05-27 17:29:56,772 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
-Epoch 0, Loss: 1.0574, BCE Loss: 1.0574
-Epoch 10, Loss: 0.8235, BCE Loss: 0.8235
-Epoch 20, Loss: 0.6638, BCE Loss: 0.6638
-Epoch 30, Loss: 0.6181, BCE Loss: 0.6181
-Epoch 40, Loss: 0.5928, BCE Loss: 0.5928
-Epoch 50, Loss: 0.5664, BCE Loss: 0.5664
-Epoch 60, Loss: 0.5420, BCE Loss: 0.5420
-Epoch 70, Loss: 0.5191, BCE Loss: 0.5191
-Epoch 80, Loss: 0.4966, BCE Loss: 0.4966
-Epoch 90, Loss: 0.4743, BCE Loss: 0.4743
-Epoch 100, Loss: 0.4523, BCE Loss: 0.4523
-Epoch 110, Loss: 0.4306, BCE Loss: 0.4306
-Epoch 120, Loss: 0.4093, BCE Loss: 0.4093
-Epoch 130, Loss: 0.3928, BCE Loss: 0.3928
-Epoch 140, Loss: 0.3673, BCE Loss: 0.3673
-Epoch 150, Loss: 0.3421, BCE Loss: 0.3421
-Epoch 160, Loss: 0.3167, BCE Loss: 0.3167
-Epoch 170, Loss: 0.2918, BCE Loss: 0.2918
-Epoch 180, Loss: 0.2681, BCE Loss: 0.2681
-Epoch 190, Loss: 0.2455, BCE Loss: 0.2455
-2025-05-27 17:30:30,362 - INFO - Model saved to models/hetero_gnn_model.pth
-Epoch 0, Loss: 2.688962697982788, Accuracy: 11.67%
-Epoch 10, Loss: 1.4894258975982666, Accuracy: 48.75%
-Epoch 20, Loss: 0.7645150423049927, Accuracy: 79.58%
-Epoch 30, Loss: 0.2761854827404022, Accuracy: 97.08%
-Epoch 40, Loss: 0.07463669031858444, Accuracy: 100.00%
-Epoch 50, Loss: 0.02184765227138996, Accuracy: 100.00%
-Epoch 60, Loss: 0.009108173660933971, Accuracy: 100.00%
-Epoch 70, Loss: 0.005278764292597771, Accuracy: 100.00%
-Epoch 80, Loss: 0.003719909582287073, Accuracy: 100.00%
-Epoch 90, Loss: 0.0029206951148808002, Accuracy: 100.00%
-Epoch 0, Loss: 1.3583, BCE Loss: 1.3583
-Epoch 10, Loss: 0.6940, BCE Loss: 0.6940
-Epoch 20, Loss: 0.6896, BCE Loss: 0.6896
-Epoch 30, Loss: 0.6842, BCE Loss: 0.6842
-Epoch 40, Loss: 0.6727, BCE Loss: 0.6727
-Epoch 50, Loss: 0.6572, BCE Loss: 0.6572
-Traceback (most recent call last):
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 208, in <module>
-    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb), args.dataset)
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 187, in main
-    model = train_link_prediction(
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 76, in train_link_prediction
-    loss.backward()
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_tensor.py", line 522, in backward
-    torch.autograd.backward(
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/__init__.py", line 266, in backward
-    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
-KeyboardInterrupt
-2025-05-27 17:43:33,993 - INFO - Model saved to models/hetero_gnn_model.pth
-Epoch 0, Loss: 2.8862271308898926, Accuracy: 11.67%
-Epoch 10, Loss: 1.7434495687484741, Accuracy: 33.75%
-Epoch 20, Loss: 1.253012776374817, Accuracy: 55.42%
-Epoch 30, Loss: 0.6286982297897339, Accuracy: 85.00%
-Epoch 40, Loss: 0.2065880000591278, Accuracy: 99.17%
-Epoch 50, Loss: 0.05757593363523483, Accuracy: 100.00%
-Epoch 60, Loss: 0.01949961856007576, Accuracy: 100.00%
-Epoch 70, Loss: 0.0095807034522295, Accuracy: 100.00%
-Epoch 80, Loss: 0.005975567270070314, Accuracy: 100.00%
-Epoch 90, Loss: 0.004380957223474979, Accuracy: 100.00%
-Epoch 0, Loss: 1.0997, BCE Loss: 1.0997
-Traceback (most recent call last):
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 208, in <module>
-    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb), args.dataset)
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 187, in main
-    model = train_link_prediction(
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 76, in train_link_prediction
-    loss.backward()
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_tensor.py", line 522, in backward
-    torch.autograd.backward(
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/__init__.py", line 266, in backward
-    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
-KeyboardInterrupt
-2025-05-28 00:02:31,879 - INFO - Model saved to models/hetero_gnn_model.pth
-Epoch 0, Loss: 2.6498804092407227, Accuracy: 12.08%
-Epoch 10, Loss: 1.688005805015564, Accuracy: 40.42%
-Epoch 20, Loss: 0.9983478784561157, Accuracy: 70.00%
-Epoch 30, Loss: 0.4114159345626831, Accuracy: 94.17%
-Epoch 40, Loss: 0.12483390420675278, Accuracy: 99.17%
-Epoch 50, Loss: 0.03581801429390907, Accuracy: 100.00%
-Epoch 60, Loss: 0.01259196363389492, Accuracy: 100.00%
-Epoch 70, Loss: 0.006102242041379213, Accuracy: 100.00%
-Epoch 80, Loss: 0.003927748650312424, Accuracy: 100.00%
-Epoch 90, Loss: 0.0029236190021038055, Accuracy: 100.00%
-2025-05-28 00:14:58,475 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
-Epoch 0, Loss: 0.7568, BCE Loss: 0.7568
-Epoch 10, Loss: 0.6814, BCE Loss: 0.6814
-Epoch 20, Loss: 0.6428, BCE Loss: 0.6428
-Epoch 30, Loss: 0.6102, BCE Loss: 0.6102
-Epoch 40, Loss: 0.5732, BCE Loss: 0.5732
-Epoch 50, Loss: 0.5408, BCE Loss: 0.5408
-Epoch 60, Loss: 0.5092, BCE Loss: 0.5092
-Epoch 70, Loss: 0.4795, BCE Loss: 0.4795
-Epoch 80, Loss: 0.4514, BCE Loss: 0.4514
-Epoch 90, Loss: 0.4242, BCE Loss: 0.4242
-Epoch 100, Loss: 0.3973, BCE Loss: 0.3973
-Epoch 110, Loss: 0.3707, BCE Loss: 0.3707
-Epoch 120, Loss: 0.3440, BCE Loss: 0.3440
-Epoch 130, Loss: 0.3173, BCE Loss: 0.3173
-Epoch 140, Loss: 0.2920, BCE Loss: 0.2920
-Epoch 150, Loss: 0.2677, BCE Loss: 0.2677
-Epoch 160, Loss: 0.2442, BCE Loss: 0.2442
-Epoch 170, Loss: 0.2214, BCE Loss: 0.2214
-Epoch 180, Loss: 0.2005, BCE Loss: 0.2005
-Epoch 190, Loss: 0.1815, BCE Loss: 0.1815
-2025-05-28 00:15:38,116 - INFO - Model saved to models/hetero_gnn_model.pth
-Epoch 0, Loss: 2.30989146232605, Accuracy: 12.08%
-Epoch 10, Loss: 1.39702570438385, Accuracy: 52.08%
-Epoch 20, Loss: 0.6561267971992493, Accuracy: 83.75%
-Epoch 30, Loss: 0.2131723016500473, Accuracy: 97.92%
-Epoch 40, Loss: 0.05780067294836044, Accuracy: 100.00%
-Epoch 50, Loss: 0.018430164083838463, Accuracy: 100.00%
-Epoch 60, Loss: 0.00850905105471611, Accuracy: 100.00%
-Epoch 70, Loss: 0.005155563820153475, Accuracy: 100.00%
-Epoch 80, Loss: 0.0037550004199147224, Accuracy: 100.00%
-Epoch 90, Loss: 0.0029922754038125277, Accuracy: 100.00%
-Traceback (most recent call last):
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 208, in <module>
-    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb), args.dataset)
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 187, in main
-    model = train_link_prediction(
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 62, in train_link_prediction
-    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/optim/adam.py", line 45, in __init__
-    super().__init__(params, defaults)
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/optim/optimizer.py", line 278, in __init__
-    self.add_param_group(cast(dict, param_group))
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_compile.py", line 22, in inner
-    import torch._dynamo
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_dynamo/__init__.py", line 2, in <module>
-    from . import allowed_functions, convert_frame, eval_frame, resume_execution
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_dynamo/convert_frame.py", line 32, in <module>
-    from .bytecode_transformation import (
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_dynamo/bytecode_transformation.py", line 18, in <module>
-    class InstructionExnTabEntry:
-  File "/usr/lib/python3.10/dataclasses.py", line 1184, in dataclass
-    return wrap(cls)
-  File "/usr/lib/python3.10/dataclasses.py", line 1175, in wrap
-    return _process_class(cls, init, repr, eq, order, unsafe_hash,
-  File "/usr/lib/python3.10/dataclasses.py", line 1024, in _process_class
-    _init_fn(all_init_fields,
-  File "/usr/lib/python3.10/dataclasses.py", line 579, in _init_fn
-    return _create_fn('__init__',
-  File "/usr/lib/python3.10/dataclasses.py", line 432, in _create_fn
-    exec(txt, globals, ns)
-  File "<string>", line 1, in <module>
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 211, in main
+    model = train_edge_regression(
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 95, in train_edge_regression
+    topo_loss = topological_loss(embeddings['acoustic'], embeddings['word'], adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word)
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 114, in topological_loss
+    cosine_sim_acoustic = F.cosine_similarity(
 KeyboardInterrupt

@@ -14,6 +14,8 @@ import math
 import torch.nn.functional as F
 from weak_ML2 import SimpleCNN
 from weakDense import SimpleDense
+import torch
+import random
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 random.seed(42)
@@ -43,35 +45,62 @@ def filter_similarity_matrix(similarity_matrix,  threshold=0, k=None):
     
     return filtered_matrix
     
-def create_label_matrix(graph, k):
-    # Assuming the 'label' feature is a node feature and stored as a tensor
-    labels = graph.ndata['label']
+def create_label_matrix(graph, k, seed=None):
+    if seed is not None:
+        random.seed(seed)
+        torch.manual_seed(seed)
     
-    # Get the unique labels
+    labels = graph.ndata['label']
     unique_labels = torch.unique(labels)
     
-    # Create a binary matrix
     num_nodes = graph.number_of_nodes()
     num_labels = len(unique_labels)
-    
     label_matrix = torch.zeros((num_nodes, num_labels), dtype=torch.float32)
     
-    # Fill the binary matrix
-    for i in range(num_labels):
-        label_matrix[:, i] = (labels == unique_labels[i]).float()
+    # Fill binary label matrix
+    for i, label in enumerate(unique_labels):
+        label_matrix[:, i] = (labels == label).float()
     
-    # Randomly select k values per column to stay as 1 and set the rest to 0
+    # Randomly keep only k ones per column
     for j in range(num_labels):
-        ones_indices = torch.nonzero(label_matrix[:, j]).squeeze().tolist()
-        if isinstance(ones_indices, int):
-           ones_indices = [ones_indices]  
-         
+        ones_indices = torch.nonzero(label_matrix[:, j]).view(-1).tolist()
         if len(ones_indices) > k:
             keep_indices = random.sample(ones_indices, k)
-            set_zero_indices = list(set(ones_indices) - set(keep_indices))
-            label_matrix[set_zero_indices, j] = 0
-    
+            mask = torch.ones_like(label_matrix[:, j])
+            mask[keep_indices] = 0
+            label_matrix[:, j][mask.bool()] = 0
+            
     return label_matrix
+    
+    
+    
+def create_weighted_label_matrix(graph, graph_w):
+    labels = graph.ndata['label']
+    unique_labels = torch.unique(labels)
+    num_nodes = graph.number_of_nodes()
+    num_labels = len(unique_labels)
+
+    label_matrix = torch.zeros((num_nodes, num_labels), dtype=torch.float32)
+
+    # Étape 1 : remplir les vrais labels avec 1
+    for i, label in enumerate(unique_labels):
+        label_matrix[:, i] = (labels == label).float()
+
+    # Étape 2 : Matrice de similarité
+    similarity_matrix =  torch.tensor(nx.to_numpy_array(graph_w.to_networkx()))
+
+    # Étape 3 : compléter avec des poids de similarité
+    weighted_matrix = torch.zeros_like(label_matrix)
+
+    for node_idx in range(num_nodes):
+        true_label = labels[node_idx].item()
+        for label_idx in range(num_labels):
+            if label_matrix[node_idx, label_idx] == 1.0:
+                weighted_matrix[node_idx, label_idx] = 1.0
+            else:
+                weighted_matrix[node_idx, label_idx] = similarity_matrix[true_label, label_idx]
+
+    return weighted_matrix, label_matrix
 
 def create_phon_matrix(graph, label_name, phon_idx):
     # Assuming the 'label' feature is a node feature and stored as a tensor
@@ -96,7 +125,7 @@ def create_phon_matrix(graph, label_name, phon_idx):
      
     return phon_matrix
         
-def softmax_prob(method, graph, num_labels, label_name=None, threshold_probability=None, k=None,idx_phon=None):
+def softmax_prob(method, graph, graph_w, num_labels, label_name=None, threshold_probability=None, k=None,idx_phon=None):
    
     num_nodes = graph.number_of_nodes()
     
@@ -121,6 +150,8 @@ def softmax_prob(method, graph, num_labels, label_name=None, threshold_probabili
       
     elif method == 'fixed' :
       softmax_probabilities = create_label_matrix(graph, k)
+    elif method == 'full_weighted':
+      softmax_probabilities,_ = create_weighted_label_matrix(graph, graph_w)
      
     elif method == 'mixed':
       #Load the PyTorch model
@@ -221,7 +252,7 @@ if __name__ == "__main__":
 
     softmax_probabilities=softmax_prob(
      method = 'folle' if args.msw == 'phon_coo' else args.method, 
-    graph = graph1, num_labels = num_word_nodes, label_name = all_label_names, threshold_probability=threshold_probability,k= k, idx_phon=idx_phon)
+    graph = graph1,graph_w=graph2, num_labels = num_word_nodes, label_name = all_label_names, threshold_probability=threshold_probability,k= k, idx_phon=idx_phon)
 
     np.save('filtered_softmax_probabilities_words_acoustic.npy', softmax_probabilities)
     

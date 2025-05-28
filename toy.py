@@ -1,67 +1,70 @@
-import numpy as np
+import torch
+import random
+import Levenshtein
 
-# Example list of words
-words = ['down' 'go' 'left' 'no' 'right' 'stop' 'up' 'yes']
+# Simuler un petit graphe
+class DummyGraph:
+    def __init__(self, labels):
+        self.ndata = {'label': torch.tensor(labels)}
+    def number_of_nodes(self):
+        return len(self.ndata['label'])
 
-# Function to compute the co-occurrence matrix of letters with a given window size
-def compute_cooccurrence_matrix(words, window=1):
-    # Set of all unique letters
-    letters = set(''.join(words))
-    
-    # List of letters sorted for consistent ordering
-    letters = sorted(letters)
-    
-    # Map letters to indices
-    letter_to_index = {letter: idx for idx, letter in enumerate(letters)}
-    
-    # Initialize the co-occurrence matrix
-    size = len(letters)
-    cooccurrence_matrix = np.zeros((size, size), dtype=int)
-    
-    # Populate the co-occurrence matrix
-    for word in words:
-        for i, letter1 in enumerate(word):
-            idx1 = letter_to_index[letter1]
-            for j in range(max(0, i - window), min(len(word), i + window + 1)):
-                if i != j:
-                    letter2 = word[j]
-                    idx2 = letter_to_index[letter2]
-                    cooccurrence_matrix[idx1, idx2] += 1
-    
-    return cooccurrence_matrix, letters
+# Dictionnaire label -> transcription textuelle
+label_to_text = {
+    0: "Afa’a Téla",
+    1: "Ajʉ’ɛ́ ŋgɔ̄ŋ",
+    2: "Akia",
+}
 
-# Function to compute the one-hot representation of letters
-def compute_one_hot_representation(words):
-    # Set of all unique letters
-    letters = set(''.join(words))
-    
-    # List of letters sorted for consistent ordering
-    letters = sorted(letters)
-    
-    # Map letters to indices
-    letter_to_index = {letter: idx for idx, letter in enumerate(letters)}
-    
-    # Initialize the one-hot representation matrix
-    size = len(letters)
-    one_hot_matrix = np.eye(size, dtype=int)
-    
-    return one_hot_matrix, letters
+# Graph de 6 nœuds
+graph = DummyGraph(labels=[0, 0, 1, 1, 2, 2])
 
-# Compute the co-occurrence matrix with default window size of 1
-cooccurrence_matrix, letters = compute_cooccurrence_matrix(words)
+def compute_similarity_matrix(label_to_text):
+    labels = list(label_to_text.keys())
+    n = len(labels)
+    S = torch.zeros((n, n))
+    for i in range(n):
+        for j in range(n):
+            if i == j:
+                S[i, j] = 1.0
+            else:
+                dist = Levenshtein.distance(label_to_text[i], label_to_text[j])
+                S[i, j] = 1.0 / (1.0 + dist)
+    return S
 
-# Compute the one-hot representation
-one_hot_matrix, letters = compute_one_hot_representation(words)
+def create_weighted_label_matrix(graph, label_to_text):
+    labels = graph.ndata['label']
+    unique_labels = torch.unique(labels)
+    num_nodes = graph.number_of_nodes()
+    num_labels = len(unique_labels)
 
-# Print the co-occurrence matrix with letters for better visualization
-print("Co-occurrence Matrix:")
-print("   ", "  ".join(letters))
-for letter, row in zip(letters, cooccurrence_matrix):
-    print(f"{letter}:", " ".join(f"{num:2}" for num in row))
+    label_matrix = torch.zeros((num_nodes, num_labels), dtype=torch.float32)
 
-# Print the one-hot representation with letters for better visualization
-print("\nOne-Hot Representation:")
-print("   ", "  ".join(letters))
-for letter, row in zip(letters, one_hot_matrix):
-    print(f"{letter}:", " ".join(f"{num:2}" for num in row))
+    # Étape 1 : remplir les vrais labels avec 1
+    for i, label in enumerate(unique_labels):
+        label_matrix[:, i] = (labels == label).float()
+
+    # Étape 2 : Matrice de similarité
+    similarity_matrix = compute_similarity_matrix(label_to_text)
+
+    # Étape 3 : compléter avec des poids de similarité
+    weighted_matrix = torch.zeros_like(label_matrix)
+
+    for node_idx in range(num_nodes):
+        true_label = labels[node_idx].item()
+        for label_idx in range(num_labels):
+            if label_matrix[node_idx, label_idx] == 1.0:
+                weighted_matrix[node_idx, label_idx] = 1.0
+            else:
+                weighted_matrix[node_idx, label_idx] = similarity_matrix[true_label, label_idx]
+
+    return weighted_matrix, label_matrix
+
+
+
+
+
+weighted_label_matrix,  label_matrix = create_weighted_label_matrix(graph, label_to_text)
+print(weighted_label_matrix)
+print(label_matrix)
 

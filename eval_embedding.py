@@ -233,6 +233,76 @@ def evaluate_link_prediction_classification_topk(
 
         return accuracy_top1, accuracy_topk
 
+def evaluate_acoustic_word_link_prediction_topk(gcn_model, hetero_graph,
+                                                labels_acoustic, labels_word,
+                                                top_k=5):
+    """
+    Predict links and compute top-1 and top-K accuracy between new acoustic and word nodes.
+
+    Parameters:
+    - gcn_model (HeteroLinkGCN): Trained GNN model.
+    - hetero_graph (DGLHeteroGraph): The heterogeneous graph.
+    - num_existing_acoustic_nodes (int): Count of original acoustic nodes.
+    - labels_acoustic (List[int] or np.ndarray): Labels of new acoustic nodes.
+    - labels_word (List[int] or np.ndarray): Labels of word nodes.
+    - top_k (int): Top-K value for top-K accuracy.
+
+    Returns:
+    - accuracy_top1 (float): Top-1 accuracy.
+    - accuracy_topk (float): Top-K accuracy.
+    """
+    gcn_model.eval()
+    device = next(gcn_model.parameters()).device
+
+    with torch.no_grad():
+        # Step 1: Compute embeddings
+        features_dic = {
+            'acoustic': hetero_graph.nodes['acoustic'].data['feat'].to(device),
+            'word': hetero_graph.nodes['word'].data['feat'].to(device)
+        }
+        embeddings = gcn_model(hetero_graph, features_dic)
+        emb_acoustic = embeddings['acoustic']
+        emb_word = embeddings['word']
+
+        # Step 2: New acoustic embeddings
+        # Étape 2 : Calcul des embeddings
+        embeddings = gcn_model(hetero_graph, features_dic)
+        emb_acoustic = embeddings['acoustic']
+        emb_word = embeddings['word']
+        num_emb_a = emb_acoustic.shape[0]
+
+        # Étape 3 : Création des edge features pour chaque pair (acoustic_i, word_j)
+        edge_features = []
+        for i in range(num_emb_a):
+            e_a = emb_acoustic[i].unsqueeze(0).repeat(emb_word.size(0), 1)  # [num_word, d]
+            e_w = emb_word
+            diff = torch.abs(e_w - e_a)
+            prod = e_w * e_a
+            feat = torch.cat([e_w, e_a, diff, prod], dim=1)  # [num_word, 4d]
+            edge_features.append(feat)
+
+        edge_features = torch.stack(edge_features)  # [num_emb_a, num_word, 4d]
+
+        pred_scores = gcn_model.edge_predictor(edge_features).squeeze(-1)  # [num_emb_a, num_word]
+
+        # Step 4: Top-K predictions
+        topk_indices = torch.topk(pred_scores, k=top_k, dim=1).indices.cpu().numpy()
+
+        correct_top1 = 0
+        correct_topk = 0
+
+        for i in range(len(labels_acoustic)):
+            true_label = labels_acoustic[i]
+            pred_labels_topk = [labels_word[idx] for idx in topk_indices[i]]
+            if true_label == pred_labels_topk[0]:
+                correct_top1 += 1
+            if true_label in pred_labels_topk:
+                correct_topk += 1
+
+        accuracy_top1 = correct_top1 / len(labels_acoustic)
+        accuracy_topk = correct_topk / len(labels_acoustic)
+
+        return accuracy_top1, accuracy_topk
 
 
 
@@ -284,7 +354,7 @@ acoustic_embeddings_regressor_np = acoustic_embeddings_hetero_regressor.detach()
 accuracy_hetero_regressor = train_evaluate_svm(acoustic_embeddings_regressor_np, labels_np)
 logging.info(f"Accuracy of the Heterogeneous regressor Model: {accuracy_hetero_regressor:.4f}")
 
-acc_pred_link, acc_topk  = evaluate_link_prediction_classification_topk(
+acc_pred_link, acc_topk  = evaluate_acoustic_word_link_prediction_topk(
     gcn_model=model_hetero_regressor,
     hetero_graph=hetero_graph,
     labels_acoustic=labels_np,

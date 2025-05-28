@@ -58,7 +58,7 @@ class HeteroLinkGCN(nn.Module):
   
 
 
-def train_link_prediction(model, g, features, true_edge_labels, src, dst, adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word, epochs=100, lr=0.0002, lamb=0):
+def train_link_prediction(model, g, features, true_edge_labels, src, dst, adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word, epochs=100, lr=0.00001, lamb=0):
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
     scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=5)
     criterion = nn.BCELoss()  # puisque on applique sigmoid dans le modèle
@@ -81,6 +81,30 @@ def train_link_prediction(model, g, features, true_edge_labels, src, dst, adj_ma
             print(f"Epoch {epoch}, Loss: {loss.item():.4f}, BCE Loss: {classification_loss.item():.4f}")
 
     return model
+    
+def train_edge_regression(model, g, features, true_edge_weights, src, dst, adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word, epochs=100, lr=0.001, lamb=1.0):
+    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+    scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=5)
+
+    for epoch in range(epochs):
+        model.train()
+        embeddings = model(g, features)
+        pred_weights = predict_edge_probabilities(model, embeddings['acoustic'], embeddings['word'], src, dst)
+
+        regression_loss = F.mse_loss(pred_weights, true_edge_weights)
+        topo_loss = topological_loss(embeddings['acoustic'], embeddings['word'], adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word)
+        loss = regression_loss + lamb * topo_loss
+
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+        scheduler.step(loss)
+
+        if epoch % 10 == 0 or epoch == epochs:
+            print(f"Epoch {epoch}, Loss: {loss.item():.4f}, MSE: {regression_loss.item():.4f}")
+
+    return model
+
     
     
     
@@ -184,7 +208,7 @@ def main(input_folder, graph_file, epochs, lamb, dataset):
     features = {k: v.float() for k, v in features.items()}
     true_edge_weights = true_edge_weights.float()
 
-    model = train_link_prediction(
+    model = train_edge_regression(
         model, hetero_graph, features, true_edge_weights, src, dst,
         adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word,
         epochs, lamb=lamb

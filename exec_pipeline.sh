@@ -8,13 +8,13 @@ declare -A UNIT_DIVISORS=( ["spoken_digit"]=10 ["google_command"]=8 ["yemba_comm
 
 #################################### CONFIGURATION #################################################
 DATASETS=( "google_command" "spoken_digit" "yemba_command_small")
-UNITS=$(seq 500 500 8000)
+UNITS=$(seq 300 500 8000)
 METHOD_MMA="fixed"
 METHOD_MSA="knn"
 ALPHAS=(1.0)
 NS=$(seq 0.5 0.1 1.0) #density
 LAMB_VALUES=$(seq 0 0.5 2.0)
-MHG_METHODS=("fixed" "dnn")
+MHG_METHODS=("full_weighted" "fixed" "dnn")
 MSW_METHODS=("phon_art" "phon_count")
 MGW_METHODS=("full")
 TWAS=(0.1)
@@ -58,7 +58,7 @@ build_homogeneous_graph() {
   div=${UNIT_DIVISORS[$dataset]}
   num=$(echo "$n*($unit/$div - 1)" | bc | awk '{print int($0)}')
 
-  for ko in $(seq 1 1 "$num"); do
+  for ko in $(seq 0 1 "$num"); do
     python3 build_kws_graph.py --num_n "$num" --k_out "$ko" --ta 0 --alpha "$alpha" --method "$msa" --dataset "$dataset" --sub_units "$unit" --method_sim "$mma"
 
     for lamb in $LAMB_VALUES; do
@@ -89,11 +89,11 @@ build_heterogeneous_graph_and_eval() {
         python3 build_kws_word_graph.py --method "$mgw" --dataset "$dataset"
 
         for twa in "${TWAS[@]}"; do
-          for p in $(seq "${PS[0]}" 2 "${PS[1]}"); do
-         
+          #for p in $(seq "${PS[0]}" 2 "${PS[1]}"); do
+            p=1.0
             num_n_h=$(echo "$n*($unit/$div - 1)/$p" | bc | awk '{print int($0)}')
-            #num_n_h=$(echo "($unit/$div - 1)/$p" | bc | awk '{print int($0)}')
-            printf "NUM_N_H: %.2f\n" "$num_n_h"
+            num_n_h=$(echo "($unit/$div - 1)/$p" | bc | awk '{print int($0)}')
+            #printf "NUM_N_H: %.2f\n" "$num_n_h"
 
             python3 heterogenous_graph.py --twa "$twa" --num_n "$num_n_h" --method "$mhg" --msw "$msw" \
               --sub_units "$unit" --method_sim "$mma" --method_acou "$msa" --dataset "$dataset" \
@@ -115,7 +115,7 @@ build_heterogeneous_graph_and_eval() {
                 --num_n_a "$num" --k_out "$ko" --ta 0 --alpha "$alpha" --tw 0.5 --msw "$msw" \
                 --msa "$msa" --mgw "$mgw" --sub_unit "$unit" --drop_freq 0.0 --drop_int 0.0 \
                 --dataset "$dataset" --add "$add" --k_inf "$num" --lamb $lamb --density $n
-            done
+            #done
           done
         done
       done
