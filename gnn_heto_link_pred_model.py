@@ -35,24 +35,24 @@ class HeteroLinkGCN(nn.Module):
         }, aggregate='mean')
 
         self.conv2 = HeteroGraphConv({
-            'sim_tic': SAGEConv(hidden_size, nombre_phon, 'mean'),
+            'sim_tic': SAGEConv(nombre_phon, nombre_phon, 'mean'),
             'sim_w': IdentityConv(out_dim=nombre_phon),
-            'related_to': SAGEConv(hidden_size, nombre_phon, 'mean')
+            'related_to': SAGEConv(nombre_phon, nombre_phon, 'mean')
         }, aggregate='mean')
 
         # MLP for binary classification (link exists or not)
-        #self.edge_predictor = nn.Sequential(
-        #    nn.Linear(4 * 128, linear_hidden_size),
-        #    nn.ReLU(),
-        #    nn.Linear(linear_hidden_size, 1),
-        #    nn.Sigmoid()  # Sortie entre 0 et 1
-        #)
+        self.edge_predictor = nn.Sequential(
+            nn.Linear(4 * nombre_phon, linear_hidden_size),
+            nn.ReLU(),
+            nn.Linear(linear_hidden_size, 1),
+            nn.Sigmoid()  # Sortie entre 0 et 1
+        )
 
     def forward(self, g, inputs):
         edge_weights = {etype: g.edges[etype].data['weight'] for etype in g.etypes}
         h = self.conv1(g, inputs, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
-        #h = {k: F.relu(v) for k, v in h.items()}
-        #h = self.conv2(g, h, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
+        h = {k: F.relu(v) for k, v in h.items()}
+        h = self.conv2(g, h, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
         return h  # embeddings
 
   
@@ -66,7 +66,7 @@ def train_link_prediction(model, g, features, true_edge_labels, src, dst, adj_ma
     for epoch in range(epochs):
         model.train()
         embeddings = model(g, features)
-        pred_probs = predict_edge_probabilities_dot(model, embeddings['acoustic'], embeddings['word'], src, dst)
+        pred_probs = predict_edge_probabilities(model, embeddings['acoustic'], embeddings['word'], src, dst)
 
         classification_loss = criterion(pred_probs, true_edge_labels)
         topo_loss = topological_loss(embeddings['acoustic'], embeddings['word'], adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word)
@@ -119,8 +119,8 @@ def generate_negative_edges(g, num_samples, src_type='word', dst_type='acoustic'
     return torch.tensor([i[0] for i in negatives]), torch.tensor([i[1] for i in negatives])
 
 def predict_edge_probabilities(model, acoustic_embeddings, word_embeddings, src, dst):
-    src_embed = acoustic_embeddings[src]
-    dst_embed = word_embeddings[dst]
+    src_embed = word_embeddings[src]
+    dst_embed = acoustic_embeddings[dst]
     diff = torch.abs(src_embed - dst_embed)
     prod = src_embed * dst_embed
     edge_features = torch.cat([src_embed, dst_embed, diff, prod], dim=1)
@@ -167,7 +167,7 @@ def main(input_folder, graph_file, epochs, lamb, dataset):
     in_feats = {ntype: features[ntype].shape[1] for ntype in features}
     hidden_size = 512
     linear_hidden_size = 64
-    nb_phon = len(phon_idx)
+    nb_phon = hetero_graph.nodes['word'].data['feat'].shape[1]
     model = HeteroLinkGCN(in_feats, hidden_size, nb_phon, linear_hidden_size)
 
     # Build adjacency matrices for topological loss

@@ -8,14 +8,14 @@ declare -A UNIT_DIVISORS=( ["spoken_digit"]=10 ["google_command"]=8 ["yemba_comm
 
 #################################### CONFIGURATION #################################################
 DATASETS=( "google_command" "spoken_digit" "yemba_command_small")
-UNITS=$(seq 8000 500 8000)
+UNITS=$(seq 500 500 8000)
 METHOD_MMA="fixed"
 METHOD_MSA="knn"
 ALPHAS=(1.0)
 NS=$(seq 0.5 0.1 1.0) #density
 LAMB_VALUES=$(seq 0 0.5 2.0)
 MHG_METHODS=("fixed" "dnn")
-MSW_METHODS=("phon_count")
+MSW_METHODS=("phon_art" "phon_count")
 MGW_METHODS=("full")
 TWAS=(0.1)
 PS=(0.5 1 2 4) # proportion of number of link between the graphs
@@ -34,8 +34,8 @@ generate_acoustic_similarity() {
   if [ ! -f "$outfile" ]; then
     python3 generate_similarity_matrix_acoustic.py --sub_unit "$unit" --method "$mma" --dataset "$dataset"
   fi
-  python3 weakDense.py --epochs 200 --method_sim $mma --sub_unit $unit --dataset $dataset
-  python3 weak_ML2.py --epochs 200 --method_sim $mma --sub_unit $unit --dataset $dataset
+  python3 weakDense.py --epochs 100 --method_sim $mma --sub_unit $unit --dataset $dataset
+  python3 weak_ML2.py --epochs 100 --method_sim $mma --sub_unit $unit --dataset $dataset
 }
 
 generate_word_similarity() {
@@ -100,9 +100,9 @@ build_heterogeneous_graph_and_eval() {
               --num_n_ac "$num" --k_out "$ko"
 
             graph_file="saved_graphs/$dataset/$mma/$msa/$mhg/$msw/hetero_graph_${num}_${ko}_${num_n_h}_${unit}.dgl"
-            python3 gnn_heto_model.py --input_folder '' --graph_file "$graph_file" --epochs 200 --lamb $lamb \
+            python3 gnn_heto_model.py --input_folder '' --graph_file "$graph_file" --epochs 100 --lamb $lamb \
               >> "logs/hetero_${dataset}_${unit}_${ko}.log" 2>&1
-            python3 gnn_heto_link_pred_model.py --input_folder '' --graph_file "$graph_file" --epochs 500 --lamb $lamb --dataset $dataset\
+            python3 gnn_heto_link_pred_model.py --input_folder '' --graph_file "$graph_file" --epochs 200 --lamb $lamb --dataset $dataset\
               >> "logs/hetero_${dataset}_${unit}_${ko}.log" 2>&1
 
             python3 eval_embedding.py --mma "$mma" --twa "$twa" --num_n_h "$num_n_h" --mhg "$mhg" \

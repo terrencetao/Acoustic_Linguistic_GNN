@@ -96,28 +96,31 @@ def compute_distance_for_pair(spectrograms, i, j, d='dtw'):
        distance = vgg_distance(spectrograms[i], spectrograms[j])
     return i, j, distance
 
+
+
 def compute_dtw_similarity_matrix(spectrograms, d='dtw'):
     num_spectrograms = len(spectrograms)
     similarity_matrix = np.zeros((num_spectrograms, num_spectrograms))
     
-    # Create a list of pairs (i, j) for the upper triangle excluding the diagonal
+    # Liste des paires à comparer
     pairs = [(i, j) for i in range(num_spectrograms) for j in range(i + 1, num_spectrograms)]
     
-    # Use Parallel and delayed to parallelize the computation
-    results = Parallel(n_jobs=-1)(delayed(compute_distance_for_pair)(spectrograms, i, j,d) for i, j in tqdm(pairs))
+    # Calcul parallèle des distances
+    results = Parallel(n_jobs=-1)(
+        delayed(compute_distance_for_pair)(spectrograms, i, j, d) for i, j in tqdm(pairs)
+    )
     
-    # Fill in the similarity matrix for the upper triangle and mirror it for the lower triangle
+    # Remplir la matrice triangulaire supérieure + miroir
     for i, j, distance in results:
-      
-        if d == 'vgg':
-           similarity_matrix[i, j] = np.exp(-distance)
-        elif d == 'dtw':
-           similarity_matrix[i, j] = np.exp(-distance)  # Convert distance to similarity
+        similarity = np.exp(-distance)
+        similarity_matrix[i, j] = similarity
+        similarity_matrix[j, i] = similarity  # symétrie
     
-    # Mirror the upper triangle to the lower triangle to ensure symmetry
-    similarity_matrix = similarity_matrix + similarity_matrix.T
+    # Optionnel : 1.0 sur la diagonale (auto-similarité maximale)
+    np.fill_diagonal(similarity_matrix, 0)
     
     return similarity_matrix
+
 
 def compute_vgg_similarity_matrix(spectrograms):
     num_spectrograms = len(spectrograms)

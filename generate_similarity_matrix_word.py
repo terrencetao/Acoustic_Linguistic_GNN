@@ -9,6 +9,51 @@ import pandas as pd
 import os 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+
+import panphon
+from panphon.segment import Segment
+import numpy as np
+from itertools import zip_longest
+
+
+
+
+def word_to_articulatory_vectors(word, mode='stack'):
+    """
+    Convertit un mot anglais en vecteurs articulatoires PanPhon.
+    
+    Args:
+        word (str): mot en anglais (ex: 'banana')
+        mode (str): 'stack' pour vecteurs phonème par phonème,
+                    'mean' pour un seul vecteur moyen
+    
+    Returns:
+        list of vectors (or 1 vector if mode == 'mean')
+    """
+    # Initialisation
+    ft = panphon.FeatureTable()
+    ipa_seq = ipa.convert(word)  # Liste des phonèmes IPA (ex: ['b', 'ə', 'n', 'æ', 'n', 'ə'])
+    vectors = []
+
+    
+    try:
+       vectors = ft.word_to_vector_list(word, numeric=True)
+    except IndexError:
+       print(f"Phonème non reconnu : {seg}")
+
+    if not vectors:
+        return None
+
+    if mode == 'mean':
+        return np.mean(vectors, axis=0).tolist()
+    elif mode == 'flat':
+        return np.array(vectors).ravel()
+    else:
+        return vectors
+
+
+
 def levenshtein_distance(s1, s2):
     if len(s1) < len(s2):
         return levenshtein_distance(s2, s1)
@@ -178,7 +223,11 @@ def simi_matrix(method = 'semantics', dataset=None, method_ac='mixed', sub_units
     else:
        phoneme_words = [ipa.convert(word) for word in label_names]
     similarity_matrix = compute_edit_distance_matrix(phoneme_words)
-    
+  elif method == 'phon_art':
+    word_embeddings = [word_to_articulatory_vectors(word, mode='flat') for word in label_names]
+    padded = list(zip_longest(*word_embeddings, fillvalue=0))
+    word_embeddings = np.array(padded).T
+    similarity_matrix = np.dot(word_embeddings, word_embeddings.T)
   elif method == 'phon_coo':
     #glove_vectors = api.load('glove-twitter-25')
     # Convert words to their phoneme representations

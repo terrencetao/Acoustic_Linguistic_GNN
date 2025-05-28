@@ -1,11 +1,7 @@
 Supervised Model,Unsupervised Model,Unsupervised sage Model,Heterogeneous Model,Heterogeneous regressor Model,Link prediction,link prediction topk,Heterogeneous sage Model,Heterogeneous attention Model,Spectrogram Baseline,CNN Model,DNN Model,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw,mma,add,k_out,k_inf,lambda,density
-0.3,0.3,0.15,0.35,0.25,0.2,0.45,0.0,0.0,0.3,0.3,0.45,0.1,22.0,fixed,5.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn,1,5,0.0,0.5
-0.3,0.3,0.15,0.35,0.25,0.0,0.45,0.0,0.0,0.3,0.3,0.45,0.1,22.0,dnn,5.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn,1,5,0.0,0.5
-0.25,0.15,0.25,0.3,0.2,0.3,0.45,0.0,0.0,0.3,0.3,0.45,0.1,22.0,fixed,5.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn,1,5,0.5,0.5
-0.3,0.25,0.2,0.3,0.35,0.15,0.4,0.0,0.0,0.3,0.45,0.4,0.1,22.0,fixed,5.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn,1,5,0.0,0.5
-0.25,0.15,0.15,0.25,0.3,0.2,0.4,0.0,0.0,0.3,0.35,0.4,0.1,22.0,fixed,5.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn,1,5,0.0,0.5
-0.35,0.3,0.15,0.2,0.1,0.15,0.4,0.0,0.0,0.3,0.35,0.4,0.1,22.0,fixed,5.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn,1,5,0.0,0.5
-0.35,0.3,0.15,0.35,0.4,0.05,0.4,0.0,0.0,0.3,0.35,0.4,0.1,22.0,dnn,5.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn,1,5,0.0,0.5
-0.3,0.25,0.15,0.3,0.15,0.15,0.45,0.0,0.0,0.3,0.35,0.4,0.1,22.0,fixed,5.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn,1,5,0.5,0.5
-0.3,0.25,0.15,0.3,0.15,0.05,0.25,0.0,0.0,0.3,0.35,0.4,0.1,22.0,dnn,5.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn,1,5,0.5,0.5
-0.35,0.4,0.25,0.3,0.35,0.1,0.3,0.0,0.0,0.3,0.35,0.4,0.1,22.0,fixed,5.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn,1,5,1.0,0.5
+0.35,0.15,0.3,0.35,0.1,0.15,0.35,0.0,0.0,0.3,0.35,0.45,0.1,11.0,fixed,5.0,0.0,1.0,0.5,phon_art,knn,full,fixed,dnn,1,5,0.0,0.5
+0.35,0.25,0.2,0.3,0.2,0.1,0.4,0.0,0.0,0.3,0.35,0.6,0.1,11.0,fixed,5.0,0.0,1.0,0.5,phon_art,knn,full,fixed,dnn,1,5,0.0,0.5
+0.35,0.25,0.2,0.35,0.2,0.15,0.45,0.0,0.0,0.3,0.35,0.6,0.1,11.0,fixed,5.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn,1,5,0.0,0.5
+0.35,0.25,0.2,0.45,0.2,0.2,0.45,0.0,0.0,0.3,0.35,0.6,0.1,11.0,dnn,5.0,0.0,1.0,0.5,phon_art,knn,full,fixed,dnn,1,5,0.0,0.5
+0.35,0.25,0.2,0.3,0.2,0.1,0.4,0.0,0.0,0.3,0.35,0.6,0.1,11.0,dnn,5.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn,1,5,0.0,0.5
+0.45,0.25,0.2,0.3,0.2,0.05,0.3,0.0,0.0,0.3,0.45,0.55,0.1,11.0,fixed,5.0,0.0,1.0,0.5,phon_art,knn,full,fixed,dnn,1,5,0.0,0.5

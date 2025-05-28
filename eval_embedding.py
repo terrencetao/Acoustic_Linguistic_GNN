@@ -110,7 +110,7 @@ features_dic = {
 in_feats = {'acoustic': features_dic['acoustic'].shape[1], 'word': features_dic['word'].shape[1]}
 hidden_size = 512
 linear_hidden_size = 64
-nb_phon = len(phon_idx)
+nb_phon = hetero_graph.nodes['word'].data['feat'].shape[1]
 out_feats = len(labels.unique())
 
 # Initialize the model
@@ -180,26 +180,8 @@ def evaluate_link_prediction_classification_topk(
     hetero_graph,
     labels_acoustic,
     labels_word,
-    top_k=5
+    top_k=3
 ):
-    """
-    Évaluation du modèle pour la prédiction binaire de liens (existe ou pas) entre
-    les nouveaux nœuds acoustiques et les nœuds word.
-
-    Retourne top-1 et top-k accuracy.
-
-    Paramètres :
-    - gcn_model : le modèle GNN entraîné.
-    - hetero_graph : graphe hétérogène DGL.
-    - num_existing_acoustic_nodes : nombre de nœuds acoustiques avant ajout.
-    - labels_acoustic : labels (classes) des nouveaux nœuds acoustiques.
-    - labels_word : labels (classes) des nœuds word.
-    - top_k : valeur de K pour l'accuracy top-K.
-
-    Retour :
-    - accuracy_top1, accuracy_topk
-    """
-
     gcn_model.eval()
     device = next(gcn_model.parameters()).device
 
@@ -215,14 +197,21 @@ def evaluate_link_prediction_classification_topk(
         emb_acoustic = embeddings['acoustic']
         emb_word = embeddings['word']
         num_emb_a = emb_acoustic.shape[0]
-      
 
-        # Étape 4 : Prédire les liens pour chaque nouveau nœud
-        scores = torch.matmul(emb_acoustic, emb_word.T)  # produit scalaire entre tous les vecteurs
+        # Étape 3 : Création des edge features pour chaque pair (acoustic_i, word_j)
+        edge_features = []
+        for i in range(num_emb_a):
+            e_a = emb_acoustic[i].unsqueeze(0).repeat(emb_word.size(0), 1)  # [num_word, d]
+            e_w = emb_word
+            diff = torch.abs(e_w - e_a)
+            prod = e_w * e_a
+            feat = torch.cat([e_w, e_a, diff, prod], dim=1)  # [num_word, 4d]
+            edge_features.append(feat)
 
-        # Appliquer la sigmoid pour transformer les scores en probabilités
-        pred_scores = torch.sigmoid(scores)
+        edge_features = torch.stack(edge_features)  # [num_emb_a, num_word, 4d]
 
+        # Étape 4 : Prédire les scores de lien
+        pred_scores = gcn_model.edge_predictor(edge_features).squeeze(-1)  # [num_emb_a, num_word]
 
         # Étape 5 : top-K prédiction
         topk_indices = torch.topk(pred_scores, k=top_k, dim=1).indices.cpu().numpy()
