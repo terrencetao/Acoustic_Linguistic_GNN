@@ -101,6 +101,48 @@ def create_weighted_label_matrix(graph, graph_w):
                 weighted_matrix[node_idx, label_idx] = similarity_matrix[true_label, label_idx]
 
     return weighted_matrix, label_matrix
+    
+def compute_similarity_matrix(label_to_text):
+    labels = list(label_to_text.keys())
+    n = len(labels)
+    S = torch.zeros((n, n))
+    for i in range(n):
+        for j in range(n):
+            if i == j:
+                S[i, j] = 1.0
+            else:
+                dist = Levenshtein.distance(label_to_text[i], label_to_text[j])
+                S[i, j] = 1.0 / (1.0 + dist)
+    return S
+
+def create_weighted_label_matrix_level(graph, label_to_text):
+    labels = graph.ndata['label']
+    unique_labels = torch.unique(labels)
+    num_nodes = graph.number_of_nodes()
+    num_labels = len(unique_labels)
+
+    label_matrix = torch.zeros((num_nodes, num_labels), dtype=torch.float32)
+
+    # Étape 1 : remplir les vrais labels avec 1
+    for i, label in enumerate(unique_labels):
+        label_matrix[:, i] = (labels == label).float()
+
+    # Étape 2 : Matrice de similarité
+    similarity_matrix = compute_similarity_matrix(label_to_text)
+
+    # Étape 3 : compléter avec des poids de similarité
+    weighted_matrix = torch.zeros_like(label_matrix)
+
+    for node_idx in range(num_nodes):
+        true_label = labels[node_idx].item()
+        for label_idx in range(num_labels):
+            if label_matrix[node_idx, label_idx] == 1.0:
+                weighted_matrix[node_idx, label_idx] = 1.0
+            else:
+                weighted_matrix[node_idx, label_idx] = similarity_matrix[true_label, label_idx]
+
+    return weighted_matrix, label_matrix
+
 
 def create_phon_matrix(graph, label_name, phon_idx):
     # Assuming the 'label' feature is a node feature and stored as a tensor
@@ -152,7 +194,8 @@ def softmax_prob(method, graph, graph_w, num_labels, label_name=None, threshold_
       softmax_probabilities = create_label_matrix(graph, k)
     elif method == 'full_weighted':
       softmax_probabilities,_ = create_weighted_label_matrix(graph, graph_w)
-     
+    elif method == 'full_weighted_level':
+      softmax_probabilities = create_weighted_label_matrix_level(graph, label_to_text)
     elif method == 'mixed':
       #Load the PyTorch model
        acoustic_model = torch.load('models/cnn.pth', weights_only=False)

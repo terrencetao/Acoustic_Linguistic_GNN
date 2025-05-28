@@ -197,6 +197,8 @@ def filtered_matrix(method, subset_labels, similarity_matrix,spectrogram, thresh
         if distance_function is None:
             raise ValueError("Distance function must be provided for 'knn' method")
         filtered_similarity_matrix = k_nearest_neighbors(similarity_matrix=similarity_matrix,k_in = k, spectrogram = spectrogram, distance_function = distance_function, k_out=k_out)
+    elif method == 'filter':
+        filtered_similarity_matrix = similarity_matrix
     else:
         raise ValueError("Unsupported method: choose from 'dtw', 'fixed', 'mixed', or 'knn'")
 
@@ -217,7 +219,7 @@ if __name__ == "__main__":
     parser.add_argument('--k_out', help='number of negative  neighbors for filtering acoustic graph', type=int, required=True)
     parser.add_argument('--ta', help='acoustic similarity threshold', type=float, default=0)
     parser.add_argument('--alpha', help='coefficient', type=float, default=2)
-    parser.add_argument('--method', help='method for filtering', choices=['dtw', 'fixed', 'mixed', 'knn'], required=True)
+    parser.add_argument('--method', help='method for filtering', choices=['dtw', 'fixed', 'mixed', 'knn', 'filter'], required=True)
     parser.add_argument('--dataset', help='name of dataset', required=True)
     parser.add_argument('--sub_units', help='fraction of data', required=True) 
     parser.add_argument('--method_sim', help='', required=True)

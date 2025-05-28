@@ -11,8 +11,8 @@ from joblib import Parallel, delayed
 from tqdm import tqdm
 import argparse 
 import math
-
-
+from dgl.data.utils import load_graphs
+import networkx as nx
 from dtw import dtw as dt
 import numpy as np
 import dgl
@@ -179,15 +179,16 @@ def compute_iqr_thresholds(similarity_matrix, labels):
 
     return iqr_thresholds
 
-def sim_matrix(method, subset_labels=None, subset_spectrograms=None):
+def sim_matrix(method, subset_labels=None, subset_spectrograms=None, graph_w=None):
     """
     Compute a similarity matrix using the specified method.
 
     Parameters:
-    - method (str): The method to use ('dtw' for Dynamic Time Warping or 'fixed' for label-based similarity).
-    - subset_labels (list or np.ndarray): Labels corresponding to the data, used for the 'fixed' method.
-    - subset_spectrograms (np.ndarray): Spectrograms for the 'dtw' method.
-    
+    - method (str): Method to use ('dtw', 'vgg', 'fixed', or 'clique').
+    - subset_labels (list or np.ndarray): Labels corresponding to the data.
+    - subset_spectrograms (np.ndarray): Spectrograms (required for DTW and VGG).
+    - graph_w (networkx or DGLGraph): Graph encoding similarity between words.
+
     Returns:
     - similarity_matrix (np.ndarray): Computed similarity matrix.
     """
@@ -195,26 +196,47 @@ def sim_matrix(method, subset_labels=None, subset_spectrograms=None):
     if method == 'dtw':
         if subset_spectrograms is None:
             raise ValueError("subset_spectrograms is required for DTW similarity computation.")
-        # Compute similarity using DTW
         similarity_matrix = compute_dtw_similarity_matrix(subset_spectrograms)
-        
-    elif method == 'vgg':
-      similarity_matrix = compute_dtw_similarity_matrix(subset_spectrograms, d=method)
     
+    elif method == 'vgg':
+        similarity_matrix = compute_dtw_similarity_matrix(subset_spectrograms, d='vgg')
+
     elif method == 'fixed':
         if subset_labels is None:
             raise ValueError("subset_labels is required for label-based similarity computation.")
-        
-        # Convert labels to a NumPy array for consistency
         labels_train_np = np.copy(subset_labels)
-        
-        # Create a comparison matrix (1 for same labels, 0 otherwise)
-        similarity_matrix = (labels_train_np[:, None] == labels_train_np[None, :]).astype(int)
-    
+        similarity_matrix = (labels_train_np[:, None] == labels_train_np[None, :]).astype(float)
+
+    elif method == 'clique':
+        if subset_labels is None or graph_w is None:
+            raise ValueError("Both subset_labels and graph_w are required for 'clique' method.")
+
+        labels_train_np = np.copy(subset_labels)
+        N = len(labels_train_np)
+
+        # Étape 1 : similarité binaire de base (1 si même label, 0 sinon)
+        similarity_matrix = (labels_train_np[:, None] == labels_train_np[None, :]).astype(float)
+
+        # Étape 2 : construire dictionnaire d’index de label
+        unique_labels = list(set(labels_train_np))
+        label_to_index = {label: i for i, label in enumerate(unique_labels)}
+
+        # Étape 3 : convertir le graphe de mots en matrice de similarité
+        word_matrix = torch.tensor(nx.to_numpy_array(graph_w.to_networkx()), dtype=torch.float32)
+
+        # Étape 4 : remplacer les zéros dans la matrice par la similarité entre labels
+        for i in range(N):
+            for j in range(N):
+                if similarity_matrix[i, j] == 0:
+                    idx_i = label_to_index[labels_train_np[i]]
+                    idx_j = label_to_index[labels_train_np[j]]
+                    similarity_matrix[i, j] = word_matrix[idx_i, idx_j].item()
+
     else:
-        raise ValueError(f"Unknown method: {method}. Supported methods are 'dtw' and 'fixed'.")
-    
-    return similarity_matrix    
+        raise ValueError(f"Unknown method: {method}. Supported methods are 'dtw', 'vgg', 'fixed', 'clique'.")
+
+    return similarity_matrix
+   
 
    
 # Function to perform stratified sampling
@@ -260,6 +282,9 @@ if __name__ == "__main__":
 	subset_labels_path = os.path.join(save_dir, f'subset_label_{sub_units}.npy')
 	subset_val_spectrogram_path = os.path.join(save_dir, f'subset_val_spectrogram_{sub_units}.npy')
 	subset_val_labels_path = os.path.join(save_dir, f'subset_val_label_{sub_units}.npy')
+	
+	glist2, _ = load_graphs(os.path.join('saved_graphs',args.dataset, "dgl_words_graph.bin"))
+	dgl_G_words = glist2[0]
 
     # Check if the similarity matrix file already exists
 	if not os.path.isfile(similarity_matrix_path):
@@ -342,7 +367,7 @@ if __name__ == "__main__":
 		#nan_mask = np.isnan(medianes)
 		#filtered_similarity_matrix = filter_similarity_matrix(similarity_matrix, subset_labels, threshold=int(args.ta), k=int(args.num_n))
 
-		similarity_matrix = sim_matrix(method=args.method,  subset_labels=subset_labels, subset_spectrograms=subset_spectrograms)
+		similarity_matrix = sim_matrix(method=args.method,  subset_labels=subset_labels, subset_spectrograms=subset_spectrograms, graph_w = dgl_G_words)
 
 		print(similarity_matrix)
 		

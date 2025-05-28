@@ -101,7 +101,7 @@ def train_edge_regression(model, g, features, true_edge_weights, src, dst, adj_m
         scheduler.step(loss)
 
         if epoch % 10 == 0 or epoch == epochs:
-            print(f"Epoch {epoch}, Loss: {loss.item():.4f}, MSE: {regression_loss.item():.4f}")
+            print(f"Epoch {epoch}, Loss: {loss.item():.4f}, Regularisation: {topo_loss}, MSE: {regression_loss.item():.4f}")
 
     return model
 
