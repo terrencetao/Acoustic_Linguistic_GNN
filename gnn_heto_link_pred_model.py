@@ -36,7 +36,7 @@ class HeteroLinkGCN(nn.Module):
 
         self.conv2 = HeteroGraphConv({
             'sim_tic': SAGEConv(nombre_phon, nombre_phon, 'mean'),
-            'sim_w': IdentityConv(out_dim=nombre_phon),
+            'sim_w': SAGEConv(nombre_phon, nombre_phon, 'mean'),
             'related_to': SAGEConv(nombre_phon, nombre_phon, 'mean')
         }, aggregate='mean')
 
@@ -51,14 +51,14 @@ class HeteroLinkGCN(nn.Module):
     def forward(self, g, inputs):
         edge_weights = {etype: g.edges[etype].data['weight'] for etype in g.etypes}
         h = self.conv1(g, inputs, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
-        h = {k: F.relu(v) for k, v in h.items()}
-        h = self.conv2(g, h, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
+        #h = {k: F.relu(v) for k, v in h.items()}
+        #h = self.conv2(g, h, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
         return h  # embeddings
 
   
 
 
-def train_link_prediction(model, g, features, true_edge_labels, src, dst, adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word, epochs=100, lr=0.00001, lamb=0):
+def train_link_prediction(model, g, features, true_edge_labels, src, dst, adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word, epochs=100, lr=0.0001, lamb=0):
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
     scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=5)
     criterion = nn.BCELoss()  # puisque on applique sigmoid dans le modèle
@@ -70,7 +70,7 @@ def train_link_prediction(model, g, features, true_edge_labels, src, dst, adj_ma
 
         classification_loss = criterion(pred_probs, true_edge_labels)
         topo_loss = topological_loss(embeddings['acoustic'], embeddings['word'], adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word)
-        loss = classification_loss + lamb * topo_loss
+        loss = lamb *classification_loss +  topo_loss
 
         optimizer.zero_grad()
         loss.backward()

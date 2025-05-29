@@ -8,13 +8,13 @@ declare -A UNIT_DIVISORS=( ["spoken_digit"]=10 ["google_command"]=8 ["yemba_comm
 
 #################################### CONFIGURATION #################################################
 DATASETS=( "google_command" "spoken_digit" "yemba_command_small")
-UNITS=$(seq 200 500 8000)
+UNITS=$(seq 2000 500 8000)
 METHOD_MMA="clique"
 METHOD_MSA="filter"
 ALPHAS=(1.0)
 NS=$(seq 1 0.1 1.0) #density
-LAMB_VALUES=$(seq 0 0.5 2.0)
-MHG_METHODS=("full_weighted" "fixed" "dnn")
+LAMB_VALUES=$(seq 0.1 0.1 1)
+MHG_METHODS=("full_weighted" "fixed")
 MSW_METHODS=("phon_art" "phon_count")
 MGW_METHODS=("full")
 TWAS=(0.1)
@@ -44,7 +44,7 @@ generate_word_similarity() {
   mma=$3
   msw=$4
 
-  python3 generate_similarity_matrix_word.py --tw 0.1 --method "$msw" --dataset "$dataset" --sub_units "$unit" --method_sim "$mma"
+  python3 generate_similarity_matrix_word.py --tw 0 --method "$msw" --dataset "$dataset" --sub_units "$unit" --method_sim "$mma"
 }
 
 build_homogeneous_graph() {
@@ -61,6 +61,10 @@ build_homogeneous_graph() {
       generate_word_similarity "$dataset" "$unit" "$mma" "$msw"
       for mgw in "${MGW_METHODS[@]}"; do
         python3 build_kws_word_graph.py --method "$mgw" --dataset "$dataset"
+        
+       
+        generate_acoustic_similarity "$dataset" "$unit" "$mma"
+
 
   #for ko in $(seq 0 1 "$num"); do
     ko=1
@@ -71,8 +75,8 @@ build_homogeneous_graph() {
       python3 gnn_model.py --input_folder '' --graph_file "$graph_file" --epochs 50 --lamb "$lamb" >> "logs/gnn_${dataset}_${unit}_${ko}.log" 2>&1
 
       build_heterogeneous_graph_and_eval "$dataset" "$unit" "$mma" "$msa" "$alpha" "$n" "$num" "$ko"
-    done
-  #done
+    
+  done
   
   done
   done
@@ -104,9 +108,9 @@ build_heterogeneous_graph_and_eval() {
               --num_n_ac "$num" --k_out "$ko"
 
             graph_file="saved_graphs/$dataset/$mma/$msa/$mhg/$msw/hetero_graph_${num}_${ko}_${num_n_h}_${unit}.dgl"
-            python3 gnn_heto_model.py --input_folder '' --graph_file "$graph_file" --epochs 50 --lamb $lamb \
+            python3 gnn_heto_model.py --input_folder '' --graph_file "$graph_file" --epochs 150 --lamb $lamb \
               >> "logs/hetero_${dataset}_${unit}_${ko}.log" 2>&1
-            python3 gnn_heto_link_pred_model.py --input_folder '' --graph_file "$graph_file" --epochs 200 --lamb $lamb --dataset $dataset\
+            python3 gnn_heto_link_pred_model.py --input_folder '' --graph_file "$graph_file" --epochs 150 --lamb $lamb --dataset $dataset\
               >> "logs/hetero_${dataset}_${unit}_${ko}.log" 2>&1
 
             python3 eval_embedding.py --mma "$mma" --twa "$twa" --num_n_h "$num_n_h" --mhg "$mhg" \
@@ -114,14 +118,14 @@ build_heterogeneous_graph_and_eval() {
               --msa "$msa" --mgw "$mgw" --sub_unit "$unit" --drop_freq 0.0 --drop_int 0.0 \
               --dataset "$dataset" --lamb $lamb --density $n
 
-            for add in dnn; do
-              python3 induct_eval_embedding.py --mma "$mma" --twa "$twa" --num_n_h "$num_n_h" --mhg "$mhg" \
-                --num_n_a "$num" --k_out "$ko" --ta 0 --alpha "$alpha" --tw 0.5 --msw "$msw" \
-                --msa "$msa" --mgw "$mgw" --sub_unit "$unit" --drop_freq 0.0 --drop_int 0.0 \
-                --dataset "$dataset" --add "$add" --k_inf "$num" --lamb $lamb --density $n
+            #for add in dnn; do
+            #  python3 induct_eval_embedding.py --mma "$mma" --twa "$twa" --num_n_h "$num_n_h" --mhg "$mhg" \
+            #    --num_n_a "$num" --k_out "$ko" --ta 0 --alpha "$alpha" --tw 0.5 --msw "$msw" \
+            #    --msa "$msa" --mgw "$mgw" --sub_unit "$unit" --drop_freq 0.0 --drop_int 0.0 \
+            #    --dataset "$dataset" --add "$add" --k_inf "$num" --lamb $lamb --density $n
             #done
           
-      done
+      #done
     done
   done
 }
@@ -133,9 +137,7 @@ build_heterogeneous_graph_and_eval() {
 # preprocess_dataset
 
 for dataset in "${DATASETS[@]}"; do
-  for unit in $UNITS; do
-    generate_acoustic_similarity "$dataset" "$unit" "$METHOD_MMA"
-
+     for unit in $UNITS; do
     for alpha in "${ALPHAS[@]}"; do
       #for n in $NS; do
         n=1.0

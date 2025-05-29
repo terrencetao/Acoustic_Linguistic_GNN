@@ -1,0 +1,9 @@
+Supervised Model,Unsupervised Model,Hibrid Model,Heterogeneous Model,Heterogeneous regressor Model,Link prediction,link prediction topk,Heterogeneous sage Model,Heterogeneous attention Model,Spectrogram Baseline,CNN Model,DNN Model,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw,mma,k_out,lambda,density
+0.9875,0.965625,0.090625,0.840625,0.890625,0.126875,0.364375,0.0,0.0,0.0,1.0,1.0,0.1,249.0,full_weighted,249.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,0.1,1.0
+0.9875,0.9375,0.090625,0.884375,0.921875,0.1725,0.394375,0.0,0.0,0.0,1.0,1.0,0.1,249.0,fixed,249.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,0.1,1.0
+0.98125,0.9625,0.090625,0.878125,0.88125,0.124375,0.339375,0.0,0.0,0.0,1.0,1.0,0.1,249.0,full_weighted,249.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,0.2,1.0
+0.98125,0.95,0.090625,0.9375,0.9375,0.126875,0.38625,0.0,0.0,0.0,1.0,1.0,0.1,249.0,fixed,249.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,0.2,1.0
+0.984375,0.96875,0.090625,0.91875,0.875,0.126875,0.36125,0.0,0.0,0.0,1.0,1.0,0.1,249.0,full_weighted,249.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,0.3,1.0
+0.984375,0.95,0.090625,0.94375,0.959375,0.124375,0.40375,0.0,0.0,0.0,1.0,1.0,0.1,249.0,fixed,249.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,0.3,1.0
+0.978125,0.95625,0.090625,0.940625,0.86875,0.103125,0.316875,0.0,0.0,0.0,1.0,1.0,0.1,249.0,full_weighted,249.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,0.4,1.0
+0.978125,0.953125,0.090625,0.965625,0.953125,0.14875,0.42625,0.0,0.0,0.0,1.0,1.0,0.1,249.0,fixed,249.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,0.4,1.0

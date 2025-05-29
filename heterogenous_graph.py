@@ -340,7 +340,11 @@ if __name__ == "__main__":
 
 # Flatten the features of the acoustic nodes
     acoustic_features = hetero_graph.nodes['acoustic'].data['feat']
-    flattened_acoustic_features = acoustic_features.view(acoustic_features.shape[0], -1)  # Flatten the features
+    #flattened_acoustic_features = acoustic_features.view(acoustic_features.shape[0], -1)  # Flatten the features
+    mean_feat = acoustic_features.mean(dim=-1)  # Moyenne temporelle
+    std_feat = acoustic_features.std(dim=-1)
+    pooled_feat = torch.cat([mean_feat, std_feat], dim=-1)  # [N, 2 * D]
+    flattened_acoustic_features = pooled_feat
 
 # Determine the length of the flattened features
     flattened_length = flattened_acoustic_features.shape[1]

@@ -1,6 +1,0 @@
-Supervised Model,Unsupervised Model,Hibrid Model,Heterogeneous Model,Heterogeneous regressor Model,Link prediction,link prediction topk,Heterogeneous sage Model,Heterogeneous attention Model,Spectrogram Baseline,CNN Model,DNN Model,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw,mma,k_out,lambda,density
-1.0,0.84375,0.84375,1.0,0.78125,0.125,0.375,0.0,0.0,0.0,1.0,1.0,0.1,24.0,full_weighted,24.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,0.0,1.0
-1.0,0.90625,0.84375,1.0,0.8125,0.125,0.375,0.0,0.0,0.0,1.0,1.0,0.1,24.0,fixed,24.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,0.0,1.0
-1.0,0.78125,0.84375,1.0,0.84375,0.125,0.375,0.0,0.0,0.0,1.0,1.0,0.1,24.0,dnn,24.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,0.0,1.0
-1.0,0.78125,0.0625,1.0,0.8125,0.125,0.38125,0.0,0.0,0.0,1.0,1.0,0.1,24.0,full_weighted,24.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,0.5,1.0
-1.0,0.84375,0.0625,1.0,0.90625,0.125,0.375,0.0,0.0,0.0,1.0,1.0,0.1,24.0,fixed,24.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,0.5,1.0

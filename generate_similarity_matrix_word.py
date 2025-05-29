@@ -151,10 +151,10 @@ def simi_matrix(method = 'semantics', dataset=None, method_ac='mixed', sub_units
 # Load label_names from the file to verify
   # Load label_names from the file to verify
   with open(f'label_names_{dataset}.pkl', 'rb') as f:
-    all_label_names = pickle.load(f)
-  sub_label_names = np.load(os.path.join('saved_matrix',dataset, method_ac,f'subset_label_{sub_units}.npy'))
+    label_names = pickle.load(f)
+  #sub_label_names = np.load(os.path.join('saved_matrix',dataset, method_ac,f'subset_label_{sub_units}.npy'))
   
-  label_names = set(all_label_names[sub_label_names])
+  
    #Save label_names to a file using pickle
   with open(f'subset_label_names_{dataset}.pkl', 'wb') as f:
     pickle.dump(label_names, f)
@@ -224,7 +224,7 @@ def simi_matrix(method = 'semantics', dataset=None, method_ac='mixed', sub_units
        phoneme_words = [ipa.convert(word) for word in label_names]
     similarity_matrix = compute_edit_distance_matrix(phoneme_words)
   elif method == 'phon_art':
-    word_embeddings = [word_to_articulatory_vectors(word, mode='flat') for word in label_names]
+    word_embeddings = [word_to_articulatory_vectors(word, mode='mean') for word in label_names]
     padded = list(zip_longest(*word_embeddings, fillvalue=0))
     word_embeddings = np.array(padded).T
     similarity_matrix = np.dot(word_embeddings, word_embeddings.T)
