@@ -8,7 +8,7 @@ declare -A UNIT_DIVISORS=( ["spoken_digit"]=10 ["google_command"]=8 ["yemba_comm
 
 #################################### CONFIGURATION #################################################
 DATASETS=( "google_command" "spoken_digit" "yemba_command_small")
-UNITS=$(seq 2000 500 8000)
+UNITS=$(seq 100 500 8000)
 METHOD_MMA="clique"
 METHOD_MSA="filter"
 ALPHAS=(1.0)
@@ -118,12 +118,12 @@ build_heterogeneous_graph_and_eval() {
               --msa "$msa" --mgw "$mgw" --sub_unit "$unit" --drop_freq 0.0 --drop_int 0.0 \
               --dataset "$dataset" --lamb $lamb --density $n
 
-            #for add in dnn; do
-            #  python3 induct_eval_embedding.py --mma "$mma" --twa "$twa" --num_n_h "$num_n_h" --mhg "$mhg" \
-            #    --num_n_a "$num" --k_out "$ko" --ta 0 --alpha "$alpha" --tw 0.5 --msw "$msw" \
-            #    --msa "$msa" --mgw "$mgw" --sub_unit "$unit" --drop_freq 0.0 --drop_int 0.0 \
-            #    --dataset "$dataset" --add "$add" --k_inf "$num" --lamb $lamb --density $n
-            #done
+            for add in dnn; do
+              python3 induct_eval_embedding.py --mma "$mma" --twa "$twa" --num_n_h "$num_n_h" --mhg "$mhg" \
+                --num_n_a "$num" --k_out "$ko" --ta 0 --alpha "$alpha" --tw 0.5 --msw "$msw" \
+                --msa "$msa" --mgw "$mgw" --sub_unit "$unit" --drop_freq 0.0 --drop_int 0.0 \
+                --dataset "$dataset" --add "$add" --k_inf "$num" --lamb $lamb --density $n
+            done
           
       #done
     done
