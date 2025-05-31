@@ -1,806 +1,278 @@
-1612
-8
-Epoch 0, Loss: 2.854279041290283, Accuracy: 11.25%
-Epoch 10, Loss: 1.1232722997665405, Accuracy: 63.75%
-Epoch 20, Loss: 0.38764849305152893, Accuracy: 92.50%
-Epoch 30, Loss: 0.0690411701798439, Accuracy: 100.00%
-Epoch 40, Loss: 0.010858004912734032, Accuracy: 100.00%
-Epoch 0, Loss: 0.36712515354156494, Accuracy: 5.00%
-Epoch 10, Loss: 0.27256453037261963, Accuracy: 11.25%
-Epoch 20, Loss: 0.26136958599090576, Accuracy: 15.00%
-Epoch 30, Loss: 0.2571297585964203, Accuracy: 12.50%
-Epoch 40, Loss: 0.2548161745071411, Accuracy: 13.75%
-Epoch 0, Loss: 3.6038458347320557, Accuracy: 12.50%
-Epoch 10, Loss: 3168.072265625, Accuracy: 12.50%
-Epoch 20, Loss: 2366.036865234375, Accuracy: 12.50%
-Epoch 30, Loss: 2347.751953125, Accuracy: 12.50%
-Epoch 40, Loss: 2346.312744140625, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 6.063370704650879, Accuracy: 12.50%
-Epoch 10, Loss: 1.4972422122955322, Accuracy: 46.25%
-Epoch 20, Loss: 0.9384102821350098, Accuracy: 73.75%
-Epoch 30, Loss: 0.40799909830093384, Accuracy: 92.50%
-Epoch 40, Loss: 0.12051896005868912, Accuracy: 100.00%
-Epoch 0, Loss: 0.36004507541656494, Accuracy: 5.00%
-Epoch 10, Loss: 0.27219897508621216, Accuracy: 12.50%
-Epoch 20, Loss: 0.26156938076019287, Accuracy: 13.75%
-Epoch 30, Loss: 0.25711458921432495, Accuracy: 12.50%
-Epoch 40, Loss: 0.2545839250087738, Accuracy: 8.75%
-Epoch 0, Loss: 4.543567180633545, Accuracy: 12.50%
-Epoch 10, Loss: 4.676252841949463, Accuracy: 12.50%
-Epoch 20, Loss: 3.1876649856567383, Accuracy: 12.50%
-Epoch 30, Loss: 2.8559489250183105, Accuracy: 12.50%
-Epoch 40, Loss: 2.753767728805542, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 3.6309406757354736, Accuracy: 7.50%
-Epoch 10, Loss: 1.1689655780792236, Accuracy: 58.75%
-Epoch 20, Loss: 0.5327492356300354, Accuracy: 90.00%
-Epoch 30, Loss: 0.15279096364974976, Accuracy: 100.00%
-Epoch 40, Loss: 0.03351738303899765, Accuracy: 100.00%
-Epoch 0, Loss: 0.32470938563346863, Accuracy: 20.00%
-Epoch 10, Loss: 0.26348233222961426, Accuracy: 11.25%
-Epoch 20, Loss: 0.25605151057243347, Accuracy: 15.00%
-Epoch 30, Loss: 0.2535765767097473, Accuracy: 13.75%
-Epoch 40, Loss: 0.2523672878742218, Accuracy: 16.25%
-Epoch 0, Loss: 4.7990875244140625, Accuracy: 13.75%
-Epoch 10, Loss: 4663.28955078125, Accuracy: 12.50%
-Epoch 20, Loss: 992.8783569335938, Accuracy: 12.50%
-Epoch 30, Loss: 865.9713134765625, Accuracy: 12.50%
-Epoch 40, Loss: 847.2105712890625, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 3.177185535430908, Accuracy: 11.25%
-Epoch 10, Loss: 1.2081222534179688, Accuracy: 61.25%
-Epoch 20, Loss: 0.4481138586997986, Accuracy: 90.00%
-Epoch 30, Loss: 0.09961934387683868, Accuracy: 100.00%
-Epoch 40, Loss: 0.01781739667057991, Accuracy: 100.00%
-Epoch 0, Loss: 0.3321819603443146, Accuracy: 12.50%
-Epoch 10, Loss: 0.2662190794944763, Accuracy: 13.75%
-Epoch 20, Loss: 0.25827082991600037, Accuracy: 12.50%
-Epoch 30, Loss: 0.25474148988723755, Accuracy: 11.25%
-Epoch 40, Loss: 0.25296908617019653, Accuracy: 16.25%
-Epoch 0, Loss: 3.0670018196105957, Accuracy: 10.00%
-Epoch 10, Loss: 21747810.0, Accuracy: 13.75%
-Epoch 20, Loss: 13399159.0, Accuracy: 13.75%
-Epoch 30, Loss: 13220845.0, Accuracy: 13.75%
-Epoch 40, Loss: 13215101.0, Accuracy: 13.75%
-1612
-8
-Epoch 0, Loss: 2.7499308586120605, Accuracy: 11.25%
-Epoch 10, Loss: 1.0125190019607544, Accuracy: 71.25%
-Epoch 20, Loss: 0.3958544433116913, Accuracy: 93.75%
-Epoch 30, Loss: 0.10568380355834961, Accuracy: 100.00%
-Epoch 40, Loss: 0.02232557348906994, Accuracy: 100.00%
-Epoch 0, Loss: 0.3559386432170868, Accuracy: 7.50%
-Epoch 10, Loss: 0.27046364545822144, Accuracy: 11.25%
-Epoch 20, Loss: 0.26043421030044556, Accuracy: 8.75%
-Epoch 30, Loss: 0.25630486011505127, Accuracy: 11.25%
-Epoch 40, Loss: 0.2542145848274231, Accuracy: 11.25%
-Epoch 0, Loss: 3.4100565910339355, Accuracy: 13.75%
-Epoch 10, Loss: 29990.263671875, Accuracy: 12.50%
-Epoch 20, Loss: 11838.15625, Accuracy: 12.50%
-Epoch 30, Loss: 11609.671875, Accuracy: 12.50%
-Epoch 40, Loss: 11601.4560546875, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 5.08912467956543, Accuracy: 13.75%
-Epoch 10, Loss: 1.1131891012191772, Accuracy: 65.00%
-Epoch 20, Loss: 0.44163045287132263, Accuracy: 92.50%
-Epoch 30, Loss: 0.11127512156963348, Accuracy: 100.00%
-Epoch 40, Loss: 0.02474859729409218, Accuracy: 100.00%
-Epoch 0, Loss: 0.35127753019332886, Accuracy: 7.50%
-Epoch 10, Loss: 0.2662416398525238, Accuracy: 11.25%
-Epoch 20, Loss: 0.2593180537223816, Accuracy: 13.75%
-Epoch 30, Loss: 0.255758136510849, Accuracy: 7.50%
-Epoch 40, Loss: 0.2538617253303528, Accuracy: 12.50%
-Epoch 0, Loss: 4.26229190826416, Accuracy: 13.75%
-Epoch 10, Loss: 41.71796798706055, Accuracy: 12.50%
-Epoch 20, Loss: 39.248443603515625, Accuracy: 12.50%
-Epoch 30, Loss: 39.18318557739258, Accuracy: 12.50%
-Epoch 40, Loss: 39.18107604980469, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 4.249520301818848, Accuracy: 12.50%
-Epoch 10, Loss: 1.1584126949310303, Accuracy: 65.00%
-Epoch 20, Loss: 0.39709874987602234, Accuracy: 95.00%
-Epoch 30, Loss: 0.08875695616006851, Accuracy: 100.00%
-Epoch 40, Loss: 0.018459096550941467, Accuracy: 100.00%
-Epoch 0, Loss: 0.3658151924610138, Accuracy: 16.25%
-Epoch 10, Loss: 0.2728230655193329, Accuracy: 13.75%
-Epoch 20, Loss: 0.262442409992218, Accuracy: 11.25%
-Epoch 30, Loss: 0.25802096724510193, Accuracy: 13.75%
-Epoch 40, Loss: 0.2555397152900696, Accuracy: 16.25%
-Epoch 0, Loss: 3.8381075859069824, Accuracy: 12.50%
-Epoch 10, Loss: 47883464.0, Accuracy: 12.50%
-Epoch 20, Loss: 24409710.0, Accuracy: 12.50%
-Epoch 30, Loss: 23935356.0, Accuracy: 12.50%
-Epoch 40, Loss: 23917466.0, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 3.9343841075897217, Accuracy: 13.75%
-Epoch 10, Loss: 1.083813190460205, Accuracy: 75.00%
-Epoch 20, Loss: 0.3843454420566559, Accuracy: 92.50%
-Epoch 30, Loss: 0.0962253212928772, Accuracy: 100.00%
-Epoch 40, Loss: 0.02131008543074131, Accuracy: 100.00%
-Epoch 0, Loss: 0.3611256778240204, Accuracy: 8.75%
-Epoch 10, Loss: 0.2722815275192261, Accuracy: 13.75%
-Epoch 20, Loss: 0.2616507411003113, Accuracy: 11.25%
-Epoch 30, Loss: 0.2566126585006714, Accuracy: 13.75%
-Epoch 40, Loss: 0.25420552492141724, Accuracy: 13.75%
-Epoch 0, Loss: 3.5899953842163086, Accuracy: 12.50%
-Epoch 10, Loss: 60549.71875, Accuracy: 12.50%
-Epoch 20, Loss: 22.59328269958496, Accuracy: 12.50%
-Epoch 30, Loss: 22.565017700195312, Accuracy: 12.50%
-Epoch 40, Loss: 22.564022064208984, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 4.291031837463379, Accuracy: 12.50%
-Epoch 10, Loss: 1.3711270093917847, Accuracy: 53.75%
-Epoch 20, Loss: 0.5630893111228943, Accuracy: 90.00%
-Epoch 30, Loss: 0.14710086584091187, Accuracy: 97.50%
-Epoch 40, Loss: 0.03658097982406616, Accuracy: 100.00%
-Epoch 0, Loss: 0.32652750611305237, Accuracy: 12.50%
-Epoch 10, Loss: 0.2644592225551605, Accuracy: 11.25%
 Traceback (most recent call last):
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 309, in <module>
-    model2 = train_with_topological_loss(model2, dgl_G, features, edge_weights,adj_matrix, labels, int(args.epochs))
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 159, in train_with_topological_loss
-    loss.backward()
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_tensor.py", line 522, in backward
-    torch.autograd.backward(
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/__init__.py", line 266, in backward
-    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/function.py", line 277, in apply
-    def apply(self, *args):
-KeyboardInterrupt
-1612
-8
-Epoch 0, Loss: 2.5574753284454346, Accuracy: 15.00%
-Epoch 10, Loss: 0.8892747759819031, Accuracy: 73.75%
-Epoch 20, Loss: 0.17387989163398743, Accuracy: 100.00%
-Epoch 30, Loss: 0.02237599529325962, Accuracy: 100.00%
-Epoch 40, Loss: 0.004345999099314213, Accuracy: 100.00%
-Epoch 0, Loss: 0.36113181710243225, Accuracy: 12.50%
-Epoch 10, Loss: 0.26798564195632935, Accuracy: 10.00%
-Epoch 20, Loss: 0.2596895396709442, Accuracy: 11.25%
-Epoch 30, Loss: 0.25540778040885925, Accuracy: 10.00%
-Epoch 40, Loss: 0.2533811628818512, Accuracy: 10.00%
-Epoch 0, Loss: 3.6896557807922363, Accuracy: 16.25%
-Epoch 10, Loss: 474381.3125, Accuracy: 12.50%
-Epoch 20, Loss: 276682.625, Accuracy: 12.50%
-Epoch 30, Loss: 274678.0, Accuracy: 12.50%
-Epoch 40, Loss: 274595.0, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 2.7540862560272217, Accuracy: 10.00%
-Epoch 10, Loss: 0.8298826217651367, Accuracy: 80.00%
-Epoch 20, Loss: 0.21242105960845947, Accuracy: 96.25%
-Epoch 30, Loss: 0.03165260702371597, Accuracy: 100.00%
-Epoch 40, Loss: 0.005237242206931114, Accuracy: 100.00%
-Epoch 0, Loss: 0.3237612843513489, Accuracy: 15.00%
-Epoch 10, Loss: 0.2640050947666168, Accuracy: 13.75%
-Epoch 20, Loss: 0.2577381432056427, Accuracy: 11.25%
-Epoch 30, Loss: 0.2545175850391388, Accuracy: 12.50%
-Epoch 40, Loss: 0.2529055178165436, Accuracy: 13.75%
-Epoch 0, Loss: 3.6589174270629883, Accuracy: 7.50%
-Epoch 10, Loss: 2249058.75, Accuracy: 12.50%
-Epoch 20, Loss: 129181.8046875, Accuracy: 12.50%
-Epoch 30, Loss: 129213.1796875, Accuracy: 12.50%
-Epoch 40, Loss: 129189.2421875, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 3.2061915397644043, Accuracy: 12.50%
-Epoch 10, Loss: 1.0466632843017578, Accuracy: 71.25%
-Epoch 20, Loss: 0.27701663970947266, Accuracy: 96.25%
-Epoch 30, Loss: 0.04555635526776314, Accuracy: 100.00%
-Epoch 40, Loss: 0.008648289367556572, Accuracy: 100.00%
-Epoch 0, Loss: 0.3394511938095093, Accuracy: 12.50%
-Epoch 10, Loss: 0.26861336827278137, Accuracy: 11.25%
-Epoch 20, Loss: 0.2594160735607147, Accuracy: 17.50%
-Epoch 30, Loss: 0.25555023550987244, Accuracy: 20.00%
-Epoch 40, Loss: 0.25353893637657166, Accuracy: 18.75%
-Epoch 0, Loss: 5.4200592041015625, Accuracy: 12.50%
-Epoch 10, Loss: 127263.90625, Accuracy: 12.50%
-Epoch 20, Loss: 81278.578125, Accuracy: 12.50%
-Epoch 30, Loss: 80526.25, Accuracy: 12.50%
-Epoch 40, Loss: 80497.6484375, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 3.6048316955566406, Accuracy: 12.50%
-Epoch 10, Loss: 1.355468511581421, Accuracy: 60.00%
-Epoch 20, Loss: 0.6078683137893677, Accuracy: 91.25%
-Epoch 30, Loss: 0.14368101954460144, Accuracy: 97.50%
-Epoch 40, Loss: 0.019198011606931686, Accuracy: 100.00%
-Epoch 0, Loss: 0.3808336555957794, Accuracy: 12.50%
-Epoch 10, Loss: 0.27318426966667175, Accuracy: 12.50%
-Epoch 20, Loss: 0.26229679584503174, Accuracy: 12.50%
-Epoch 30, Loss: 0.2574206292629242, Accuracy: 7.50%
-Epoch 40, Loss: 0.25531890988349915, Accuracy: 7.50%
-Epoch 0, Loss: 4.363129138946533, Accuracy: 7.50%
-Epoch 10, Loss: 280727.40625, Accuracy: 12.50%
-Epoch 20, Loss: 174704.28125, Accuracy: 12.50%
-Epoch 30, Loss: 172655.9375, Accuracy: 12.50%
-Epoch 40, Loss: 172591.328125, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 2.6347155570983887, Accuracy: 8.75%
-Epoch 10, Loss: 0.7422773838043213, Accuracy: 77.50%
-Epoch 20, Loss: 0.13768520951271057, Accuracy: 100.00%
-Epoch 30, Loss: 0.01578640379011631, Accuracy: 100.00%
-Epoch 40, Loss: 0.0035565595608204603, Accuracy: 100.00%
-Epoch 0, Loss: 0.3439098298549652, Accuracy: 11.25%
-Epoch 10, Loss: 0.27028578519821167, Accuracy: 13.75%
-Epoch 20, Loss: 0.26044192910194397, Accuracy: 12.50%
-Epoch 30, Loss: 0.25592002272605896, Accuracy: 16.25%
-Epoch 40, Loss: 0.2537435293197632, Accuracy: 15.00%
-Epoch 0, Loss: 3.0874757766723633, Accuracy: 13.75%
-Epoch 10, Loss: 67482.6328125, Accuracy: 12.50%
-Epoch 20, Loss: 46990.59375, Accuracy: 12.50%
-Epoch 30, Loss: 46070.1796875, Accuracy: 12.50%
-Epoch 40, Loss: 46038.62109375, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 5.0041632652282715, Accuracy: 11.25%
-Epoch 10, Loss: 1.0703914165496826, Accuracy: 70.00%
-Epoch 20, Loss: 0.413041353225708, Accuracy: 96.25%
-Epoch 30, Loss: 0.11090141534805298, Accuracy: 100.00%
-Epoch 40, Loss: 0.029850896447896957, Accuracy: 100.00%
-Epoch 0, Loss: 0.3228928744792938, Accuracy: 11.25%
-Epoch 10, Loss: 0.2640349566936493, Accuracy: 11.25%
-Epoch 20, Loss: 0.25663521885871887, Accuracy: 8.75%
-Epoch 30, Loss: 0.25386664271354675, Accuracy: 8.75%
-Epoch 40, Loss: 0.25255054235458374, Accuracy: 8.75%
-Epoch 0, Loss: 4.240114688873291, Accuracy: 10.00%
-Epoch 10, Loss: 650904.5, Accuracy: 12.50%
-Epoch 20, Loss: 587862.5625, Accuracy: 12.50%
-Epoch 30, Loss: 586219.8125, Accuracy: 12.50%
-Epoch 40, Loss: 586162.625, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 3.9015471935272217, Accuracy: 13.75%
-Epoch 10, Loss: 1.181117057800293, Accuracy: 62.50%
-Epoch 20, Loss: 0.573847234249115, Accuracy: 85.00%
-Epoch 30, Loss: 0.2116304337978363, Accuracy: 98.75%
-Epoch 40, Loss: 0.06125083565711975, Accuracy: 100.00%
-Epoch 0, Loss: 0.3364191949367523, Accuracy: 12.50%
-Epoch 10, Loss: 0.2667829096317291, Accuracy: 10.00%
-Epoch 20, Loss: 0.2584092617034912, Accuracy: 10.00%
-Epoch 30, Loss: 0.2552929222583771, Accuracy: 7.50%
-Epoch 40, Loss: 0.25374743342399597, Accuracy: 10.00%
-Epoch 0, Loss: 3.8810696601867676, Accuracy: 11.25%
-Epoch 10, Loss: 826.4688720703125, Accuracy: 12.50%
-Epoch 20, Loss: 612.1846923828125, Accuracy: 12.50%
-Epoch 30, Loss: 605.722900390625, Accuracy: 12.50%
-Epoch 40, Loss: 605.506591796875, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 5.55190372467041, Accuracy: 11.25%
-Epoch 10, Loss: 1.2671315670013428, Accuracy: 57.50%
-Epoch 20, Loss: 0.6185542345046997, Accuracy: 85.00%
-Epoch 30, Loss: 0.19637376070022583, Accuracy: 98.75%
-Epoch 40, Loss: 0.049215007573366165, Accuracy: 100.00%
-Epoch 0, Loss: 0.3506884276866913, Accuracy: 12.50%
-Epoch 10, Loss: 0.2692475914955139, Accuracy: 15.00%
-Epoch 20, Loss: 0.26027873158454895, Accuracy: 10.00%
-Epoch 30, Loss: 0.2561319172382355, Accuracy: 7.50%
-Epoch 40, Loss: 0.2541532516479492, Accuracy: 11.25%
-Epoch 0, Loss: 4.572977542877197, Accuracy: 12.50%
-Epoch 10, Loss: 1037.3819580078125, Accuracy: 12.50%
-Epoch 20, Loss: 889.6434936523438, Accuracy: 12.50%
-Epoch 30, Loss: 886.32177734375, Accuracy: 12.50%
-Epoch 40, Loss: 886.20654296875, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 2.83210825920105, Accuracy: 13.75%
-Epoch 10, Loss: 0.7919981479644775, Accuracy: 78.75%
-Epoch 20, Loss: 0.2179044932126999, Accuracy: 96.25%
-Epoch 30, Loss: 0.04082252085208893, Accuracy: 100.00%
-Epoch 40, Loss: 0.008793291635811329, Accuracy: 100.00%
-Epoch 0, Loss: 0.3390299081802368, Accuracy: 12.50%
-Epoch 10, Loss: 0.26692909002304077, Accuracy: 12.50%
-Epoch 20, Loss: 0.2580769658088684, Accuracy: 11.25%
-Epoch 30, Loss: 0.25513869524002075, Accuracy: 11.25%
-Epoch 40, Loss: 0.25348326563835144, Accuracy: 11.25%
-Epoch 0, Loss: 3.485823631286621, Accuracy: 11.25%
-Epoch 10, Loss: 105890.0390625, Accuracy: 12.50%
-Epoch 20, Loss: 9424.6025390625, Accuracy: 12.50%
-Epoch 30, Loss: 9398.09765625, Accuracy: 12.50%
-Epoch 40, Loss: 9394.8046875, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 4.981234550476074, Accuracy: 12.50%
-Epoch 10, Loss: 1.6734174489974976, Accuracy: 31.25%
-Epoch 20, Loss: 1.039249300956726, Accuracy: 73.75%
-Epoch 30, Loss: 0.531381368637085, Accuracy: 86.25%
-Epoch 40, Loss: 0.19612997770309448, Accuracy: 100.00%
-Epoch 0, Loss: 0.35795101523399353, Accuracy: 13.75%
-Epoch 10, Loss: 0.26647743582725525, Accuracy: 13.75%
-Epoch 20, Loss: 0.2584587335586548, Accuracy: 17.50%
-Epoch 30, Loss: 0.2551857829093933, Accuracy: 17.50%
-Epoch 40, Loss: 0.2535485327243805, Accuracy: 16.25%
-Epoch 0, Loss: 2.9187963008880615, Accuracy: 18.75%
-Epoch 10, Loss: 4980.0048828125, Accuracy: 12.50%
-Epoch 20, Loss: 2508.6083984375, Accuracy: 12.50%
-Epoch 30, Loss: 2457.143798828125, Accuracy: 12.50%
-Epoch 40, Loss: 2455.071533203125, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 2.6108603477478027, Accuracy: 18.75%
-Epoch 10, Loss: 0.8308334350585938, Accuracy: 73.75%
-Epoch 20, Loss: 0.16608954966068268, Accuracy: 98.75%
-Epoch 30, Loss: 0.02285817079246044, Accuracy: 100.00%
-Epoch 40, Loss: 0.004929699935019016, Accuracy: 100.00%
-Epoch 0, Loss: 0.3342495858669281, Accuracy: 18.75%
-Epoch 10, Loss: 0.2661762535572052, Accuracy: 12.50%
-Epoch 20, Loss: 0.25861653685569763, Accuracy: 10.00%
-Epoch 30, Loss: 0.25477996468544006, Accuracy: 8.75%
-Epoch 40, Loss: 0.2528425455093384, Accuracy: 8.75%
-Epoch 0, Loss: 4.570727348327637, Accuracy: 2.50%
-Epoch 10, Loss: 16424.341796875, Accuracy: 12.50%
-Epoch 20, Loss: 13801.228515625, Accuracy: 12.50%
-Epoch 30, Loss: 13694.892578125, Accuracy: 12.50%
-Epoch 40, Loss: 13690.798828125, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 3.3050971031188965, Accuracy: 12.50%
-Epoch 10, Loss: 1.2074697017669678, Accuracy: 62.50%
-Epoch 20, Loss: 0.41149038076400757, Accuracy: 93.75%
-Epoch 30, Loss: 0.06476272642612457, Accuracy: 100.00%
-Epoch 40, Loss: 0.0112004978582263, Accuracy: 100.00%
-Epoch 0, Loss: 0.3632534146308899, Accuracy: 15.00%
-Epoch 10, Loss: 0.26840439438819885, Accuracy: 11.25%
-Epoch 20, Loss: 0.25984570384025574, Accuracy: 13.75%
-Epoch 30, Loss: 0.25547999143600464, Accuracy: 13.75%
-Epoch 40, Loss: 0.2536449134349823, Accuracy: 13.75%
-Epoch 0, Loss: 3.7085325717926025, Accuracy: 15.00%
-Epoch 10, Loss: 5462.67822265625, Accuracy: 12.50%
-Epoch 20, Loss: 8.012887954711914, Accuracy: 12.50%
-Epoch 30, Loss: 8.007020950317383, Accuracy: 12.50%
-Epoch 40, Loss: 8.006793975830078, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 2.9459524154663086, Accuracy: 13.75%
-Epoch 10, Loss: 1.268104076385498, Accuracy: 57.50%
-Epoch 20, Loss: 0.5220705270767212, Accuracy: 90.00%
-Epoch 30, Loss: 0.12860023975372314, Accuracy: 100.00%
-Epoch 40, Loss: 0.024476617574691772, Accuracy: 100.00%
-Epoch 0, Loss: 0.36820361018180847, Accuracy: 8.75%
-Epoch 10, Loss: 0.27298861742019653, Accuracy: 13.75%
-Epoch 20, Loss: 0.26245421171188354, Accuracy: 15.00%
-Epoch 30, Loss: 0.2574335038661957, Accuracy: 8.75%
-Epoch 40, Loss: 0.25485706329345703, Accuracy: 11.25%
-Epoch 0, Loss: 4.811686992645264, Accuracy: 10.00%
-Epoch 10, Loss: 35660.26953125, Accuracy: 12.50%
-Epoch 20, Loss: 30322.724609375, Accuracy: 12.50%
-Epoch 30, Loss: 29667.091796875, Accuracy: 12.50%
-Epoch 40, Loss: 29643.953125, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 4.9528021812438965, Accuracy: 12.50%
-Epoch 10, Loss: 1.3036792278289795, Accuracy: 48.75%
-Epoch 20, Loss: 0.5860185027122498, Accuracy: 86.25%
-Epoch 30, Loss: 0.20053765177726746, Accuracy: 98.75%
-Epoch 40, Loss: 0.05229334905743599, Accuracy: 100.00%
-Epoch 0, Loss: 0.34122559428215027, Accuracy: 12.50%
-Epoch 10, Loss: 0.26537591218948364, Accuracy: 11.25%
-Epoch 20, Loss: 0.2573803961277008, Accuracy: 12.50%
-Epoch 30, Loss: 0.25416895747184753, Accuracy: 16.25%
-Epoch 40, Loss: 0.25259068608283997, Accuracy: 11.25%
-Epoch 0, Loss: 4.133469104766846, Accuracy: 5.00%
-Epoch 10, Loss: 70454.3671875, Accuracy: 12.50%
-Epoch 20, Loss: 53096.453125, Accuracy: 12.50%
-Epoch 30, Loss: 52775.09765625, Accuracy: 12.50%
-Epoch 40, Loss: 52762.91796875, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 3.3241195678710938, Accuracy: 12.50%
-Epoch 10, Loss: 1.4336496591567993, Accuracy: 52.50%
-Epoch 20, Loss: 0.8098466992378235, Accuracy: 85.00%
-Epoch 30, Loss: 0.3322603106498718, Accuracy: 97.50%
-Epoch 40, Loss: 0.10057295858860016, Accuracy: 98.75%
-Epoch 0, Loss: 0.3626258969306946, Accuracy: 11.25%
-Epoch 10, Loss: 0.273914635181427, Accuracy: 17.50%
-Epoch 20, Loss: 0.26211628317832947, Accuracy: 12.50%
-Epoch 30, Loss: 0.2568446695804596, Accuracy: 12.50%
-Epoch 40, Loss: 0.25468909740448, Accuracy: 11.25%
-Epoch 0, Loss: 3.775965690612793, Accuracy: 13.75%
-Epoch 10, Loss: 174738.96875, Accuracy: 12.50%
-Epoch 20, Loss: 70091.15625, Accuracy: 12.50%
-Epoch 30, Loss: 68020.7734375, Accuracy: 12.50%
-Epoch 40, Loss: 67957.171875, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 2.4065041542053223, Accuracy: 8.75%
-Epoch 10, Loss: 0.8746027946472168, Accuracy: 73.75%
-Epoch 20, Loss: 0.19994278252124786, Accuracy: 98.75%
-Epoch 30, Loss: 0.02714124321937561, Accuracy: 100.00%
-Epoch 40, Loss: 0.004310331307351589, Accuracy: 100.00%
-Epoch 0, Loss: 0.36333945393562317, Accuracy: 12.50%
-Epoch 10, Loss: 0.2698127031326294, Accuracy: 13.75%
-Epoch 20, Loss: 0.2598353624343872, Accuracy: 11.25%
-Epoch 30, Loss: 0.25644129514694214, Accuracy: 15.00%
-Epoch 40, Loss: 0.2545500695705414, Accuracy: 12.50%
-Epoch 0, Loss: 3.8127880096435547, Accuracy: 12.50%
-Epoch 10, Loss: 135973.59375, Accuracy: 12.50%
-Epoch 20, Loss: 140915.765625, Accuracy: 12.50%
-Epoch 30, Loss: 138055.4375, Accuracy: 12.50%
-Epoch 40, Loss: 137961.265625, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 4.023022651672363, Accuracy: 13.75%
-Epoch 10, Loss: 1.5387015342712402, Accuracy: 56.25%
-Epoch 20, Loss: 0.6917420029640198, Accuracy: 83.75%
-Epoch 30, Loss: 0.19727036356925964, Accuracy: 96.25%
-Epoch 40, Loss: 0.03544578701257706, Accuracy: 100.00%
-Epoch 0, Loss: 0.346902996301651, Accuracy: 13.75%
-Epoch 10, Loss: 0.27011337876319885, Accuracy: 7.50%
-Epoch 20, Loss: 0.26031598448753357, Accuracy: 8.75%
-Epoch 30, Loss: 0.2560376822948456, Accuracy: 10.00%
-Epoch 40, Loss: 0.2539171278476715, Accuracy: 8.75%
-Epoch 0, Loss: 2.990964889526367, Accuracy: 8.75%
-Epoch 10, Loss: 108965.203125, Accuracy: 12.50%
-Epoch 20, Loss: 64680.953125, Accuracy: 12.50%
-Epoch 30, Loss: 64238.9609375, Accuracy: 12.50%
-Epoch 40, Loss: 64222.7734375, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 2.8852553367614746, Accuracy: 17.50%
-Epoch 10, Loss: 1.2477651834487915, Accuracy: 55.00%
-Epoch 20, Loss: 0.5109542608261108, Accuracy: 88.75%
-Epoch 30, Loss: 0.11916110664606094, Accuracy: 100.00%
-Epoch 40, Loss: 0.020224474370479584, Accuracy: 100.00%
-Epoch 0, Loss: 0.35738247632980347, Accuracy: 13.75%
-Epoch 10, Loss: 0.26804959774017334, Accuracy: 11.25%
-Epoch 20, Loss: 0.2593865394592285, Accuracy: 23.75%
-Epoch 30, Loss: 0.2558467984199524, Accuracy: 22.50%
-Epoch 40, Loss: 0.2539694309234619, Accuracy: 23.75%
-Epoch 0, Loss: 4.2793684005737305, Accuracy: 15.00%
-Epoch 10, Loss: 2935.9970703125, Accuracy: 12.50%
-Epoch 20, Loss: 2124.53076171875, Accuracy: 12.50%
-Epoch 30, Loss: 2073.53369140625, Accuracy: 12.50%
-Epoch 40, Loss: 2071.68896484375, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 2.992508888244629, Accuracy: 15.00%
-Epoch 10, Loss: 0.9346292614936829, Accuracy: 70.00%
-Epoch 20, Loss: 0.2568705379962921, Accuracy: 97.50%
-Epoch 30, Loss: 0.041346367448568344, Accuracy: 100.00%
-Epoch 40, Loss: 0.009101017378270626, Accuracy: 100.00%
-Epoch 0, Loss: 0.3419930338859558, Accuracy: 3.75%
-Epoch 10, Loss: 0.2664657533168793, Accuracy: 8.75%
-Epoch 20, Loss: 0.2583303153514862, Accuracy: 10.00%
-Epoch 30, Loss: 0.25462377071380615, Accuracy: 8.75%
-Epoch 40, Loss: 0.25300297141075134, Accuracy: 12.50%
-Epoch 0, Loss: 4.1253485679626465, Accuracy: 12.50%
-Epoch 10, Loss: 6254.4697265625, Accuracy: 12.50%
-Epoch 20, Loss: 2997.80322265625, Accuracy: 12.50%
-Epoch 30, Loss: 2915.980224609375, Accuracy: 12.50%
-Epoch 40, Loss: 2913.323974609375, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 3.808579921722412, Accuracy: 13.75%
-Epoch 10, Loss: 1.128830909729004, Accuracy: 63.75%
-Epoch 20, Loss: 0.4198201298713684, Accuracy: 95.00%
-Epoch 30, Loss: 0.09591677039861679, Accuracy: 100.00%
-Epoch 40, Loss: 0.01846185512840748, Accuracy: 100.00%
-Epoch 0, Loss: 0.3568224310874939, Accuracy: 11.25%
-Epoch 10, Loss: 0.2686706483364105, Accuracy: 12.50%
-Epoch 20, Loss: 0.25892746448516846, Accuracy: 12.50%
-Epoch 30, Loss: 0.2552374303340912, Accuracy: 12.50%
-Epoch 40, Loss: 0.25352048873901367, Accuracy: 11.25%
-Epoch 0, Loss: 2.9110589027404785, Accuracy: 12.50%
-Epoch 10, Loss: 203.1406707763672, Accuracy: 11.25%
-Epoch 20, Loss: 87.5815200805664, Accuracy: 11.25%
-Epoch 30, Loss: 85.35250091552734, Accuracy: 11.25%
-Epoch 40, Loss: 85.27539825439453, Accuracy: 11.25%
-1612
-8
-Epoch 0, Loss: 4.485779762268066, Accuracy: 15.00%
-Epoch 10, Loss: 1.2320396900177002, Accuracy: 62.50%
-Epoch 20, Loss: 0.42747873067855835, Accuracy: 95.00%
-Epoch 30, Loss: 0.07862240821123123, Accuracy: 100.00%
-Epoch 40, Loss: 0.01230732910335064, Accuracy: 100.00%
-Epoch 0, Loss: 0.35175272822380066, Accuracy: 17.50%
-Epoch 10, Loss: 0.2655007243156433, Accuracy: 13.75%
-Epoch 20, Loss: 0.2583427131175995, Accuracy: 12.50%
-Epoch 30, Loss: 0.25521785020828247, Accuracy: 12.50%
-Epoch 40, Loss: 0.25340738892555237, Accuracy: 12.50%
-Epoch 0, Loss: 3.337153911590576, Accuracy: 20.00%
-Epoch 10, Loss: 3281.6630859375, Accuracy: 12.50%
-Epoch 20, Loss: 2409.3447265625, Accuracy: 12.50%
-Epoch 30, Loss: 2419.37353515625, Accuracy: 12.50%
-Epoch 40, Loss: 2418.131103515625, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 2.6067252159118652, Accuracy: 15.00%
-Epoch 10, Loss: 0.9285540580749512, Accuracy: 76.25%
-Epoch 20, Loss: 0.30242347717285156, Accuracy: 96.25%
-Epoch 30, Loss: 0.056354738771915436, Accuracy: 100.00%
-Epoch 40, Loss: 0.009597967378795147, Accuracy: 100.00%
-Epoch 0, Loss: 0.3315819799900055, Accuracy: 12.50%
-Epoch 10, Loss: 0.2670232057571411, Accuracy: 12.50%
-Epoch 20, Loss: 0.258039265871048, Accuracy: 12.50%
-Epoch 30, Loss: 0.2546059787273407, Accuracy: 12.50%
-Epoch 40, Loss: 0.2529727816581726, Accuracy: 12.50%
-Epoch 0, Loss: 3.362356424331665, Accuracy: 17.50%
-Epoch 10, Loss: 6185.64404296875, Accuracy: 12.50%
-Epoch 20, Loss: 3361.2509765625, Accuracy: 12.50%
-Epoch 30, Loss: 3333.13671875, Accuracy: 12.50%
-Epoch 40, Loss: 3331.9365234375, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 3.42222261428833, Accuracy: 12.50%
-Epoch 10, Loss: 1.1455997228622437, Accuracy: 56.25%
-Epoch 20, Loss: 0.40455418825149536, Accuracy: 98.75%
-Epoch 30, Loss: 0.10057034343481064, Accuracy: 100.00%
-Epoch 40, Loss: 0.02280498668551445, Accuracy: 100.00%
-Epoch 0, Loss: 0.3605460822582245, Accuracy: 12.50%
-Epoch 10, Loss: 0.27110108733177185, Accuracy: 5.00%
-Epoch 20, Loss: 0.26036110520362854, Accuracy: 10.00%
-Epoch 30, Loss: 0.25604361295700073, Accuracy: 10.00%
-Epoch 40, Loss: 0.253904789686203, Accuracy: 7.50%
-Epoch 0, Loss: 3.082672595977783, Accuracy: 12.50%
-Epoch 10, Loss: 9144.9833984375, Accuracy: 12.50%
-Epoch 20, Loss: 7491.8076171875, Accuracy: 12.50%
-Epoch 30, Loss: 7300.48828125, Accuracy: 12.50%
-Epoch 40, Loss: 7292.81884765625, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 4.403370380401611, Accuracy: 13.75%
-Epoch 10, Loss: 1.489678144454956, Accuracy: 55.00%
-Epoch 20, Loss: 0.8066350221633911, Accuracy: 75.00%
-Epoch 30, Loss: 0.30620211362838745, Accuracy: 97.50%
-Epoch 40, Loss: 0.07993850111961365, Accuracy: 100.00%
-Epoch 0, Loss: 0.3527333438396454, Accuracy: 12.50%
-Epoch 10, Loss: 0.26983124017715454, Accuracy: 10.00%
-Epoch 20, Loss: 0.26002034544944763, Accuracy: 7.50%
-Epoch 30, Loss: 0.25559812784194946, Accuracy: 3.75%
-Epoch 40, Loss: 0.2534450590610504, Accuracy: 3.75%
-Epoch 0, Loss: 3.5474133491516113, Accuracy: 11.25%
-Epoch 10, Loss: 12834.5234375, Accuracy: 12.50%
-Epoch 20, Loss: 9249.01953125, Accuracy: 12.50%
-Epoch 30, Loss: 9080.5625, Accuracy: 12.50%
-Epoch 40, Loss: 9075.140625, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 3.631873369216919, Accuracy: 12.50%
-Epoch 10, Loss: 1.1730926036834717, Accuracy: 61.25%
-Epoch 20, Loss: 0.37579959630966187, Accuracy: 93.75%
-Epoch 30, Loss: 0.06763191521167755, Accuracy: 100.00%
-Epoch 40, Loss: 0.011305457912385464, Accuracy: 100.00%
-Epoch 0, Loss: 0.3642078638076782, Accuracy: 12.50%
-Epoch 10, Loss: 0.26870375871658325, Accuracy: 12.50%
-Epoch 20, Loss: 0.2597026526927948, Accuracy: 11.25%
-Epoch 30, Loss: 0.2560521066188812, Accuracy: 10.00%
-Epoch 40, Loss: 0.2540329098701477, Accuracy: 10.00%
-Epoch 0, Loss: 2.8806614875793457, Accuracy: 16.25%
-Epoch 10, Loss: 4.313838005065918, Accuracy: 12.50%
-Epoch 20, Loss: 4.132423400878906, Accuracy: 12.50%
-Epoch 30, Loss: 4.129220008850098, Accuracy: 12.50%
-Epoch 40, Loss: 4.1291093826293945, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 3.24385404586792, Accuracy: 13.75%
-Epoch 10, Loss: 0.92692631483078, Accuracy: 77.50%
-Epoch 20, Loss: 0.19752083718776703, Accuracy: 100.00%
-Epoch 30, Loss: 0.03081526979804039, Accuracy: 100.00%
-Epoch 40, Loss: 0.006515168584883213, Accuracy: 100.00%
-Epoch 0, Loss: 0.345792680978775, Accuracy: 13.75%
-Epoch 10, Loss: 0.26617297530174255, Accuracy: 12.50%
-Epoch 20, Loss: 0.2583790123462677, Accuracy: 13.75%
-Epoch 30, Loss: 0.25479233264923096, Accuracy: 16.25%
-Epoch 40, Loss: 0.25316521525382996, Accuracy: 13.75%
-Epoch 0, Loss: 2.7628464698791504, Accuracy: 15.00%
-Epoch 10, Loss: 131012.40625, Accuracy: 12.50%
-Epoch 20, Loss: 95769.2578125, Accuracy: 12.50%
-Epoch 30, Loss: 95121.1484375, Accuracy: 12.50%
-Epoch 40, Loss: 95099.8984375, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 2.8577656745910645, Accuracy: 11.25%
-Epoch 10, Loss: 0.8421308398246765, Accuracy: 80.00%
-Epoch 20, Loss: 0.17201600968837738, Accuracy: 100.00%
-Epoch 30, Loss: 0.017813745886087418, Accuracy: 100.00%
-Epoch 40, Loss: 0.0029128973837941885, Accuracy: 100.00%
-Epoch 0, Loss: 0.3323633074760437, Accuracy: 10.00%
-Epoch 10, Loss: 0.2664913833141327, Accuracy: 17.50%
-Epoch 20, Loss: 0.2584313452243805, Accuracy: 17.50%
-Epoch 30, Loss: 0.2548102140426636, Accuracy: 16.25%
-Epoch 40, Loss: 0.2530146837234497, Accuracy: 17.50%
-Epoch 0, Loss: 3.5419178009033203, Accuracy: 12.50%
-Epoch 10, Loss: 1620.5860595703125, Accuracy: 12.50%
-Epoch 20, Loss: 9.022754669189453, Accuracy: 12.50%
-Epoch 30, Loss: 9.010204315185547, Accuracy: 12.50%
-Epoch 40, Loss: 9.009788513183594, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 4.503762722015381, Accuracy: 11.25%
-Epoch 10, Loss: 1.5343859195709229, Accuracy: 48.75%
-Epoch 20, Loss: 0.7573647499084473, Accuracy: 82.50%
-Epoch 30, Loss: 0.27116864919662476, Accuracy: 97.50%
-Epoch 40, Loss: 0.07138318568468094, Accuracy: 100.00%
-Epoch 0, Loss: 0.3630290627479553, Accuracy: 13.75%
-Epoch 10, Loss: 0.2688591480255127, Accuracy: 13.75%
-Epoch 20, Loss: 0.26022255420684814, Accuracy: 13.75%
-Epoch 30, Loss: 0.25598618388175964, Accuracy: 13.75%
-Epoch 40, Loss: 0.2540038824081421, Accuracy: 16.25%
-Epoch 0, Loss: 3.6895077228546143, Accuracy: 6.25%
-Epoch 10, Loss: 2937910.0, Accuracy: 12.50%
-Epoch 20, Loss: 31207.5, Accuracy: 12.50%
-Epoch 30, Loss: 30843.576171875, Accuracy: 12.50%
-Epoch 40, Loss: 30830.857421875, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 5.198054313659668, Accuracy: 12.50%
-Epoch 10, Loss: 1.1571890115737915, Accuracy: 61.25%
-Epoch 20, Loss: 0.4341390132904053, Accuracy: 95.00%
-Epoch 30, Loss: 0.10057231038808823, Accuracy: 100.00%
-Epoch 40, Loss: 0.02249113656580448, Accuracy: 100.00%
-Epoch 0, Loss: 0.3480896055698395, Accuracy: 12.50%
-Epoch 10, Loss: 0.26716122031211853, Accuracy: 17.50%
-Epoch 20, Loss: 0.2592587172985077, Accuracy: 16.25%
-Epoch 30, Loss: 0.25579607486724854, Accuracy: 17.50%
-Epoch 40, Loss: 0.25396373867988586, Accuracy: 16.25%
-Epoch 0, Loss: 3.353656530380249, Accuracy: 11.25%
-Epoch 10, Loss: 2.725905418395996, Accuracy: 12.50%
-Epoch 20, Loss: 2.6040198802948, Accuracy: 12.50%
-Epoch 30, Loss: 2.6038007736206055, Accuracy: 12.50%
-Epoch 40, Loss: 2.6037890911102295, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 3.8041679859161377, Accuracy: 10.00%
-Epoch 10, Loss: 1.0877259969711304, Accuracy: 68.75%
-Epoch 20, Loss: 0.3874259889125824, Accuracy: 91.25%
-Epoch 30, Loss: 0.07981504499912262, Accuracy: 100.00%
-Epoch 40, Loss: 0.0148092582821846, Accuracy: 100.00%
-Epoch 0, Loss: 0.36549484729766846, Accuracy: 13.75%
-Epoch 10, Loss: 0.2688983380794525, Accuracy: 13.75%
-Epoch 20, Loss: 0.2598651945590973, Accuracy: 10.00%
-Epoch 30, Loss: 0.2562727630138397, Accuracy: 11.25%
-Epoch 40, Loss: 0.2543303966522217, Accuracy: 10.00%
-Epoch 0, Loss: 4.326308727264404, Accuracy: 15.00%
-Epoch 10, Loss: 2.6519765853881836, Accuracy: 12.50%
-Epoch 20, Loss: 2.6242189407348633, Accuracy: 12.50%
-Epoch 30, Loss: 2.6192502975463867, Accuracy: 12.50%
-Epoch 40, Loss: 2.6191399097442627, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 2.816413164138794, Accuracy: 11.25%
-Epoch 10, Loss: 1.0167043209075928, Accuracy: 65.00%
-Epoch 20, Loss: 0.29985755681991577, Accuracy: 96.25%
-Epoch 30, Loss: 0.04961565509438515, Accuracy: 100.00%
-Epoch 40, Loss: 0.007372227963060141, Accuracy: 100.00%
-Epoch 0, Loss: 0.32912570238113403, Accuracy: 11.25%
-Epoch 10, Loss: 0.26500535011291504, Accuracy: 10.00%
-Epoch 20, Loss: 0.25716376304626465, Accuracy: 10.00%
-Epoch 30, Loss: 0.25462788343429565, Accuracy: 7.50%
-Epoch 40, Loss: 0.253057062625885, Accuracy: 10.00%
-Epoch 0, Loss: 4.295987606048584, Accuracy: 12.50%
-Epoch 10, Loss: 59.72196960449219, Accuracy: 12.50%
-Epoch 20, Loss: 47.28684616088867, Accuracy: 12.50%
-Epoch 30, Loss: 47.05729293823242, Accuracy: 12.50%
-Epoch 40, Loss: 47.04981994628906, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 3.8391709327697754, Accuracy: 10.00%
-Epoch 10, Loss: 1.1377041339874268, Accuracy: 61.25%
-Epoch 20, Loss: 0.3960246443748474, Accuracy: 93.75%
-Epoch 30, Loss: 0.09580067545175552, Accuracy: 100.00%
-Epoch 40, Loss: 0.020863298326730728, Accuracy: 100.00%
-Epoch 0, Loss: 0.36531785130500793, Accuracy: 12.50%
-Epoch 10, Loss: 0.274507611989975, Accuracy: 12.50%
-Epoch 20, Loss: 0.26382166147232056, Accuracy: 11.25%
-Epoch 30, Loss: 0.2581931948661804, Accuracy: 11.25%
-Epoch 40, Loss: 0.2552452087402344, Accuracy: 13.75%
-Epoch 0, Loss: 3.522573947906494, Accuracy: 10.00%
-Epoch 10, Loss: 2.6032004356384277, Accuracy: 12.50%
-Epoch 20, Loss: 2.579859733581543, Accuracy: 12.50%
-Epoch 30, Loss: 2.574824810028076, Accuracy: 12.50%
-Epoch 40, Loss: 2.574568510055542, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 2.8628294467926025, Accuracy: 8.75%
-Epoch 10, Loss: 0.9034432172775269, Accuracy: 81.25%
-Epoch 20, Loss: 0.22416110336780548, Accuracy: 98.75%
-Epoch 30, Loss: 0.03306673839688301, Accuracy: 100.00%
-Epoch 40, Loss: 0.005602687131613493, Accuracy: 100.00%
-Epoch 0, Loss: 0.32875970005989075, Accuracy: 18.75%
-Epoch 10, Loss: 0.2661358714103699, Accuracy: 11.25%
-Epoch 20, Loss: 0.25825926661491394, Accuracy: 8.75%
-Epoch 30, Loss: 0.2543482184410095, Accuracy: 10.00%
-Epoch 40, Loss: 0.2528388500213623, Accuracy: 15.00%
-Epoch 0, Loss: 3.0683367252349854, Accuracy: 7.50%
-Epoch 10, Loss: 2.6571645736694336, Accuracy: 12.50%
-Epoch 20, Loss: 4.6368913650512695, Accuracy: 12.50%
-Epoch 30, Loss: 4.500308513641357, Accuracy: 12.50%
-Epoch 40, Loss: 4.495484352111816, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 5.174027442932129, Accuracy: 12.50%
-Epoch 10, Loss: 1.2213695049285889, Accuracy: 57.50%
-Epoch 20, Loss: 0.4800873398780823, Accuracy: 91.25%
-Epoch 30, Loss: 0.12897561490535736, Accuracy: 98.75%
-Epoch 40, Loss: 0.02529601752758026, Accuracy: 100.00%
-Epoch 0, Loss: 0.35307398438453674, Accuracy: 17.50%
-Epoch 10, Loss: 0.268279492855072, Accuracy: 7.50%
-Epoch 20, Loss: 0.25863882899284363, Accuracy: 7.50%
-Epoch 30, Loss: 0.25502243638038635, Accuracy: 10.00%
-Epoch 40, Loss: 0.2533447742462158, Accuracy: 6.25%
-Epoch 0, Loss: 3.1088624000549316, Accuracy: 20.00%
-Epoch 10, Loss: 3.220716953277588, Accuracy: 12.50%
-Epoch 20, Loss: 2.763150930404663, Accuracy: 12.50%
-Epoch 30, Loss: 2.587911605834961, Accuracy: 12.50%
-Epoch 40, Loss: 2.583486557006836, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 3.387577533721924, Accuracy: 20.00%
-Epoch 10, Loss: 1.2787206172943115, Accuracy: 55.00%
-Epoch 20, Loss: 0.5248252153396606, Accuracy: 87.50%
-Epoch 30, Loss: 0.12304071336984634, Accuracy: 100.00%
-Epoch 40, Loss: 0.02187703549861908, Accuracy: 100.00%
-Epoch 0, Loss: 0.3812187910079956, Accuracy: 12.50%
-Epoch 10, Loss: 0.2736818194389343, Accuracy: 16.25%
-Epoch 20, Loss: 0.2637420892715454, Accuracy: 10.00%
-Epoch 30, Loss: 0.25833725929260254, Accuracy: 12.50%
-Epoch 40, Loss: 0.2556363046169281, Accuracy: 12.50%
-Epoch 0, Loss: 4.240931987762451, Accuracy: 13.75%
-Epoch 10, Loss: 4.321710109710693, Accuracy: 12.50%
-Epoch 20, Loss: 2.710618019104004, Accuracy: 12.50%
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
 Traceback (most recent call last):
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 313, in <module>
-    model3 = train_with_topological_and_cross_loss(model3, dgl_G, features, edge_weights,adj_matrix, labels, int(args.epochs), float(args.lamb))
-  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 189, in train_with_topological_and_cross_loss
-    loss.backward()
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_tensor.py", line 522, in backward
-    torch.autograd.backward(
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/__init__.py", line 266, in backward
-    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/function.py", line 289, in apply
-    return user_fn(self, *args)
-  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/backend/pytorch/sparse.py", line 211, in backward
-    dX = gspmm(g_rev, "mul", "sum", dZ, Y)
-  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/backend/pytorch/sparse.py", line 1032, in gspmm
-    return GSpMM.apply(*args)
-  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/function.py", line 553, in apply
-    return super().apply(*args, **kwargs)  # type: ignore[misc]
-  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/backend/pytorch/sparse.py", line 165, in forward
-    out, (argX, argY) = _gspmm(gidx, op, reduce_op, X, Y)
-  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/_sparse_ops.py", line 239, in _gspmm
-    _CAPI_DGLKernelSpMM(
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 1, in <module>
+    import dgl.function as fn
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/__init__.py", line 14, in <module>
+    from .backend import backend_name, load_backend  # usort: skip
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/backend/__init__.py", line 122, in <module>
+    load_backend(get_preferred_backend())
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/backend/__init__.py", line 57, in load_backend
+    mod = importlib.import_module(".%s" % mod_name, __name__)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/backend/pytorch/__init__.py", line 1, in <module>
+    from .sparse import *
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/backend/pytorch/sparse.py", line 24, in <module>
+    from ...heterograph_index import create_unitgraph_from_csr
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/heterograph_index.py", line 13, in <module>
+    from ._ffi.streams import to_dgl_stream_handle
+  File "<frozen importlib._bootstrap>", line 1024, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 170, in __enter__
+  File "<frozen importlib._bootstrap>", line 196, in _get_module_lock
+  File "<frozen importlib._bootstrap>", line 72, in __init__
 KeyboardInterrupt
-1612
-8
-Epoch 0, Loss: 3.4067459106445312, Accuracy: 12.50%
-Epoch 10, Loss: 1.0021520853042603, Accuracy: 77.50%
-Epoch 20, Loss: 0.21770334243774414, Accuracy: 97.50%
-Epoch 30, Loss: 0.023796798661351204, Accuracy: 100.00%
-Epoch 40, Loss: 0.003909722901880741, Accuracy: 100.00%
-Epoch 0, Loss: 0.34664207696914673, Accuracy: 12.50%
-Epoch 10, Loss: 0.2655322551727295, Accuracy: 13.75%
-Epoch 20, Loss: 0.2572728097438812, Accuracy: 13.75%
-Epoch 30, Loss: 0.2542587220668793, Accuracy: 13.75%
-Epoch 40, Loss: 0.25284355878829956, Accuracy: 13.75%
-Epoch 0, Loss: 3.18622088432312, Accuracy: 6.25%
-Epoch 10, Loss: 2.6006245613098145, Accuracy: 12.50%
-Epoch 20, Loss: 2.5976779460906982, Accuracy: 12.50%
-Epoch 30, Loss: 2.597464084625244, Accuracy: 12.50%
-Epoch 40, Loss: 2.597459316253662, Accuracy: 12.50%
-1612
-8
-Epoch 0, Loss: 4.43966007232666, Accuracy: 12.50%
-Epoch 10, Loss: 0.9283376932144165, Accuracy: 73.75%
-Epoch 20, Loss: 0.29606765508651733, Accuracy: 95.00%
-Epoch 30, Loss: 0.05796581506729126, Accuracy: 100.00%
-Epoch 40, Loss: 0.012763445265591145, Accuracy: 100.00%
-Epoch 0, Loss: 0.3757452666759491, Accuracy: 5.00%
-Epoch 10, Loss: 0.27227210998535156, Accuracy: 10.00%
-Epoch 20, Loss: 0.26149487495422363, Accuracy: 7.50%
-Epoch 30, Loss: 0.25669538974761963, Accuracy: 15.00%
-Epoch 40, Loss: 0.254507839679718, Accuracy: 13.75%
-Epoch 0, Loss: 4.245913982391357, Accuracy: 12.50%
-Epoch 10, Loss: 2.813776969909668, Accuracy: 12.50%
-Epoch 20, Loss: 2.579662322998047, Accuracy: 12.50%
-Epoch 30, Loss: 2.5751256942749023, Accuracy: 12.50%
-Epoch 40, Loss: 2.574432849884033, Accuracy: 12.50%
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 1, in <module>
+    import dgl.function as fn
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/__init__.py", line 16, in <module>
+    from . import (
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/dataloading/__init__.py", line 13, in <module>
+    from .dataloader import *
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/dataloading/dataloader.py", line 27, in <module>
+    from ..distributed import DistGraph
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/distributed/__init__.py", line 5, in <module>
+    from .dist_graph import DistGraph, DistGraphServer, edge_split, node_split
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/distributed/dist_graph.py", line 37, in <module>
+    from .partition import (
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/distributed/partition.py", line 13, in <module>
+    from ..data.utils import load_graphs, load_tensors, save_graphs, save_tensors
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/__init__.py", line 7, in <module>
+    from . import citation_graph as citegrh
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/citation_graph.py", line 19, in <module>
+    from .dgl_dataset import DGLBuiltinDataset
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/dgl_dataset.py", line 12, in <module>
+    from .utils import download, extract_archive, get_download_dir, makedirs
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/utils.py", line 14, in <module>
+    import requests
+  File "/home/yannick/.local/lib/python3.10/site-packages/requests/__init__.py", line 43, in <module>
+    import urllib3
+  File "/usr/lib/python3/dist-packages/urllib3/__init__.py", line 13, in <module>
+    from .connectionpool import HTTPConnectionPool, HTTPSConnectionPool, connection_from_url
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 12, in <module>
+    from .connection import (
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 15, in <module>
+    from .util.proxy import create_proxy_ssl_context
+  File "/usr/lib/python3/dist-packages/urllib3/util/__init__.py", line 8, in <module>
+    from .ssl_ import (
+  File "/usr/lib/python3/dist-packages/urllib3/util/ssl_.py", line 17, in <module>
+    from .url import BRACELESS_IPV6_ADDRZ_RE, IPV4_RE
+  File "/usr/lib/python3/dist-packages/urllib3/util/url.py", line 62, in <module>
+    IPV6_ADDRZ_RE = re.compile("^" + IPV6_ADDRZ_PAT + "$")
+  File "/usr/lib/python3.10/re.py", line 251, in compile
+    return _compile(pattern, flags)
+  File "/usr/lib/python3.10/re.py", line 303, in _compile
+    p = sre_compile.compile(pattern, flags)
+  File "/usr/lib/python3.10/sre_compile.py", line 792, in compile
+    code = _code(p, flags)
+  File "/usr/lib/python3.10/sre_compile.py", line 631, in _code
+    _compile(code, p.data, flags)
+  File "/usr/lib/python3.10/sre_compile.py", line 225, in _compile
+    _compile(code, av, flags)
+  File "/usr/lib/python3.10/sre_compile.py", line 225, in _compile
+    _compile(code, av, flags)
+  File "/usr/lib/python3.10/sre_compile.py", line 164, in _compile
+    _compile(code, av[2], flags)
+  File "/usr/lib/python3.10/sre_compile.py", line 136, in _compile
+    charset, hascased = _optimize_charset(av, iscased, tolower, fixes)
+  File "/usr/lib/python3.10/sre_compile.py", line 355, in _optimize_charset
+    break
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.

@@ -5,6 +5,8 @@ import pickle
 import torch
 import os
 import argparse
+import netbone as nb
+from netbone.filters import boolean_filter, threshold_filter, fraction_filter
 from generate_similarity_matrix_acoustic import compute_distance_for_pair, compute_dtw_distance, distance_dtw, vgg_distance
 from joblib import Parallel, delayed
 from tqdm import tqdm
@@ -205,12 +207,23 @@ def filtered_matrix(method, subset_labels, similarity_matrix,spectrogram, thresh
     return filtered_similarity_matrix
 
 def build_dgl_graph(nx_graph):
+    # Extraire les arêtes avec poids
     edges = np.array(list(nx_graph.edges(data='weight', default=1.0)), dtype=object)
+
+    if edges.shape[0] == 0:
+        # Cas d'un graphe vide
+        dgl_graph = dgl.graph(([], []), num_nodes=nx_graph.number_of_nodes())
+        dgl_graph.edata['weight'] = torch.tensor([], dtype=torch.float32)
+        return dgl_graph
+
     src = edges[:, 0].astype(int)
     dst = edges[:, 1].astype(int)
     weights = edges[:, 2].astype(float)
-    dgl_graph = dgl.graph((src, dst))
+
+    # Création du graphe DGL
+    dgl_graph = dgl.graph((src, dst), num_nodes=nx_graph.number_of_nodes())
     dgl_graph.edata['weight'] = torch.tensor(weights, dtype=torch.float32)
+
     return dgl_graph
 
 if __name__ == "__main__":
@@ -254,7 +267,7 @@ if __name__ == "__main__":
     #print(filtered_similarity_matrix)
         print("Filtered similarity matrix computed successfully.")
         np.save(os.path.join(matrix_dir,f'filtered_matrix_with_labels_{args.num_n}_{args.k_out}_{sub_units}.npy'), f_matrix_with_labels)
-
+       
         G = nx.Graph()
         num_nodes = filtered_similarity_matrix.shape[0]
         G.add_nodes_from(range(num_nodes))
@@ -264,8 +277,18 @@ if __name__ == "__main__":
               similarity = filtered_similarity_matrix[i, j]
               #if similarity > 0:
               G.add_edge(i, j, weight=similarity)
+        ## filtrage netbone 
+        # 1. Calculer le squelette à haute saillance
+        backbone = nb.high_salience_skeleton(G)
 
-        dgl_G = build_dgl_graph(G)
+        backbone_G = boolean_filter(backbone)
+        backbone_df = backbone_G.to_dataframe()
+        print(backbone_df.head())
+
+
+        #backbone_G = nx.Graph(backbone_G)
+        #dgl_G = dgl.from_networkx(backbone_G)
+        dgl_G = build_dgl_graph(backbone_G)
         dgl_G.ndata['label'] = torch.tensor(labels, dtype=torch.long)
         dgl_G.ndata['feat'] = torch.stack([torch.from_numpy(spec) for spec in subset_spectrogram])
 
