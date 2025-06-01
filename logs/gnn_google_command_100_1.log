@@ -276,3 +276,69 @@ Traceback (most recent call last):
   File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
     raise DGLError("File {} does not exist.".format(filename))
 dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_11_1_100.dgl does not exist.
+1612
+8
+Epoch 0, Loss: 3.4573376178741455, Accuracy: 13.75%
+Epoch 10, Loss: 1.186966896057129, Accuracy: 63.75%
+Epoch 20, Loss: 0.5956915616989136, Accuracy: 83.75%
+Epoch 30, Loss: 0.2064174860715866, Accuracy: 97.50%
+Epoch 40, Loss: 0.052635520696640015, Accuracy: 100.00%
+Epoch 0, Loss: 0.7221173644065857, Accuracy: 13.75%
+Epoch 10, Loss: 0.11231371760368347, Accuracy: 17.50%
+Epoch 20, Loss: 0.06435683369636536, Accuracy: 13.75%
+Epoch 30, Loss: 0.05118466541171074, Accuracy: 16.25%
+Epoch 40, Loss: 0.0425981730222702, Accuracy: 17.50%
+Epoch 0, Loss: 7.903047561645508, Accuracy: 11.25%
+Epoch 10, Loss: 3.0915584564208984, Accuracy: 12.50%
+Epoch 20, Loss: 3.05591082572937, Accuracy: 12.50%
+Epoch 30, Loss: 3.044696569442749, Accuracy: 12.50%
+Epoch 40, Loss: 3.0458219051361084, Accuracy: 12.50%
+1612
+8
+Epoch 0, Loss: 4.427796840667725, Accuracy: 10.00%
+Epoch 10, Loss: 1.5177524089813232, Accuracy: 41.25%
+Epoch 20, Loss: 0.9073605537414551, Accuracy: 68.75%
+Epoch 30, Loss: 0.516348659992218, Accuracy: 86.25%
+Epoch 40, Loss: 0.2507181763648987, Accuracy: 97.50%
+Epoch 0, Loss: 0.7994305491447449, Accuracy: 3.75%
+Epoch 10, Loss: 0.13252782821655273, Accuracy: 15.00%
+Epoch 20, Loss: 0.06529345363378525, Accuracy: 21.25%
+Epoch 30, Loss: 0.05399659648537636, Accuracy: 15.00%
+Epoch 40, Loss: 0.04833551496267319, Accuracy: 17.50%
+Epoch 0, Loss: 3.964995861053467, Accuracy: 17.50%
+Epoch 10, Loss: 7.053064346313477, Accuracy: 12.50%
+Epoch 20, Loss: 5.393588542938232, Accuracy: 12.50%
+Epoch 30, Loss: 5.371744155883789, Accuracy: 12.50%
+Epoch 40, Loss: 5.370887756347656, Accuracy: 12.50%

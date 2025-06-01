@@ -1439,3 +1439,131 @@ Epoch 110, Loss: 0.7574, Regularisation: 0.3076702654361725, MSE: 0.4497
 Epoch 120, Loss: 0.7574, Regularisation: 0.3076702654361725, MSE: 0.4497
 Epoch 130, Loss: 0.7574, Regularisation: 0.3076702356338501, MSE: 0.4497
 Epoch 140, Loss: 0.7573, Regularisation: 0.3076702058315277, MSE: 0.4497
+2025-06-01 00:04:51,969 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 3.040555238723755, Accuracy: 13.12%
+Epoch 10, Loss: 2.320574998855591, Accuracy: 20.50%
+Epoch 20, Loss: 2.1934423446655273, Accuracy: 25.37%
+Epoch 30, Loss: 2.0684328079223633, Accuracy: 29.88%
+Epoch 40, Loss: 1.952705979347229, Accuracy: 34.25%
+Epoch 50, Loss: 1.9589141607284546, Accuracy: 32.62%
+Epoch 60, Loss: 1.8881982564926147, Accuracy: 35.62%
+Epoch 70, Loss: 1.855986475944519, Accuracy: 37.50%
+Epoch 80, Loss: 1.8399109840393066, Accuracy: 37.88%
+Epoch 90, Loss: 1.8285331726074219, Accuracy: 37.50%
+Epoch 100, Loss: 1.818978190422058, Accuracy: 37.62%
+Epoch 110, Loss: 1.8108640909194946, Accuracy: 37.62%
+Epoch 120, Loss: 1.8038089275360107, Accuracy: 37.50%
+Epoch 130, Loss: 1.7970635890960693, Accuracy: 38.25%
+Epoch 140, Loss: 1.7906222343444824, Accuracy: 38.50%
+2025-06-01 00:15:38,707 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 1.1296, Regularisation: 0.8013585209846497, MSE: 0.3283
+Epoch 10, Loss: 1.0462, Regularisation: 0.5461931824684143, MSE: 0.5000
+Epoch 20, Loss: 0.9160, Regularisation: 0.41618287563323975, MSE: 0.4999
+Epoch 30, Loss: 0.7707, Regularisation: 0.2719966471195221, MSE: 0.4987
+Epoch 40, Loss: 0.6763, Regularisation: 0.18622690439224243, MSE: 0.4901
+Epoch 50, Loss: 0.5636, Regularisation: 0.16621489822864532, MSE: 0.3974
+Epoch 60, Loss: 0.4765, Regularisation: 0.1809561848640442, MSE: 0.2956
+Epoch 70, Loss: 0.4350, Regularisation: 0.15829980373382568, MSE: 0.2767
+Epoch 80, Loss: 0.4160, Regularisation: 0.15436595678329468, MSE: 0.2617
+Epoch 90, Loss: 0.4031, Regularisation: 0.1508145034313202, MSE: 0.2523
+Epoch 100, Loss: 0.3979, Regularisation: 0.1473664790391922, MSE: 0.2505
+Epoch 110, Loss: 0.3934, Regularisation: 0.14400136470794678, MSE: 0.2494
+Epoch 120, Loss: 0.3891, Regularisation: 0.14067265391349792, MSE: 0.2484
+Epoch 130, Loss: 0.3851, Regularisation: 0.13736268877983093, MSE: 0.2477
+Epoch 140, Loss: 0.3812, Regularisation: 0.13409116864204407, MSE: 0.2471
+2025-06-01 00:17:07,149 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 3.2928802967071533, Accuracy: 13.25%
+Epoch 10, Loss: 2.511566638946533, Accuracy: 15.75%
+Epoch 20, Loss: 2.2527198791503906, Accuracy: 20.88%
+Epoch 30, Loss: 2.1019701957702637, Accuracy: 25.37%
+Epoch 40, Loss: 2.1133217811584473, Accuracy: 30.63%
+Epoch 50, Loss: 2.066619873046875, Accuracy: 30.38%
+Epoch 60, Loss: 1.958305835723877, Accuracy: 33.50%
+Epoch 70, Loss: 1.9570709466934204, Accuracy: 33.50%
+Epoch 80, Loss: 1.9570053815841675, Accuracy: 33.50%
+Epoch 90, Loss: 1.9569823741912842, Accuracy: 33.50%
+Epoch 100, Loss: 1.9569575786590576, Accuracy: 33.50%
+Epoch 110, Loss: 1.9569315910339355, Accuracy: 33.50%
+Epoch 120, Loss: 1.9569047689437866, Accuracy: 33.50%
+Epoch 130, Loss: 1.95687735080719, Accuracy: 33.50%
+Epoch 140, Loss: 1.956849455833435, Accuracy: 33.50%
+2025-06-01 00:27:49,747 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 1.1043, Regularisation: 0.8042363524436951, MSE: 0.3000
+Epoch 10, Loss: 0.7378, Regularisation: 0.23846428096294403, MSE: 0.4993
+Epoch 20, Loss: 0.5027, Regularisation: 0.22190509736537933, MSE: 0.2808
+Epoch 30, Loss: 0.4288, Regularisation: 0.17489343881607056, MSE: 0.2540
+Epoch 40, Loss: 0.4031, Regularisation: 0.16238729655742645, MSE: 0.2407
+Epoch 50, Loss: 0.3844, Regularisation: 0.1492791771888733, MSE: 0.2351
+Epoch 60, Loss: 0.3652, Regularisation: 0.13568292558193207, MSE: 0.2295
+Epoch 70, Loss: 0.3458, Regularisation: 0.12149681150913239, MSE: 0.2243
+Epoch 80, Loss: 0.3263, Regularisation: 0.10746518522500992, MSE: 0.2188
+Epoch 90, Loss: 0.3088, Regularisation: 0.09569323807954788, MSE: 0.2131
+Epoch 100, Loss: 0.2971, Regularisation: 0.08759623765945435, MSE: 0.2095
+Epoch 110, Loss: 0.2860, Regularisation: 0.0828583687543869, MSE: 0.2031
+Epoch 120, Loss: 0.2815, Regularisation: 0.07971573621034622, MSE: 0.2018
+Epoch 130, Loss: 0.2727, Regularisation: 0.0777723640203476, MSE: 0.1949
+Epoch 140, Loss: 0.2599, Regularisation: 0.07599911838769913, MSE: 0.1839
+2025-06-01 00:33:53,261 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 3.0511634349823, Accuracy: 12.38%
+Epoch 10, Loss: 2.381840229034424, Accuracy: 12.38%
+Epoch 20, Loss: 2.2842726707458496, Accuracy: 17.88%
+Epoch 30, Loss: 2.173713445663452, Accuracy: 22.25%
+Epoch 40, Loss: 2.0984978675842285, Accuracy: 28.38%
+Epoch 50, Loss: 2.0329606533050537, Accuracy: 31.75%
+Epoch 60, Loss: 1.9485384225845337, Accuracy: 35.50%
+Epoch 70, Loss: 1.8456497192382812, Accuracy: 35.12%
+Epoch 80, Loss: 1.8002225160598755, Accuracy: 37.38%
+Epoch 90, Loss: 1.838543176651001, Accuracy: 35.12%
+Epoch 100, Loss: 1.7859774827957153, Accuracy: 38.38%
+Epoch 110, Loss: 1.7630836963653564, Accuracy: 39.12%
+Epoch 120, Loss: 1.7610081434249878, Accuracy: 40.12%
+Epoch 130, Loss: 1.7550557851791382, Accuracy: 39.88%
+Epoch 140, Loss: 1.7515716552734375, Accuracy: 40.12%
+2025-06-01 00:44:34,334 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 1.0603, Regularisation: 0.7666503190994263, MSE: 0.2937
+Epoch 10, Loss: 0.5034, Regularisation: 0.1948390156030655, MSE: 0.3085
+Epoch 20, Loss: 0.4317, Regularisation: 0.17244695127010345, MSE: 0.2592
+Epoch 30, Loss: 0.4094, Regularisation: 0.1583555042743683, MSE: 0.2510
+Epoch 40, Loss: 0.3943, Regularisation: 0.1455293744802475, MSE: 0.2488
+Epoch 50, Loss: 0.3789, Regularisation: 0.13166986405849457, MSE: 0.2473
+Epoch 60, Loss: 0.3629, Regularisation: 0.11693869531154633, MSE: 0.2460
+Epoch 70, Loss: 0.3475, Regularisation: 0.10234211385250092, MSE: 0.2452
+Epoch 80, Loss: 0.3349, Regularisation: 0.09040486812591553, MSE: 0.2445
+Epoch 90, Loss: 0.3265, Regularisation: 0.08260269463062286, MSE: 0.2439
+Epoch 100, Loss: 0.3208, Regularisation: 0.07768867164850235, MSE: 0.2431
+Epoch 110, Loss: 0.3161, Regularisation: 0.07396209239959717, MSE: 0.2422
+Epoch 120, Loss: 0.3120, Regularisation: 0.07080481946468353, MSE: 0.2412
+Epoch 130, Loss: 0.3082, Regularisation: 0.06804773956537247, MSE: 0.2401
+Epoch 140, Loss: 0.3046, Regularisation: 0.06552799046039581, MSE: 0.2390
+2025-06-01 00:45:29,493 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 3.0196869373321533, Accuracy: 12.62%
+Epoch 10, Loss: 2.4178929328918457, Accuracy: 12.62%
+Epoch 20, Loss: 2.229203939437866, Accuracy: 20.75%
+Epoch 30, Loss: 2.0911741256713867, Accuracy: 33.88%
+Epoch 40, Loss: 2.006380319595337, Accuracy: 33.50%
+Epoch 50, Loss: 1.8993898630142212, Accuracy: 38.00%
+Epoch 60, Loss: 1.8404921293258667, Accuracy: 39.00%
+Epoch 70, Loss: 1.775164246559143, Accuracy: 43.75%
+Epoch 80, Loss: 1.689178228378296, Accuracy: 46.38%
+Epoch 90, Loss: 1.6161025762557983, Accuracy: 49.88%
+Epoch 100, Loss: 1.5223897695541382, Accuracy: 53.25%
+Epoch 110, Loss: 1.4449962377548218, Accuracy: 56.38%
+Epoch 120, Loss: 1.3164212703704834, Accuracy: 63.75%
+Epoch 130, Loss: 1.2156040668487549, Accuracy: 68.12%
+Epoch 140, Loss: 1.1316537857055664, Accuracy: 71.75%
+2025-06-01 00:56:18,975 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 1.0396, Regularisation: 0.7462940216064453, MSE: 0.2934
+Epoch 10, Loss: 0.4664, Regularisation: 0.2052115648984909, MSE: 0.2612
+Epoch 20, Loss: 0.4124, Regularisation: 0.166972815990448, MSE: 0.2454
+Epoch 30, Loss: 0.3927, Regularisation: 0.1537095457315445, MSE: 0.2389
+Epoch 40, Loss: 0.3713, Regularisation: 0.14021359384059906, MSE: 0.2311
+Epoch 50, Loss: 0.3513, Regularisation: 0.12666615843772888, MSE: 0.2246
+Epoch 60, Loss: 0.3305, Regularisation: 0.11265087872743607, MSE: 0.2179
+Epoch 70, Loss: 0.3104, Regularisation: 0.09926266223192215, MSE: 0.2112
+Epoch 80, Loss: 0.2930, Regularisation: 0.08886359632015228, MSE: 0.2042
+Epoch 90, Loss: 0.2844, Regularisation: 0.08231910318136215, MSE: 0.2021
+Epoch 100, Loss: 0.2687, Regularisation: 0.07835333049297333, MSE: 0.1904
+Epoch 110, Loss: 0.2577, Regularisation: 0.07561592757701874, MSE: 0.1821
+Epoch 120, Loss: 0.2477, Regularisation: 0.07345505058765411, MSE: 0.1743
+Epoch 130, Loss: 0.2413, Regularisation: 0.07181434333324432, MSE: 0.1695
+Epoch 140, Loss: 0.2357, Regularisation: 0.07054837793111801, MSE: 0.1651

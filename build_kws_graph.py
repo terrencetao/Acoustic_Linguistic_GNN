@@ -281,14 +281,20 @@ if __name__ == "__main__":
         # 1. Calculer le squelette à haute saillance
         backbone = nb.high_salience_skeleton(G)
 
-        backbone_G = boolean_filter(backbone)
-        backbone_df = backbone_G.to_dataframe()
+        backbone_G = threshold_filter(backbone, 0.01)
+        backbone_df = backbone.to_dataframe()
         print(backbone_df.head())
+        # Créer un graphe avec tous les nœuds d'origine
+        backbone_G_full = nx.Graph()
+        backbone_G_full.add_nodes_from(G.nodes())
+
+        # Ajouter ensuite les arêtes filtrées
+        backbone_G_full.add_edges_from(backbone_G.edges(data=True))
 
 
         #backbone_G = nx.Graph(backbone_G)
         #dgl_G = dgl.from_networkx(backbone_G)
-        dgl_G = build_dgl_graph(backbone_G)
+        dgl_G = build_dgl_graph(backbone_G_full)
         dgl_G.ndata['label'] = torch.tensor(labels, dtype=torch.long)
         dgl_G.ndata['feat'] = torch.stack([torch.from_numpy(spec) for spec in subset_spectrogram])
 

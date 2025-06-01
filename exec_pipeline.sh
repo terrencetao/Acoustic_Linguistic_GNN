@@ -8,12 +8,12 @@ declare -A UNIT_DIVISORS=( ["spoken_digit"]=10 ["google_command"]=8 ["yemba_comm
 
 #################################### CONFIGURATION #################################################
 DATASETS=( "google_command" "spoken_digit" "yemba_command_small")
-UNITS=$(seq 100 500 8000)
+UNITS=$(seq 1000 500 8000)
 METHOD_MMA="clique"
 METHOD_MSA="filter"
 ALPHAS=(1.0)
 NS=$(seq 1 0.1 1.0) #density
-LAMB_VALUES=$(seq 0.1 0.1 1)
+LAMB_VALUES=$(seq 1 0.1 1)
 MHG_METHODS=("full_weighted" "fixed")
 MSW_METHODS=("phon_art" "phon_count")
 MGW_METHODS=("full")

@@ -720,3 +720,168 @@ Traceback (most recent call last):
   File "/usr/lib/python3.10/sre_parse.py", line 166, in __getitem__
     if isinstance(index, slice):
 KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 126, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 80, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/full_weighted/phon_art/hetero_graph_11_1_11_100.dgl does not exist.
+2025-05-31 22:42:13,753 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 0.9769912362098694, Accuracy: 12.50%
+Epoch 10, Loss: 0.585983395576477, Accuracy: 6.25%
+Epoch 20, Loss: 0.4924791753292084, Accuracy: 22.50%
+Epoch 30, Loss: 0.4189143776893616, Accuracy: 17.50%
+Epoch 40, Loss: 0.37183767557144165, Accuracy: 18.75%
+Epoch 50, Loss: 0.35006067156791687, Accuracy: 17.50%
+Epoch 60, Loss: 0.3315790891647339, Accuracy: 20.00%
+Epoch 70, Loss: 0.3221897482872009, Accuracy: 17.50%
+Epoch 80, Loss: 0.31652021408081055, Accuracy: 23.75%
+Epoch 90, Loss: 0.31127193570137024, Accuracy: 33.75%
+Epoch 100, Loss: 0.30660802125930786, Accuracy: 35.00%
+Epoch 110, Loss: 0.3041391372680664, Accuracy: 36.25%
+Epoch 120, Loss: 0.2970329821109772, Accuracy: 42.50%
+Epoch 130, Loss: 0.2923666834831238, Accuracy: 43.75%
+Epoch 140, Loss: 0.2866808772087097, Accuracy: 43.75%
+2025-05-31 22:42:21,729 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 0.4078, Regularisation: 0.7453911304473877, MSE: 0.3333
+Epoch 10, Loss: 0.5791, Regularisation: 0.790567934513092, MSE: 0.5000
+Epoch 20, Loss: 0.5789, Regularisation: 0.7894444465637207, MSE: 0.5000
+Epoch 30, Loss: 0.5789, Regularisation: 0.7893949151039124, MSE: 0.5000
+Epoch 40, Loss: 0.5789, Regularisation: 0.7893930673599243, MSE: 0.5000
+Epoch 50, Loss: 0.5789, Regularisation: 0.7893921136856079, MSE: 0.5000
+Epoch 60, Loss: 0.5789, Regularisation: 0.7893909215927124, MSE: 0.5000
+Epoch 70, Loss: 0.5789, Regularisation: 0.7893897891044617, MSE: 0.5000
+Epoch 80, Loss: 0.5789, Regularisation: 0.7893885970115662, MSE: 0.5000
+Epoch 90, Loss: 0.5789, Regularisation: 0.7893872261047363, MSE: 0.5000
+Epoch 100, Loss: 0.5789, Regularisation: 0.7893856763839722, MSE: 0.5000
+Epoch 110, Loss: 0.5789, Regularisation: 0.7893843054771423, MSE: 0.5000
+Epoch 120, Loss: 0.5789, Regularisation: 0.7893826961517334, MSE: 0.5000
+Epoch 130, Loss: 0.5789, Regularisation: 0.7893810272216797, MSE: 0.5000
+Epoch 140, Loss: 0.5789, Regularisation: 0.7893794178962708, MSE: 0.5000
+2025-05-31 22:42:45,934 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 1.0476648807525635, Accuracy: 11.25%
+Epoch 10, Loss: 0.5576152205467224, Accuracy: 16.25%
+Epoch 20, Loss: 0.44066232442855835, Accuracy: 21.25%
+Epoch 30, Loss: 0.3862694501876831, Accuracy: 26.25%
+Epoch 40, Loss: 0.36343657970428467, Accuracy: 28.75%
+Epoch 50, Loss: 0.34323352575302124, Accuracy: 30.00%
+Epoch 60, Loss: 0.3302026689052582, Accuracy: 33.75%
+Epoch 70, Loss: 0.32211005687713623, Accuracy: 32.50%
+Epoch 80, Loss: 0.3164208233356476, Accuracy: 32.50%
+Epoch 90, Loss: 0.31219667196273804, Accuracy: 33.75%
+Epoch 100, Loss: 0.30837351083755493, Accuracy: 35.00%
+Epoch 110, Loss: 0.3041435480117798, Accuracy: 37.50%
+Epoch 120, Loss: 0.29955214262008667, Accuracy: 38.75%
+Epoch 130, Loss: 0.29443448781967163, Accuracy: 38.75%
+Epoch 140, Loss: 0.2889249324798584, Accuracy: 43.75%
+2025-05-31 22:42:52,866 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 0.4365, Regularisation: 0.7375874519348145, MSE: 0.3627
+Epoch 10, Loss: 0.5754, Regularisation: 0.7546528577804565, MSE: 0.5000
+Epoch 20, Loss: 0.5752, Regularisation: 0.7524195313453674, MSE: 0.5000
+Epoch 30, Loss: 0.5752, Regularisation: 0.7523428201675415, MSE: 0.5000
+Epoch 40, Loss: 0.5752, Regularisation: 0.7523399591445923, MSE: 0.5000
+Epoch 50, Loss: 0.5752, Regularisation: 0.7523384690284729, MSE: 0.5000
+Epoch 60, Loss: 0.5752, Regularisation: 0.7523367404937744, MSE: 0.5000
+Epoch 70, Loss: 0.5752, Regularisation: 0.7523348331451416, MSE: 0.5000
+Epoch 80, Loss: 0.5752, Regularisation: 0.752332866191864, MSE: 0.5000
+Epoch 90, Loss: 0.5752, Regularisation: 0.7523306012153625, MSE: 0.5000
+Epoch 100, Loss: 0.5752, Regularisation: 0.7523283362388611, MSE: 0.5000
+Epoch 110, Loss: 0.5752, Regularisation: 0.7523258924484253, MSE: 0.5000
+Epoch 120, Loss: 0.5752, Regularisation: 0.7523234486579895, MSE: 0.5000
+Epoch 130, Loss: 0.5752, Regularisation: 0.7523208856582642, MSE: 0.5000
+Epoch 140, Loss: 0.5752, Regularisation: 0.7523182034492493, MSE: 0.5000
+2025-05-31 22:43:24,094 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 1.1225087642669678, Accuracy: 16.25%
+Epoch 10, Loss: 0.7678080797195435, Accuracy: 12.50%
+Epoch 20, Loss: 0.6725334525108337, Accuracy: 13.75%
+Epoch 30, Loss: 0.5924449563026428, Accuracy: 18.75%
+Epoch 40, Loss: 0.5406715869903564, Accuracy: 27.50%
+Epoch 50, Loss: 0.5046934485435486, Accuracy: 33.75%
+Epoch 60, Loss: 0.474656879901886, Accuracy: 45.00%
+Epoch 70, Loss: 0.44862741231918335, Accuracy: 50.00%
+Epoch 80, Loss: 0.4238590896129608, Accuracy: 52.50%
+Epoch 90, Loss: 0.3976922929286957, Accuracy: 57.50%
+Epoch 100, Loss: 0.3705275356769562, Accuracy: 66.25%
+Epoch 110, Loss: 0.34276634454727173, Accuracy: 72.50%
+Epoch 120, Loss: 0.3152830898761749, Accuracy: 76.25%
+Epoch 130, Loss: 0.29034897685050964, Accuracy: 83.75%
+Epoch 140, Loss: 0.26717767119407654, Accuracy: 85.00%
+2025-05-31 22:43:32,104 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 0.4174, Regularisation: 0.7497912049293518, MSE: 0.2674
+Epoch 10, Loss: 0.6224, Regularisation: 0.6120818853378296, MSE: 0.5000
+Epoch 20, Loss: 0.6182, Regularisation: 0.5911080837249756, MSE: 0.5000
+Epoch 30, Loss: 0.6181, Regularisation: 0.5906564593315125, MSE: 0.5000
+Epoch 40, Loss: 0.6181, Regularisation: 0.5906392931938171, MSE: 0.5000
+Epoch 50, Loss: 0.6181, Regularisation: 0.5906296372413635, MSE: 0.5000
+Epoch 60, Loss: 0.6181, Regularisation: 0.5906197428703308, MSE: 0.5000
+Epoch 70, Loss: 0.6181, Regularisation: 0.5906097292900085, MSE: 0.5000
+Epoch 80, Loss: 0.6181, Regularisation: 0.5905995965003967, MSE: 0.5000
+Epoch 90, Loss: 0.6181, Regularisation: 0.5905892848968506, MSE: 0.5000
+Epoch 100, Loss: 0.6181, Regularisation: 0.5905789136886597, MSE: 0.5000
+Epoch 110, Loss: 0.6181, Regularisation: 0.590568482875824, MSE: 0.5000
+Epoch 120, Loss: 0.6181, Regularisation: 0.590557873249054, MSE: 0.5000
+Epoch 130, Loss: 0.6181, Regularisation: 0.5905473828315735, MSE: 0.5000
+Epoch 140, Loss: 0.6181, Regularisation: 0.5905367732048035, MSE: 0.5000
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 126, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 107, in main
+    model = train_with_topological_loss_cross_loss(
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 55, in train_with_topological_loss_cross_loss
+    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/optim/adam.py", line 45, in __init__
+    super().__init__(params, defaults)
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/optim/optimizer.py", line 278, in __init__
+    self.add_param_group(cast(dict, param_group))
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_compile.py", line 22, in inner
+    import torch._dynamo
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_dynamo/__init__.py", line 2, in <module>
+    from . import allowed_functions, convert_frame, eval_frame, resume_execution
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_dynamo/convert_frame.py", line 45, in <module>
+    from .eval_frame import always_optimize_code_objects, skip_code, TorchPatcher
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py", line 69, in <module>
+    from . import config, convert_frame, external_utils, skipfiles, utils
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_dynamo/skipfiles.py", line 39, in <module>
+    from .variables.functions import (
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_dynamo/variables/__init__.py", line 26, in <module>
+    from .higher_order_ops import TorchHigherOrderOperatorVariable
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_dynamo/variables/higher_order_ops.py", line 11, in <module>
+    import torch.onnx.operators
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/onnx/__init__.py", line 10, in <module>
+    from . import (  # usort:skip. Keep the order instead of sorting lexicographically
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/onnx/errors.py", line 9, in <module>
+    from torch.onnx._internal import diagnostics
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/onnx/_internal/diagnostics/__init__.py", line 1, in <module>
+    from ._diagnostic import (
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/onnx/_internal/diagnostics/_diagnostic.py", line 11, in <module>
+    from torch.onnx._internal.diagnostics import infra
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/onnx/_internal/diagnostics/infra/__init__.py", line 1, in <module>
+    from ._infra import (
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/onnx/_internal/diagnostics/infra/_infra.py", line 10, in <module>
+    from torch.onnx._internal.diagnostics.infra import formatter, sarif
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/onnx/_internal/diagnostics/infra/formatter.py", line 11, in <module>
+    from torch.onnx._internal.diagnostics.infra import sarif
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/onnx/_internal/diagnostics/infra/sarif/__init__.py", line 22, in <module>
+    from torch.onnx._internal.diagnostics.infra.sarif._external_properties import (
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/onnx/_internal/diagnostics/infra/sarif/_external_properties.py", line 9, in <module>
+    from torch.onnx._internal.diagnostics.infra.sarif import (
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/onnx/_internal/diagnostics/infra/sarif/_result.py", line 9, in <module>
+    from torch.onnx._internal.diagnostics.infra.sarif import (
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/onnx/_internal/diagnostics/infra/sarif/_fix.py", line 17, in <module>
+    class Fix(object):
+  File "/usr/lib/python3.10/dataclasses.py", line 1184, in dataclass
+    return wrap(cls)
+  File "/usr/lib/python3.10/dataclasses.py", line 1175, in wrap
+    return _process_class(cls, init, repr, eq, order, unsafe_hash,
+  File "/usr/lib/python3.10/dataclasses.py", line 1024, in _process_class
+    _init_fn(all_init_fields,
+  File "/usr/lib/python3.10/dataclasses.py", line 579, in _init_fn
+    return _create_fn('__init__',
+  File "/usr/lib/python3.10/dataclasses.py", line 432, in _create_fn
+    exec(txt, globals, ns)
+  File "<string>", line 1, in <module>
+KeyboardInterrupt
