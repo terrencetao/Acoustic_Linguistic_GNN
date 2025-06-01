@@ -197,24 +197,24 @@ def add_new_nodes_to_hetero_graph_knn(hetero_graph, new_node_spectrograms, k, di
    
     acoustic_features = torch.from_numpy(new_node_spectrograms)
     
-
+    flattened_new_features = acoustic_features.view(acoustic_features.shape[0], -1)
     # Assure-toi que les features sont bien 4D : [N, 1, H, W]
     
 
 
 # 3. Passage dans le modèle
-    mean_feat = acoustic_features.mean(dim=-1)  # Moyenne temporelle
-    std_feat = acoustic_features.std(dim=-1)
-    pooled_feat = torch.cat([mean_feat, std_feat], dim=-1)  # [N, 2 * D]
+    #mean_feat = acoustic_features.mean(dim=-1)  # Moyenne temporelle
+    #std_feat = acoustic_features.std(dim=-1)
+    #pooled_feat = torch.cat([mean_feat, std_feat], dim=-1)  # [N, 2 * D]
     
-    hetero_graph.nodes['acoustic'].data['feat'][num_existing_nodes:num_existing_nodes + num_new_nodes] = pooled_feat
+    hetero_graph.nodes['acoustic'].data['feat'][num_existing_nodes:num_existing_nodes + num_new_nodes] = flattened_new_features
 
     existing_features = hetero_graph.nodes['acoustic'].data['feat'][:num_existing_nodes].numpy()
    
     
     def process_new_node(new_node_index):
     # On extrait l'embedding du nouveau nœud
-       new_embedding = pooled_feat[new_node_index - num_existing_nodes].cpu().numpy().reshape(1, -1)
+       new_embedding = flattened_new_features[new_node_index - num_existing_nodes].cpu().numpy().reshape(1, -1)
 
     # Calcul vectorisé des similarités avec tous les anciens nœuds
        similarities = cosine_similarity(new_embedding, existing_features)[0]  # shape: (num_existing_nodes,)

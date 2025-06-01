@@ -70,7 +70,7 @@ def train_link_prediction(model, g, features, true_edge_labels, src, dst, adj_ma
 
         classification_loss = criterion(pred_probs, true_edge_labels)
         topo_loss = topological_loss(embeddings['acoustic'], embeddings['word'], adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word)
-        loss = lamb *classification_loss +  topo_loss
+        loss =classification_loss +   lamb *topo_loss
 
         optimizer.zero_grad()
         loss.backward()

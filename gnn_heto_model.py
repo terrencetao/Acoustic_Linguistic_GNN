@@ -58,7 +58,7 @@ def train_with_topological_loss_cross_loss(model, g, features, adj_matrix_acoust
     for epoch in range(epochs):
         model.train()
         logits, embeddings = model(g, features)
-        loss =  lamb *F.cross_entropy(logits, labels) + topological_loss(
+        loss =  F.cross_entropy(logits, labels) + lamb *topological_loss(
             embeddings['acoustic'], embeddings['word'],
             adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word
         )

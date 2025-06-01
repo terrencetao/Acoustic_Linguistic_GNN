@@ -1567,3 +1567,100 @@ Epoch 110, Loss: 0.2577, Regularisation: 0.07561592757701874, MSE: 0.1821
 Epoch 120, Loss: 0.2477, Regularisation: 0.07345505058765411, MSE: 0.1743
 Epoch 130, Loss: 0.2413, Regularisation: 0.07181434333324432, MSE: 0.1695
 Epoch 140, Loss: 0.2357, Regularisation: 0.07054837793111801, MSE: 0.1651
+2025-06-01 10:32:41,334 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 3.6859071254730225, Accuracy: 13.63%
+Epoch 10, Loss: 1.822967290878296, Accuracy: 41.25%
+Epoch 20, Loss: 1.3890488147735596, Accuracy: 57.63%
+Epoch 30, Loss: 1.088811993598938, Accuracy: 69.00%
+Epoch 40, Loss: 0.8628032803535461, Accuracy: 77.75%
+Epoch 50, Loss: 0.6926002502441406, Accuracy: 85.50%
+Epoch 60, Loss: 0.5541989803314209, Accuracy: 90.62%
+Epoch 70, Loss: 0.4376762807369232, Accuracy: 94.50%
+Epoch 80, Loss: 0.3447670638561249, Accuracy: 98.00%
+Epoch 90, Loss: 0.27514541149139404, Accuracy: 99.25%
+Epoch 100, Loss: 0.22675634920597076, Accuracy: 99.75%
+Epoch 110, Loss: 0.19536684453487396, Accuracy: 99.88%
+Epoch 120, Loss: 0.17520983517169952, Accuracy: 100.00%
+Epoch 130, Loss: 0.1620236039161682, Accuracy: 100.00%
+Epoch 140, Loss: 0.15310034155845642, Accuracy: 100.00%
+2025-06-01 11:43:46,505 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 0.9915, Regularisation: 0.6927496790885925, MSE: 0.2988
+Epoch 10, Loss: 1.1011, Regularisation: 0.601082980632782, MSE: 0.5000
+Epoch 20, Loss: 1.0632, Regularisation: 0.5632101893424988, MSE: 0.5000
+Epoch 30, Loss: 1.0623, Regularisation: 0.5623070597648621, MSE: 0.5000
+Epoch 40, Loss: 1.0623, Regularisation: 0.5622716546058655, MSE: 0.5000
+Epoch 50, Loss: 1.0623, Regularisation: 0.5622518062591553, MSE: 0.5000
+Epoch 60, Loss: 1.0622, Regularisation: 0.5622313022613525, MSE: 0.5000
+Epoch 70, Loss: 1.0622, Regularisation: 0.5622102618217468, MSE: 0.5000
+Epoch 80, Loss: 1.0622, Regularisation: 0.5621888637542725, MSE: 0.5000
+Epoch 90, Loss: 1.0622, Regularisation: 0.5621671676635742, MSE: 0.5000
+Epoch 100, Loss: 1.0621, Regularisation: 0.5621451139450073, MSE: 0.5000
+Epoch 110, Loss: 1.0621, Regularisation: 0.5621228814125061, MSE: 0.5000
+Epoch 120, Loss: 1.0621, Regularisation: 0.5621004104614258, MSE: 0.5000
+Epoch 130, Loss: 1.0621, Regularisation: 0.562077522277832, MSE: 0.5000
+Epoch 140, Loss: 1.0621, Regularisation: 0.5620546936988831, MSE: 0.5000
+2025-06-01 11:45:00,217 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 3.7213401794433594, Accuracy: 13.12%
+Epoch 10, Loss: 2.5933237075805664, Accuracy: 21.88%
+Epoch 20, Loss: 1.7568271160125732, Accuracy: 47.38%
+Epoch 30, Loss: 1.4103113412857056, Accuracy: 56.62%
+Epoch 40, Loss: 1.190023422241211, Accuracy: 67.38%
+Epoch 50, Loss: 1.0317755937576294, Accuracy: 73.50%
+Epoch 60, Loss: 0.8965843915939331, Accuracy: 79.62%
+Epoch 70, Loss: 0.7739684581756592, Accuracy: 83.50%
+Epoch 80, Loss: 0.6596599817276001, Accuracy: 88.50%
+Epoch 90, Loss: 0.5544058680534363, Accuracy: 92.38%
+Epoch 100, Loss: 0.4627114236354828, Accuracy: 95.25%
+Epoch 110, Loss: 0.384987473487854, Accuracy: 97.38%
+Epoch 120, Loss: 0.3226763904094696, Accuracy: 98.38%
+Epoch 130, Loss: 0.2742980718612671, Accuracy: 98.88%
+Epoch 140, Loss: 0.2393546998500824, Accuracy: 99.12%
+2025-06-01 12:53:45,504 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 1.0027, Regularisation: 0.6859545111656189, MSE: 0.3168
+Epoch 10, Loss: 1.2922, Regularisation: 0.7921919226646423, MSE: 0.5000
+Epoch 20, Loss: 1.2834, Regularisation: 0.7833772301673889, MSE: 0.5000
+Epoch 30, Loss: 1.2831, Regularisation: 0.7831411361694336, MSE: 0.5000
+Epoch 40, Loss: 1.2831, Regularisation: 0.7831313610076904, MSE: 0.5000
+Epoch 50, Loss: 1.2831, Regularisation: 0.7831254005432129, MSE: 0.5000
+Epoch 60, Loss: 1.2831, Regularisation: 0.783119261264801, MSE: 0.5000
+Epoch 70, Loss: 1.2831, Regularisation: 0.7831127047538757, MSE: 0.5000
+Epoch 80, Loss: 1.2831, Regularisation: 0.7831058502197266, MSE: 0.5000
+Epoch 90, Loss: 1.2831, Regularisation: 0.7830988168716431, MSE: 0.5000
+Epoch 100, Loss: 1.2831, Regularisation: 0.7830916047096252, MSE: 0.5000
+Epoch 110, Loss: 1.2831, Regularisation: 0.7830841541290283, MSE: 0.5000
+Epoch 120, Loss: 1.2831, Regularisation: 0.7830765843391418, MSE: 0.5000
+Epoch 130, Loss: 1.2831, Regularisation: 0.7830689549446106, MSE: 0.5000
+Epoch 140, Loss: 1.2831, Regularisation: 0.7830610275268555, MSE: 0.5000
+2025-06-01 12:59:47,698 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 3.8885698318481445, Accuracy: 13.25%
+Epoch 10, Loss: 2.1230621337890625, Accuracy: 32.38%
+Epoch 20, Loss: 1.6231999397277832, Accuracy: 50.88%
+Epoch 30, Loss: 1.3492740392684937, Accuracy: 60.88%
+Epoch 40, Loss: 1.1425933837890625, Accuracy: 70.38%
+Epoch 50, Loss: 0.967270016670227, Accuracy: 75.88%
+Epoch 60, Loss: 0.8064509630203247, Accuracy: 83.00%
+Epoch 70, Loss: 0.6628997325897217, Accuracy: 87.12%
+Epoch 80, Loss: 0.5368641018867493, Accuracy: 92.25%
+Epoch 90, Loss: 0.431812584400177, Accuracy: 95.50%
+Epoch 100, Loss: 0.35074669122695923, Accuracy: 97.25%
+Epoch 110, Loss: 0.290535032749176, Accuracy: 98.62%
+Epoch 120, Loss: 0.2477271556854248, Accuracy: 99.62%
+Epoch 130, Loss: 0.21764987707138062, Accuracy: 99.75%
+Epoch 140, Loss: 0.19403401017189026, Accuracy: 99.88%
+Epoch 0, Loss: 1.0600, Regularisation: 0.6923688650131226, MSE: 0.3676
+Epoch 10, Loss: 1.2989, Regularisation: 0.7988992929458618, MSE: 0.5000
+Epoch 20, Loss: 1.2909, Regularisation: 0.7908608317375183, MSE: 0.5000
+Epoch 30, Loss: 1.2906, Regularisation: 0.7906429767608643, MSE: 0.5000
+Epoch 40, Loss: 1.2906, Regularisation: 0.7906339168548584, MSE: 0.5000
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 232, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb), args.dataset)
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 211, in main
+    model = train_edge_regression(
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 99, in train_edge_regression
+    loss.backward()
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_tensor.py", line 522, in backward
+    torch.autograd.backward(
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/__init__.py", line 266, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

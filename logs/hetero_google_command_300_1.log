@@ -1,0 +1,14 @@
+Epoch 0, Loss: 3.1619064807891846, Accuracy: 11.25%
+Epoch 10, Loss: 2.248899221420288, Accuracy: 22.92%
+Epoch 20, Loss: 1.580170750617981, Accuracy: 50.00%
+Epoch 30, Loss: 0.9780793190002441, Accuracy: 76.25%
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 126, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 107, in main
+    model = train_with_topological_loss_cross_loss(
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 61, in train_with_topological_loss_cross_loss
+    loss =  lamb *F.cross_entropy(logits, labels) + topological_loss(
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 49, in topological_loss
+    cosine_sim_acoustic = F.cosine_similarity(embeddings_acoustic.unsqueeze(1), embeddings_acoustic.unsqueeze(0), dim=2)
+KeyboardInterrupt
