@@ -1,0 +1,16 @@
+2025-06-02 07:07:13,031 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 3.6026124954223633, Accuracy: 12.69%
+Epoch 10, Loss: 2.323439598083496, Accuracy: 22.02%
+Epoch 20, Loss: 1.9253007173538208, Accuracy: 42.21%
+Epoch 30, Loss: 1.5484542846679688, Accuracy: 62.69%
+Epoch 40, Loss: 1.2548819780349731, Accuracy: 69.04%
+Epoch 50, Loss: 0.9477212429046631, Accuracy: 83.08%
+Epoch 60, Loss: 0.7309086322784424, Accuracy: 90.10%
+Epoch 70, Loss: 0.5809087753295898, Accuracy: 95.58%
+Epoch 80, Loss: 0.47484928369522095, Accuracy: 98.08%
+Epoch 90, Loss: 0.4014643430709839, Accuracy: 99.13%
+Epoch 100, Loss: 0.3532641530036926, Accuracy: 99.52%
+Epoch 110, Loss: 0.32219862937927246, Accuracy: 99.71%
+Epoch 120, Loss: 0.3020032048225403, Accuracy: 99.90%
+Epoch 130, Loss: 0.288504958152771, Accuracy: 100.00%
+Epoch 140, Loss: 0.27907896041870117, Accuracy: 100.00%

@@ -1096,3 +1096,142 @@ Traceback (most recent call last):
   File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/__init__.py", line 266, in backward
     Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
 KeyboardInterrupt
+2025-06-01 23:06:16,607 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 3.2617855072021484, Accuracy: 11.25%
+Epoch 10, Loss: 1.9221322536468506, Accuracy: 35.00%
+Epoch 20, Loss: 1.1354923248291016, Accuracy: 81.25%
+Epoch 30, Loss: 0.585586428642273, Accuracy: 96.25%
+Epoch 40, Loss: 0.34968826174736023, Accuracy: 98.75%
+Epoch 50, Loss: 0.26761916279792786, Accuracy: 100.00%
+Epoch 60, Loss: 0.24001260101795197, Accuracy: 100.00%
+Epoch 70, Loss: 0.22708137333393097, Accuracy: 100.00%
+Epoch 80, Loss: 0.21888615190982819, Accuracy: 100.00%
+Epoch 90, Loss: 0.2125207632780075, Accuracy: 100.00%
+Epoch 100, Loss: 0.20697198808193207, Accuracy: 100.00%
+Epoch 110, Loss: 0.20221373438835144, Accuracy: 100.00%
+Epoch 120, Loss: 0.19829246401786804, Accuracy: 100.00%
+Epoch 130, Loss: 0.194990336894989, Accuracy: 100.00%
+Epoch 140, Loss: 0.19213652610778809, Accuracy: 100.00%
+2025-06-01 23:07:17,785 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 0.8223, Regularisation: 0.51456218957901, MSE: 0.3078
+Epoch 10, Loss: 1.0817, Regularisation: 0.5817461609840393, MSE: 0.5000
+Epoch 20, Loss: 1.0757, Regularisation: 0.5757072567939758, MSE: 0.5000
+Epoch 30, Loss: 1.0755, Regularisation: 0.575547993183136, MSE: 0.5000
+Epoch 40, Loss: 1.0755, Regularisation: 0.5755414366722107, MSE: 0.5000
+Epoch 50, Loss: 1.0755, Regularisation: 0.5755374431610107, MSE: 0.5000
+Epoch 60, Loss: 1.0755, Regularisation: 0.5755333304405212, MSE: 0.5000
+Epoch 70, Loss: 1.0755, Regularisation: 0.5755289196968079, MSE: 0.5000
+Epoch 80, Loss: 1.0755, Regularisation: 0.5755243301391602, MSE: 0.5000
+Epoch 90, Loss: 1.0755, Regularisation: 0.5755196213722229, MSE: 0.5000
+Epoch 100, Loss: 1.0755, Regularisation: 0.5755147337913513, MSE: 0.5000
+Epoch 110, Loss: 1.0755, Regularisation: 0.5755097270011902, MSE: 0.5000
+Epoch 120, Loss: 1.0755, Regularisation: 0.5755046606063843, MSE: 0.5000
+Epoch 130, Loss: 1.0755, Regularisation: 0.5754994750022888, MSE: 0.5000
+Epoch 140, Loss: 1.0755, Regularisation: 0.5754941701889038, MSE: 0.5000
+2025-06-01 23:07:41,986 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 3.88226056098938, Accuracy: 10.00%
+Epoch 10, Loss: 2.1403579711914062, Accuracy: 32.50%
+Epoch 20, Loss: 1.533069372177124, Accuracy: 62.50%
+Epoch 30, Loss: 1.0532113313674927, Accuracy: 76.25%
+Epoch 40, Loss: 0.6139713525772095, Accuracy: 96.25%
+Epoch 50, Loss: 0.3889755606651306, Accuracy: 98.75%
+Epoch 60, Loss: 0.29577773809432983, Accuracy: 100.00%
+Epoch 70, Loss: 0.25838160514831543, Accuracy: 100.00%
+Epoch 80, Loss: 0.24168187379837036, Accuracy: 100.00%
+Epoch 90, Loss: 0.231767475605011, Accuracy: 100.00%
+Epoch 100, Loss: 0.22512885928153992, Accuracy: 100.00%
+Epoch 110, Loss: 0.2200988531112671, Accuracy: 100.00%
+Epoch 120, Loss: 0.21583135426044464, Accuracy: 100.00%
+Epoch 130, Loss: 0.21207155287265778, Accuracy: 100.00%
+Epoch 140, Loss: 0.2086353451013565, Accuracy: 100.00%
+Epoch 0, Loss: 0.7774, Regularisation: 0.5075365304946899, MSE: 0.2699
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 232, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb), args.dataset)
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 211, in main
+    model = train_edge_regression(
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 99, in train_edge_regression
+    loss.backward()
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_tensor.py", line 522, in backward
+    torch.autograd.backward(
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/__init__.py", line 266, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt
+2025-06-01 23:09:09,810 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 3.9228134155273438, Accuracy: 12.50%
+Epoch 10, Loss: 1.2569704055786133, Accuracy: 75.00%
+Epoch 20, Loss: 0.5825662016868591, Accuracy: 97.50%
+Epoch 30, Loss: 0.3472166359424591, Accuracy: 100.00%
+Epoch 40, Loss: 0.28020504117012024, Accuracy: 100.00%
+Epoch 50, Loss: 0.25398215651512146, Accuracy: 100.00%
+Epoch 60, Loss: 0.23941394686698914, Accuracy: 100.00%
+Epoch 70, Loss: 0.22930821776390076, Accuracy: 100.00%
+Epoch 80, Loss: 0.22136908769607544, Accuracy: 100.00%
+Epoch 90, Loss: 0.21456806361675262, Accuracy: 100.00%
+Epoch 100, Loss: 0.20877841114997864, Accuracy: 100.00%
+Epoch 110, Loss: 0.20392578840255737, Accuracy: 100.00%
+Epoch 120, Loss: 0.19996604323387146, Accuracy: 100.00%
+Epoch 130, Loss: 0.1966356635093689, Accuracy: 100.00%
+Epoch 140, Loss: 0.19370914995670319, Accuracy: 100.00%
+2025-06-01 23:10:13,406 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 0.9854, Regularisation: 0.5051231980323792, MSE: 0.4802
+Epoch 10, Loss: 0.7697, Regularisation: 0.2696920335292816, MSE: 0.5000
+Epoch 20, Loss: 0.7534, Regularisation: 0.25335693359375, MSE: 0.5000
+Epoch 30, Loss: 0.7356, Regularisation: 0.23556019365787506, MSE: 0.5000
+Epoch 40, Loss: 0.7189, Regularisation: 0.21894630789756775, MSE: 0.5000
+Epoch 50, Loss: 0.7035, Regularisation: 0.20348142087459564, MSE: 0.5000
+Epoch 60, Loss: 0.6900, Regularisation: 0.18998855352401733, MSE: 0.5000
+Epoch 70, Loss: 0.6796, Regularisation: 0.1795799881219864, MSE: 0.5000
+Epoch 80, Loss: 0.6719, Regularisation: 0.17191551625728607, MSE: 0.5000
+Epoch 90, Loss: 0.6662, Regularisation: 0.16615116596221924, MSE: 0.5000
+Epoch 100, Loss: 0.6617, Regularisation: 0.1617269665002823, MSE: 0.5000
+Epoch 110, Loss: 0.6582, Regularisation: 0.15822623670101166, MSE: 0.5000
+Epoch 120, Loss: 0.6554, Regularisation: 0.15535874664783478, MSE: 0.5000
+Epoch 130, Loss: 0.6530, Regularisation: 0.1529974788427353, MSE: 0.5000
+Epoch 140, Loss: 0.6510, Regularisation: 0.15103182196617126, MSE: 0.5000
+2025-06-01 23:10:41,367 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 2.851926803588867, Accuracy: 11.25%
+Epoch 10, Loss: 1.8719738721847534, Accuracy: 42.50%
+Epoch 20, Loss: 1.100897192955017, Accuracy: 88.75%
+Epoch 30, Loss: 0.5980976819992065, Accuracy: 98.75%
+Epoch 40, Loss: 0.33429914712905884, Accuracy: 100.00%
+Epoch 50, Loss: 0.2579677104949951, Accuracy: 100.00%
+Epoch 60, Loss: 0.2320314645767212, Accuracy: 100.00%
+Epoch 70, Loss: 0.2200034260749817, Accuracy: 100.00%
+Epoch 80, Loss: 0.211353600025177, Accuracy: 100.00%
+Epoch 90, Loss: 0.20460757613182068, Accuracy: 100.00%
+Epoch 100, Loss: 0.1989312469959259, Accuracy: 100.00%
+Epoch 110, Loss: 0.19411557912826538, Accuracy: 100.00%
+Epoch 120, Loss: 0.1902463287115097, Accuracy: 100.00%
+Epoch 130, Loss: 0.18711578845977783, Accuracy: 100.00%
+Epoch 140, Loss: 0.184549018740654, Accuracy: 100.00%
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 1, in <module>
+    import dgl
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/__init__.py", line 16, in <module>
+    from . import (
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/dataloading/__init__.py", line 4, in <module>
+    from .base import *
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/dataloading/base.py", line 7, in <module>
+    from ..convert import heterograph
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/convert.py", line 7, in <module>
+    from scipy.sparse import spmatrix
+  File "/usr/local/lib/python3.10/dist-packages/scipy-1.13.0-py3.10-linux-x86_64.egg/scipy/sparse/__init__.py", line 308, in <module>
+    from . import csgraph
+  File "/usr/local/lib/python3.10/dist-packages/scipy-1.13.0-py3.10-linux-x86_64.egg/scipy/sparse/csgraph/__init__.py", line 185, in <module>
+    from ._laplacian import laplacian
+  File "/usr/local/lib/python3.10/dist-packages/scipy-1.13.0-py3.10-linux-x86_64.egg/scipy/sparse/csgraph/_laplacian.py", line 7, in <module>
+    from scipy.sparse.linalg import LinearOperator
+  File "/usr/local/lib/python3.10/dist-packages/scipy-1.13.0-py3.10-linux-x86_64.egg/scipy/sparse/linalg/__init__.py", line 129, in <module>
+    from ._isolve import *
+  File "/usr/local/lib/python3.10/dist-packages/scipy-1.13.0-py3.10-linux-x86_64.egg/scipy/sparse/linalg/_isolve/__init__.py", line 4, in <module>
+    from .iterative import *
+  File "/usr/local/lib/python3.10/dist-packages/scipy-1.13.0-py3.10-linux-x86_64.egg/scipy/sparse/linalg/_isolve/iterative.py", line 5, in <module>
+    from scipy.linalg import get_lapack_funcs
+  File "/usr/local/lib/python3.10/dist-packages/scipy-1.13.0-py3.10-linux-x86_64.egg/scipy/linalg/__init__.py", line 203, in <module>
+    from ._misc import *
+  File "/usr/local/lib/python3.10/dist-packages/scipy-1.13.0-py3.10-linux-x86_64.egg/scipy/linalg/_misc.py", line 3, in <module>
+    from .blas import get_blas_funcs
+  File "/usr/local/lib/python3.10/dist-packages/scipy-1.13.0-py3.10-linux-x86_64.egg/scipy/linalg/blas.py", line 213, in <module>
+    from scipy.linalg import _fblas
+KeyboardInterrupt

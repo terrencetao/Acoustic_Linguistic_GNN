@@ -410,3 +410,37 @@ Epoch 10, Loss: 762.2798461914062, Accuracy: 12.50%
 Epoch 20, Loss: 536.7173461914062, Accuracy: 12.50%
 Epoch 30, Loss: 525.6107177734375, Accuracy: 12.50%
 Epoch 40, Loss: 525.15234375, Accuracy: 12.50%
+1612
+8
+Epoch 0, Loss: 5.225576400756836, Accuracy: 11.25%
+Epoch 10, Loss: 1.4815196990966797, Accuracy: 51.25%
+Epoch 20, Loss: 0.8292566537857056, Accuracy: 82.50%
+Epoch 30, Loss: 0.33740630745887756, Accuracy: 96.25%
+Epoch 40, Loss: 0.09830401837825775, Accuracy: 100.00%
+Epoch 0, Loss: 0.6012791395187378, Accuracy: 13.75%
+Epoch 10, Loss: 0.2315666526556015, Accuracy: 12.50%
+Epoch 20, Loss: 0.19705824553966522, Accuracy: 16.25%
+Epoch 30, Loss: 0.17987079918384552, Accuracy: 16.25%
+Epoch 40, Loss: 0.16989192366600037, Accuracy: 17.50%
+Epoch 0, Loss: 5.8639912605285645, Accuracy: 11.25%
+Epoch 10, Loss: 5.451903343200684, Accuracy: 12.50%
+Epoch 20, Loss: 4.874542236328125, Accuracy: 12.50%
+Epoch 30, Loss: 4.1832380294799805, Accuracy: 12.50%
+Epoch 40, Loss: 3.6724765300750732, Accuracy: 12.50%
+1612
+8
+Epoch 0, Loss: 3.0062177181243896, Accuracy: 7.50%
+Epoch 10, Loss: 1.2953178882598877, Accuracy: 65.00%
+Epoch 20, Loss: 0.5339412689208984, Accuracy: 92.50%
+Epoch 30, Loss: 0.13525038957595825, Accuracy: 100.00%
+Epoch 40, Loss: 0.026036348193883896, Accuracy: 100.00%
+Epoch 0, Loss: 0.5971565842628479, Accuracy: 15.00%
+Epoch 10, Loss: 0.216938316822052, Accuracy: 15.00%
+Epoch 20, Loss: 0.1898985356092453, Accuracy: 22.50%
+Epoch 30, Loss: 0.17516307532787323, Accuracy: 17.50%
+Epoch 40, Loss: 0.16718386113643646, Accuracy: 21.25%
+Epoch 0, Loss: 3.6974921226501465, Accuracy: 15.00%
+Epoch 10, Loss: 11547.966796875, Accuracy: 12.50%
+Epoch 20, Loss: 6187.869140625, Accuracy: 12.50%
+Epoch 30, Loss: 6091.47509765625, Accuracy: 12.50%
+Epoch 40, Loss: 6088.01416015625, Accuracy: 12.50%

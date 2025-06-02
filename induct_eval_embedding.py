@@ -185,7 +185,7 @@ def add_new_acoustic_nodes_to_hetero_graph(hetero_graph, homograph, new_node_spe
 
     
 from sklearn.metrics.pairwise import cosine_similarity
-def add_new_nodes_to_hetero_graph_knn(hetero_graph, new_node_spectrograms, k, distance_function,ml, add, n_jobs=-1):
+def add_new_nodes_to_hetero_graph_knn2(hetero_graph, new_node_spectrograms, k, distance_function,ml, add, n_jobs=-1):
     # Work with 'acoustic' node type specifically
     num_existing_nodes = hetero_graph.num_nodes('acoustic')
     num_new_nodes = new_node_spectrograms.shape[0]
@@ -232,6 +232,53 @@ def add_new_nodes_to_hetero_graph_knn(hetero_graph, new_node_spectrograms, k, di
     # Use joblib to parallelize the processing of new nodes
     all_edges = Parallel(n_jobs=n_jobs)(delayed(process_new_node)(new_node_index) for new_node_index in tqdm(range(num_existing_nodes, num_existing_nodes + num_new_nodes)))
     
+    # Flatten the list of edges and add them to the graph
+    for edges in all_edges:
+        src, dst, weights = zip(*edges)
+        hetero_graph.add_edges(src, dst, {'weight': torch.tensor(weights, dtype=torch.float32)}, etype=('acoustic', 'sim_tic', 'acoustic'))
+      
+    return hetero_graph,num_existing_nodes
+    
+def add_new_nodes_to_hetero_graph_knn(hetero_graph, new_node_spectrograms, k, distance_function,ml, add, n_jobs=-1):
+    # Work with 'acoustic' node type specifically
+    num_existing_nodes = hetero_graph.num_nodes('acoustic')
+    num_new_nodes = new_node_spectrograms.shape[0]
+    
+    # Add new 'acoustic' nodes to the graph
+    hetero_graph.add_nodes(num_new_nodes, ntype='acoustic')
+
+    # Add features for the new 'acoustic' nodes
+   
+    new_features = torch.from_numpy(new_node_spectrograms)
+    flattened_new_features = new_features.view(new_features.shape[0], -1)
+    hetero_graph.nodes['acoustic'].data['feat'][num_existing_nodes:num_existing_nodes + num_new_nodes] = flattened_new_features
+
+    existing_features = hetero_graph.nodes['acoustic'].data['feat'][:num_existing_nodes].numpy()
+    print(existing_features.shape)
+    if add == 'ML':
+       existing_features = existing_features.reshape(existing_features.shape[0], 124, 13)
+       flattened_new_features = new_features
+    print(existing_features.shape)
+    def process_new_node(new_node_index):
+        new_node_spectrogram = flattened_new_features[new_node_index - num_existing_nodes]
+        
+        # Compute distances to all existing 'acoustic' nodes
+        distances = [distance_function(ml,new_node_spectrogram, existing_features[i]) for i in range(num_existing_nodes)]
+        
+        # Select the k nearest neighbors
+        nearest_indices = np.argsort(distances)[:k]
+        
+        edges = []
+        for i in nearest_indices:
+            distance = distances[i]
+            similarity = np.exp(-distance)
+            edges.append((new_node_index, i, 1))
+            edges.append((i, new_node_index, 1))
+        return edges
+
+    # Use joblib to parallelize the processing of new nodes
+    all_edges = Parallel(n_jobs=n_jobs)(delayed(process_new_node)(new_node_index) for new_node_index in tqdm(range(num_existing_nodes, num_existing_nodes + num_new_nodes)))
+    print(k)
     # Flatten the list of edges and add them to the graph
     for edges in all_edges:
         src, dst, weights = zip(*edges)

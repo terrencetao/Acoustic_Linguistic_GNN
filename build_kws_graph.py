@@ -281,7 +281,7 @@ if __name__ == "__main__":
         # 1. Calculer le squelette à haute saillance
         backbone = nb.high_salience_skeleton(G)
 
-        backbone_G = threshold_filter(backbone, 0.01)
+        backbone_G = threshold_filter(backbone, 0.001)
         backbone_df = backbone.to_dataframe()
         print(backbone_df.head())
         # Créer un graphe avec tous les nœuds d'origine
