@@ -43,3 +43,37 @@ Traceback (most recent call last):
   File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/function.py", line 277, in apply
     def apply(self, *args):
 KeyboardInterrupt
+1612
+8
+Epoch 0, Loss: 4.056500434875488, Accuracy: 12.69%
+Epoch 10, Loss: 2.094637870788574, Accuracy: 17.00%
+Epoch 20, Loss: 1.8928958177566528, Accuracy: 33.56%
+Epoch 30, Loss: 1.685430645942688, Accuracy: 46.31%
+Epoch 40, Loss: 1.4340728521347046, Accuracy: 55.50%
+Epoch 0, Loss: 0.6330430507659912, Accuracy: 11.50%
+Epoch 10, Loss: 0.25330984592437744, Accuracy: 12.75%
+Epoch 20, Loss: 0.2316286563873291, Accuracy: 10.69%
+Epoch 30, Loss: 0.22098645567893982, Accuracy: 10.00%
+Epoch 40, Loss: 0.21384362876415253, Accuracy: 9.81%
+Epoch 0, Loss: 6.309323310852051, Accuracy: 13.12%
+Epoch 10, Loss: 1219.7979736328125, Accuracy: 12.56%
+Epoch 20, Loss: 565.5736694335938, Accuracy: 12.38%
+Epoch 30, Loss: 556.3391723632812, Accuracy: 12.38%
+Epoch 40, Loss: 555.989990234375, Accuracy: 12.38%
+1612
+8
+Epoch 0, Loss: 7.684476852416992, Accuracy: 12.31%
+Epoch 10, Loss: 2.0021421909332275, Accuracy: 17.94%
+Epoch 20, Loss: 1.8006709814071655, Accuracy: 31.13%
+Epoch 30, Loss: 1.562084674835205, Accuracy: 46.31%
+Epoch 40, Loss: 1.238975167274475, Accuracy: 60.31%
+Epoch 0, Loss: 0.6250112056732178, Accuracy: 12.44%
+Epoch 10, Loss: 0.2580798268318176, Accuracy: 15.62%
+Epoch 20, Loss: 0.23490527272224426, Accuracy: 15.06%
+Epoch 30, Loss: 0.22421877086162567, Accuracy: 16.56%
+Epoch 40, Loss: 0.2176690399646759, Accuracy: 16.50%
+Epoch 0, Loss: 5.856947898864746, Accuracy: 12.69%
+Epoch 10, Loss: 2377.185791015625, Accuracy: 12.50%
+Epoch 20, Loss: 1663.4014892578125, Accuracy: 12.38%
+Epoch 30, Loss: 1638.0272216796875, Accuracy: 12.38%
+Epoch 40, Loss: 1637.1995849609375, Accuracy: 12.38%

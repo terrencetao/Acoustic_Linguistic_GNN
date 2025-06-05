@@ -10,6 +10,10 @@ from gnn_model import GCN
 from sklearn import svm
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split
+from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
+from sklearn.preprocessing import StandardScaler
 import argparse
 import torch.nn as nn
 import torch.optim as optim
@@ -139,7 +143,7 @@ with torch.no_grad():
 #    acoustic_embeddings_sage = embeddings_sage['acoustic']
 # Extract labels for training
 labels_np = labels.numpy()
-
+print(labels_np.shape)
 
 num_heads = 4
 logging.info(f'Load unsupervised GCN attention model')
@@ -161,8 +165,7 @@ def train_test_split_data(embeddings, labels, test_size=0.2, random_state=42):
 
 # Function to train and evaluate SVM and return accuracy
 def train_evaluate_svm(embeddings, labels):
-    X_train, X_test, y_train, y_test = train_test_split_data(embeddings, labels)
-    
+    X_train, X_test, y_train, y_test = embeddings, labels, embeddings, labels
     # Initialize the SVM model
     clf = svm.SVC(kernel='linear')
     # Train the model
@@ -175,6 +178,57 @@ def train_evaluate_svm(embeddings, labels):
     
     return accuracy
 
+def train_evaluate_mlp(embeddings, labels):
+    if len(labels.shape) == 2 and labels.shape[1] > 1:
+       labels = np.argmax(labels, axis=1)
+    # Split the data
+    X_train, X_test, y_train, y_test = embeddings, embeddings, labels,labels
+
+    # Standardize embeddings
+    #scaler = StandardScaler()
+    #X_train = scaler.fit_transform(X_train)
+    #X_test = scaler.transform(X_test)
+    
+
+    # MLP with two hidden layers: 128 and 64 neurons
+    clf = MLPClassifier(hidden_layer_sizes=(128, 64), activation='relu', max_iter=300, random_state=42)
+    clf.fit(X_train, y_train)
+
+    # Predict
+    y_pred = clf.predict(X_test)
+
+    # Evaluate
+    return accuracy_score(y_test, y_pred)
+    
+    
+def train_evaluate_dnn_pytorch(embeddings, labels, num_epochs=50, batch_size=32, lr=1e-3):
+    # Assurer que labels est 1D
+    if isinstance(labels, np.ndarray) and labels.ndim > 1:
+        labels = labels.ravel()
+
+    # Split train/test
+    X_train, X_test, y_train, y_test = embeddings, embeddings, labels, labels
+
+    # Convert to torch tensors
+    X_train = torch.tensor(X_train, dtype=torch.float32)
+    y_train = torch.tensor(y_train, dtype=torch.long)
+    X_test = torch.tensor(X_test, dtype=torch.float32)
+    y_test = torch.tensor(y_test, dtype=torch.long)
+    train_loader = DataLoader(TensorDataset(X_train, y_train), batch_size=32, shuffle=True)
+    test_loader = DataLoader(TensorDataset(X_test, y_test), batch_size=32, shuffle=False)
+    input_dim = X_train.shape[1]
+    num_classes = len(np.unique(labels))
+
+    model = SimpleDense(input_shape=input_dim, num_classes=num_classes)
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.Adam(model.parameters(), lr=lr)
+
+    train_dense(model, train_loader, criterion, optimizer, num_epochs)
+
+    # Evaluation
+    accuracy = evaluate_dense(model, test_loader)
+    return accuracy
+       
 def evaluate_link_prediction_classification_topk(
     gcn_model,
     hetero_graph,
@@ -330,28 +384,28 @@ node_embeddings_sup = node_embeddings_sup.numpy()
 
 # Train and evaluate SVM for supervised embeddings
 logging.info(f'Train and evaluate SVM for supervised embeddings')
-accuracy_sup = train_evaluate_svm(node_embeddings_sup, labels_np)
+accuracy_sup = train_evaluate_mlp(node_embeddings_sup, labels_np)
 
 # Train and evaluate SVM for unsupervised embeddings
 logging.info(f'Train and evaluate SVM for unsupervised embeddings')
 _,node_embeddings_unsup = loaded_model_unsup(dgl_G, features, edge_weights)
 node_embeddings_unsup = node_embeddings_unsup.detach().numpy()
-accuracy_unsup = train_evaluate_svm(node_embeddings_unsup, labels_np)
+accuracy_unsup = train_evaluate_mlp(node_embeddings_unsup, labels_np)
 
 # Train and evaluate SVM for hibrid embeddings
 logging.info(f'Train and evaluate SVM for hibrid embeddings')
 _,node_embeddings_hibrid = loaded_model_hibrid(dgl_G, features, edge_weights)
 node_embeddings_hibrid = node_embeddings_hibrid.detach().numpy()
-accuracy_hibrid = train_evaluate_svm(node_embeddings_hibrid, labels_np)
+accuracy_hibrid = train_evaluate_mlp(node_embeddings_hibrid, labels_np)
 
 # Train and evaluate SVM for heterogeneous model embeddings
 logging.info(f'Train and evaluate SVM for heterogeneous model embeddings')
 acoustic_embeddings_np = acoustic_embeddings.detach().numpy()
-accuracy_hetero = train_evaluate_svm(acoustic_embeddings_np, labels_np)
+accuracy_hetero = train_evaluate_mlp(acoustic_embeddings_np, labels_np)
 logging.info(f"Accuracy of the Heterogeneous Model: {accuracy_hetero:.4f}")
 
 acoustic_embeddings_regressor_np = acoustic_embeddings_hetero_regressor.detach().numpy()
-accuracy_hetero_regressor = train_evaluate_svm(acoustic_embeddings_regressor_np, labels_np)
+accuracy_hetero_regressor = train_evaluate_mlp(acoustic_embeddings_regressor_np, labels_np)
 logging.info(f"Accuracy of the Heterogeneous regressor Model: {accuracy_hetero_regressor:.4f}")
 
 acc_pred_link, acc_topk  = evaluate_acoustic_word_link_prediction_topk(
@@ -394,7 +448,7 @@ accuracy_spectrogram = 0.0
 spectrograms_tensor = torch.tensor(spectrograms, dtype=torch.float32)
 labels_tensor = torch.tensor(labels_np, dtype=torch.long)
 spectrograms_tensor = spectrograms_tensor.unsqueeze(1)
-X_train, X_test, y_train, y_test = train_test_split(spectrograms_tensor, labels_tensor, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = spectrograms_tensor, spectrograms_tensor, labels_tensor, labels_tensor
 train_loader = DataLoader(TensorDataset(X_train, y_train), batch_size=32, shuffle=True)
 test_loader = DataLoader(TensorDataset(X_test, y_test), batch_size=32, shuffle=False)
 

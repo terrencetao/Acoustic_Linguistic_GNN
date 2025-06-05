@@ -8,7 +8,7 @@ declare -A UNIT_DIVISORS=( ["spoken_digit"]=10 ["google_command"]=8 ["yemba_comm
 
 #################################### CONFIGURATION #################################################
 DATASETS=( "google_command" "spoken_digit" "yemba_command_small")
-UNITS=$(seq 1000 500 8000)
+UNITS=$(seq 500 500 8000)
 METHOD_MMA="clique"
 METHOD_MSA="filter"
 ALPHAS=(1.0)
