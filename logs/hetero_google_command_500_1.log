@@ -527,3 +527,48 @@ Epoch 110, Loss: 2.5146384239196777, Accuracy: 26.25%
 Epoch 120, Loss: 2.514543056488037, Accuracy: 26.25%
 Epoch 130, Loss: 2.514446496963501, Accuracy: 26.25%
 Epoch 140, Loss: 2.5143489837646484, Accuracy: 26.25%
+2025-06-05 16:57:55,070 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 1.4018, Regularisation: 1.114711046218872, MSE: 0.2871
+Epoch 10, Loss: 1.6479, Regularisation: 1.14792001247406, MSE: 0.5000
+Epoch 20, Loss: 1.6462, Regularisation: 1.1461743116378784, MSE: 0.5000
+Epoch 30, Loss: 1.6461, Regularisation: 1.1461381912231445, MSE: 0.5000
+Epoch 40, Loss: 1.6461, Regularisation: 1.1461368799209595, MSE: 0.5000
+Epoch 50, Loss: 1.6461, Regularisation: 1.1461368799209595, MSE: 0.5000
+Epoch 60, Loss: 1.6461, Regularisation: 1.14613676071167, MSE: 0.5000
+Epoch 70, Loss: 1.6461, Regularisation: 1.1461366415023804, MSE: 0.5000
+Epoch 80, Loss: 1.6461, Regularisation: 1.1461366415023804, MSE: 0.5000
+Epoch 90, Loss: 1.6461, Regularisation: 1.1461365222930908, MSE: 0.5000
+Epoch 100, Loss: 1.6461, Regularisation: 1.1461364030838013, MSE: 0.5000
+Epoch 110, Loss: 1.6461, Regularisation: 1.1461362838745117, MSE: 0.5000
+Epoch 120, Loss: 1.6461, Regularisation: 1.1461361646652222, MSE: 0.5000
+Epoch 130, Loss: 1.6461, Regularisation: 1.1461360454559326, MSE: 0.5000
+Epoch 140, Loss: 1.6461, Regularisation: 1.1461358070373535, MSE: 0.5000
+Epoch 150, Loss: 1.6461, Regularisation: 1.1461358070373535, MSE: 0.5000
+Epoch 160, Loss: 1.6461, Regularisation: 1.1461355686187744, MSE: 0.5000
+Epoch 170, Loss: 1.6461, Regularisation: 1.1461354494094849, MSE: 0.5000
+Epoch 180, Loss: 1.6461, Regularisation: 1.1461352109909058, MSE: 0.5000
+Epoch 190, Loss: 1.6461, Regularisation: 1.1461350917816162, MSE: 0.5000
+2025-06-05 16:59:10,575 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 2.929917812347412, Accuracy: 13.00%
+Epoch 10, Loss: 3.8904247283935547, Accuracy: 14.50%
+Epoch 20, Loss: 3.468989849090576, Accuracy: 18.75%
+Epoch 30, Loss: 3.4609198570251465, Accuracy: 19.00%
+Epoch 40, Loss: 3.460578680038452, Accuracy: 18.75%
+Epoch 50, Loss: 3.4603805541992188, Accuracy: 18.75%
+Epoch 60, Loss: 3.4601731300354004, Accuracy: 18.75%
+Epoch 70, Loss: 3.459958076477051, Accuracy: 18.75%
+Epoch 80, Loss: 3.459737539291382, Accuracy: 18.75%
+Epoch 90, Loss: 3.459512710571289, Accuracy: 18.75%
+Epoch 100, Loss: 3.4592835903167725, Accuracy: 19.00%
+Epoch 110, Loss: 3.4590518474578857, Accuracy: 19.00%
+Epoch 120, Loss: 3.45881724357605, Accuracy: 19.00%
+Epoch 130, Loss: 3.458580493927002, Accuracy: 19.00%
+Epoch 140, Loss: 3.458340883255005, Accuracy: 19.00%
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 244, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb), args.dataset)
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 207, in main
+    adj_matrix_acoustic = torch.tensor(nx.to_numpy_array(hetero_graph['acoustic', 'sim_tic', 'acoustic'].to_networkx()))
+  File "/home/yannick/.local/lib/python3.10/site-packages/networkx/convert_matrix.py", line 1479, in to_numpy_array
+    i, j = np.array(list(d.keys())).T  # indices
+KeyboardInterrupt

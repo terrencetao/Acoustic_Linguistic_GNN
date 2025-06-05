@@ -6,3 +6,5 @@ Supervised Model,Unsupervised Model,Hibrid Model,Heterogeneous Model,Heterogeneo
 1.0,1.0,0.125,1.0,0.1375,0.125,0.375,0.0,0.0,0.0,1.0,1.0,0.1,11.0,fixed,11.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,1.0,1.0
 1.0,1.0,0.125,1.0,0.125,0.125,0.375,0.0,0.0,0.0,1.0,1.0,0.1,11.0,full_weighted,11.0,0.5,1.0,0.5,phon_count,filter,full,clique,1,1.0,1.0
 1.0,1.0,0.125,0.9875,0.2125,0.125,0.375,0.0,0.0,0.0,1.0,1.0,0.1,11.0,full_weighted,11.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,1.0,1.0
+1.0,1.0,0.125,1.0,0.125,0.125,0.375,0.0,0.0,0.0,1.0,1.0,0.1,11.0,full_weighted,11.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,1.0,1.0
+1.0,1.0,0.125,0.8125,0.25,0.125,0.375,0.0,0.0,0.0,1.0,1.0,0.1,11.0,full_weighted,11.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,1.0,1.0

@@ -96,7 +96,7 @@ def train_edge_regression(model, g, features, true_edge_weights, src, dst, adj_m
         loss = regression_loss + lamb * topo_loss
 
         optimizer.zero_grad()
-        loss.backward()
+        topo_loss.backward()
         optimizer.step()
         scheduler.step(topo_loss)
 

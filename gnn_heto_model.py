@@ -82,6 +82,7 @@ def topological_loss(embeddings_acoustic, embeddings_word,
 
     # Total loss
     return loss_acoustic + lamb_1 * loss_word #+ lamb_2 * loss_acoustic_word
+    
 def train_with_topological_loss_cross_loss(model, g, features, adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word, labels, epochs=100, lr=0.001, lamb=1.0):
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
     scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=5)

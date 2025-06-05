@@ -693,6 +693,31 @@ def train_evaluate_mlp(X_train, X_test, y_train, y_test):
 
     # Evaluate
     return accuracy_score(y_test, y_pred)
+    
+ 
+def train_evaluate_dnn_pytorch(X_train, X_test, y_train, y_test , num_epochs=50, batch_size=32, lr=1e-3):
+    
+    
+
+    # Convert to torch tensors
+    X_train = torch.tensor(X_train, dtype=torch.float32)
+    y_train = torch.tensor(y_train, dtype=torch.long)
+    X_test = torch.tensor(X_test, dtype=torch.float32)
+    y_test = torch.tensor(y_test, dtype=torch.long)
+    train_loader = DataLoader(TensorDataset(X_train, y_train), batch_size=32, shuffle=True)
+    test_loader = DataLoader(TensorDataset(X_test, y_test), batch_size=32, shuffle=False)
+    input_dim = X_train.shape[1]
+    num_classes = len(np.unique(labels))
+
+    model = SimpleDense(input_shape=input_dim, num_classes=num_classes)
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.Adam(model.parameters(), lr=lr)
+
+    train_dense(model, train_loader, criterion, optimizer, num_epochs)
+
+    # Evaluation
+    accuracy = evaluate_dense(model, test_loader)
+    return accuracy
 
 
 
@@ -930,34 +955,34 @@ if not file_exists:
 
 # Train and evaluate SVM for supervised embeddings
 logging.info(f'Train and evaluate SVM for supervised embeddings')
-accuracy_sup = train_evaluate_mlp( X_train=node_embeddings_sup, X_test=node_val_embeddings_sup, y_train=labels_np, y_test=val_labels_np)
+accuracy_sup = train_evaluate_dnn_pytorch( X_train=node_embeddings_sup, X_test=node_val_embeddings_sup, y_train=labels_np, y_test=val_labels_np)
  
 # Train and evaluate SVM for unsupervised embeddings
 logging.info(f'Train and evaluate SVM for unsupervised embeddings')
 node_embeddings_unsup, node_val_embeddings_unsup = generate_embeddings(gcn_model=loaded_model_unsup, 
                                                 dgl_G=dgl_G,num_existing_nodes=num_existing_nodes, new_node_spectrograms=subset_val_spectrograms, )
 
-accuracy_unsup = train_evaluate_mlp(X_train=node_embeddings_unsup, X_test=node_val_embeddings_unsup, y_train=labels_np, y_test=val_labels_np)
+accuracy_unsup = train_evaluate_dnn_pytorch(X_train=node_embeddings_unsup, X_test=node_val_embeddings_unsup, y_train=labels_np, y_test=val_labels_np)
 logging.info(f"Accuracy of unsupervised Model: {accuracy_unsup:.4f}")
 
 # Train and evaluate SVM for Hibrid embeddings
 logging.info(f'Extract acoustic node representations From hibrid GNN')
 node_embeddings_hibrid, node_val_embeddings_hibrid = generate_embeddings(gcn_model=loaded_model_hibrid, 
                                                 dgl_G=dgl_G,num_existing_nodes=num_existing_nodes, new_node_spectrograms=subset_val_spectrograms, )
-accuracy_hibrid = train_evaluate_mlp(X_train=node_embeddings_hibrid, X_test=node_val_embeddings_hibrid, y_train=labels_np, y_test=val_labels_np)
+accuracy_hibrid = train_evaluate_dnn_pytorch(X_train=node_embeddings_hibrid, X_test=node_val_embeddings_hibrid, y_train=labels_np, y_test=val_labels_np)
 
 logging.info(f"Accuracy of hibrid Model: {accuracy_hibrid:.4f}")
 
 # Train and evaluate SVM for heterogeneous model embeddings
 logging.info(f'Train and evaluate SVM for heterogeneous model embeddings')
 
-accuracy_hetero = train_evaluate_mlp(X_train=acoustic_embeddings, X_test=acoustic_val_embeddings, y_train=labels_np, y_test=val_labels_np)
+accuracy_hetero = train_evaluate_dnn_pytorch(X_train=acoustic_embeddings, X_test=acoustic_val_embeddings, y_train=labels_np, y_test=val_labels_np)
 logging.info(f"Accuracy of the Heterogeneous Model: {accuracy_hetero:.4f}")
 
 # Train and evaluate SVM for heterogeneous regressor model embeddings
 logging.info(f'Train and evaluate SVM for heterogeneous regressor model embeddings')
 
-accuracy_hetero_regressor = train_evaluate_mlp(X_train=acoustic_embeddings_regressor, X_test=acoustic_val_embeddings_regressor, y_train=labels_np, y_test=val_labels_np)
+accuracy_hetero_regressor = train_evaluate_dnn_pytorch(X_train=acoustic_embeddings_regressor, X_test=acoustic_val_embeddings_regressor, y_train=labels_np, y_test=val_labels_np)
 logging.info(f"Accuracy of the Heterogeneous regressor Model: {accuracy_hetero_regressor:.4f}")
 
 logging.info(f'Link predictor accuracy')
@@ -994,7 +1019,7 @@ spectrograms = np.load(os.path.join(matrix_folder ,f'subset_spectrogram_{args.su
 flattened_spectrograms = flatten_spectrograms(spectrograms)
 flattened_val_spectrograms = flatten_spectrograms(subset_val_spectrograms)
 # Train and evaluate SVM for spectrogram embeddings
-accuracy_spectrogram = train_evaluate_mlp( X_train=flattened_spectrograms, X_test=flattened_val_spectrograms, y_train=labels_np, y_test=val_labels_np)
+accuracy_spectrogram = train_evaluate_svm( X_train=flattened_spectrograms, X_test=flattened_val_spectrograms, y_train=labels_np, y_test=val_labels_np)
 logging.info(f'SVM Model Accuracy: {accuracy_spectrogram}')
 # Prepare data for CNN
 

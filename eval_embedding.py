@@ -384,7 +384,7 @@ node_embeddings_sup = node_embeddings_sup.numpy()
 
 # Train and evaluate SVM for supervised embeddings
 logging.info(f'Train and evaluate SVM for supervised embeddings')
-accuracy_sup = train_evaluate_mlp(node_embeddings_sup, labels_np)
+accuracy_sup = train_evaluate_dnn_pytorch(node_embeddings_sup, labels_np)
 
 # Train and evaluate SVM for unsupervised embeddings
 logging.info(f'Train and evaluate SVM for unsupervised embeddings')
@@ -396,16 +396,16 @@ accuracy_unsup = train_evaluate_mlp(node_embeddings_unsup, labels_np)
 logging.info(f'Train and evaluate SVM for hibrid embeddings')
 _,node_embeddings_hibrid = loaded_model_hibrid(dgl_G, features, edge_weights)
 node_embeddings_hibrid = node_embeddings_hibrid.detach().numpy()
-accuracy_hibrid = train_evaluate_mlp(node_embeddings_hibrid, labels_np)
+accuracy_hibrid = train_evaluate_dnn_pytorch(node_embeddings_hibrid, labels_np)
 
 # Train and evaluate SVM for heterogeneous model embeddings
 logging.info(f'Train and evaluate SVM for heterogeneous model embeddings')
 acoustic_embeddings_np = acoustic_embeddings.detach().numpy()
-accuracy_hetero = train_evaluate_mlp(acoustic_embeddings_np, labels_np)
+accuracy_hetero = train_evaluate_dnn_pytorch(acoustic_embeddings_np, labels_np)
 logging.info(f"Accuracy of the Heterogeneous Model: {accuracy_hetero:.4f}")
 
 acoustic_embeddings_regressor_np = acoustic_embeddings_hetero_regressor.detach().numpy()
-accuracy_hetero_regressor = train_evaluate_mlp(acoustic_embeddings_regressor_np, labels_np)
+accuracy_hetero_regressor = train_evaluate_dnn_pytorch(acoustic_embeddings_regressor_np, labels_np)
 logging.info(f"Accuracy of the Heterogeneous regressor Model: {accuracy_hetero_regressor:.4f}")
 
 acc_pred_link, acc_topk  = evaluate_acoustic_word_link_prediction_topk(
