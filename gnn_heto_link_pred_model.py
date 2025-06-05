@@ -82,7 +82,7 @@ def train_link_prediction(model, g, features, true_edge_labels, src, dst, adj_ma
 
     return model
     
-def train_edge_regression(model, g, features, true_edge_weights, src, dst, adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word, epochs=100, lr=0.001, lamb=1.0):
+def train_edge_regression(model, g, features, true_edge_weights, src, dst, adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word, epochs=100, lr=0.01, lamb=1.0):
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
     scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=5)
 
@@ -98,7 +98,7 @@ def train_edge_regression(model, g, features, true_edge_weights, src, dst, adj_m
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        scheduler.step(loss)
+        scheduler.step(topo_loss)
 
         if epoch % 10 == 0 or epoch == epochs:
             print(f"Epoch {epoch}, Loss: {loss.item():.4f}, Regularisation: {topo_loss}, MSE: {regression_loss.item():.4f}")
@@ -109,22 +109,30 @@ def train_edge_regression(model, g, features, true_edge_weights, src, dst, adj_m
     
     
 def topological_loss(embeddings_acoustic, embeddings_word,
-                     adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word, lamb_1=0):
-    # Acoustic similarity
+                     adj_matrix_acoustic, adj_matrix_word, adj_matrix_word_acoustic,
+                     lamb_1=0.0, lamb_2=1):
+    # Acoustic similarity (N_acoustic x N_acoustic)
     cosine_sim_acoustic = F.cosine_similarity(
         embeddings_acoustic.unsqueeze(1), embeddings_acoustic.unsqueeze(0), dim=2)
     cosine_sim_acoustic = cosine_sim_acoustic - torch.diag_embed(torch.diag(cosine_sim_acoustic))
     loss_acoustic = F.mse_loss(cosine_sim_acoustic, adj_matrix_acoustic)
 
-    # Word similarity
+    # Word similarity (N_word x N_word)
     cosine_sim_word = F.cosine_similarity(
         embeddings_word.unsqueeze(1), embeddings_word.unsqueeze(0), dim=2)
     cosine_sim_word = cosine_sim_word - torch.diag_embed(torch.diag(cosine_sim_word))
     loss_word = F.mse_loss(cosine_sim_word, adj_matrix_word)
+    
+    # Acoustic-Word similarity (N_word x N_acoustic)
+    cosine_sim_word_acoustic = F.cosine_similarity(
+        embeddings_word.unsqueeze(1),               # [N_word, 1, D]
+        embeddings_acoustic.unsqueeze(0),           # [1, N_acoustic, D]
+        dim=2                                       # compare along D
+    )
+    loss_acoustic_word = F.mse_loss(cosine_sim_word_acoustic, adj_matrix_word_acoustic)
 
-   
-
-    return loss_acoustic + lamb_1*loss_word
+    # Total loss
+    return loss_acoustic + lamb_1 * loss_word + lamb_2 * loss_acoustic_word
     
     
 
@@ -174,7 +182,8 @@ def main(input_folder, graph_file, epochs, lamb, dataset):
     # Get edge data
     # Positifs
     src_pos, dst_pos = hetero_graph.edges(etype=('word', 'related_to', 'acoustic'))
-    weights_pos = torch.ones(len(src_pos))
+    weights_pos = hetero_graph.edges[('word', 'related_to', 'acoustic')].data['weight']
+    
 
     # Négatifs (autant que les positifs, ou plus/moins si tu veux)
     src_neg, dst_neg = generate_negative_edges(hetero_graph, num_samples=len(src_pos))
@@ -197,20 +206,23 @@ def main(input_folder, graph_file, epochs, lamb, dataset):
     # Build adjacency matrices for topological loss
     adj_matrix_acoustic = torch.tensor(nx.to_numpy_array(hetero_graph['acoustic', 'sim_tic', 'acoustic'].to_networkx()))
     adj_matrix_word = torch.tensor(nx.to_numpy_array(hetero_graph['word', 'sim_w', 'word'].to_networkx()))
+   
     num_acoustic = hetero_graph.num_nodes('acoustic')
     num_word = hetero_graph.num_nodes('word')
-    adj_matrix_acoustic_word = torch.zeros(num_word, num_acoustic)
-    adj_matrix_acoustic_word[src, dst] = 1
+    adj_matrix_word_acoustic = torch.zeros(num_word, num_acoustic)
+    edge_weights = hetero_graph.edges[('word', 'related_to', 'acoustic')].data['weight']
+    adj_matrix_word_acoustic[src_pos, dst_pos] = edge_weights
 
+    
     adj_matrix_acoustic = adj_matrix_acoustic.float()
     adj_matrix_word = adj_matrix_word.float()
-    adj_matrix_acoustic_word = adj_matrix_acoustic_word.float()
+    adj_matrix_word_acoustic = adj_matrix_word_acoustic.float()
     features = {k: v.float() for k, v in features.items()}
     true_edge_weights = true_edge_weights.float()
 
     model = train_edge_regression(
         model, hetero_graph, features, true_edge_weights, src, dst,
-        adj_matrix_acoustic, adj_matrix_word, adj_matrix_acoustic_word,
+        adj_matrix_acoustic, adj_matrix_word, adj_matrix_word_acoustic,
         epochs, lamb=lamb
     )
 

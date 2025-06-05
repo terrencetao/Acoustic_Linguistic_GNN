@@ -8,7 +8,7 @@ declare -A UNIT_DIVISORS=( ["spoken_digit"]=10 ["google_command"]=8 ["yemba_comm
 
 #################################### CONFIGURATION #################################################
 DATASETS=( "google_command" "spoken_digit" "yemba_command_small")
-UNITS=$(seq 300 500 8000)
+UNITS=$(seq 1000 500 8000)
 METHOD_MMA="clique"
 METHOD_MSA="filter"
 ALPHAS=(1.0)
@@ -110,7 +110,7 @@ build_heterogeneous_graph_and_eval() {
             graph_file="saved_graphs/$dataset/$mma/$msa/$mhg/$msw/hetero_graph_${num}_${ko}_${num_n_h}_${unit}.dgl"
             python3 gnn_heto_model.py --input_folder '' --graph_file "$graph_file" --epochs 150 --lamb $lamb \
               >> "logs/hetero_${dataset}_${unit}_${ko}.log" 2>&1
-            python3 gnn_heto_link_pred_model.py --input_folder '' --graph_file "$graph_file" --epochs 150 --lamb $lamb --dataset $dataset\
+            python3 gnn_heto_link_pred_model.py --input_folder '' --graph_file "$graph_file" --epochs 200 --lamb $lamb --dataset $dataset\
               >> "logs/hetero_${dataset}_${unit}_${ko}.log" 2>&1
 
             python3 eval_embedding.py --mma "$mma" --twa "$twa" --num_n_h "$num_n_h" --mhg "$mhg" \

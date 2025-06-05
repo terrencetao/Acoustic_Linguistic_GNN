@@ -794,7 +794,7 @@ with open(f'phon_idx_{args.dataset}.pkl', 'rb') as f:
         phon_idx = pickle.load(f)
   
 in_feats = {'acoustic': features_dic['acoustic'].shape[1], 'word': features_dic['word'].shape[1]}
-hidden_size = 512
+hidden_size = hetero_graph.nodes['word'].data['feat'].shape[1]
 linear_hidden_size = 64
 nb_phon = hetero_graph.nodes['word'].data['feat'].shape[1]
 out_feats = len(labels.unique())
