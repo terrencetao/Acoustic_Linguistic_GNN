@@ -511,3 +511,19 @@ Traceback (most recent call last):
   File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/__init__.py", line 266, in backward
     Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
 KeyboardInterrupt
+2025-06-05 16:32:52,786 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 2.8785433769226074, Accuracy: 13.50%
+Epoch 10, Loss: 2.6079654693603516, Accuracy: 24.00%
+Epoch 20, Loss: 2.518293619155884, Accuracy: 26.50%
+Epoch 30, Loss: 2.5153682231903076, Accuracy: 26.25%
+Epoch 40, Loss: 2.5152394771575928, Accuracy: 26.25%
+Epoch 50, Loss: 2.5151631832122803, Accuracy: 26.25%
+Epoch 60, Loss: 2.515083074569702, Accuracy: 26.25%
+Epoch 70, Loss: 2.5149993896484375, Accuracy: 26.25%
+Epoch 80, Loss: 2.5149130821228027, Accuracy: 26.25%
+Epoch 90, Loss: 2.514824151992798, Accuracy: 26.25%
+Epoch 100, Loss: 2.5147323608398438, Accuracy: 26.25%
+Epoch 110, Loss: 2.5146384239196777, Accuracy: 26.25%
+Epoch 120, Loss: 2.514543056488037, Accuracy: 26.25%
+Epoch 130, Loss: 2.514446496963501, Accuracy: 26.25%
+Epoch 140, Loss: 2.5143489837646484, Accuracy: 26.25%
