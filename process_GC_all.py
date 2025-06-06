@@ -209,16 +209,18 @@ args = parser.parse_args()
 drop_freq = float(args.drop_freq) 
 drop_int = float(args.drop_int)
 feature  = args.feature
-DATASET_PATH = 'data/mini_speech_commands'
+DATASET_PATH = 'data/speech_commands_v0_extracted'
 
 data_dir = pathlib.Path(DATASET_PATH)
 if not data_dir.exists():
   tf.keras.utils.get_file(
-      'mini_speech_commands.zip',
-      origin="http://storage.googleapis.com/download.tensorflow.org/data/mini_speech_commands.zip",
-      extract=True,
-      cache_dir='.', cache_subdir='data')
-      
+    fname='speech_commands_v0.02.tar.gz',
+    origin='http://download.tensorflow.org/data/speech_commands_v0.02.tar.gz',
+    extract=True,
+    cache_dir='.', cache_subdir='data'
+)
+
+
       
       
 commands = np.array(tf.io.gfile.listdir(str(data_dir)))
@@ -239,7 +241,7 @@ print()
 print("label names:", label_names)
 
 # Save label_names to a file using pickle
-with open('label_names_google_command_min.pkl', 'wb') as f:
+with open('label_names_google_command.pkl', 'wb') as f:
     pickle.dump(label_names, f)
 
 
@@ -282,7 +284,7 @@ else:
 
 
 # Define the directory to save the datasets
-save_dir = 'saved_datasets/google_command_mini'
+save_dir = 'saved_datasets/google_command'
 os.makedirs(save_dir, exist_ok=True)
 
 

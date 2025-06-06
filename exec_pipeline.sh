@@ -4,11 +4,11 @@
 mkdir -p logs
 
 # Unit divisors specific to each dataset
-declare -A UNIT_DIVISORS=( ["spoken_digit"]=10 ["google_command"]=8 ["yemba_command_small"]=13 )
+declare -A UNIT_DIVISORS=( ["spoken_digit"]=10 ["google_command"]=34 ["google_command_mini"]=8 ["yemba_command_small"]=13 )
 
 #################################### CONFIGURATION #################################################
-DATASETS=( "google_command" "spoken_digit" "yemba_command_small")
-UNITS=$(seq 100 500 8000)
+DATASETS=( "google_command" "google_command_mini" "spoken_digit" "yemba_command_small")
+UNITS=$(seq 1000 1000 8000)
 METHOD_MMA="clique"
 METHOD_MSA="filter"
 ALPHAS=(1.0)
