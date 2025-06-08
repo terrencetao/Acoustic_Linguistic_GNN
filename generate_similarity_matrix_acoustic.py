@@ -29,21 +29,25 @@ np.random.seed(42)
 def extract_spectrograms(dataset):
     spectrograms = []
     labels = []
-    
+
     for spectrogram_batch, label_batch in dataset:
-        # Process each spectrogram in the batch
+        # Si batch_size = 1, assure-toi que les batchs ont bien une dimension lot
+        if tf.rank(spectrogram_batch) == 3:  # (time, freq, 1)
+            spectrogram_batch = tf.expand_dims(spectrogram_batch, axis=0)
+            label_batch = tf.expand_dims(label_batch, axis=0)
+
         for spectrogram in spectrogram_batch:
-            # Check if the last dimension is 1, and only squeeze in that case
+            # Squeeze uniquement si le dernier dim est 1
             if spectrogram.shape[-1] == 1:
                 spectrograms.append(tf.squeeze(spectrogram, axis=-1).numpy())
             else:
                 spectrograms.append(spectrogram.numpy())
-        
-        # Process each label in the batch
+
         for label in label_batch:
             labels.append(label.numpy())
-    
+
     return spectrograms, labels
+
 
     
 def distance_dtw(node_1, node_2):

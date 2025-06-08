@@ -285,6 +285,6 @@ similarity_matrix[similarity_matrix < threshold] = 0
 # Set diagonal to 0 to avoid self-loops
 np.fill_diagonal(similarity_matrix, 0)
 
-np.save('filtered_similarity_matrix_word.npy', similarity_matrix)
-np.save('word_embedding.npy', word_embeddings )
+np.save('filtered_similarity_matrix_word_{args.dataset}.npy', similarity_matrix)
+np.save('word_embedding_{args.dataset}.npy', word_embeddings )
 print("Filtered similarity matrix for word label computed successfully.")
