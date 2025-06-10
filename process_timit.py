@@ -8,8 +8,16 @@ import pickle
 from pathlib import Path
 from tqdm import tqdm
 
+# === NOUVEAU ===
+import torch
+import torchaudio
+import tensorflow_hub as hub
+from tensorflow.keras.applications import VGG16
+from tensorflow.keras.applications.vgg16 import preprocess_input
+from tensorflow.keras.models import Model
+
 # --- PARAMÈTRES ---
-DATASET_PATH = 'data/TIMIT'  # <-- à adapter
+DATASET_PATH = 'data/TIMIT'
 SAVE_DIR = 'saved_datasets/timit'
 TARGET_SAMPLING_RATE = 16000
 N_MFCC = 13
@@ -18,11 +26,54 @@ HOP_LENGTH = 128
 FIXED_MFCC_SHAPE = (13, 32)
 TRAIN_SPLIT = 0.8
 SEED = 42
+REPRESENTATION_TYPE = 'mfcc'  # mfcc | wav2vec | vgg | trill
 
 mfccs = []
 labels = []
 
-# --- EXTRAIRE LES SEGMENTS AUDIO ---
+# --- CHARGEMENT DES MODÈLES ---
+if REPRESENTATION_TYPE == 'wav2vec':
+    bundle = torchaudio.pipelines.WAV2VEC2_BASE
+    wav2vec_model = bundle.get_model()
+elif REPRESENTATION_TYPE == 'trill':
+    trill_model = hub.load("https://tfhub.dev/google/nonsemantic-speech-benchmark/trill/3")
+elif REPRESENTATION_TYPE == 'vgg':
+    base_model = VGG16(include_top=False, weights='imagenet', input_shape=(224, 224, 3))
+    vgg_model = Model(inputs=base_model.input, outputs=base_model.get_layer("block5_pool").output)
+
+# --- FONCTIONS DE REPRÉSENTATION ---
+def extract_features(segment, sr):
+    if REPRESENTATION_TYPE == 'mfcc':
+        mfcc = librosa.feature.mfcc(
+            y=segment, sr=sr, n_mfcc=N_MFCC, n_fft=N_FFT, hop_length=HOP_LENGTH
+        )
+        return tf.image.resize_with_pad(mfcc[np.newaxis, ..., np.newaxis], FIXED_MFCC_SHAPE[0], FIXED_MFCC_SHAPE[1])[0].numpy()
+
+    elif REPRESENTATION_TYPE == 'wav2vec':
+        if sr != bundle.sample_rate:
+            segment = librosa.resample(segment, sr, bundle.sample_rate)
+        waveform = torch.tensor(segment).float().unsqueeze(0)
+        with torch.inference_mode():
+            features = wav2vec_model(waveform)[0]  # (1, T, 768)
+        return features.mean(dim=1).squeeze(0).numpy()  # (768,)
+
+    elif REPRESENTATION_TYPE == 'trill':
+        if sr != 16000:
+            segment = librosa.resample(segment, sr, 16000)
+        wav = tf.convert_to_tensor(segment, dtype=tf.float32)
+        trill_out = trill_model({'audio': wav, 'sample_rate': 16000})
+        return trill_out['embedding'].numpy().mean(axis=0)  # (2048,)
+
+    elif REPRESENTATION_TYPE == 'vgg':
+        S = librosa.feature.melspectrogram(y=segment, sr=sr, n_mels=128)
+        S_dB = librosa.power_to_db(S, ref=np.max)
+        S_resized = tf.image.resize(S_dB[..., np.newaxis], (224, 224))
+        S_rgb = tf.image.grayscale_to_rgb(S_resized)
+        S_rgb = preprocess_input(S_rgb.numpy())
+        features = vgg_model.predict(S_rgb[np.newaxis, ...], verbose=0)
+        return features.squeeze()  # (7, 7, 512)
+
+# --- EXTRACTION DES SEGMENTS ---
 def extract_words_and_labels(dataset_path):
     phn_files = []
     for root, _, files in os.walk(dataset_path):
@@ -47,19 +98,11 @@ def extract_words_and_labels(dataset_path):
                 if len(segment) < N_FFT:
                     continue
                 try:
-                    mfcc = librosa.feature.mfcc(
-                        y=segment, sr=TARGET_SAMPLING_RATE,
-                        n_mfcc=N_MFCC, n_fft=N_FFT, hop_length=HOP_LENGTH
-                    )
-                    mfcc_resized = tf.image.resize_with_pad(
-                        mfcc[np.newaxis, ..., np.newaxis],
-                        FIXED_MFCC_SHAPE[0],
-                        FIXED_MFCC_SHAPE[1]
-                    )[0].numpy()
-                    mfccs.append(mfcc_resized)
+                    features = extract_features(segment, sr)
+                    mfccs.append(features)
                     labels.append(label)
                 except Exception as e:
-                    print(f"[!] Erreur MFCC: {e}")
+                    print(f"[!] Erreur feature extraction: {e}")
 
 # --- ENCODAGE DES LABELS ---
 def encode_labels(labels):
@@ -78,7 +121,7 @@ def split_dataset(X, y, train_ratio=TRAIN_SPLIT):
     split_idx = int(len(X) * train_ratio)
     train_idx, val_idx = indices[:split_idx], indices[split_idx:]
 
-    X_np = np.array(X)
+    X_np = np.array(X, dtype=object)
     y_np = np.array(y)
 
     train_data = tf.data.Dataset.from_tensor_slices((X_np[train_idx], y_np[train_idx]))
@@ -100,7 +143,7 @@ def save_label_names(label_names, save_dir):
 
 # --- PIPELINE PRINCIPAL ---
 def preprocess_timit():
-    print("🚀 Démarrage du prétraitement TIMIT")
+    print(f"🚀 Démarrage du prétraitement TIMIT ({REPRESENTATION_TYPE})")
     extract_words_and_labels(DATASET_PATH)
     print(f"🎧 Total des segments extraits : {len(mfccs)}")
 

@@ -68,8 +68,8 @@ subset_val_labels = np.load(os.path.join(matrix_folder,f'subset_val_label_{args.
 subset_val_spectrograms = np.load(os.path.join(matrix_folder,f'subset_val_spectrogram_{args.sub_units}.npy'))
 
 # Define the input features size
-in_feats = features[0].shape[0] * features[0].shape[1]
-
+#in_feats = features[0].shape[0] * features[0].shape[1]
+in_feats = features[0].shape[0] 
 hidden_size = 64
 num_classes = len(torch.unique(labels))
 conv_param = [(1, 3, (20, 64)), 32, 2]
@@ -455,10 +455,12 @@ test_loader = DataLoader(TensorDataset(X_test, y_test), batch_size=32, shuffle=F
 # Define and train the CNN model
 logging.info(f'train the CNN model')
 
-cnn_model = torch.load('models/cnn.pth',weights_only=False)
-dnn_model = torch.load('models/dense.pth', weights_only=False)
-accuracy_cnn = evaluate_cnn(cnn_model, test_loader)
-accuracy_dnn = evaluate_dense(dnn_model, test_loader)
+#cnn_model = torch.load('models/cnn.pth',weights_only=False)
+#dnn_model = torch.load('models/dense.pth', weights_only=False)
+#accuracy_cnn = evaluate_cnn(cnn_model, test_loader)
+accuracy_cnn = 0
+#accuracy_dnn = evaluate_dense(dnn_model, test_loader)
+accuracy_dnn = 0
 logging.info(f'CNN Model Accuracy: {accuracy_cnn}')
 logging.info(f'DNN Model Accuracy: {accuracy_dnn}')
 

@@ -1,17 +1,16 @@
-1612
-34
-Epoch 0, Loss: 16.32986068725586, Accuracy: 3.50%
-Epoch 10, Loss: 3.577011823654175, Accuracy: 6.00%
-Epoch 20, Loss: 3.4051513671875, Accuracy: 7.75%
-Epoch 30, Loss: 3.2365944385528564, Accuracy: 9.75%
-Epoch 40, Loss: 3.0138237476348877, Accuracy: 15.25%
-Epoch 0, Loss: 0.6329703330993652, Accuracy: 3.25%
-Epoch 10, Loss: 0.23539309203624725, Accuracy: 3.75%
-Epoch 20, Loss: 0.20920991897583008, Accuracy: 3.00%
-Epoch 30, Loss: 0.19710148870944977, Accuracy: 3.50%
-Epoch 40, Loss: 0.19015666842460632, Accuracy: 3.25%
-Epoch 0, Loss: 7.2662272453308105, Accuracy: 2.25%
-Epoch 10, Loss: 9044.2333984375, Accuracy: 3.75%
-Epoch 20, Loss: 6816.72314453125, Accuracy: 3.75%
-Epoch 30, Loss: 6729.44482421875, Accuracy: 3.75%
-Epoch 40, Loss: 6725.84228515625, Accuracy: 3.75%
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_13_1_500.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 256, in <module>
+    glist, label_dict = load_graphs(os.path.join(input_folder,graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/google_command/clique/filter/kws_graph_13_1_500.dgl does not exist.

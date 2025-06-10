@@ -262,7 +262,8 @@ if __name__ == "__main__":
 
 	# Initialize the GCN model
 
-	in_feats = features[0].shape[0] * features[0].shape[1]
+	#in_feats = features[0].shape[0] * features[0].shape[1]
+	in_feats = features[0].shape[0]
 	
 	print(in_feats)
 	hidden_size = 64

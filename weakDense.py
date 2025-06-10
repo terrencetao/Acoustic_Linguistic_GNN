@@ -68,7 +68,7 @@ if __name__ == "__main__":
     subset_val_spectrograms = np.load(os.path.join(matrix_dir, f'subset_val_spectrogram_{sub_units}.npy'))
     spectrograms = np.load(os.path.join(matrix_dir, f'subset_spectrogram_{sub_units}.npy'))
     num_classes = len(np.unique(labels_np))
-
+    print(f'spectrograms shape: {spectrograms.shape}')
     # Prepare data for Dense model
     spectrograms_tensor = torch.tensor(spectrograms, dtype=torch.float32)
     val_spectrograms_tensor = torch.tensor(subset_val_spectrograms, dtype=torch.float32)
@@ -78,6 +78,7 @@ if __name__ == "__main__":
     val_spectrograms_tensor = val_spectrograms_tensor.unsqueeze(1)
 
     X_train, X_test, y_train, y_test = spectrograms_tensor, val_spectrograms_tensor, labels_tensor, val_labels_tensor
+    print(f'xtrain shape : {X_train.shape}, ytrain shape: {y_train.shape}')
     train_loader = DataLoader(TensorDataset(X_train, y_train), batch_size=32, shuffle=True)
     test_loader = DataLoader(TensorDataset(X_test, y_test), batch_size=32, shuffle=False)
 

@@ -31,22 +31,14 @@ def extract_spectrograms(dataset):
     labels = []
 
     for spectrogram_batch, label_batch in dataset:
-        # Si batch_size = 1, assure-toi que les batchs ont bien une dimension lot
-        if tf.rank(spectrogram_batch) == 3:  # (time, freq, 1)
-            spectrogram_batch = tf.expand_dims(spectrogram_batch, axis=0)
-            label_batch = tf.expand_dims(label_batch, axis=0)
-
-        for spectrogram in spectrogram_batch:
-            # Squeeze uniquement si le dernier dim est 1
-            if spectrogram.shape[-1] == 1:
-                spectrograms.append(tf.squeeze(spectrogram, axis=-1).numpy())
-            else:
-                spectrograms.append(spectrogram.numpy())
-
-        for label in label_batch:
+        # Décompose chaque batch en éléments individuels
+        for spectrogram, label in zip(tf.unstack(spectrogram_batch), tf.unstack(label_batch)):
+            spectrograms.append(spectrogram.numpy())
             labels.append(label.numpy())
 
     return spectrograms, labels
+
+
 
 
     
@@ -271,12 +263,13 @@ if __name__ == "__main__":
 	parser.add_argument('--sub_units', help='fraction of data', required=True)    
 	parser.add_argument('--method', help='', required=True)
 	parser.add_argument('--dataset', help='name of dataset', required=True)
+	parser.add_argument('--feature', type=str, default='trill', choices=['mfcc', 'wav2vec', 'trill', 'vgg'], help='Feature type to extract')
 
 	args = parser.parse_args()
 	sub_units = int(args.sub_units)    
 	 
 	# Define the directory where datasets are saved
-	data_dir = os.path.join('saved_datasets',args.dataset)
+	data_dir = os.path.join('saved_datasets',args.dataset, args.feature)
 	# Define the directory to save the datasets
 	save_dir = os.path.join('saved_matrix',args.dataset, args.method)
 	os.makedirs(save_dir, exist_ok=True)
@@ -293,19 +286,20 @@ if __name__ == "__main__":
     # Check if the similarity matrix file already exists
 	if not os.path.isfile(similarity_matrix_path):
 		# Load the datasets
+		
 		loaded_train_spectrogram_ds = tf.data.experimental.load(os.path.join(data_dir, 'train_spectrogram_ds'))
 		loaded_val_spectrogram_ds = tf.data.experimental.load(os.path.join(data_dir, 'val_spectrogram_ds'))
 		#loaded_test_spectrogram_ds = tf.data.experimental.load(os.path.join(data_dir, 'test_spectrogram_ds'))
 
 		print("Datasets loaded successfully.")
 
-
+		
 		# Extract spectrograms
 		train_spectrograms, labels_train = extract_spectrograms(loaded_train_spectrogram_ds)
 		val_spectrograms, labels_val = extract_spectrograms(loaded_val_spectrogram_ds)
 		#test_spectrograms, labels_test = extract_spectrograms(loaded_test_spectrogram_ds)
 
-		
+		print(f'train-spec shape: {len(train_spectrograms)}')
 
 		# Set your desired subset size
 		subset_size = sub_units

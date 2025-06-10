@@ -37,10 +37,10 @@ args = parser.parse_args()
 
 
 # Load the filtered similarity matrix with labels
-similarity_matrix = np.load('filtered_similarity_matrix_word.npy')
+similarity_matrix = np.load(f'filtered_similarity_matrix_word_{args.dataset}.npy')
 if args.method == 'empty':
    similarity_matrix = np.zeros_like(similarity_matrix)
-word_embeddings=np.load('word_embedding.npy')
+word_embeddings=np.load(f'word_embedding_{args.dataset}.npy')
 print(similarity_matrix.shape)
 # Load label_names from the file to verify
 with open(f'subset_label_names_{args.dataset}.pkl', 'rb') as f:

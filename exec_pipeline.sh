@@ -4,20 +4,21 @@
 mkdir -p logs
 
 # Unit divisors specific to each dataset
-declare -A UNIT_DIVISORS=( ["timit"]=6102 ["spoken_digit"]=10 ["google_command"]=34 ["google_command_mini"]=8 ["yemba_command_small"]=13 )
+declare -A UNIT_DIVISORS=( ["timit"]=6102 ["spoken_digit"]=10 ["google_command"]=34 ["mini_speech_commands"]=8 ["yemba_command_small"]=13 )
 
 #################################### CONFIGURATION #################################################
-DATASETS=( "timit" "google_command" "google_command_mini" "spoken_digit" "yemba_command_small")
-UNITS=$(seq 12000 1000 1000000)
+DATASETS=( "mini_google_commands" "google_command" "spoken_digit" "yemba_command_small")
+UNITS=$(seq 5000 500 8000)
 METHOD_MMA="clique"
 METHOD_MSA="filter"
 ALPHAS=(1.0)
 NS=$(seq 1 0.1 1.0) #density
 LAMB_VALUES=$(seq 1 0.1 1)
-MHG_METHODS=("full_weighted" "fixed")
+MHG_METHODS=("full_weighted")
 MSW_METHODS=("phon_art" "phon_count")
 MGW_METHODS=("full")
 TWAS=(0.1)
+feature="trill"
 PS=(0.5 1 2 4) # proportion of number of link between the graphs
 ####################################################################################################
 
@@ -29,13 +30,14 @@ generate_acoustic_similarity() {
   dataset=$1
   unit=$2
   mma=$3
+  feature=$4
 
   outfile="saved_matrices/${dataset}_${mma}_${unit}.npy"
   if [ ! -f "$outfile" ]; then
-    python3 generate_similarity_matrix_acoustic.py --sub_unit "$unit" --method "$mma" --dataset "$dataset"
+    python3 generate_similarity_matrix_acoustic.py --sub_unit "$unit" --method "$mma" --dataset "$dataset" --feature "$feature"
   fi
-  python3 weakDense.py --epochs 50 --method_sim $mma --sub_unit $unit --dataset $dataset
-  python3 weak_ML2.py --epochs 50 --method_sim $mma --sub_unit $unit --dataset $dataset
+  #python3 weakDense.py --epochs 50 --method_sim $mma --sub_unit $unit --dataset $dataset
+  #python3 weak_ML2.py --epochs 50 --method_sim $mma --sub_unit $unit --dataset $dataset
 }
 
 generate_word_similarity() {
@@ -54,16 +56,17 @@ build_homogeneous_graph() {
   msa=$4
   alpha=$5
   n=$6
+  feature=$7
 
   div=${UNIT_DIVISORS[$dataset]}
   num=$(echo "$n*($unit/$div - 1)" | bc | awk '{print int($0)}')
   for msw in "${MSW_METHODS[@]}"; do
-      generate_word_similarity "$dataset" "$unit" "$mma" "$msw"
+      generate_word_similarity "$dataset" "$unit" "$mma" "$msw" 
       for mgw in "${MGW_METHODS[@]}"; do
         python3 build_kws_word_graph.py --method "$mgw" --dataset "$dataset"
         
        
-        generate_acoustic_similarity "$dataset" "$unit" "$mma"
+        generate_acoustic_similarity "$dataset" "$unit" "$mma" "$feature"
 
 
   #for ko in $(seq 0 1 "$num"); do
@@ -118,12 +121,12 @@ build_heterogeneous_graph_and_eval() {
               --msa "$msa" --mgw "$mgw" --sub_unit "$unit" --drop_freq 0.0 --drop_int 0.0 \
               --dataset "$dataset" --lamb $lamb --density $n
 
-            for add in dnn; do
-              python3 induct_eval_embedding.py --mma "$mma" --twa "$twa" --num_n_h "$num_n_h" --mhg "$mhg" \
-                --num_n_a "$num" --k_out "$ko" --ta 0 --alpha "$alpha" --tw 0.5 --msw "$msw" \
-                --msa "$msa" --mgw "$mgw" --sub_unit "$unit" --drop_freq 0.0 --drop_int 0.0 \
-                --dataset "$dataset" --add "$add" --k_inf "$num" --lamb $lamb --density $n
-            done
+            #for add in dnn; do
+            #  python3 induct_eval_embedding.py --mma "$mma" --twa "$twa" --num_n_h "$num_n_h" --mhg "$mhg" \
+            #    --num_n_a "$num" --k_out "$ko" --ta 0 --alpha "$alpha" --tw 0.5 --msw "$msw" \
+            #    --msa "$msa" --mgw "$mgw" --sub_unit "$unit" --drop_freq 0.0 --drop_int 0.0 \
+            #    --dataset "$dataset" --add "$add" --k_inf "$num" --lamb $lamb --density $n
+            #done
           
       #done
     done
@@ -141,7 +144,7 @@ for dataset in "${DATASETS[@]}"; do
     for alpha in "${ALPHAS[@]}"; do
       #for n in $NS; do
         n=1.0
-        build_homogeneous_graph "$dataset" "$unit" "$METHOD_MMA" "$METHOD_MSA" "$alpha" "$n"
+        build_homogeneous_graph "$dataset" "$unit" "$METHOD_MMA" "$METHOD_MSA" "$alpha" "$n" "$feature"
       #done
     done
   done

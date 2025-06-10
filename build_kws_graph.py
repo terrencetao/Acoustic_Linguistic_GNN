@@ -294,6 +294,7 @@ if __name__ == "__main__":
 
         #backbone_G = nx.Graph(backbone_G)
         #dgl_G = dgl.from_networkx(backbone_G)
+        print(f'subset-spec shape {subset_spectrogram.shape}')
         dgl_G = build_dgl_graph(backbone_G_full)
         dgl_G.ndata['label'] = torch.tensor(labels, dtype=torch.long)
         dgl_G.ndata['feat'] = torch.stack([torch.from_numpy(spec) for spec in subset_spectrogram])

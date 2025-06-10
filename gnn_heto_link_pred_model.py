@@ -96,9 +96,9 @@ def train_edge_regression(model, g, features, true_edge_weights, src, dst, adj_m
         loss = regression_loss + lamb * topo_loss
 
         optimizer.zero_grad()
-        topo_loss.backward()
+        loss.backward()
         optimizer.step()
-        scheduler.step(topo_loss)
+        scheduler.step(loss)
 
         if epoch % 10 == 0 or epoch == epochs:
             print(f"Epoch {epoch}, Loss: {loss.item():.4f}, Regularisation: {topo_loss}, MSE: {regression_loss.item():.4f}")

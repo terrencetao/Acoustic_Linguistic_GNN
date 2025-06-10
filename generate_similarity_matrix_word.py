@@ -152,6 +152,7 @@ def simi_matrix(method = 'semantics', dataset=None, method_ac='mixed', sub_units
   # Load label_names from the file to verify
   with open(f'label_names_{dataset}.pkl', 'rb') as f:
     label_names = pickle.load(f)
+    print
   #sub_label_names = np.load(os.path.join('saved_matrix',dataset, method_ac,f'subset_label_{sub_units}.npy'))
   
   
@@ -285,6 +286,6 @@ similarity_matrix[similarity_matrix < threshold] = 0
 # Set diagonal to 0 to avoid self-loops
 np.fill_diagonal(similarity_matrix, 0)
 
-np.save('filtered_similarity_matrix_word_{args.dataset}.npy', similarity_matrix)
-np.save('word_embedding_{args.dataset}.npy', word_embeddings )
+np.save(f'filtered_similarity_matrix_word_{args.dataset}.npy', similarity_matrix)
+np.save(f'word_embedding_{args.dataset}.npy', word_embeddings )
 print("Filtered similarity matrix for word label computed successfully.")
