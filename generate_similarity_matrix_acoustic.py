@@ -22,6 +22,7 @@ import logging
 import pandas as pd
 from sklearn.model_selection import train_test_split
 import torch.nn.functional as F
+from sklearn.preprocessing import LabelEncoder
 
 # Ensure reproducibility by setting a seed (optional)
 np.random.seed(42)
@@ -137,43 +138,6 @@ def compute_vgg_similarity_matrix(spectrograms):
     
     return similarity_matrix
     
-# Function to compute the median distance for each label group
-def compute_median_distances(similarity_matrix, labels):
-    unique_labels = np.unique(labels)
-    median_distances = {}
-
-    for label in unique_labels:
-        indices = np.where(labels == label)[0]
-        distances = []
-
-        for i in indices:
-            for j in indices:
-                if i != j:
-                    distances.append(similarity_matrix[i, j])
-
-        median_distances[label] = np.median(distances)
-
-    return median_distances
-    
-def compute_iqr_thresholds(similarity_matrix, labels):
-    unique_labels = np.unique(labels)
-    iqr_thresholds = {}
-
-    for label in unique_labels:
-        indices = np.where(labels == label)[0]
-        distances = []
-
-        for i in indices:
-            for j in indices:
-                if i != j:
-                    distances.append(similarity_matrix[i, j])
-
-        q1 = np.percentile(distances, 25)
-        q3 = np.percentile(distances, 75)
-        iqr = q3 - q1
-        iqr_thresholds[label] = q1 - 1.5 * iqr  # Threshold for outliers
-
-    return iqr_thresholds
 
 def sim_matrix(method, subset_labels=None, subset_spectrograms=None, graph_w=None):
     """
@@ -254,6 +218,54 @@ def stratified_sample(spectrograms, labels, subset_size):
         print("exception occur ... all data is return")
         return spectrograms, labels
     return stratified_spectrograms, stratified_labels
+ 
+def filter_pairs_by_label_dict(spectrograms, labels, label_dict):
+    """
+    Sépare les spectrogrammes et labels en deux groupes :
+    - ceux dont le label encodé est présent dans le dictionnaire donné
+    - le reste
+
+    Args:
+        spectrograms (list or np.ndarray): Liste ou tableau de spectrogrammes.
+        labels (list or np.ndarray): Liste de labels entiers encodés (même longueur que spectrograms).
+        label_dict (dict): Dictionnaire des labels à conserver (clés = labels encodés à garder).
+
+    Returns:
+        tuple: 
+            - (filtered_spectros, filtered_labels): Paires gardées
+            - (other_spectros, other_labels): Paires exclues
+    """
+    filtered_spectros = []
+    filtered_labels = []
+    other_spectros = []
+    other_labels = []
+
+    for spectro, label in zip(spectrograms, labels):
+        if label in label_dict:
+            filtered_spectros.append(spectro)
+            filtered_labels.append(label)
+        else:
+            other_spectros.append(spectro)
+            other_labels.append(label)
+
+    return (filtered_spectros, filtered_labels), (other_spectros, other_labels)
+
+def reencode_labels(labels):
+    """
+    Réencode les labels pour qu'ils aillent de 0 à n-1.
+
+    Args:
+        labels (list or np.ndarray): Liste de labels originaux.
+
+    Returns:
+        tuple:
+            - new_labels: Labels réencodés.
+            - label_map: Dictionnaire {ancien_label: nouveau_label}
+    """
+    unique_labels = sorted(set(labels))
+    label_map = {old: new for new, old in enumerate(unique_labels)}
+    new_labels = [label_map[l] for l in labels]
+    return new_labels, label_map
     
 
 if __name__ == "__main__":
@@ -279,6 +291,8 @@ if __name__ == "__main__":
 	subset_labels_path = os.path.join(save_dir, f'subset_label_{sub_units}.npy')
 	subset_val_spectrogram_path = os.path.join(save_dir, f'subset_val_spectrogram_{sub_units}.npy')
 	subset_val_labels_path = os.path.join(save_dir, f'subset_val_label_{sub_units}.npy')
+	subset_val_induc_labels_path = os.path.join(save_dir, f'subset_val_induc_label_{sub_units}.npy')
+	subset_val_induc_spectrogram_path = os.path.join(save_dir, f'subset_val_induc_spectrogram_{sub_units}.npy')
 	
 	glist2, _ = load_graphs(os.path.join('saved_graphs',args.dataset, "dgl_words_graph.bin"))
 	dgl_G_words = glist2[0]
@@ -300,14 +314,37 @@ if __name__ == "__main__":
 		#test_spectrograms, labels_test = extract_spectrograms(loaded_test_spectrogram_ds)
 
 		print(f'train-spec shape: {len(train_spectrograms)}')
+		
+		with open(f'induc_val_names_{args.dataset}.pkl', 'rb') as f:   # Load all the labels names
+			induc_val_labels = pickle.load(f)
+                
+		induc_val_labels_inv = {v: k for k, v in induc_val_labels.items()}
+                
+		(train_spec_induc_val, train_labels_induc_val), (train_spectrograms, labels_train) = filter_pairs_by_label_dict(train_spectrograms, labels_train, induc_val_labels_inv)
+                
+		(val_spec_induc_val, val_labels_induc_val), (val_spectrograms, labels_val) = filter_pairs_by_label_dict(train_spectrograms, labels_train, induc_val_labels_inv)
+		
+		# reencode les labels pour besion de linearite
+		encoder = LabelEncoder()
+		labels_train_reencoded = encoder.fit_transform(labels_train)
+		
+		with open(f'label_reencoder_{args.dataset}.pkl', 'wb') as f:
+			pickle.dump(encoder, f)
+		
+                
+		labels_val_reencoded = encoder.transform(labels_val)
+                 
+		induc_val_spectrogram = train_spec_induc_val + val_spec_induc_val
+		labels_induc_val      = train_labels_induc_val + val_labels_induc_val
 
+                
 		# Set your desired subset size
 		subset_size = sub_units
 
 		# Perform stratified sampling for training and validation sets
-		subset_spectrograms, subset_labels = stratified_sample(train_spectrograms, labels_train, math.floor(subset_size*0.8))
+		subset_spectrograms, subset_labels = stratified_sample(train_spectrograms, labels_train_reencoded, math.floor(subset_size*0.8))
 		print(len(subset_labels))
-		subset_val_spectrograms, subset_val_labels = stratified_sample(val_spectrograms, labels_val, subset_size-math.floor(subset_size*0.8))
+		subset_val_spectrograms, subset_val_labels = stratified_sample(val_spectrograms, labels_val_reencoded, subset_size-math.floor(subset_size*0.8))
 
 		
 		# Convert lists to numpy arrays if needed
@@ -315,8 +352,12 @@ if __name__ == "__main__":
 		subset_val_spectrograms = np.array(subset_val_spectrograms)
 		subset_labels = np.array(subset_labels)
 		subset_val_labels = np.array(subset_val_labels)
+		
+		induc_val_spectrogram = np.array(induc_val_spectrogram)
+		labels_induc_val      = np.array(labels_induc_val)
+		
 			
-			# Calculate total size and size for each label
+		# Calculate total size and size for each label
 		total_size = len(subset_labels)
 		label_counts = np.unique(subset_labels, return_counts=True)
 		label_sizes = dict(zip(label_counts[0], label_counts[1]))
@@ -356,15 +397,7 @@ if __name__ == "__main__":
 		else:
 		    # If the file exists, append without headers
 		    df_val.to_csv(csv_val_file_path, mode='a', header=False, index=False)
-		# Compute the median distances for each label group
-		#median_distances = compute_median_distances(similarity_matrix, subset_labels)
-		#bornes_inferieures_iqr = compute_iqr_thresholds(similarity_matrix, subset_labels)
-		# Filter the similarity matrix based on the median thresholds and set diagonal to zero
-
-		#medianes = np.array(list(median_distances.values()))
-		#nan_mask = np.isnan(medianes)
-		#filtered_similarity_matrix = filter_similarity_matrix(similarity_matrix, subset_labels, threshold=int(args.ta), k=int(args.num_n))
-
+		
 		similarity_matrix = sim_matrix(method=args.method,  subset_labels=subset_labels, subset_spectrograms=subset_spectrograms, graph_w = dgl_G_words)
 
 		print(similarity_matrix)
@@ -375,11 +408,15 @@ if __name__ == "__main__":
 		
 		# Save the matrix with labels and other data
 		np.save(similarity_matrix_path, matrix_with_labels)
+		
 		np.save(subset_spectrogram_path, subset_spectrograms)
 		np.save(subset_labels_path, subset_labels)
+		
 		np.save(subset_val_spectrogram_path, subset_val_spectrograms)
 		np.save(subset_val_labels_path, subset_val_labels)
-
+		
+		np.save(subset_val_induc_spectrogram_path, induc_val_spectrogram)
+		np.save(subset_val_induc_labels_path, labels_induc_val)
 
 		print("Acoustic similarity matrix computed successfully.")
 	else:

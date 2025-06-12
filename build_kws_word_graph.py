@@ -44,8 +44,8 @@ word_embeddings=np.load(f'word_embedding_{args.dataset}.npy')
 print(similarity_matrix.shape)
 # Load label_names from the file to verify
 with open(f'subset_label_names_{args.dataset}.pkl', 'rb') as f:
-    label_names = pickle.load(f)
-label_names = list(label_names)    
+    label_dic_names = pickle.load(f)
+label_names = label_dic_names.keys()    
     
 # Create a NetworkX graph from the similarity matrix with weights
 nx_graph = nx.from_numpy_array(similarity_matrix)
@@ -60,7 +60,7 @@ print("Number of edges:", dgl_graph.number_of_edges())
 
 # Add node features and labels to DGL graph
 dgl_graph.ndata['feat'] = torch.tensor(word_embeddings, dtype=torch.float32)
-dgl_graph.ndata['label'] = torch.tensor([label_names.index(label) for label in label_names], dtype=torch.long)
+dgl_graph.ndata['label'] = torch.tensor([index for index,_ in enumerate(label_names)] , dtype=torch.long) # label_names contient la nouvelle liste ie exclus des mots a utiliser pour la validation de l'induction donc l'ordre de depart n'est plus respecter il faudrait en ternir compte pour les evaluations
 
 # Save the DGL graph
 save_dir = os.path.join('saved_graphs',args.dataset)

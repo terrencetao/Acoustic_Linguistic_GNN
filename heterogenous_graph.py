@@ -281,6 +281,11 @@ if __name__ == "__main__":
 
     with open(f'label_names_{args.dataset}.pkl', 'rb') as f:
         all_label_names = pickle.load(f)
+    
+    # Load label_names from the file to verify
+    with open(f'subset_label_names_{args.dataset}.pkl', 'rb') as f:
+        label_dic_names = pickle.load(f)
+    all_label_names = label_dic_names.keys()    
    
     if  os.path.isfile(f'phon_idx_{args.dataset}.pkl'):
        with open(f'phon_idx_{args.dataset}.pkl', 'rb') as f:

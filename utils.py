@@ -54,16 +54,31 @@ def make_trill_ds(dataset):
     trill_model = hub.load(trill_model_handle)
 
     def extract_fn(waveform, label):
-        waveform = tf.squeeze(waveform)
-        waveform = tf.cast(waveform, tf.float32)
-        waveform = waveform / tf.reduce_max(tf.abs(waveform))  # normalize
-        waveform = tf.reshape(waveform, [1, -1])  # [1, time]
-        embedding = trill_model(waveform, sample_rate=16000)['embedding']  # [1, T, D]
-        embedding = tf.reduce_mean(embedding, axis=1)  # [1, D]
-        
-        return embedding, label
+        try:
+            print(f"\nInput shape: {waveform.shape}, label: {label}")
+            
+            waveform = tf.squeeze(waveform)
+            waveform = tf.cast(waveform, tf.float32)
+            max_val = tf.reduce_max(tf.abs(waveform))
+            max_val = tf.maximum(max_val, 1e-6)  # Évite la division par 0
+            waveform = waveform / max_val
+            waveform = tf.reshape(waveform, [1, -1])
+            
+            embedding = trill_model(waveform, sample_rate=16000)['embedding']
+            embedding = tf.reduce_mean(embedding, axis=1)
+            
+            if tf.reduce_any(tf.math.is_nan(embedding)):
+                print("⚠️ NaN in embedding! Replacing with zeros.")
+                embedding = tf.zeros_like(embedding)
+                
+            print(f"Output shape: {embedding.shape}")
+            return embedding, label
+            
+        except Exception as e:
+            print(f"❌ Error: {e}")
+            return tf.zeros([1, 512]), label  # Fallback output
 
-    return dataset.map(extract_fn)
+    return dataset.map(extract_fn, num_parallel_calls=tf.data.AUTOTUNE)
 
 # Wav2Vec2 with Hugging Face
 def make_wav2vec_ds(dataset):
@@ -71,15 +86,15 @@ def make_wav2vec_ds(dataset):
     model = TFWav2Vec2Model.from_pretrained("facebook/wav2vec2-base-960h")
 
     def extract_fn(audio, label):
-        audio = tf.squeeze(audio, axis=-1)
-        audio = tf.cast(audio, tf.float32)
-        audio_np = audio.numpy()
+        try:
+            audio = tf.squeeze(audio, axis=-1)
+            audio = tf.cast(audio, tf.float32)
+            inputs = processor(audio.numpy(), sampling_rate=16000, return_tensors="tf")
+            outputs = model(inputs.input_values).last_hidden_state
+            return tf.reduce_mean(outputs, axis=1)[0], label
+        except Exception as e:
+            print(f"Erreur sur l'échantillon {label}: {e}")
+            return tf.zeros([768]), label  # Shape adaptée à Wav2Vec2
 
-        inputs = processor(audio_np, sampling_rate=16000, return_tensors="tf")
-        outputs = model(inputs.input_values).last_hidden_state  # [batch, time, dim]
-        mean_embedding = tf.reduce_mean(outputs, axis=1)  # [batch, dim]
-        return mean_embedding[0], label
-
-    return dataset.map(lambda x, y: tf.py_function(extract_fn, [x, y], [tf.float32, tf.int64]))
-
-
+    return dataset.map(lambda x, y: tf.py_function(extract_fn, [x, y], [tf.float32, tf.int32]),
+                      num_parallel_calls=tf.data.AUTOTUNE)

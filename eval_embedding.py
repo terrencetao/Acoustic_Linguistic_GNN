@@ -288,7 +288,7 @@ def evaluate_link_prediction_classification_topk(
         return accuracy_top1, accuracy_topk
 
 def evaluate_acoustic_word_link_prediction_topk(gcn_model, hetero_graph,
-                                                labels_acoustic, labels_word,
+                                                labels_acoustic, labels_word, encoder,
                                                 top_k=5):
     """
     Predict links and compute top-1 and top-K accuracy between new acoustic and word nodes.
@@ -340,14 +340,14 @@ def evaluate_acoustic_word_link_prediction_topk(gcn_model, hetero_graph,
         pred_scores = gcn_model.edge_predictor(edge_features).squeeze(-1)  # [num_emb_a, num_word]
 
         # Step 4: Top-K predictions
-        topk_indices = torch.topk(pred_scores, k=top_k, dim=1).indices.cpu().numpy()
-
+        topk_indices_pred = torch.topk(pred_scores, k=top_k, dim=1).indices.cpu().numpy() # la prediction se fait sur les class reenocoder au moment de la generation de la matrice d'adjacence acoustique
+        topk_indices = [encoder.inverse_transform(indices_pred) for indices_pred in topk_indices_pred] # l'on revient a l'encodage originel celui contenu dans le graph word, pour pouvoir comparer 
         correct_top1 = 0
         correct_topk = 0
-
-        for i in range(len(labels_acoustic)):
-            true_label = labels_acoustic[i]
-            pred_labels_topk = [labels_word[idx] for idx in topk_indices[i]]
+        true_labels = encoder.inverse_transform(labels_acoustic)
+        for i in range(len(true_labels)):
+            true_label = true_labels[i]
+            pred_labels_topk = topk_indices[i]
             if true_label == pred_labels_topk[0]:
                 correct_top1 += 1
             if true_label in pred_labels_topk:
@@ -408,11 +408,15 @@ acoustic_embeddings_regressor_np = acoustic_embeddings_hetero_regressor.detach()
 accuracy_hetero_regressor = train_evaluate_dnn_pytorch(acoustic_embeddings_regressor_np, labels_np)
 logging.info(f"Accuracy of the Heterogeneous regressor Model: {accuracy_hetero_regressor:.4f}")
 
+with open(f'label_reencoder_{args.dataset}.pkl', 'rb') as f:   # Load all the labels names
+    reencoder = pickle.load(f)
+
 acc_pred_link, acc_topk  = evaluate_acoustic_word_link_prediction_topk(
     gcn_model=model_hetero_regressor,
     hetero_graph=hetero_graph,
     labels_acoustic=labels_np,
     labels_word=hetero_graph.nodes['word'].data['label'],
+    encoder= reencoder,
     top_k=3
 )
 

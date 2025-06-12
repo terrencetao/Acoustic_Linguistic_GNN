@@ -10,6 +10,9 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"  # Désactive le GPU
+
 def build_simple_dense_model(input_shape, num_classes):
     model = models.Sequential([
         layers.Input(shape=input_shape),
@@ -59,9 +62,14 @@ def main():
 
     # Étape 1 : extraire les features
     print(f"🧪 Extracting features using: {feature_type}")
-    train_features_ds = extract_feature(feature_type, train_ds)
-    val_features_ds = extract_feature(feature_type, val_ds)
-
+    train_ds = train_ds.cache().prefetch(tf.data.AUTOTUNE)
+    val_ds = val_ds.cache().prefetch(tf.data.AUTOTUNE)
+    train_features_ds = extract_feature(feature_type, train_ds).cache().prefetch(tf.data.AUTOTUNE)
+    val_features_ds = extract_feature(feature_type, val_ds).cache().prefetch(tf.data.AUTOTUNE)
+    batch_size = 32
+    print(f"Original train samples: {len(train_ds) * batch_size}")  # Should be ~8000
+    print(f"Processed train samples: {train_features_ds.cardinality()}")
+    
     # Étape 2 : Entraîner FFN si 'vgg'
     if feature_type == 'vgg':
         for spectrograms, labels in train_features_ds.take(1):
@@ -88,9 +96,13 @@ def main():
     save_base_dir = f'saved_datasets/{args.dataset}'
     save_dir = os.path.join(save_base_dir, feature_type)
     os.makedirs(save_dir, exist_ok=True)
+    
+    
+    train_features_ds = train_features_ds.cache()  # Cache after extraction
+    val_features_ds = val_features_ds.cache()
 
-    tf.data.experimental.save(train_features_ds , os.path.join(save_dir, 'train_spectrogram_ds'))
-    tf.data.experimental.save(val_features_ds, os.path.join(save_dir, 'val_spectrogram_ds'))
+    tf.data.Dataset.save(train_features_ds , os.path.join(save_dir, 'train_spectrogram_ds'))
+    tf.data.Dataset.save(val_features_ds, os.path.join(save_dir, 'val_spectrogram_ds'))
 
     # Sauvegarde des labels
     # Save label_names to a file using pickle

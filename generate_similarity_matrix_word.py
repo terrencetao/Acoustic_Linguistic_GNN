@@ -143,23 +143,56 @@ def get_phonetique_from_yemba(xlsx_path):
     df['phonetique_encoded'] = df['phonetique_encoded'].apply(lambda x: x.replace('[', '').replace(']', ''))
     yemba_to_phonetique = dict(zip(df['yemba_encoded'], df['phonetique_encoded']))
     return yemba_to_phonetique
- 
+
+import random
+
+def split_dict_randomly(data_dict, ratio=0.8, seed=None):
+    if not 0 < ratio < 1:
+        raise ValueError("Le ratio doit être entre 0 et 1.")
+    
+    items = list(data_dict.items())
+    if seed is not None:
+        random.seed(seed)
+    random.shuffle(items)
+    
+    split_index = int(len(items) * ratio)
+    return dict(items[:split_index]), dict(items[split_index:])
+
+
+    
     
 def simi_matrix(method = 'semantics', dataset=None, method_ac='mixed', sub_units=61):
 
 
 # Load label_names from the file to verify
-  # Load label_names from the file to verify
-  with open(f'label_names_{dataset}.pkl', 'rb') as f:
-    label_names = pickle.load(f)
-    print
-  #sub_label_names = np.load(os.path.join('saved_matrix',dataset, method_ac,f'subset_label_{sub_units}.npy'))
+
+  with open(f'label_names_{dataset}.pkl', 'rb') as f:   # Load all the labels names
+    all_labels = pickle.load(f)
+    
+  label_to_index = {label: index for index, label in enumerate(all_labels)}
+  index_to_label = {index: label for index, label in enumerate(all_labels)}
   
+  with open(f'label_to_index_{dataset}.pkl', 'wb') as f:
+    pickle.dump(label_to_index, f)                      # save the label_to_index which is contains the encode label of each words
+    
+  with open(f'index_to_label_{dataset}.pkl', 'wb') as f:
+    pickle.dump(index_to_label, f)                      #
   
-   #Save label_names to a file using pickle
+  # random selection of a subset words for induction validation  
+  label_dic_names, val_dic_names = split_dict_randomly(label_to_index , ratio=0.8, seed=42)  
+    
   with open(f'subset_label_names_{dataset}.pkl', 'wb') as f:
-    pickle.dump(label_names, f)
+    pickle.dump(label_dic_names, f)
+    
+  with open(f'induc_val_names_{dataset}.pkl', 'wb') as f:
+    pickle.dump(val_dic_names, f)
+  
+  
+  label_names = label_dic_names.keys()
+  
  
+ 
+    
   xlsx_path = f'data/yemba/corpus_words.xlsx' 
   
   if method == 'semantics':
@@ -190,6 +223,7 @@ def simi_matrix(method = 'semantics', dataset=None, method_ac='mixed', sub_units
 # Retrieve embeddings for each word in the list
     word_embeddings = X.toarray()
     similarity_matrix = np.dot(word_embeddings, word_embeddings.T)
+    
   elif method == 'mixed':
     glove_vectors = api.load('glove-twitter-25')
 
@@ -224,16 +258,15 @@ def simi_matrix(method = 'semantics', dataset=None, method_ac='mixed', sub_units
     else:
        phoneme_words = [ipa.convert(word) for word in label_names]
     similarity_matrix = compute_edit_distance_matrix(phoneme_words)
+    
   elif method == 'phon_art':
     word_embeddings = [word_to_articulatory_vectors(word, mode='mean') for word in label_names]
     padded = list(zip_longest(*word_embeddings, fillvalue=0))
     word_embeddings = np.array(padded).T
     similarity_matrix = np.dot(word_embeddings, word_embeddings.T)
+    
   elif method == 'phon_coo':
-    #glove_vectors = api.load('glove-twitter-25')
-    # Convert words to their phoneme representations
-    #word_embeddings = np.array([glove_vectors[word] for word in label_names])
-    # Convert words to their phoneme representations
+
     if dataset=='yemba_command':
        yemba_to_phonetique_mapping = get_phonetique_from_yemba(xlsx_path)
        phoneme_words = [yemba_to_phonetique_mapping.get(word) for word in label_names]

@@ -36,7 +36,7 @@ class HeteroLinkGCN(nn.Module):
 
         self.conv2 = HeteroGraphConv({
             'sim_tic': SAGEConv(nombre_phon, nombre_phon, 'mean'),
-            'sim_w': SAGEConv(nombre_phon, nombre_phon, 'mean'),
+            'sim_w': IdentityConv(out_dim=nombre_phon),
             'related_to': SAGEConv(nombre_phon, nombre_phon, 'mean')
         }, aggregate='mean')
 
@@ -51,8 +51,8 @@ class HeteroLinkGCN(nn.Module):
     def forward(self, g, inputs):
         edge_weights = {etype: g.edges[etype].data['weight'] for etype in g.etypes}
         h = self.conv1(g, inputs, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
-        #h = {k: F.relu(v) for k, v in h.items()}
-        #h = self.conv2(g, h, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
+        h = {k: F.relu(v) for k, v in h.items()}
+        h = self.conv2(g, h, mod_kwargs={k: {'edge_weight': v} for k, v in edge_weights.items()})
         return h  # embeddings
 
   
