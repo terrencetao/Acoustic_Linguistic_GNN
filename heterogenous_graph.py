@@ -45,10 +45,8 @@ def filter_similarity_matrix(similarity_matrix,  threshold=0, k=None):
     
     return filtered_matrix
     
-def create_label_matrix(graph, k, seed=None):
-    if seed is not None:
-        random.seed(seed)
-        torch.manual_seed(seed)
+def create_label_matrix(graph, graph_w):
+    
     
     labels = graph.ndata['label']
     unique_labels = torch.unique(labels)
@@ -58,17 +56,11 @@ def create_label_matrix(graph, k, seed=None):
     label_matrix = torch.zeros((num_nodes, num_labels), dtype=torch.float32)
     
     # Fill binary label matrix
-    for i, label in enumerate(unique_labels):
-        label_matrix[:, i] = (labels == label).float()
+    for i, idx in enumerate(unique_labels):
+        label = graph_w.ndata['label'][idx]
+        label_matrix[:, i] = (labels == graph.ndata['label'][idx]).float()
     
-    # Randomly keep only k ones per column
-    for j in range(num_labels):
-        ones_indices = torch.nonzero(label_matrix[:, j]).view(-1).tolist()
-        if len(ones_indices) > k:
-            keep_indices = random.sample(ones_indices, k)
-            mask = torch.ones_like(label_matrix[:, j])
-            mask[keep_indices] = 0
-            label_matrix[:, j][mask.bool()] = 0
+   
             
     return label_matrix
     
@@ -83,8 +75,8 @@ def create_weighted_label_matrix(graph, graph_w):
     label_matrix = torch.zeros((num_nodes, num_labels), dtype=torch.float32)
 
     # Étape 1 : remplir les vrais labels avec 1
-    for i, label in enumerate(unique_labels):
-        label_matrix[:, i] = (labels == label).float()
+    for i, idx in enumerate(unique_labels):
+        label_matrix[:, i] = (labels == graph.ndata['label'][idx]).float()
 
     # Étape 2 : Matrice de similarité
     similarity_matrix =  torch.tensor(nx.to_numpy_array(graph_w.to_networkx()))
@@ -98,7 +90,7 @@ def create_weighted_label_matrix(graph, graph_w):
             if label_matrix[node_idx, label_idx] == 1.0:
                 weighted_matrix[node_idx, label_idx] = 1.0
             else:
-                weighted_matrix[node_idx, label_idx] = similarity_matrix[true_label, label_idx]
+                weighted_matrix[node_idx, label_idx] = similarity_matrix[true_label, graph.ndata['label'][label_idx]] 
 
     return weighted_matrix, label_matrix
     
@@ -191,7 +183,7 @@ def softmax_prob(method, graph, graph_w, num_labels, label_name=None, threshold_
       
       
     elif method == 'fixed' :
-      softmax_probabilities = create_label_matrix(graph, k)
+      softmax_probabilities = create_label_matrix(graph, graph_w)
     elif method == 'full_weighted':
       softmax_probabilities,_ = create_weighted_label_matrix(graph, graph_w)
     elif method == 'full_weighted_level':
@@ -297,6 +289,7 @@ if __name__ == "__main__":
 # Step 2: Define the threshold probability
     threshold_probability = float(args.twa)
     k= math.floor(int(args.num_n))
+
 
     softmax_probabilities=softmax_prob(
      method = 'folle' if args.msw == 'phon_coo' else args.method, 

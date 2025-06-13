@@ -296,14 +296,14 @@ def evaluate_acoustic_word_link_prediction_topk(gcn_model, hetero_graph,
         pred_scores = torch.stack(pred_scores)  # [num_new, num_words]
 
         # Step 4: Top-K predictions
-        topk_indices_pred = torch.topk(pred_scores, k=top_k, dim=1).indices.cpu().numpy() # la prediction se fait sur les class reenocoder au moment de la generation de la matrice d'adjacence acoustique
-        topk_indices = [encoder.inverse_transform(indices_pred) for indices_pred in topk_indices_pred] # l'on revient a l'encodage originel celui contenu dans le graph word, pour pouvoir comparer 
+        topk_indices = torch.topk(pred_scores, k=top_k, dim=1).indices.cpu().numpy() # la prediction se fait sur les class reenocoder au moment de la generation de la matrice d'adjacence acoustique
+        #topk_indices = [encoder.inverse_transform(indices_pred) for indices_pred in topk_indices_pred] # l'on revient a l'encodage originel celui contenu dans le graph word, pour pouvoir comparer 
         correct_top1 = 0
         correct_topk = 0
 
-        true_labels = encoder.inverse_transform(labels_acoustic)
+        #true_labels = encoder.inverse_transform(labels_acoustic)
         for i in range(num_new):
-            true_label = true_labels[i]
+            true_label = labels_acoustic[i]
             predicted_word_labels =  topk_indices[i]
 
             if predicted_word_labels[0] == true_label:
@@ -378,14 +378,14 @@ def evaluate_link_prediction_classification_topk(
 
         # Étape 5 : top-K prédiction
         # Step 4: Top-K predictions
-        topk_indices_pred = torch.topk(pred_scores, k=top_k, dim=1).indices.cpu().numpy() # la prediction se fait sur les class reenocoder au moment de la generation de la matrice d'adjacence acoustique
-        topk_indices = [encoder.inverse_transform(indices_pred) for indices_pred in topk_indices_pred] # l'on revient a l'encodage originel celui contenu dans le graph word, pour pouvoir comparer 
+        topk_indices = torch.topk(pred_scores, k=top_k, dim=1).indices.cpu().numpy() # la prediction se fait sur les class reenocoder au moment de la generation de la matrice d'adjacence acoustique
+        #topk_indices = [encoder.inverse_transform(indices_pred) for indices_pred in topk_indices_pred] # l'on revient a l'encodage originel celui contenu dans le graph word, pour pouvoir comparer 
        
         correct_top1 = 0
         correct_topk = 0
-        true_labels = encoder.inverse_transform(labels_acoustic)
+        #true_labels = encoder.inverse_transform(labels_acoustic)
         for i in range(num_new):
-            true_label = true_labels[i]
+            true_label = labels_acoustic[i]
             predicted_word_labels =  topk_indices[i]
 
             if predicted_word_labels[0] == true_label:

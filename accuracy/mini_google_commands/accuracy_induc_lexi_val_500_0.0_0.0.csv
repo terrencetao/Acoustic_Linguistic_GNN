@@ -1,0 +1,22 @@
+Heterogeneous regressor Model,Link class prediction,Link class prediciton top k,Link prediction,link prediction topk,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw,mma,add,k_out,k_inf,lambda,density,feature
+0.25,0.17,0.52,0.16,0.51,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-500,1.0,1.0,mel_spec
+0.26,0.14,0.45,0.17,0.45,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,allmini,filter,full,clique,,1,-500,1.0,1.0,mel_spec
+0.2,0.16,0.49,0.12,0.52,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,phon_art,filter,full,clique,,1,-500,1.0,1.0,mel_spec
+0.25,0.2,0.49,0.21,0.51,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-500,1.0,1.0,mfcc
+0.25,0.17,0.56,0.17,0.49,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,allmini,filter,full,clique,,1,-500,1.0,1.0,mfcc
+0.24,0.15,0.52,0.17,0.53,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,phon_art,filter,full,clique,,1,-500,1.0,1.0,mfcc
+0.26,0.17,0.53,0.18,0.51,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-500,1.0,1.0,vggish
+0.25,0.17,0.46,0.17,0.5,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,allmini,filter,full,clique,,1,-500,1.0,1.0,vggish
+0.19,0.15,0.52,0.16,0.51,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,phon_art,filter,full,clique,,1,-500,1.0,1.0,vggish
+0.25,0.17,0.51,0.12,0.5,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-500,1.0,1.0,yamnet
+0.25,0.17,0.5,0.17,0.51,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,allmini,filter,full,clique,,1,-500,1.0,1.0,yamnet
+0.23,0.17,0.49,0.21,0.47,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,phon_art,filter,full,clique,,1,-500,1.0,1.0,yamnet
+0.27,0.13,0.5,0.14,0.51,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-500,1.0,1.0,wav2vec
+0.25,0.17,0.5,0.17,0.51,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,allmini,filter,full,clique,,1,-500,1.0,1.0,wav2vec
+0.22,0.16,0.53,0.16,0.44,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,phon_art,filter,full,clique,,1,-500,1.0,1.0,wav2vec
+0.25,0.2,0.51,0.19,0.48,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-500,1.0,1.0,hubert
+0.22,0.15,0.52,0.19,0.52,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,allmini,filter,full,clique,,1,-500,1.0,1.0,hubert
+0.26,0.15,0.51,0.16,0.49,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,phon_art,filter,full,clique,,1,-500,1.0,1.0,hubert
+0.24,0.16,0.5,0.17,0.49,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-500,1.0,1.0,wavlm
+0.25,0.17,0.49,0.17,0.5,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,allmini,filter,full,clique,,1,-500,1.0,1.0,wavlm
+0.23,0.17,0.49,0.16,0.52,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,phon_art,filter,full,clique,,1,-500,1.0,1.0,wavlm

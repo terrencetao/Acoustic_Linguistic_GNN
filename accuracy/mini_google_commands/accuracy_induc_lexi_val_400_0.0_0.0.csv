@@ -17,3 +17,6 @@ Heterogeneous regressor Model,Link class prediction,Link class prediciton top k,
 0.275,0.175,0.5125,0.175,0.475,0.1,-400.0,full_weighted,-400.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-400,1.0,1.0,hubert
 0.2875,0.1625,0.5,0.1625,0.6125,0.1,-400.0,full_weighted,-400.0,0.0,1.0,0.5,allmini,filter,full,clique,,1,-400,1.0,1.0,hubert
 0.2125,0.1625,0.5,0.175,0.5125,0.1,-400.0,full_weighted,-400.0,0.0,1.0,0.5,phon_art,filter,full,clique,,1,-400,1.0,1.0,hubert
+0.225,0.15,0.4875,0.1625,0.5,0.1,-400.0,full_weighted,-400.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-400,1.0,1.0,wavlm
+0.275,0.1,0.5,0.1625,0.5,0.1,-400.0,full_weighted,-400.0,0.0,1.0,0.5,allmini,filter,full,clique,,1,-400,1.0,1.0,wavlm
+0.2625,0.1625,0.4875,0.1625,0.5125,0.1,-400.0,full_weighted,-400.0,0.0,1.0,0.5,phon_art,filter,full,clique,,1,-400,1.0,1.0,wavlm
