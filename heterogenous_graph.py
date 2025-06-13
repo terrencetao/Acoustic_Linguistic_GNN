@@ -344,29 +344,41 @@ if __name__ == "__main__":
 
 
 # Flatten the features of the acoustic nodes
+    # Récupération des features
     acoustic_features = hetero_graph.nodes['acoustic'].data['feat']
-    flattened_acoustic_features = acoustic_features.view(acoustic_features.shape[0], -1)  # Flatten the features
-    #mean_feat = acoustic_features.mean(dim=-1)  # Moyenne temporelle
-    #std_feat = acoustic_features.std(dim=-1)
-    #pooled_feat = torch.cat([mean_feat, std_feat], dim=-1)  # [N, 2 * D]
-    #flattened_acoustic_features = pooled_feat
-
-# Determine the length of the flattened features
-    flattened_length = flattened_acoustic_features.shape[1]
-
-# Pad the features of the word nodes to match the flattened length of acoustic features
     word_features = hetero_graph.nodes['word'].data['feat']
-    word_feat_shape = word_features.shape
-    padded_word_features = torch.zeros((word_feat_shape[0], flattened_length))  # Initialize padded feature tensor
 
-# Copy existing word features into the padded tensor
-    padded_word_features[:, :word_feat_shape[1]] = word_features
+# Aplatir les features acoustiques
+    flattened_acoustic_features = acoustic_features.view(acoustic_features.shape[0], -1)
 
-# Assign the padded features back to the word nodes in the graph
+# Obtenir les dimensions
+    acoustic_dim = flattened_acoustic_features.shape[1]
+    word_dim = word_features.shape[1]
+
+# Trouver la dimension maximale
+    max_dim = max(acoustic_dim, word_dim)
+
+# Padding des features acoustiques si nécessaire
+    if acoustic_dim < max_dim:
+       padded_acoustic_features = torch.zeros((flattened_acoustic_features.shape[0], max_dim))
+       padded_acoustic_features[:, :acoustic_dim] = flattened_acoustic_features
+    else:
+       padded_acoustic_features = flattened_acoustic_features
+
+# Padding des features de mots si nécessaire
+    if word_dim < max_dim:
+       padded_word_features = torch.zeros((word_features.shape[0], max_dim))
+       padded_word_features[:, :word_dim] = word_features
+    else:
+       padded_word_features = word_features
+
+# Mise à jour dans le graphe
+    hetero_graph.nodes['acoustic'].data['feat'] = padded_acoustic_features
     hetero_graph.nodes['word'].data['feat'] = padded_word_features
-    hetero_graph.nodes['acoustic'].data['feat'] = flattened_acoustic_features 
-# Print the heterogeneous graph to verify
-    
+
+# Impression des dimensions pour vérification
+    print(f"Acoustic features shape: {padded_acoustic_features.shape}")
+    print(f"Word features shape: {padded_word_features.shape}")
     print(hetero_graph)
 
 # Define the directory to save the graph

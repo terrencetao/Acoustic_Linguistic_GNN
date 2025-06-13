@@ -4,7 +4,7 @@ import tensorflow_hub as hub
 import numpy as np
 import argparse
 from tensorflow.keras import layers, models
-from utils import load_data, make_spec_ds, make_mfcc_ds, make_wav2vec_ds, make_trill_ds
+from utils import *
 import pickle
 import logging
 
@@ -34,14 +34,20 @@ def build_feature_extractor(ffn_model):
 def extract_feature(feature_type, dataset, ffn_model=None):
     if feature_type == 'mfcc':
         return make_mfcc_ds(dataset)
+    elif feature_type == 'mel_spec':
+        return make_spec_ds(dataset)
     elif feature_type == 'wav2vec':
         return make_wav2vec_ds(dataset)
+    elif feature_type == 'hubert':
+        return make_hubert_ds(dataset)
+    elif feature_type == 'wavlm':
+        return make_wavlm_ds(dataset)
     elif feature_type == 'trill':
         return make_trill_ds(dataset)
-    elif feature_type == 'vgg':
-        return make_spec_ds(dataset, 'vgg')
-    elif feature_type == 'vgg_dense3' and ffn_model is not None:
-        return make_vgg_ds(dataset, ffn_model)
+    elif feature_type == 'vggish':
+        return make_vggish_ds(dataset)
+    elif feature_type == 'yamnet':
+        return make_yamnet_ds(dataset)
     else:
         raise ValueError(f"Unsupported feature type: {feature_type}")
 
@@ -50,7 +56,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset', type=str, required=True, help='name of dataset')
     parser.add_argument('--data_path', type=str, required=True, help='Path to dataset')
-    parser.add_argument('--feature', type=str, default='mfcc', choices=['mfcc', 'wav2vec', 'trill', 'vgg'], help='Feature type to extract')
+    parser.add_argument('--feature', type=str, default='mfcc', choices=['mfcc', 'mel_spec', 'wav2vec', 'trill', 'vggish', 'yamnet', 'wavlm', 'hubert'], help='Feature type to extract')
     args = parser.parse_args()
 
     data_path = args.data_path
@@ -70,27 +76,7 @@ def main():
     print(f"Original train samples: {len(train_ds) * batch_size}")  # Should be ~8000
     print(f"Processed train samples: {train_features_ds.cardinality()}")
     
-    # Étape 2 : Entraîner FFN si 'vgg'
-    if feature_type == 'vgg':
-        for spectrograms, labels in train_features_ds.take(1):
-            input_shape = spectrograms.shape[1:]
-
-        vgg_ffn_model = build_simple_dense_model(input_shape, num_classes)
-        vgg_ffn_model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-
-        print("🧠 Training FFN on VGG features...")
-        vgg_ffn_model.fit(
-            train_features_ds,
-            validation_data=val_features_ds,
-            epochs=10
-        )
-
-        # Étape 3 : extraire les features de la couche dense_3
-        print("🔍 Extracting features from FFN hidden layer (dense_3)...")
-        train_features_ds = extract_feature('vgg_dense3', train_features_ds, ffn_model=vgg_ffn_model)
-        val_features_ds = extract_feature('vgg_dense3', val_features_ds, ffn_model=vgg_ffn_model)
-
-    print("✅ Feature extraction complete.")
+   
       
     # === SAUVEGARDE ===
     save_base_dir = f'saved_datasets/{args.dataset}'

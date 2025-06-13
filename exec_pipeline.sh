@@ -7,18 +7,18 @@ mkdir -p logs
 declare -A UNIT_DIVISORS=( ["timit"]=6102 ["spoken_digit"]=10 ["google_command"]=34 ["mini_speech_commands"]=8 ["yemba_command_small"]=13 )
 
 #################################### CONFIGURATION #################################################
-DATASETS=( "mini_google_commands" "google_command" "spoken_digit" "yemba_command_small")
-UNITS=$(seq 200 500 8000)
+DATASETS=("mini_google_commands" "google_commands" "spoken_digit" "yemba_command_small")
+UNITS=$(seq 300 100 8000)
 METHOD_MMA="clique"
 METHOD_MSA="filter"
 ALPHAS=(1.0)
 NS=$(seq 1 0.1 1.0) #density
 LAMB_VALUES=$(seq 1 0.1 1)
 MHG_METHODS=("full_weighted")
-MSW_METHODS=("phon_art" "phon_count")
+MSW_METHODS=("labse" "allmini" "phon_art" "phon_count" "glove")
 MGW_METHODS=("full")
 TWAS=(0.1)
-feature="trill"
+FEATURES=("mel_spec" "mfcc" "vggish" "yamnet" "wav2vec" "hubert" "wavlm")
 PS=(0.5 1 2 4) # proportion of number of link between the graphs
 ####################################################################################################
 
@@ -77,7 +77,7 @@ build_homogeneous_graph() {
       graph_file="saved_graphs/$dataset/$mma/$msa/kws_graph_${num}_${ko}_${unit}.dgl"
       python3 gnn_model.py --input_folder '' --graph_file "$graph_file" --epochs 50 --lamb "$lamb" >> "logs/gnn_${dataset}_${unit}_${ko}.log" 2>&1
 
-      build_heterogeneous_graph_and_eval "$dataset" "$unit" "$mma" "$msa" "$alpha" "$n" "$num" "$ko"
+      build_heterogeneous_graph_and_eval "$dataset" "$unit" "$mma" "$msa" "$alpha" "$n" "$num" "$ko" "$feature"
     
   done
   
@@ -94,6 +94,7 @@ build_heterogeneous_graph_and_eval() {
   n=$6
   num=$7
   ko=$8
+  feature=$9
 
   div=${UNIT_DIVISORS[$dataset]}
 
@@ -119,19 +120,19 @@ build_heterogeneous_graph_and_eval() {
             python3 eval_embedding.py --mma "$mma" --twa "$twa" --num_n_h "$num_n_h" --mhg "$mhg" \
               --num_n_a "$num" --k_out "$ko" --ta 0.5 --alpha "$alpha" --tw 0.5 --msw "$msw" \
               --msa "$msa" --mgw "$mgw" --sub_unit "$unit" --drop_freq 0.0 --drop_int 0.0 \
-              --dataset "$dataset" --lamb $lamb --density $n
+              --dataset "$dataset" --lamb $lamb --density $n --feature $feature
 
             #for add in dnn; do
             #  python3 induct_eval_embedding.py --mma "$mma" --twa "$twa" --num_n_h "$num_n_h" --mhg "$mhg" \
             #    --num_n_a "$num" --k_out "$ko" --ta 0 --alpha "$alpha" --tw 0.5 --msw "$msw" \
             #    --msa "$msa" --mgw "$mgw" --sub_unit "$unit" --drop_freq 0.0 --drop_int 0.0 \
-            #    --dataset "$dataset" --add "$add" --k_inf "$num" --lamb $lamb --density $n
+            #    --dataset "$dataset" --add "$add" --k_inf "$num" --lamb $lamb --density $n --feature $feature
             #done
             
             python3 induc_lexi_eval.py --mma "$mma" --twa "$twa" --num_n_h "$num_n_h" --mhg "$mhg" \
                 --num_n_a "$num" --k_out "$ko" --ta 0 --alpha "$alpha" --tw 0.5 --msw "$msw" \
                 --msa "$msa" --mgw "$mgw" --sub_unit "$unit" --drop_freq 0.0 --drop_int 0.0 \
-                --dataset "$dataset" --add "$add" --k_inf "$num" --lamb $lamb --density $n
+                --dataset "$dataset" --add "$add" --k_inf "$num" --lamb $lamb --density $n --feature $feature
           
       #done
     done
@@ -147,10 +148,10 @@ build_heterogeneous_graph_and_eval() {
 for dataset in "${DATASETS[@]}"; do
      for unit in $UNITS; do
     for alpha in "${ALPHAS[@]}"; do
-      #for n in $NS; do
+      for feature in "${FEATURES[@]}"; do
         n=1.0
         build_homogeneous_graph "$dataset" "$unit" "$METHOD_MMA" "$METHOD_MSA" "$alpha" "$n" "$feature"
-      #done
+      done
     done
   done
 done

@@ -1,3 +1,0 @@
-Heterogeneous regressor Model,Link prediction,link prediction topk,Heterogeneous sage Model,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw,mma,add,k_out,k_inf,lambda,density
-0.15,0.225,0.55,0.225,0.575,0.1,-200.0,full_weighted,-200.0,0.0,1.0,0.5,phon_art,filter,full,clique,,1,-200,1.0,1.0
-0.225,0.15,0.6,0.225,0.525,0.1,-200.0,full_weighted,-200.0,0.0,1.0,0.5,phon_count,filter,full,clique,,1,-200,1.0,1.0

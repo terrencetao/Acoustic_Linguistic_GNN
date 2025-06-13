@@ -119,6 +119,80 @@ def add_new_nodes_to_hetero_graph_knn(hetero_graph, new_node_spectrograms, n_job
         )
 
     return hetero_graph, num_existing_nodes
+    
+    
+
+def add_new_nodes_to_hetero_graph_knn(hetero_graph, new_node_spectrograms, n_jobs=-1):
+    """
+    Ajoute de nouveaux nœuds 'acoustic' à un graphe hétérogène DGL, en créant des arêtes
+    pondérées par similarité cosinus avec les nœuds existants.
+    
+    Args:
+        hetero_graph (dgl.DGLHeteroGraph): Le graphe hétérogène d'entrée.
+        new_node_spectrograms (np.ndarray): Nouvelles features (ex: spectrogrammes) [N, ...].
+        n_jobs (int): Nombre de processus pour le parallélisme (joblib).
+    
+    Returns:
+        dgl.DGLHeteroGraph: Graphe enrichi.
+        int: Nombre de nœuds existants avant ajout.
+    """
+    num_existing_nodes = hetero_graph.num_nodes('acoustic')
+    num_new_nodes = new_node_spectrograms.shape[0]
+
+    # Ajout des nouveaux nœuds
+    hetero_graph.add_nodes(num_new_nodes, ntype='acoustic')
+
+    # Conversion des nouvelles features en tenseur et aplatissement
+    acoustic_features = torch.from_numpy(new_node_spectrograms)
+    flattened_acoustic_features = acoustic_features.view(acoustic_features.shape[0], -1)
+    
+    # Dimension cible à atteindre (celle des anciens nœuds)
+    existing_feat_dim = hetero_graph.nodes['acoustic'].data['feat'].shape[1]
+    new_feat_dim = flattened_acoustic_features.shape[1]
+
+# Ajuster la dimension des nouvelles features
+    if new_feat_dim < existing_feat_dim:
+    # Padding des nouvelles features
+       flattened_new_features = torch.zeros((num_new_nodes, existing_feat_dim))
+       flattened_new_features[:, :new_feat_dim] = flattened_acoustic_features
+
+    else:
+       padded_new_features = flattened_acoustic_features
+
+
+    # Ajout des features au graphe
+    hetero_graph.nodes['acoustic'].data['feat'][num_existing_nodes:num_existing_nodes + num_new_nodes] = flattened_new_features
+
+    # Extraction des features des anciens nœuds pour calcul de similarité
+    existing_features = hetero_graph.nodes['acoustic'].data['feat'][:num_existing_nodes]
+    existing_features = existing_features.detach().cpu().numpy()
+
+    # Fonction pour traiter un seul nœud
+    def process_new_node(new_node_index):
+        rel_idx = new_node_index - num_existing_nodes
+        new_embedding = flattened_new_features[rel_idx].detach().cpu().numpy().reshape(1, -1)
+        similarities = cosine_similarity(new_embedding, existing_features)[0]
+
+        # Création d'arêtes bidirectionnelles
+        edges = [(new_node_index, i, similarities[i]) for i in range(num_existing_nodes)]
+        edges += [(i, new_node_index, similarities[i]) for i in range(num_existing_nodes)]
+        return edges
+
+    # Parallélisation avec joblib
+    all_edges = Parallel(n_jobs=n_jobs)(
+        delayed(process_new_node)(idx) for idx in tqdm(range(num_existing_nodes, num_existing_nodes + num_new_nodes))
+    )
+
+    # Ajout des arêtes au graphe
+    for edges in all_edges:
+        src, dst, weights = zip(*edges)
+        hetero_graph.add_edges(
+            src, dst,
+            data={'weight': torch.tensor(weights, dtype=torch.float32)},
+            etype=('acoustic', 'sim_tic', 'acoustic')
+        )
+
+    return hetero_graph, num_existing_nodes
 
 
     
@@ -401,6 +475,7 @@ parser.add_argument('--drop_int', help='dim amplitude ', required=False)
 parser.add_argument('--sub_units', help='fraction of data', required=True)  
 parser.add_argument('--dataset', help='name of dataset', required=True)
 parser.add_argument('--add', help='model to add a new node in graph dnn or ML', required=True)
+parser.add_argument('--feature', type=str, default='mfcc', choices=['mfcc', 'mel_spec', 'wav2vec', 'trill', 'vggish', 'yamnet', 'wavlm', 'hubert'], help='Feature type to extract')
 args = parser.parse_args()
 
 
@@ -501,7 +576,7 @@ dataset = args.dataset
 os.makedirs(f'accuracy/{dataset}', exist_ok=True)
 
 # CSV file path
-csv_file = f'{dataset}/accuracy_induc_val_{args.sub_units}_{args.drop_freq}_{args.drop_int}.csv'
+csv_file = f'{dataset}/accuracy_induc_lexi_val_{args.sub_units}_{args.drop_freq}_{args.drop_int}.csv'
 
 # Check if the CSV file exists
 file_exists = os.path.isfile(f'accuracy/{csv_file}')
@@ -510,7 +585,7 @@ file_exists = os.path.isfile(f'accuracy/{csv_file}')
 if not file_exists:
     with open(f'accuracy/{csv_file}', mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['Heterogeneous regressor Model','Link prediction','link prediction topk','Heterogeneous sage Model', 'twa', 'num_n_h', 'mhg', 'num_n_a', 'ta', 'alpha', 'tw', 'msw', 'msa', 'mgw', 'mma', 'add','k_out', 'k_inf', 'lambda', 'density'])
+        writer.writerow(['Heterogeneous regressor Model','Link class prediction','Link class prediciton top k', 'Link prediction','link prediction topk', 'twa', 'num_n_h', 'mhg', 'num_n_a', 'ta', 'alpha', 'tw', 'msw', 'msa', 'mgw', 'mma', 'add','k_out', 'k_inf', 'lambda', 'density', 'feature'])
 
 
 
@@ -560,5 +635,5 @@ logging.info(f"Link class prediction {top_k}: {acc_topk:.4f}")
 logging.info(f'Write accuracy results to CSV file')
 with open(f'accuracy/{csv_file}', mode='a', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow([ accuracy_hetero_regressor,acc_class_pred_link, acc_class_topk,acc_pred_link,acc_topk, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw, args.mma, args.add, args.k_out, args.k_inf, args.lamb, args.density])
+    writer.writerow([accuracy_hetero_regressor,acc_class_pred_link, acc_class_topk,acc_pred_link,acc_topk, float(args.twa), float(args.num_n_h), args.mhg, float(args.num_n_a), float(args.ta), float(args.alpha), float(args.tw), args.msw, args.msa, args.mgw, args.mma, args.add, args.k_out, args.k_inf, args.lamb, args.density, args.feature])
 

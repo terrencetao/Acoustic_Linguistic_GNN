@@ -1,3 +1,0 @@
-Supervised Model,Unsupervised Model,Unsupervised sage Model,Heterogeneous Model,Heterogeneous regressor Model,Link prediction,Heterogeneous sage Model,Heterogeneous attention Model,Spectrogram Baseline,CNN Model,DNN Model,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw,mma,add,k_out,k_inf,lambda,density
-0.19,0.27,0,0.1,0.12,0.09,0.0,0.0,0.79,0.9,0.88,0.1,49.0,fixed,24.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn,0,24,1.0,0.5
-0.19,0.27,0,0.1,0.09,0.11,0.0,0.0,0.79,0.9,0.88,0.1,49.0,dnn,24.0,0.0,1.0,0.5,phon_count,knn,full,fixed,dnn,0,24,1.0,0.5

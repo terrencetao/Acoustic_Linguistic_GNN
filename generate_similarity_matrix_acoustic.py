@@ -275,7 +275,7 @@ if __name__ == "__main__":
 	parser.add_argument('--sub_units', help='fraction of data', required=True)    
 	parser.add_argument('--method', help='', required=True)
 	parser.add_argument('--dataset', help='name of dataset', required=True)
-	parser.add_argument('--feature', type=str, default='trill', choices=['mfcc', 'wav2vec', 'trill', 'vgg'], help='Feature type to extract')
+	parser.add_argument('--feature', type=str, default='trill', choices=['mfcc', 'mel_spec', 'wav2vec', 'trill', 'vggish', 'yamnet', 'wavlm', 'hubert'], help='Feature type to extract')
 
 	args = parser.parse_args()
 	sub_units = int(args.sub_units)    
@@ -301,8 +301,8 @@ if __name__ == "__main__":
 	if not os.path.isfile(similarity_matrix_path):
 		# Load the datasets
 		
-		loaded_train_spectrogram_ds = tf.data.experimental.load(os.path.join(data_dir, 'train_spectrogram_ds'))
-		loaded_val_spectrogram_ds = tf.data.experimental.load(os.path.join(data_dir, 'val_spectrogram_ds'))
+		loaded_train_spectrogram_ds = tf.data.Dataset.load(os.path.join(data_dir, 'train_spectrogram_ds'))
+		loaded_val_spectrogram_ds = tf.data.Dataset.load(os.path.join(data_dir, 'val_spectrogram_ds'))
 		#loaded_test_spectrogram_ds = tf.data.experimental.load(os.path.join(data_dir, 'test_spectrogram_ds'))
 
 		print("Datasets loaded successfully.")

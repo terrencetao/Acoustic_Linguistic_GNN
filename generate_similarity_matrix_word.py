@@ -4,6 +4,7 @@ import numpy as np
 import gensim.downloader as api
 import eng_to_ipa as ipa
 from sklearn.feature_extraction.text import CountVectorizer
+from sentence_transformers import SentenceTransformer
 import logging
 import pandas as pd
 import os 
@@ -188,14 +189,14 @@ def simi_matrix(method = 'semantics', dataset=None, method_ac='mixed', sub_units
     pickle.dump(val_dic_names, f)
   
   
-  label_names = label_dic_names.keys()
+  label_names = list(label_dic_names.keys())
   
  
  
     
   xlsx_path = f'data/yemba/corpus_words.xlsx' 
   
-  if method == 'semantics':
+  if method == 'glove':
 # Load the GloVe Twitter embeddings
     glove_vectors = api.load('glove-twitter-25')
 
@@ -204,6 +205,16 @@ def simi_matrix(method = 'semantics', dataset=None, method_ac='mixed', sub_units
     word_embeddings = np.array([glove_vectors[word] for word in label_names])
 
     similarity_matrix = np.dot(word_embeddings, word_embeddings.T)
+  elif method == 'labse':
+    model = SentenceTransformer('sentence-transformers/LaBSE')
+    word_embeddings = model.encode(label_names)
+    similarity_matrix = np.dot(word_embeddings, word_embeddings.T)
+    
+  elif method == 'allmini':
+    model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+    word_embeddings = model.encode(label_names)
+    similarity_matrix = np.dot(word_embeddings, word_embeddings.T)  
+     
   elif method == 'phon_count':
     # Convert words to their phoneme representations
     if dataset=='yemba_command' or dataset=='yemba_command_small':
@@ -260,7 +271,7 @@ def simi_matrix(method = 'semantics', dataset=None, method_ac='mixed', sub_units
     similarity_matrix = compute_edit_distance_matrix(phoneme_words)
     
   elif method == 'phon_art':
-    word_embeddings = [word_to_articulatory_vectors(word, mode='mean') for word in label_names]
+    word_embeddings = [word_to_articulatory_vectors(word, mode='flat') for word in label_names]
     padded = list(zip_longest(*word_embeddings, fillvalue=0))
     word_embeddings = np.array(padded).T
     similarity_matrix = np.dot(word_embeddings, word_embeddings.T)
