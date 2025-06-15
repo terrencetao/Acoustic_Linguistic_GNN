@@ -8,7 +8,7 @@ declare -A UNIT_DIVISORS=( ["timit"]=6102 ["spoken_digit"]=10 ["google_command"]
 
 #################################### CONFIGURATION #################################################
 DATASETS=("mini_google_commands" "google_commands" "spoken_digit" "yemba_command_small")
-UNITS=$(seq 300 100 8000)
+UNITS=$(seq 250 100 8000)
 METHOD_MMA="clique"
 METHOD_MSA="filter"
 ALPHAS=(1.0)
@@ -63,11 +63,9 @@ build_homogeneous_graph() {
   for msw in "${MSW_METHODS[@]}"; do
       generate_word_similarity "$dataset" "$unit" "$mma" "$msw" 
       for mgw in "${MGW_METHODS[@]}"; do
-        python3 build_kws_word_graph.py --method "$mgw" --dataset "$dataset"
-        
-       
         generate_acoustic_similarity "$dataset" "$unit" "$mma" "$feature"
-
+        
+        python3 build_kws_word_graph.py --method "$mgw" --dataset "$dataset"
 
   #for ko in $(seq 0 1 "$num"); do
     ko=1

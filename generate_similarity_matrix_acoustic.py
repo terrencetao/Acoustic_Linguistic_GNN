@@ -139,7 +139,7 @@ def compute_vgg_similarity_matrix(spectrograms):
     return similarity_matrix
     
 
-def sim_matrix(method, subset_labels=None, subset_spectrograms=None, graph_w=None):
+def sim_matrix(method, subset_labels=None, subset_spectrograms=None, word_matrix=None):
     """
     Compute a similarity matrix using the specified method.
 
@@ -168,7 +168,7 @@ def sim_matrix(method, subset_labels=None, subset_spectrograms=None, graph_w=Non
         similarity_matrix = (labels_train_np[:, None] == labels_train_np[None, :]).astype(float)
 
     elif method == 'clique':
-        if subset_labels is None or graph_w is None:
+        if subset_labels is None or word_matrix is None:
             raise ValueError("Both subset_labels and graph_w are required for 'clique' method.")
 
         labels_train_np = np.copy(subset_labels)
@@ -181,8 +181,7 @@ def sim_matrix(method, subset_labels=None, subset_spectrograms=None, graph_w=Non
         unique_labels = list(set(labels_train_np))
         label_to_index = {label: i for i, label in enumerate(unique_labels)}
 
-        # Étape 3 : convertir le graphe de mots en matrice de similarité
-        word_matrix = torch.tensor(nx.to_numpy_array(graph_w.to_networkx()), dtype=torch.float32)
+      
 
         # Étape 4 : remplacer les zéros dans la matrice par la similarité entre labels
         for i in range(N):
@@ -294,8 +293,7 @@ if __name__ == "__main__":
 	subset_val_induc_labels_path = os.path.join(save_dir, f'subset_val_induc_label_{sub_units}.npy')
 	subset_val_induc_spectrogram_path = os.path.join(save_dir, f'subset_val_induc_spectrogram_{sub_units}.npy')
 	
-	glist2, _ = load_graphs(os.path.join('saved_graphs',args.dataset, "dgl_words_graph.bin"))
-	dgl_G_words = glist2[0]
+	
 
     # Check if the similarity matrix file already exists
 	if not os.path.isfile(similarity_matrix_path):
@@ -398,7 +396,8 @@ if __name__ == "__main__":
 		    # If the file exists, append without headers
 		    df_val.to_csv(csv_val_file_path, mode='a', header=False, index=False)
 		
-		similarity_matrix = sim_matrix(method=args.method,  subset_labels=subset_labels, subset_spectrograms=subset_spectrograms, graph_w = dgl_G_words)
+		similarity_word_matrix = np.load(f'filtered_similarity_matrix_word_{args.dataset}.npy')
+		similarity_matrix = sim_matrix(method=args.method,  subset_labels=subset_labels, subset_spectrograms=subset_spectrograms,  word_matrix= similarity_word_matrix)
 
 		print(similarity_matrix)
 		

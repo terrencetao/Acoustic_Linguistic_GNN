@@ -1,0 +1,29 @@
+64
+6
+Epoch 0, Loss: 9.875901222229004, Accuracy: 22.00%
+Epoch 10, Loss: 2.079826593399048, Accuracy: 18.00%
+Epoch 20, Loss: 1.7629761695861816, Accuracy: 25.50%
+Epoch 30, Loss: 1.6630929708480835, Accuracy: 28.00%
+Epoch 40, Loss: 1.6149542331695557, Accuracy: 38.00%
+Epoch 0, Loss: 0.7187302708625793, Accuracy: 16.50%
+Epoch 10, Loss: 0.5880517363548279, Accuracy: 17.50%
+Epoch 20, Loss: 0.45792338252067566, Accuracy: 17.50%
+Epoch 30, Loss: 0.414004385471344, Accuracy: 16.50%
+Epoch 40, Loss: 0.31432846188545227, Accuracy: 19.00%
+Epoch 0, Loss: 22.443313598632812, Accuracy: 17.00%
+Epoch 10, Loss: 3.1462316513061523, Accuracy: 16.50%
+Epoch 20, Loss: 2.940338611602783, Accuracy: 17.00%
+Epoch 30, Loss: 2.84059476852417, Accuracy: 17.00%
+Epoch 40, Loss: 2.8326010704040527, Accuracy: 17.00%
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 314, in <module>
+    model3 = train_with_topological_and_cross_loss(model3, dgl_G, features, edge_weights,adj_matrix, labels, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_model.py", line 189, in train_with_topological_and_cross_loss
+    loss.backward()
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_tensor.py", line 522, in backward
+    torch.autograd.backward(
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/__init__.py", line 266, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/function.py", line 277, in apply
+    def apply(self, *args):
+KeyboardInterrupt
