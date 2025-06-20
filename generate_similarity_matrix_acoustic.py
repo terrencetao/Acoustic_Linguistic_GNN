@@ -313,46 +313,25 @@ if __name__ == "__main__":
 
 		print(f'train-spec shape: {len(train_spectrograms)}')
 		
-		with open(f'induc_val_names_{args.dataset}.pkl', 'rb') as f:   # Load all the labels names
-			induc_val_labels = pickle.load(f)
-                
-		induc_val_labels_inv = {v: k for k, v in induc_val_labels.items()}
-                
-		(train_spec_induc_val, train_labels_induc_val), (train_spectrograms, labels_train) = filter_pairs_by_label_dict(train_spectrograms, labels_train, induc_val_labels_inv)
-                
-		(val_spec_induc_val, val_labels_induc_val), (val_spectrograms, labels_val) = filter_pairs_by_label_dict(train_spectrograms, labels_train, induc_val_labels_inv)
 		
-		# reencode les labels pour besion de linearite
-		encoder = LabelEncoder()
-		labels_train_reencoded = encoder.fit_transform(labels_train)
-		
-		with open(f'label_reencoder_{args.dataset}.pkl', 'wb') as f:
-			pickle.dump(encoder, f)
 		
                 
-		labels_val_reencoded = encoder.transform(labels_val)
-                 
-		induc_val_spectrogram = train_spec_induc_val + val_spec_induc_val
-		labels_induc_val      = train_labels_induc_val + val_labels_induc_val
+		
 
                 
 		# Set your desired subset size
 		subset_size = sub_units
 
 		# Perform stratified sampling for training and validation sets
-		subset_spectrograms, subset_labels = stratified_sample(train_spectrograms, labels_train_reencoded, math.floor(subset_size*0.8))
-		print(len(subset_labels))
-		subset_val_spectrograms, subset_val_labels = stratified_sample(val_spectrograms, labels_val_reencoded, subset_size-math.floor(subset_size*0.8))
+		subset_spectrograms, subset_labels = stratified_sample(train_spectrograms + val_spectrograms, labels_train + labels_val, subset_size)
+		
+		
 
 		
 		# Convert lists to numpy arrays if needed
 		subset_spectrograms = np.array(subset_spectrograms)
-		subset_val_spectrograms = np.array(subset_val_spectrograms)
-		subset_labels = np.array(subset_labels)
-		subset_val_labels = np.array(subset_val_labels)
 		
-		induc_val_spectrogram = np.array(induc_val_spectrogram)
-		labels_induc_val      = np.array(labels_induc_val)
+		subset_labels = np.array(subset_labels)
 		
 			
 		# Calculate total size and size for each label
@@ -360,20 +339,19 @@ if __name__ == "__main__":
 		label_counts = np.unique(subset_labels, return_counts=True)
 		label_sizes = dict(zip(label_counts[0], label_counts[1]))
 		
-		total_val_size = len(subset_val_labels)
-		label_val_counts = np.unique(subset_val_labels, return_counts=True)
-		label_val_sizes = dict(zip(label_val_counts[0], label_val_counts[1]))
+		
+		
 		# Convert label sizes to a DataFrame
 		df = pd.DataFrame([label_sizes], index=['size'])
-		df_val = pd.DataFrame([label_val_sizes], index=['size'])
+		
 
 		# Add the total size as a separate row
 		df['Total'] = total_size
-		df_val['Total'] = total_val_size
+		
 		
 		# Define the CSV file path
 		csv_file_path = os.path.join(save_dir,f'sample_size_info_{sub_units}.csv')
-		csv_val_file_path = os.path.join(save_dir,f'sample_size_val_info_{sub_units}.csv')
+		
 		# Check if the file exists
 		file_exists = os.path.isfile(csv_file_path)
 
@@ -385,16 +363,7 @@ if __name__ == "__main__":
 		    # If the file exists, append without headers
 		    df.to_csv(csv_file_path, mode='a', header=False, index=False)
 
-		# Check if the file exists
-		file_val_exists = os.path.isfile(csv_val_file_path)
-
-		# Save to CSV
-		if not file_val_exists:
-		    # If the file doesn't exist, create it with headers
-		    df_val.to_csv(csv_val_file_path, mode='w', header=True, index=False)
-		else:
-		    # If the file exists, append without headers
-		    df_val.to_csv(csv_val_file_path, mode='a', header=False, index=False)
+		
 		
 		similarity_word_matrix = np.load(f'filtered_similarity_matrix_word_{args.dataset}.npy')
 		similarity_matrix = sim_matrix(method=args.method,  subset_labels=subset_labels, subset_spectrograms=subset_spectrograms,  word_matrix= similarity_word_matrix)
@@ -411,11 +380,7 @@ if __name__ == "__main__":
 		np.save(subset_spectrogram_path, subset_spectrograms)
 		np.save(subset_labels_path, subset_labels)
 		
-		np.save(subset_val_spectrogram_path, subset_val_spectrograms)
-		np.save(subset_val_labels_path, subset_val_labels)
 		
-		np.save(subset_val_induc_spectrogram_path, induc_val_spectrogram)
-		np.save(subset_val_induc_labels_path, labels_induc_val)
 
 		print("Acoustic similarity matrix computed successfully.")
 	else:

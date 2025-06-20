@@ -1,0 +1,200 @@
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 165, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 113, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/timit/clique/filter/full_weighted/labse/hetero_graph_-1_1_-1_1000.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 244, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb), args.dataset)
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 172, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/timit/clique/filter/full_weighted/labse/hetero_graph_-1_1_-1_1000.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 165, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 113, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/timit/clique/filter/fixed/labse/hetero_graph_-1_1_-1_1000.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 244, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb), args.dataset)
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 172, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/timit/clique/filter/fixed/labse/hetero_graph_-1_1_-1_1000.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 165, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 113, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/timit/clique/filter/full_weighted/allmini/hetero_graph_-1_1_-1_1000.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 244, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb), args.dataset)
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 172, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/timit/clique/filter/full_weighted/allmini/hetero_graph_-1_1_-1_1000.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 165, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 113, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/timit/clique/filter/fixed/allmini/hetero_graph_-1_1_-1_1000.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 244, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb), args.dataset)
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 172, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/timit/clique/filter/fixed/allmini/hetero_graph_-1_1_-1_1000.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 165, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 113, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/timit/clique/filter/full_weighted/glove/hetero_graph_-1_1_-1_1000.dgl does not exist.
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 244, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb), args.dataset)
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 172, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/home/yannick/.local/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/timit/clique/filter/full_weighted/glove/hetero_graph_-1_1_-1_1000.dgl does not exist.
+2025-06-17 14:51:30,022 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 6.765695571899414, Accuracy: 0.50%
+Epoch 10, Loss: 6.179321765899658, Accuracy: 0.25%
+Epoch 20, Loss: 6.037667274475098, Accuracy: 0.50%
+Epoch 30, Loss: 5.938284397125244, Accuracy: 0.88%
+Epoch 40, Loss: 5.831596374511719, Accuracy: 1.62%
+Epoch 50, Loss: 5.7938971519470215, Accuracy: 1.62%
+Epoch 60, Loss: 5.793076992034912, Accuracy: 1.75%
+Epoch 70, Loss: 5.793064117431641, Accuracy: 1.75%
+Epoch 80, Loss: 5.79306173324585, Accuracy: 1.75%
+Epoch 90, Loss: 5.793059825897217, Accuracy: 1.75%
+Epoch 100, Loss: 5.793056964874268, Accuracy: 1.75%
+Epoch 110, Loss: 5.793056011199951, Accuracy: 1.75%
+Epoch 120, Loss: 5.793052673339844, Accuracy: 1.75%
+Epoch 130, Loss: 5.793051719665527, Accuracy: 1.75%
+Epoch 140, Loss: 5.793048858642578, Accuracy: 1.75%
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 244, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb), args.dataset)
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_link_pred_model.py", line 179, in main
+    with open(f'phon_idx_{dataset}.pkl', 'rb') as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'phon_idx_timit.pkl'
+Epoch 0, Loss: 6.764853000640869, Accuracy: 0.25%
+Epoch 10, Loss: 6.1901350021362305, Accuracy: 0.38%
+Epoch 20, Loss: 6.015285015106201, Accuracy: 0.25%
+Epoch 30, Loss: 5.9225616455078125, Accuracy: 0.62%
+Epoch 40, Loss: 5.796166896820068, Accuracy: 1.38%
+Epoch 50, Loss: 5.784602165222168, Accuracy: 1.38%
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 165, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 146, in main
+    model = train_with_topological_loss_cross_loss(
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 100, in train_with_topological_loss_cross_loss
+    loss.backward()
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_tensor.py", line 522, in backward
+    torch.autograd.backward(
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/__init__.py", line 266, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt
+2025-06-17 15:26:37,021 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 6.762386322021484, Accuracy: 0.50%
+Epoch 10, Loss: 6.207808017730713, Accuracy: 0.38%
+Epoch 20, Loss: 6.043219566345215, Accuracy: 0.38%
+Epoch 30, Loss: 5.959704399108887, Accuracy: 1.12%
+Epoch 40, Loss: 5.867767810821533, Accuracy: 1.25%
+Epoch 50, Loss: 5.809471130371094, Accuracy: 1.50%
+Epoch 60, Loss: 5.808432102203369, Accuracy: 1.50%
+Epoch 70, Loss: 5.808387279510498, Accuracy: 1.50%
+Epoch 80, Loss: 5.808385372161865, Accuracy: 1.50%
+Epoch 90, Loss: 5.808383464813232, Accuracy: 1.50%
+Epoch 100, Loss: 5.8083815574646, Accuracy: 1.50%
+Epoch 110, Loss: 5.808379173278809, Accuracy: 1.50%
+Epoch 120, Loss: 5.808377742767334, Accuracy: 1.50%
+Epoch 130, Loss: 5.808375358581543, Accuracy: 1.50%
+Epoch 140, Loss: 5.808373928070068, Accuracy: 1.50%
+2025-06-17 17:00:33,927 - INFO - Model saved to models/hetero_gnn_edge_regressor.pth
+Epoch 0, Loss: 1.4081, Regularisation: 1.1580861806869507, MSE: 0.2501
+Epoch 10, Loss: 1.6420, Regularisation: 1.1419724225997925, MSE: 0.5000
+Epoch 20, Loss: 1.6351, Regularisation: 1.1351335048675537, MSE: 0.5000
+Epoch 30, Loss: 1.6350, Regularisation: 1.1349631547927856, MSE: 0.5000
+Epoch 40, Loss: 1.6350, Regularisation: 1.1349575519561768, MSE: 0.5000
+Epoch 50, Loss: 1.6350, Regularisation: 1.1349570751190186, MSE: 0.5000
+Epoch 60, Loss: 1.6350, Regularisation: 1.13495671749115, MSE: 0.5000
+Epoch 70, Loss: 1.6350, Regularisation: 1.1349563598632812, MSE: 0.5000
+Epoch 80, Loss: 1.6350, Regularisation: 1.134955883026123, MSE: 0.5000
+Epoch 90, Loss: 1.6350, Regularisation: 1.134955644607544, MSE: 0.5000
+Epoch 100, Loss: 1.6350, Regularisation: 1.1349552869796753, MSE: 0.5000
+Epoch 110, Loss: 1.6350, Regularisation: 1.134954810142517, MSE: 0.5000
+Epoch 120, Loss: 1.6350, Regularisation: 1.1349543333053589, MSE: 0.5000
+Epoch 130, Loss: 1.6350, Regularisation: 1.1349539756774902, MSE: 0.5000
+Epoch 140, Loss: 1.6350, Regularisation: 1.134953498840332, MSE: 0.5000
+Epoch 150, Loss: 1.6350, Regularisation: 1.1349531412124634, MSE: 0.5000
+Epoch 160, Loss: 1.6350, Regularisation: 1.1349527835845947, MSE: 0.5000
+Epoch 170, Loss: 1.6350, Regularisation: 1.1349523067474365, MSE: 0.5000
+Epoch 180, Loss: 1.6350, Regularisation: 1.1349518299102783, MSE: 0.5000
+Epoch 190, Loss: 1.6350, Regularisation: 1.1349514722824097, MSE: 0.5000
+Epoch 0, Loss: 6.764583587646484, Accuracy: 0.25%
+Epoch 10, Loss: 6.171198844909668, Accuracy: 0.25%
+Epoch 20, Loss: 6.0283203125, Accuracy: 0.50%
+Epoch 30, Loss: 5.920996189117432, Accuracy: 1.75%
+Epoch 40, Loss: 5.772188663482666, Accuracy: 1.88%
+Epoch 50, Loss: 5.669762134552002, Accuracy: 2.25%
+Epoch 60, Loss: 5.66790771484375, Accuracy: 2.25%
+Epoch 70, Loss: 5.667829513549805, Accuracy: 2.25%
+Epoch 80, Loss: 5.667825698852539, Accuracy: 2.25%
+Epoch 90, Loss: 5.66782283782959, Accuracy: 2.25%
+Epoch 100, Loss: 5.667819976806641, Accuracy: 2.25%
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 165, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 146, in main
+    model = train_with_topological_loss_cross_loss(
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 100, in train_with_topological_loss_cross_loss
+    loss.backward()
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_tensor.py", line 522, in backward
+    torch.autograd.backward(
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/autograd/__init__.py", line 266, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

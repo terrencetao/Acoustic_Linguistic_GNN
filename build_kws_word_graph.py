@@ -62,11 +62,10 @@ print("Number of nodes:", dgl_graph.number_of_nodes())
 print("Number of edges:", dgl_graph.number_of_edges())
 
 
-with open(f'label_reencoder_{args.dataset}.pkl', 'rb') as f:   # Load all the labels names
-    reencoder = pickle.load(f)
+
 # Add node features and labels to DGL graph
 dgl_graph.ndata['feat'] = torch.tensor(word_embeddings, dtype=torch.float32)
-dgl_graph.ndata['label'] = torch.tensor([reencoder.transform([label_to_original_index[label]])[0] for label in label_names] , dtype=torch.long) 
+dgl_graph.ndata['label'] = torch.tensor([label_to_original_index[label] for label in label_names] , dtype=torch.long) 
 
 # Save the DGL graph
 save_dir = os.path.join('saved_graphs',args.dataset)

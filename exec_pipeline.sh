@@ -7,18 +7,18 @@ mkdir -p logs
 declare -A UNIT_DIVISORS=( ["timit"]=6102 ["spoken_digit"]=10 ["google_command"]=34 ["mini_speech_commands"]=8 ["yemba_command_small"]=13 )
 
 #################################### CONFIGURATION #################################################
-DATASETS=("mini_google_commands" "google_commands" "spoken_digit" "yemba_command_small")
-UNITS=$(seq 250 100 8000)
+DATASETS=("mini_google_commands" "google_commands"  "spoken_digit" "yemba_command_small")
+UNITS=$(seq 100 100 8000)
 METHOD_MMA="clique"
 METHOD_MSA="filter"
 ALPHAS=(1.0)
 NS=$(seq 1 0.1 1.0) #density
 LAMB_VALUES=$(seq 1 0.1 1)
-MHG_METHODS=("fixed" "full_weighted")
-MSW_METHODS=("labse" "allmini" "phon_art" "phon_count" "glove")
+MHG_METHODS=("full_weighted" "fixed")
+MSW_METHODS=("allmini" "labse" "glove" "phon_art" "phon_count" )
 MGW_METHODS=("full")
 TWAS=(0.1)
-FEATURES=("mel_spec" "mfcc" "vggish" "yamnet" "wav2vec" "hubert" "wavlm")
+FEATURES=("yamnet" "vggish" "mel_spec" "mfcc" "wav2vec" "hubert" "wavlm")
 PS=(0.5 1 2 4) # proportion of number of link between the graphs
 ####################################################################################################
 
@@ -46,7 +46,7 @@ generate_word_similarity() {
   mma=$3
   msw=$4
 
-  python3 generate_similarity_matrix_word.py --tw 0 --method "$msw" --dataset "$dataset" --sub_units "$unit" --method_sim "$mma"
+  python3 generate_similarity_matrix_word.py --tw 0.7 --method "$msw" --dataset "$dataset" --sub_units "$unit" --method_sim "$mma"
 }
 
 build_homogeneous_graph() {
@@ -73,7 +73,7 @@ build_homogeneous_graph() {
 
     for lamb in $LAMB_VALUES; do
       graph_file="saved_graphs/$dataset/$mma/$msa/kws_graph_${num}_${ko}_${unit}.dgl"
-      python3 gnn_model.py --input_folder '' --graph_file "$graph_file" --epochs 50 --lamb "$lamb" >> "logs/gnn_${dataset}_${unit}_${ko}.log" 2>&1
+      #python3 gnn_model.py --input_folder '' --graph_file "$graph_file" --epochs 50 --lamb "$lamb" >> "logs/gnn_${dataset}_${unit}_${ko}.log" 2>&1
 
       build_heterogeneous_graph_and_eval "$dataset" "$unit" "$mma" "$msa" "$alpha" "$n" "$num" "$ko" "$feature"
     
@@ -110,29 +110,20 @@ build_heterogeneous_graph_and_eval() {
               --num_n_ac "$num" --k_out "$ko"
 
             graph_file="saved_graphs/$dataset/$mma/$msa/$mhg/$msw/hetero_graph_${num}_${ko}_${num_n_h}_${unit}.dgl"
-            python3 gnn_heto_model.py --input_folder '' --graph_file "$graph_file" --epochs 150 --lamb $lamb \
-              >> "logs/hetero_${dataset}_${unit}_${ko}.log" 2>&1
-            python3 gnn_heto_link_pred_model.py --input_folder '' --graph_file "$graph_file" --epochs 200 --lamb $lamb --dataset $dataset\
-              >> "logs/hetero_${dataset}_${unit}_${ko}.log" 2>&1
-
-            python3 eval_embedding.py --mma "$mma" --twa "$twa" --num_n_h "$num_n_h" --mhg "$mhg" \
-              --num_n_a "$num" --k_out "$ko" --ta 0.5 --alpha "$alpha" --tw 0.5 --msw "$msw" \
-              --msa "$msa" --mgw "$mgw" --sub_unit "$unit" --drop_freq 0.0 --drop_int 0.0 \
-              --dataset "$dataset" --lamb $lamb --density $n --feature $feature
-
-            #for add in dnn; do
-            #  python3 induct_eval_embedding.py --mma "$mma" --twa "$twa" --num_n_h "$num_n_h" --mhg "$mhg" \
-            #    --num_n_a "$num" --k_out "$ko" --ta 0 --alpha "$alpha" --tw 0.5 --msw "$msw" \
-            #    --msa "$msa" --mgw "$mgw" --sub_unit "$unit" --drop_freq 0.0 --drop_int 0.0 \
-            #    --dataset "$dataset" --add "$add" --k_inf "$num" --lamb $lamb --density $n --feature $feature
-            #done
+        python3 gnn_heto_link_pred_model.py --input_folder '' --graph_file "$graph_file" --epochs 1000 --lamb $lamb --dataset $dataset\
+        --mma "$mma" --twa "$twa" --mhg "$mhg" \
+        --ta 0.5  --tw 0.5 --msw "$msw" \
+         --msa "$msa" --mgw "$mgw" --sub_unit "$unit" \
+         --dataset "$dataset" --lamb $lamb --feature $feature
+              
+              
             
-            python3 induc_lexi_eval.py --mma "$mma" --twa "$twa" --num_n_h "$num_n_h" --mhg "$mhg" \
-                --num_n_a "$num" --k_out "$ko" --ta 0 --alpha "$alpha" --tw 0.5 --msw "$msw" \
-                --msa "$msa" --mgw "$mgw" --sub_unit "$unit" --drop_freq 0.0 --drop_int 0.0 \
-                --dataset "$dataset" --add "$add" --k_inf "$num" --lamb $lamb --density $n --feature $feature
-          
-      #done
+            #python3 eval_embedding.py --mma "$mma" --twa "$twa" --num_n_h "$num_n_h" --mhg "$mhg" \
+            #  --num_n_a "$num" --k_out "$ko" --ta 0.5 --alpha "$alpha" --tw 0.5 --msw "$msw" \
+            #  --msa "$msa" --mgw "$mgw" --sub_unit "$unit" \
+            #  --dataset "$dataset" --lamb $lamb --density $n --feature $feature
+
+            
     done
   done
 }

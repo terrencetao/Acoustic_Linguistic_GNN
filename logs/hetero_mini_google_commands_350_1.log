@@ -1,0 +1,69 @@
+Traceback (most recent call last):
+  File "/home/yannick/.local/lib/python3.10/site-packages/transformers/utils/import_utils.py", line 119, in <module>
+    _faiss_version = importlib.metadata.version("faiss")
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 996, in version
+    return distribution(distribution_name).version
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 969, in distribution
+    return Distribution.from_name(distribution_name)
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 548, in from_name
+    raise PackageNotFoundError(name)
+importlib.metadata.PackageNotFoundError: No package metadata was found for faiss
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 165, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 146, in main
+    model = train_with_topological_loss_cross_loss(
+  File "/home/yannick/Documents/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 87, in train_with_topological_loss_cross_loss
+    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/optim/adam.py", line 45, in __init__
+    super().__init__(params, defaults)
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/optim/optimizer.py", line 278, in __init__
+    self.add_param_group(cast(dict, param_group))
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_compile.py", line 22, in inner
+    import torch._dynamo
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_dynamo/__init__.py", line 2, in <module>
+    from . import allowed_functions, convert_frame, eval_frame, resume_execution
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_dynamo/convert_frame.py", line 45, in <module>
+    from .eval_frame import always_optimize_code_objects, skip_code, TorchPatcher
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py", line 69, in <module>
+    from . import config, convert_frame, external_utils, skipfiles, utils
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_dynamo/skipfiles.py", line 39, in <module>
+    from .variables.functions import (
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_dynamo/variables/__init__.py", line 26, in <module>
+    from .higher_order_ops import TorchHigherOrderOperatorVariable
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/_dynamo/variables/higher_order_ops.py", line 11, in <module>
+    import torch.onnx.operators
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/onnx/__init__.py", line 46, in <module>
+    from ._internal.exporter import (  # usort:skip. needs to be last to avoid circular import
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/onnx/_internal/exporter.py", line 44, in <module>
+    from torch.onnx._internal.fx import (
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/onnx/_internal/fx/__init__.py", line 1, in <module>
+    from .patcher import ONNXTorchPatcher
+  File "/home/yannick/.local/lib/python3.10/site-packages/torch/onnx/_internal/fx/patcher.py", line 11, in <module>
+    import transformers  # type: ignore[import]
+  File "/home/yannick/.local/lib/python3.10/site-packages/transformers/__init__.py", line 26, in <module>
+    from . import dependency_versions_check
+  File "/home/yannick/.local/lib/python3.10/site-packages/transformers/dependency_versions_check.py", line 16, in <module>
+    from .utils.versions import require_version, require_version_core
+  File "/home/yannick/.local/lib/python3.10/site-packages/transformers/utils/__init__.py", line 27, in <module>
+    from .chat_template_utils import DocstringParsingException, TypeHintParsingException, get_json_schema
+  File "/home/yannick/.local/lib/python3.10/site-packages/transformers/utils/chat_template_utils.py", line 25, in <module>
+    from .import_utils import is_jinja_available, is_torch_available, is_vision_available
+  File "/home/yannick/.local/lib/python3.10/site-packages/transformers/utils/import_utils.py", line 123, in <module>
+    _faiss_version = importlib.metadata.version("faiss-cpu")
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 996, in version
+    return distribution(distribution_name).version
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 969, in distribution
+    return Distribution.from_name(distribution_name)
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 544, in from_name
+    dist = next(iter(dists), None)
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 904, in <genexpr>
+    path.search(prepared) for path in map(FastPath, paths)
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 802, in search
+    return self.lookup(self.mtime).search(name)
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 807, in mtime
+    return os.stat(self.root).st_mtime
+KeyboardInterrupt

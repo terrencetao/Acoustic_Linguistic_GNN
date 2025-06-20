@@ -63,9 +63,17 @@ def create_label_matrix(graph, graph_w):
    
             
     return label_matrix
+
+
+def get_idx_from_label(label, graph):
+    labels = graph.ndata['label']
+    indices = (labels == label).nonzero(as_tuple=True)[0]
+    if len(indices) > 0:
+        return indices[0].item()
+    return None  # ou raise ValueError("Label not found")
+
     
-    
-    
+        
 def create_weighted_label_matrix(graph, graph_w):
     labels = graph.ndata['label']
     unique_labels = torch.unique(labels)
@@ -80,7 +88,7 @@ def create_weighted_label_matrix(graph, graph_w):
 
     # Étape 2 : Matrice de similarité
     similarity_matrix =  torch.tensor(nx.to_numpy_array(graph_w.to_networkx()))
-
+   
     # Étape 3 : compléter avec des poids de similarité
     weighted_matrix = torch.zeros_like(label_matrix)
 
@@ -89,11 +97,16 @@ def create_weighted_label_matrix(graph, graph_w):
         for label_idx in range(num_labels):
             if label_matrix[node_idx, label_idx] == 1.0:
                 weighted_matrix[node_idx, label_idx] = 1.0
-            else:
-                weighted_matrix[node_idx, label_idx] = similarity_matrix[true_label, graph.ndata['label'][label_idx]] 
+            elif graph_w.has_edges_between(get_idx_from_label(true_label,graph_w), label_idx):
+                edge_ids = graph_w.edge_ids(get_idx_from_label(true_label,graph_w), label_idx)
+                weights = graph_w.edata['weight'][edge_ids]
+                if weights > 0.6:
+                    weighted_matrix[node_idx, label_idx] = weights
+                
 
     return weighted_matrix, label_matrix
     
+
 def compute_similarity_matrix(label_to_text):
     labels = list(label_to_text.keys())
     n = len(labels)

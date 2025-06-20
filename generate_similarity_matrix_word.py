@@ -179,18 +179,15 @@ def simi_matrix(method = 'semantics', dataset=None, method_ac='mixed', sub_units
   with open(f'index_to_label_{dataset}.pkl', 'wb') as f:
     pickle.dump(index_to_label, f)                      #
   
-  # random selection of a subset words for induction validation  
-  label_dic_names, val_dic_names = split_dict_randomly(label_to_index , ratio=0.8, seed=42)  
-    
+  
+  label_dic_names=label_to_index
   with open(f'subset_label_names_{dataset}.pkl', 'wb') as f:
     pickle.dump(label_dic_names, f)
     
-  with open(f'induc_val_names_{dataset}.pkl', 'wb') as f:
-    pickle.dump(val_dic_names, f)
+
   
   
-  label_names = list(label_dic_names.keys())
-  
+  label_names = all_labels
  
  
     
