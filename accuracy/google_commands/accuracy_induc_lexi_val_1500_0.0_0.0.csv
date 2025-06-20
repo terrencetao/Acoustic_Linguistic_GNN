@@ -1,0 +1,8 @@
+Heterogeneous regressor Model,Link class prediction,Link class prediciton top k,Link prediction,link prediction topk,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw,mma,add,k_out,k_inf,lambda,density,feature
+0.33,0.013333333333333334,0.07,0.03666666666666667,0.11333333333333333,0.1,-1500.0,fixed,-1500.0,0.0,1.0,0.5,allmini,filter,full,clique,dnn,1,-1500,1.0,1.0,yamnet
+0.30666666666666664,0.04666666666666667,0.13666666666666666,0.02666666666666667,0.09,0.1,-1500.0,fixed,-1500.0,0.0,1.0,0.5,labse,filter,full,clique,dnn,1,-1500,1.0,1.0,yamnet
+0.31,0.04,0.10666666666666667,0.02,0.06333333333333334,0.1,-1500.0,fixed,-1500.0,0.0,1.0,0.5,glove,filter,full,clique,dnn,1,-1500,1.0,1.0,yamnet
+0.33666666666666667,0.023333333333333334,0.06,0.01,0.07333333333333333,0.1,-1500.0,fixed,-1500.0,0.0,1.0,0.5,phon_art,filter,full,clique,dnn,1,-1500,1.0,1.0,yamnet
+0.32666666666666666,0.02,0.06333333333333334,0.03,0.08666666666666667,0.1,-1500.0,fixed,-1500.0,0.0,1.0,0.5,phon_count,filter,full,clique,dnn,1,-1500,1.0,1.0,yamnet
+0.33,0.03,0.08,0.03,0.10666666666666667,0.1,-1500.0,fixed,-1500.0,0.0,1.0,0.5,labse,filter,full,clique,dnn,1,-1500,1.0,1.0,yamnet
+0.31333333333333335,0.03,0.08,0.023333333333333334,0.08333333333333333,0.1,-1500.0,fixed,-1500.0,0.0,1.0,0.5,glove,filter,full,clique,dnn,1,-1500,1.0,1.0,yamnet

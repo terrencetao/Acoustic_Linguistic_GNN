@@ -1,0 +1,5 @@
+Heterogeneous regressor Model,Link class prediction,Link class prediciton top k,Link prediction,link prediction topk,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw,mma,add,k_out,k_inf,lambda,density,feature
+0.055,0.0425,0.12,0.0225,0.0875,0.1,-2000.0,full_weighted,-2000.0,0.0,1.0,0.5,phon_art,filter,full,clique,,1,-2000,1.0,1.0,vggish
+0.07,0.0425,0.1275,0.0375,0.105,0.1,-2000.0,fixed,-2000.0,0.0,1.0,0.5,phon_art,filter,full,clique,,1,-2000,1.0,1.0,vggish
+0.135,0.0375,0.1175,0.035,0.1375,0.1,-2000.0,full_weighted,-2000.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-2000,"1,0",1.0,vggish
+0.14,0.05,0.13,0.04,0.1125,0.1,-2000.0,fixed,-2000.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-2000,"1,0",1.0,vggish

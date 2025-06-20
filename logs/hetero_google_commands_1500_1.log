@@ -1,0 +1,14 @@
+2025-06-19 23:02:35,107 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.298343658447266, Accuracy: 4.42%
+2025-06-19 23:08:03,074 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.272934436798096, Accuracy: 2.17%
+2025-06-19 23:11:11,492 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.299854278564453, Accuracy: 4.25%
+2025-06-19 23:16:43,355 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.31231689453125, Accuracy: 2.17%
+2025-06-19 23:22:07,410 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.299990653991699, Accuracy: 2.25%
+2025-06-19 23:28:23,018 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.31013298034668, Accuracy: 1.92%
+2025-06-19 23:33:18,387 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.293916702270508, Accuracy: 3.33%

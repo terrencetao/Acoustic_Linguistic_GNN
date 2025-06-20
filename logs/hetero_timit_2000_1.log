@@ -1,0 +1,91 @@
+Traceback (most recent call last):
+  File "/export/home/lium/yyomie/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 165, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/export/home/lium/yyomie/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 113, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/timit/clique/filter/fixed/labse/hetero_graph_-1_1_-1_2000.dgl does not exist.
+Traceback (most recent call last):
+  File "/export/home/lium/yyomie/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 165, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/export/home/lium/yyomie/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 113, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/timit/clique/filter/fixed/labse/hetero_graph_-1_1_-1_2000.dgl does not exist.
+Traceback (most recent call last):
+  File "/export/home/lium/yyomie/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 165, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/export/home/lium/yyomie/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 113, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/timit/clique/filter/fixed/allmini/hetero_graph_-1_1_-1_2000.dgl does not exist.
+Traceback (most recent call last):
+  File "/export/home/lium/yyomie/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 165, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/export/home/lium/yyomie/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 113, in main
+    glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 186, in load_graphs
+    check_local_file_exists(filename)
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/dgl/data/graph_serialize.py", line 40, in check_local_file_exists
+    raise DGLError("File {} does not exist.".format(filename))
+dgl._ffi.base.DGLError: File saved_graphs/timit/clique/filter/fixed/labse/hetero_graph_-1_1_-1_2000.dgl does not exist.
+2025-06-19 13:54:34,470 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 6.7576751708984375, Accuracy: 0.19%
+2025-06-19 14:09:07,127 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 6.837510108947754, Accuracy: 0.06%
+2025-06-19 14:12:03,750 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 6.795392990112305, Accuracy: 0.69%
+2025-06-19 14:24:12,322 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 6.794975280761719, Accuracy: 0.19%
+2025-06-19 14:28:23,834 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 6.782707214355469, Accuracy: 0.12%
+2025-06-19 14:35:53,701 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 6.789116859436035, Accuracy: 0.19%
+2025-06-19 14:41:22,369 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 6.789076328277588, Accuracy: 0.25%
+2025-06-19 14:49:38,211 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 6.8394365310668945, Accuracy: 0.06%
+Traceback (most recent call last):
+  File "/export/home/lium/yyomie/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 165, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/export/home/lium/yyomie/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 146, in main
+    model = train_with_topological_loss_cross_loss(
+  File "/export/home/lium/yyomie/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 87, in train_with_topological_loss_cross_loss
+    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/torch/optim/adam.py", line 100, in __init__
+    super().__init__(params, defaults)
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/torch/optim/optimizer.py", line 369, in __init__
+    self.add_param_group(cast(dict, param_group))
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/torch/_compile.py", line 46, in inner
+    import torch._dynamo
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/torch/_dynamo/__init__.py", line 13, in <module>
+    from . import config, convert_frame, eval_frame, resume_execution
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/torch/_dynamo/convert_frame.py", line 52, in <module>
+    from torch._dynamo.symbolic_convert import TensorifyState
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/torch/_dynamo/symbolic_convert.py", line 52, in <module>
+    from torch._dynamo.exc import TensorifyScalarRestartAnalysis
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/torch/_dynamo/exc.py", line 41, in <module>
+    from .utils import counters
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/torch/_dynamo/utils.py", line 69, in <module>
+    import torch.fx.experimental.symbolic_shapes
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/torch/fx/experimental/symbolic_shapes.py", line 67, in <module>
+    from torch.utils._sympy.functions import (
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/torch/utils/_sympy/functions.py", line 9, in <module>
+    import sympy
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/sympy/__init__.py", line 77, in <module>
+    from .polys import (Poly, PurePoly, poly_from_expr, parallel_poly_from_expr,
+  File "<frozen importlib._bootstrap>", line 1075, in _handle_fromlist
+KeyboardInterrupt
+2025-06-19 15:01:15,851 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 6.772675514221191, Accuracy: 0.25%
+2025-06-19 15:24:24,583 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 6.787193775177002, Accuracy: 0.19%

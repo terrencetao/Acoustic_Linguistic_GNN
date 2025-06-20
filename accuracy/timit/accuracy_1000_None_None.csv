@@ -1,0 +1,9 @@
+Supervised Model,Unsupervised Model,Hibrid Model,Heterogeneous Model,Heterogeneous regressor Model,Link prediction,link prediction topk,Heterogeneous sage Model,Heterogeneous attention Model,Spectrogram Baseline,CNN Model,DNN Model,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw,mma,k_out,lambda,density,feature
+0.74625,0.99875,0.00625,0.81,0.8575,0.0025,0.0075,0.0,0.0,0.0,0,0,0.1,-1.0,full_weighted,-1.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,1.0,1.0,vggish
+0.70375,1.0,0.00625,0.885,0.95,0.00125,0.00375,0.0,0.0,0.0,0,0,0.1,-1.0,fixed,-1.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,1.0,1.0,vggish
+0.68875,1.0,0.00625,0.775,0.89125,0.0025,0.015,0.0,0.0,0.0,0,0,0.1,-1.0,full_weighted,-1.0,0.5,1.0,0.5,labse,filter,full,clique,1,1.0,1.0,vggish
+0.67875,1.0,0.00625,0.74375,0.85125,0.00125,0.00875,0.0,0.0,0.0,0,0,0.1,-1.0,fixed,-1.0,0.5,1.0,0.5,labse,filter,full,clique,1,1.0,1.0,vggish
+0.7225,1.0,0.00625,0.8,0.85625,0.0025,0.0075,0.0,0.0,0.0,0,0,0.1,-1.0,full_weighted,-1.0,0.5,1.0,0.5,allmini,filter,full,clique,1,1.0,1.0,vggish
+0.72375,1.0,0.00625,0.85,0.38875,0.00375,0.01125,0.0,0.0,0.0,0,0,0.1,-1.0,fixed,-1.0,0.5,1.0,0.5,allmini,filter,full,clique,1,1.0,1.0,vggish
+0.67125,1.0,0.00625,0.81625,0.79875,0.005,0.01125,0.0,0.0,0.0,0,0,0.1,-1.0,full_weighted,-1.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,1.0,1.0,vggish
+0.70875,1.0,0.00625,0.88625,0.97875,0.00125,0.005,0.0,0.0,0.0,0,0,0.1,-1.0,fixed,-1.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,1.0,1.0,vggish

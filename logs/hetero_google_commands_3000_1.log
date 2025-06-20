@@ -1,0 +1,140 @@
+2025-06-19 19:04:01,366 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.305257797241211, Accuracy: 4.12%
+2025-06-19 19:13:59,901 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.318182945251465, Accuracy: 1.75%
+2025-06-19 19:24:02,005 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.2937846183776855, Accuracy: 4.08%
+2025-06-19 19:34:15,863 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.295272350311279, Accuracy: 2.17%
+2025-06-19 19:37:08,235 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.30582332611084, Accuracy: 3.96%
+2025-06-19 19:58:34,373 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.279890060424805, Accuracy: 3.04%
+2025-06-19 20:45:42,742 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.3107781410217285, Accuracy: 3.00%
+2025-06-19 20:51:10,641 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.305849075317383, Accuracy: 4.17%
+2025-06-19 20:54:50,742 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.306496620178223, Accuracy: 2.25%
+2025-06-19 21:03:58,761 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.318360328674316, Accuracy: 4.08%
+2025-06-19 21:07:17,231 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.304876804351807, Accuracy: 3.88%
+2025-06-19 21:26:06,429 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.307047367095947, Accuracy: 2.21%
+2025-06-19 21:29:23,778 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.306149959564209, Accuracy: 4.33%
+2025-06-19 21:32:58,522 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.3039960861206055, Accuracy: 2.50%
+2025-06-19 21:36:38,872 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.277005672454834, Accuracy: 5.38%
+2025-06-19 21:44:00,472 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.322105407714844, Accuracy: 2.54%
+2025-06-19 21:53:12,742 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.309719085693359, Accuracy: 4.17%
+2025-06-19 22:05:05,160 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.320606231689453, Accuracy: 1.92%
+2025-06-19 22:14:53,435 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.3006391525268555, Accuracy: 4.46%
+2025-06-19 22:28:08,496 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.3008575439453125, Accuracy: 4.25%
+2025-06-19 22:32:19,216 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.304614067077637, Accuracy: 2.50%
+Traceback (most recent call last):
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/networkx/classes/multigraph.py", line 407, in new_edge_key
+    keydict = self._adj[u][v]
+KeyError: 981
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/export/home/lium/yyomie/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 165, in <module>
+    main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb))
+  File "/export/home/lium/yyomie/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 128, in main
+    adj_matrix_acoustic = torch.tensor(nx.to_numpy_array(hetero_graph['acoustic', 'sim_tic', 'acoustic'].to_networkx()))
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/dgl/convert.py", line 1705, in to_networkx
+    nx_graph.add_edge(u, v, id=eid)
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/networkx/classes/multidigraph.py", line 481, in add_edge
+    key = self.new_edge_key(u, v)
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/networkx/classes/multigraph.py", line 407, in new_edge_key
+    keydict = self._adj[u][v]
+KeyboardInterrupt
+2025-06-20 01:06:19,559 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.30248498916626, Accuracy: 2.29%
+2025-06-20 01:08:24,619 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.306849479675293, Accuracy: 2.75%
+Traceback (most recent call last):
+  File "/export/home/lium/yyomie/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 1, in <module>
+    import dgl
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/dgl/__init__.py", line 14, in <module>
+    from .backend import backend_name, load_backend  # usort: skip
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/dgl/backend/__init__.py", line 122, in <module>
+    load_backend(get_preferred_backend())
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/dgl/backend/__init__.py", line 37, in load_backend
+    import torch
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/torch/__init__.py", line 2611, in <module>
+    from torch import _meta_registrations
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/torch/_meta_registrations.py", line 12, in <module>
+    from torch._decomp import (
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/torch/_decomp/__init__.py", line 276, in <module>
+    import torch._decomp.decompositions
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/torch/_decomp/decompositions.py", line 16, in <module>
+    import torch._prims as prims
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/torch/_prims/__init__.py", line 37, in <module>
+    prim = torch.library.Library("prims", "DEF")
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/torch/library.py", line 107, in __init__
+    frame = traceback.extract_stack(limit=3)[0]
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/traceback.py", line 227, in extract_stack
+    stack = StackSummary.extract(walk_stack(f), limit=limit)
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/traceback.py", line 383, in extract
+    f.line
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/traceback.py", line 306, in line
+    self._line = linecache.getline(self.filename, self.lineno)
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/linecache.py", line 30, in getline
+    lines = getlines(filename, module_globals)
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/linecache.py", line 46, in getlines
+    return updatecache(filename, module_globals)
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/linecache.py", line 136, in updatecache
+    with tokenize.open(fullname) as fp:
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/export/home/lium/yyomie/Acoustic_Linguistic_GNN/gnn_heto_model.py", line 1, in <module>
+    import dgl
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/dgl/__init__.py", line 14, in <module>
+    from .backend import backend_name, load_backend  # usort: skip
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/dgl/backend/__init__.py", line 122, in <module>
+    load_backend(get_preferred_backend())
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/dgl/backend/__init__.py", line 37, in load_backend
+    import torch
+  File "/lium/home/yyomie/miniconda3/envs/gnn_tts/lib/python3.10/site-packages/torch/__init__.py", line 409, in <module>
+    from torch._C import *  # noqa: F403
+  File "<frozen importlib._bootstrap>", line 216, in _lock_unlock_module
+KeyboardInterrupt
+2025-06-20 02:31:07,828 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.303879737854004, Accuracy: 3.79%
+2025-06-20 02:53:02,464 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.3100504875183105, Accuracy: 2.54%
+2025-06-20 03:03:54,100 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.31414794921875, Accuracy: 2.46%
+2025-06-20 03:27:04,803 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.30660343170166, Accuracy: 2.29%
+2025-06-20 03:39:29,673 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.3281049728393555, Accuracy: 4.50%
+2025-06-20 06:46:26,491 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.3110432624816895, Accuracy: 2.25%
+2025-06-20 06:56:54,734 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.305670738220215, Accuracy: 3.79%
+2025-06-20 07:20:57,329 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.266783714294434, Accuracy: 2.71%
+2025-06-20 07:31:20,837 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.2992353439331055, Accuracy: 4.04%
+2025-06-20 07:54:42,489 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.316299915313721, Accuracy: 2.62%
+2025-06-20 08:18:27,417 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.291851997375488, Accuracy: 1.62%
+2025-06-20 08:29:36,729 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.297122001647949, Accuracy: 4.33%
+2025-06-20 08:50:07,815 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.3055830001831055, Accuracy: 3.96%
+2025-06-20 09:00:04,370 - INFO - Model saved to models/hetero_gnn_model.pth
+Epoch 0, Loss: 4.315500736236572, Accuracy: 3.96%

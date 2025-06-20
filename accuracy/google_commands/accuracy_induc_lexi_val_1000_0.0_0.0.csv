@@ -1,0 +1,25 @@
+Heterogeneous regressor Model,Link class prediction,Link class prediciton top k,Link prediction,link prediction topk,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw,mma,add,k_out,k_inf,lambda,density,feature
+0.275,0.04,0.115,0.01,0.055,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-1000,1.0,1.0,yamnet
+0.33,0.05,0.12,0.05,0.135,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,allmini,filter,full,clique,,1,-1000,1.0,1.0,yamnet
+0.285,0.03,0.075,0.055,0.145,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,glove,filter,full,clique,,1,-1000,1.0,1.0,yamnet
+0.29,0.03,0.08,0.025,0.125,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,phon_art,filter,full,clique,,1,-1000,1.0,1.0,yamnet
+0.295,0.025,0.08,0.05,0.12,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,phon_count,filter,full,clique,,1,-1000,1.0,1.0,yamnet
+0.295,0.02,0.115,0.04,0.08,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-1000,1.0,1.0,vggish
+0.325,0.03,0.1,0.025,0.075,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,allmini,filter,full,clique,,1,-1000,1.0,1.0,vggish
+0.26,0.05,0.07,0.025,0.115,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,glove,filter,full,clique,,1,-1000,1.0,1.0,vggish
+0.29,0.02,0.07,0.035,0.13,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,phon_art,filter,full,clique,,1,-1000,1.0,1.0,vggish
+0.3,0.025,0.105,0.02,0.095,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,phon_count,filter,full,clique,,1,-1000,1.0,1.0,vggish
+0.28,0.025,0.09,0.03,0.105,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-1000,1.0,1.0,mel_spec
+0.305,0.02,0.06,0.055,0.155,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,allmini,filter,full,clique,,1,-1000,1.0,1.0,mel_spec
+0.28,0.02,0.1,0.065,0.175,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-1000,1.0,1.0,yamnet
+0.35,0.045,0.12,0.045,0.125,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,allmini,filter,full,clique,,1,-1000,1.0,1.0,yamnet
+0.29,0.035,0.11,0.035,0.09,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,glove,filter,full,clique,,1,-1000,1.0,1.0,yamnet
+0.295,0.015,0.05,0.025,0.11,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,phon_art,filter,full,clique,,1,-1000,1.0,1.0,yamnet
+0.295,0.03,0.105,0.045,0.11,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,phon_count,filter,full,clique,,1,-1000,1.0,1.0,yamnet
+0.275,0.05,0.12,0.025,0.085,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-1000,1.0,1.0,vggish
+0.315,0.05,0.145,0.04,0.115,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-1000,1.0,1.0,yamnet
+0.3,0.05,0.125,0.04,0.11,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,allmini,filter,full,clique,,1,-1000,1.0,1.0,yamnet
+0.275,0.04,0.125,0.055,0.17,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-1000,1.0,1.0,yamnet
+0.29,0.025,0.12,0.03,0.1,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,glove,filter,full,clique,,1,-1000,1.0,1.0,yamnet
+0.29,0.025,0.095,0.03,0.08,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,phon_art,filter,full,clique,,1,-1000,1.0,1.0,yamnet
+0.31,0.015,0.09,0.035,0.08,0.1,-1000.0,fixed,-1000.0,0.0,1.0,0.5,phon_count,filter,full,clique,,1,-1000,1.0,1.0,yamnet

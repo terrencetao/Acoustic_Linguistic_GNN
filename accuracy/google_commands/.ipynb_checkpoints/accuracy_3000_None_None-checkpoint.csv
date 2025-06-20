@@ -1,0 +1,7 @@
+Supervised Model,Unsupervised Model,Hibrid Model,Heterogeneous Model,Heterogeneous regressor Model,Link prediction,link prediction topk,Heterogeneous sage Model,Heterogeneous attention Model,Spectrogram Baseline,CNN Model,DNN Model,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw,mma,k_out,lambda,density,feature
+0,0,0,0.09458333333333334,1.0,0.9973492379058979,0.9993373094764745,0.0,0.0,0.0,0,0,0.1,-3000.0,fixed,-3000.0,0.5,1.0,0.5,allmini,filter,full,clique,1,1.0,1.0,yamnet
+0,0,0,0.2725,1.0,0.8760768721007289,0.9854208084824387,0.0,0.0,0.0,0,0,0.1,-3000.0,fixed,-3000.0,0.5,1.0,0.5,glove,filter,full,clique,1,1.0,1.0,yamnet
+0,0,0,0.5758333333333333,1.0,1.0,1.0,0.0,0.0,0.0,0,0,0.1,-3000.0,fixed,-3000.0,0.5,1.0,0.5,phon_art,filter,full,clique,1,1.0,1.0,yamnet
+0,0,0,0.15166666666666667,1.0,0.05036447978793903,0.18091451292246521,0.0,0.0,0.0,0,0,0.1,-3000.0,fixed,-3000.0,0.5,1.0,0.5,phon_count,filter,full,clique,1,1.0,1.0,yamnet
+0,0,0,0.1225,0.9983333333333333,0.9668654738237243,0.9927104042412194,0.0,0.0,0.0,0,0,0.1,-3000.0,fixed,-3000.0,0.5,1.0,0.5,labse,filter,full,clique,1,1.0,1.0,vggish
+0,0,0,0.09541666666666666,0.9979166666666667,0.10006626905235255,0.294234592445328,0.0,0.0,0.0,0,0,0.1,-3000.0,fixed,-3000.0,0.5,1.0,0.5,allmini,filter,full,clique,1,1.0,1.0,yamnet

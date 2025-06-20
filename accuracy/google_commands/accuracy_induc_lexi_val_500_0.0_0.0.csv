@@ -1,0 +1,10 @@
+Heterogeneous regressor Model,Link class prediction,Link class prediciton top k,Link prediction,link prediction topk,twa,num_n_h,mhg,num_n_a,ta,alpha,tw,msw,msa,mgw,mma,add,k_out,k_inf,lambda,density,feature
+0.2,0.03,0.12,0.04,0.13,0.1,-500.0,fixed,-500.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-500,1.0,1.0,vggish
+0.28,0.07,0.14,0.05,0.1,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-500,1.0,1.0,vggish
+0.29,0.02,0.12,0.03,0.1,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,allmini,filter,full,clique,,1,-500,1.0,1.0,vggish
+0.14,0.05,0.1,0.02,0.14,0.1,-500.0,fixed,-500.0,0.0,1.0,0.5,phon_art,filter,full,clique,,1,-500,1.0,1.0,vggish
+0.09,0.02,0.1,0.05,0.14,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,phon_art,filter,full,clique,,1,-500,1.0,1.0,vggish
+0.14,0.04,0.13,0.09,0.12,0.1,-500.0,fixed,-500.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-500,1.0,1.0,yamnet
+0.25,0.04,0.15,0.04,0.12,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-500,1.0,1.0,yamnet
+0.23,0.04,0.12,0.03,0.12,0.1,-500.0,full_weighted,-500.0,0.0,1.0,0.5,allmini,filter,full,clique,,1,-500,1.0,1.0,yamnet
+0.55,0.05,0.09,0.05,0.16,0.1,-500.0,fixed,-500.0,0.0,1.0,0.5,labse,filter,full,clique,,1,-500,1.0,1.0,yamnet

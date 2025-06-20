@@ -1,0 +1,779 @@
+[I 2025-06-18 11:23:33.385 ServerApp] jupyter_lsp | extension was successfully linked.
+[I 2025-06-18 11:23:33.390 ServerApp] jupyter_server_terminals | extension was successfully linked.
+[I 2025-06-18 11:23:33.396 ServerApp] jupyterlab | extension was successfully linked.
+[I 2025-06-18 11:23:33.598 ServerApp] notebook_shim | extension was successfully linked.
+[W 2025-06-18 11:23:33.622 ServerApp] WARNING: The Jupyter server is listening on all IP addresses and not using encryption. This is not recommended.
+[I 2025-06-18 11:23:33.623 ServerApp] notebook_shim | extension was successfully loaded.
+[I 2025-06-18 11:23:33.625 ServerApp] jupyter_lsp | extension was successfully loaded.
+[I 2025-06-18 11:23:33.626 ServerApp] jupyter_server_terminals | extension was successfully loaded.
+[I 2025-06-18 11:23:33.628 LabApp] JupyterLab extension loaded from /usr/local/lib/python3.9/dist-packages/jupyterlab
+[I 2025-06-18 11:23:33.628 LabApp] JupyterLab application directory is /usr/local/share/jupyter/lab
+[I 2025-06-18 11:23:33.628 LabApp] Extension Manager is 'pypi'.
+[I 2025-06-18 11:23:33.648 LabApp] Extensions will be fetched using proxy, proxy host and port: ('proxy.univ-lemans.fr', '3128')
+[I 2025-06-18 11:23:33.652 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2025-06-18 11:23:33.653 ServerApp] Serving notebooks from local directory: /export/home/lium/yyomie/Acoustic_Linguistic_GNN
+[I 2025-06-18 11:23:33.653 ServerApp] Jupyter Server 2.14.2 is running at:
+[I 2025-06-18 11:23:33.653 ServerApp] http://localhost:8888/lab?token=36ed1a9a3544fc3a32247fd13eacf19cfa25cbe112d8bea2
+[I 2025-06-18 11:23:33.653 ServerApp]     http://127.0.0.1:8888/lab?token=36ed1a9a3544fc3a32247fd13eacf19cfa25cbe112d8bea2
+[I 2025-06-18 11:23:33.653 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[W 2025-06-18 11:23:33.661 ServerApp] No web browser found: Error('could not locate runnable browser').
+[C 2025-06-18 11:23:33.661 ServerApp] 
+    
+    To access the server, open this file in a browser:
+        file:///export/home/lium/yyomie/.local/share/jupyter/runtime/jpserver-865727-open.html
+    Or copy and paste one of these URLs:
+        http://localhost:8888/lab?token=36ed1a9a3544fc3a32247fd13eacf19cfa25cbe112d8bea2
+        http://127.0.0.1:8888/lab?token=36ed1a9a3544fc3a32247fd13eacf19cfa25cbe112d8bea2
+[I 2025-06-18 11:23:34.026 ServerApp] Skipped non-installed server(s): bash-language-server, dockerfile-language-server-nodejs, javascript-typescript-langserver, jedi-language-server, julia-language-server, pyright, python-language-server, python-lsp-server, r-languageserver, sql-language-server, texlab, typescript-language-server, unified-language-server, vscode-css-languageserver-bin, vscode-html-languageserver-bin, vscode-json-languageserver-bin, yaml-language-server
+[I 2025-06-18 11:23:44.186 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.78ms
+[W 2025-06-18 11:23:45.562 LabApp] Could not determine jupyterlab build status without nodejs
+[W 2025-06-18 11:23:45.982 ServerApp] 404 GET /api/contents/logs/hetero_google_commands_2000_1.log?content=0&hash=0&1750238625939 (a581068dfbd340e2b48ecf2e575481fe@10.10.127.129) 1.75ms referer=https://36ed1a9a3544fc3a32247fd13eacf19cfa25cbe112d8bea2.labremote.univ-lemans.fr/lab
+[W 2025-06-18 11:23:45.982 ServerApp] 404 GET /api/contents/logs/hetero_google_commands_2000_1.log?content=0&hash=0&1750238625939 (10.10.127.129): No such file or directory: logs/hetero_google_commands_2000_1.log
+[W 2025-06-18 11:23:45.983 ServerApp] 404 GET /api/contents/logs/gnn_google_commands_2000_1.log?content=0&hash=0&1750238625939 (a581068dfbd340e2b48ecf2e575481fe@10.10.127.129) 2.66ms referer=https://36ed1a9a3544fc3a32247fd13eacf19cfa25cbe112d8bea2.labremote.univ-lemans.fr/lab
+[W 2025-06-18 11:23:45.983 ServerApp] 404 GET /api/contents/logs/gnn_google_commands_2000_1.log?content=0&hash=0&1750238625939 (10.10.127.129): No such file or directory: logs/gnn_google_commands_2000_1.log
+[I 2025-06-18 11:23:46.103 ServerApp] New terminal with automatic name: 1
+[I 2025-06-18 11:24:15.761 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.33ms
+[I 2025-06-18 11:25:15.767 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 11:26:15.755 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 11:27:15.814 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 11:28:15.782 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 11:29:15.806 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 11:30:15.757 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 11:31:15.768 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 11:32:15.778 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.44ms
+[I 2025-06-18 11:33:15.819 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 11:34:15.775 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 11:35:15.807 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 11:36:15.804 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 11:37:15.802 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 11:38:15.805 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 11:39:15.793 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 11:40:15.773 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.44ms
+[I 2025-06-18 11:41:15.807 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 11:42:15.804 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 11:43:15.773 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 11:44:15.811 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 11:45:15.758 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 11:46:15.785 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 11:47:15.815 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.50ms
+[I 2025-06-18 11:48:15.782 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 11:49:15.792 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 11:50:15.775 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 11:51:15.802 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 11:52:15.761 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 11:53:15.801 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 11:54:15.840 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 11:55:15.753 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 11:56:15.777 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 11:57:15.811 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 11:58:15.807 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 11:59:15.830 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:00:15.767 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:01:15.795 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.52ms
+[I 2025-06-18 12:02:15.803 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 12:03:15.814 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:04:15.726 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:05:15.765 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:06:15.768 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:07:15.780 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:08:15.750 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:09:15.791 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:10:15.760 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:11:15.782 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:12:15.760 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 12:13:15.787 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:14:15.756 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:15:15.810 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:16:15.750 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:17:15.778 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:18:15.773 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:19:15.768 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:20:15.762 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:21:15.779 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 12:22:15.801 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:23:15.762 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:24:15.813 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:25:15.767 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.52ms
+[I 2025-06-18 12:26:15.804 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:27:15.753 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:28:15.766 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:29:15.744 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:30:15.752 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:31:15.763 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:32:15.753 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:33:15.741 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:34:15.764 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:35:15.760 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 12:36:15.739 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 12:37:15.723 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:38:15.741 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:39:15.746 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:40:15.725 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:41:15.721 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:42:15.741 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.66ms
+[I 2025-06-18 12:43:15.719 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.52ms
+[I 2025-06-18 12:44:15.732 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:45:15.729 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:46:15.737 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:47:15.741 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:48:15.730 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:49:15.727 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.51ms
+[I 2025-06-18 12:50:15.720 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:51:15.757 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:52:15.736 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:53:15.739 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:54:15.747 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 12:55:15.745 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:56:15.731 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 12:57:15.766 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 12:58:15.750 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 12:59:15.742 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:00:15.733 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:01:15.751 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.51ms
+[I 2025-06-18 13:02:15.731 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:03:15.755 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:04:15.759 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:05:15.742 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:06:15.756 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.60ms
+[I 2025-06-18 13:07:15.730 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 13:08:15.740 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:09:15.722 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 13:10:15.748 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:11:15.713 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:12:15.732 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:13:15.736 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:14:15.722 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:15:15.731 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:16:15.723 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:17:15.733 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:18:15.745 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:19:15.718 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 13:20:15.730 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:21:15.722 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:22:15.744 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:23:15.719 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:24:15.738 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:24:34.648 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:25:15.729 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:26:15.718 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:26:45.199 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:27:15.707 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:28:15.728 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:29:15.745 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 13:30:15.723 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 13:31:15.743 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:32:15.729 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:33:15.854 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:34:15.758 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:35:15.748 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:36:15.730 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:37:15.758 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:38:15.746 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:39:15.738 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:40:15.761 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:41:15.759 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 13:42:08.597 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 13:42:15.734 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.43ms
+[I 2025-06-18 13:43:15.748 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:43:39.199 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:44:15.739 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:45:15.731 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:46:15.723 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.50ms
+[I 2025-06-18 13:47:15.753 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:48:15.747 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:49:15.753 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:50:15.742 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:51:15.755 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.44ms
+[I 2025-06-18 13:52:15.734 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:53:15.763 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:54:15.786 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:55:15.747 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:56:15.734 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:57:15.750 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:58:15.744 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 13:59:15.743 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:00:15.746 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:01:15.738 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:02:15.741 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:03:15.767 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.52ms
+[I 2025-06-18 14:04:15.748 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:05:15.757 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:06:15.751 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:07:15.753 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 14:08:15.772 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:09:15.744 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:10:15.761 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:11:15.771 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.50ms
+[I 2025-06-18 14:12:15.750 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:13:15.767 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.52ms
+[I 2025-06-18 14:14:15.753 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 14:15:15.756 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:16:15.781 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:17:15.751 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.50ms
+[I 2025-06-18 14:18:15.771 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.52ms
+[I 2025-06-18 14:19:15.773 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:20:15.757 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:21:15.769 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:22:15.723 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 14:22:19.460 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.43ms
+[I 2025-06-18 14:22:19.463 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.31ms
+[I 2025-06-18 14:23:15.728 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:24:15.749 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:25:15.754 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 14:26:15.766 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 14:27:15.740 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:28:15.763 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.56ms
+[I 2025-06-18 14:29:15.752 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.57ms
+[I 2025-06-18 14:30:15.742 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:31:15.748 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:32:15.753 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:33:15.770 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:34:15.752 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:35:15.753 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 14:36:15.745 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:37:15.766 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:38:15.757 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 14:39:15.752 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 14:40:15.778 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 14:40:41.018 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 14:41:15.746 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.41ms
+[I 2025-06-18 14:42:15.752 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 14:43:15.766 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 14:44:15.763 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 14:45:15.753 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 14:46:15.775 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 14:47:15.983 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 14:48:15.782 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 14:49:15.775 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 14:50:15.784 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 14:51:15.753 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 14:52:15.775 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 14:53:15.768 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.51ms
+[I 2025-06-18 14:54:15.785 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 14:55:15.774 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 14:56:15.760 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 14:57:15.758 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 14:58:15.800 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 14:59:15.744 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:00:15.979 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:01:15.737 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:02:15.743 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:03:15.747 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 15:04:15.737 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:05:15.737 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:06:15.740 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:07:15.738 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:08:15.742 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:09:15.734 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 15:10:15.729 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:11:15.733 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 15:12:15.726 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.44ms
+[I 2025-06-18 15:13:15.736 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:14:15.727 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 15:15:15.734 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 15:16:15.743 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.42ms
+[I 2025-06-18 15:17:15.742 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:18:15.734 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:19:15.751 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 15:20:15.744 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:21:15.757 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:22:16.773 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.43ms
+[I 2025-06-18 15:23:15.750 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.56ms
+[I 2025-06-18 15:24:15.984 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 15:25:15.732 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:26:15.757 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 15:27:15.751 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.50ms
+[I 2025-06-18 15:28:15.751 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:29:15.749 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 15:30:15.738 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:31:15.729 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:32:15.746 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 15:33:15.754 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:34:15.738 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:35:15.741 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:36:15.755 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:37:15.732 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 15:38:15.758 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:39:15.745 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:40:15.743 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:41:15.748 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.44ms
+[I 2025-06-18 15:42:15.742 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:43:15.749 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:44:15.759 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:44:45.811 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[W 2025-06-18 15:44:48.048 LabApp] Could not determine jupyterlab build status without nodejs
+[I 2025-06-18 15:45:15.748 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.39ms
+[I 2025-06-18 15:46:15.744 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 15:47:15.752 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 15:48:15.734 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.41ms
+[I 2025-06-18 15:49:15.750 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.41ms
+[I 2025-06-18 15:50:15.751 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.41ms
+[I 2025-06-18 15:51:15.751 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 15:52:15.751 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 15:53:15.755 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.38ms
+[I 2025-06-18 15:53:30.493 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.44ms
+[I 2025-06-18 15:54:15.760 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.41ms
+[I 2025-06-18 15:54:20.166 ServerApp] Saving file at /induc_lexi_eval.py
+[I 2025-06-18 15:54:48.132 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 15:55:15.757 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.40ms
+[I 2025-06-18 15:56:15.761 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.34ms
+[I 2025-06-18 15:57:15.760 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 15:58:15.752 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 15:59:15.768 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.41ms
+[I 2025-06-18 16:00:15.761 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 16:01:15.768 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.42ms
+[I 2025-06-18 16:02:15.752 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.41ms
+[I 2025-06-18 16:03:15.754 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.41ms
+[I 2025-06-18 16:04:15.757 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.36ms
+[I 2025-06-18 16:04:20.261 ServerApp] Saving file at /induc_lexi_eval.py
+[I 2025-06-18 16:04:26.831 ServerApp] Saving file at /induc_lexi_eval.py
+[I 2025-06-18 16:04:33.681 ServerApp] Saving file at /induc_lexi_eval.py
+[I 2025-06-18 16:05:15.756 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.31ms
+[I 2025-06-18 16:06:15.755 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.42ms
+[I 2025-06-18 16:07:15.756 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 16:08:15.768 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 16:09:15.762 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 16:10:15.761 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 16:11:15.735 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 16:12:15.741 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 16:13:15.742 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 16:14:15.749 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.41ms
+[I 2025-06-18 16:15:15.727 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 16:16:15.732 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 16:17:15.742 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 16:18:15.732 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 16:19:15.730 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 16:20:15.732 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 16:21:15.729 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[W 2025-06-18 16:21:28.877 ServerApp] delete /data/output_segments.zip
+[I 2025-06-18 16:21:36.773 ServerApp] Uploading file to /data/output_segments.zip
+[W 2025-06-18 16:21:52.760 ServerApp] delete /data/output_segments
+[I 2025-06-18 16:22:13.851 ServerApp] Saving file at /data/output_segments.zip
+[I 2025-06-18 16:22:15.735 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.30ms
+[I 2025-06-18 16:23:15.736 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.80ms
+[I 2025-06-18 16:24:15.726 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.73ms
+[I 2025-06-18 16:25:15.736 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 16:26:15.736 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.69ms
+[I 2025-06-18 16:27:15.740 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[W 2025-06-18 16:27:59.197 ServerApp] delete /saved_datasets/timit
+[W 2025-06-18 16:28:09.809 ServerApp] delete /saved_graphs/timit
+[I 2025-06-18 16:28:15.738 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[W 2025-06-18 16:28:17.081 ServerApp] delete /saved_matrix/timit
+[I 2025-06-18 16:29:15.732 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 16:30:15.737 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.38ms
+[I 2025-06-18 16:31:15.737 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.55ms
+[I 2025-06-18 16:32:15.739 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 16:33:15.742 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.66ms
+[I 2025-06-18 16:34:15.744 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 16:35:15.743 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 16:36:15.726 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 16:37:15.738 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 16:38:15.745 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 16:39:15.740 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 16:39:56.103 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 16:40:15.739 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.50ms
+[I 2025-06-18 16:41:15.744 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 1.08ms
+[I 2025-06-18 16:42:15.742 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.79ms
+[I 2025-06-18 16:43:15.744 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.59ms
+[I 2025-06-18 16:44:15.743 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.75ms
+[I 2025-06-18 16:45:15.744 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 1.05ms
+[I 2025-06-18 16:45:45.279 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 16:46:15.744 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 1.15ms
+[I 2025-06-18 16:47:15.735 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 16:47:31.893 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 16:48:02.160 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 16:48:15.747 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 16:48:45.118 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 16:49:15.741 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 16:50:15.741 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.40ms
+[I 2025-06-18 16:51:15.741 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 16:51:41.996 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 16:51:49.671 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 16:52:15.738 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.37ms
+[I 2025-06-18 16:52:36.589 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 16:53:15.741 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.40ms
+[I 2025-06-18 16:54:15.749 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.31ms
+[I 2025-06-18 16:55:15.744 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.42ms
+[I 2025-06-18 16:56:15.744 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 16:57:15.750 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.61ms
+[I 2025-06-18 16:58:15.744 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.38ms
+[I 2025-06-18 16:59:15.747 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 17:00:15.747 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 17:01:15.748 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 17:02:15.745 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 17:03:15.742 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.33ms
+[I 2025-06-18 17:03:54.981 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 17:04:15.748 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 17:05:15.736 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.40ms
+[I 2025-06-18 17:06:15.754 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 17:07:15.752 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 17:08:15.747 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 17:09:15.749 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 17:10:15.759 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 17:11:15.752 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.30ms
+[I 2025-06-18 17:12:15.751 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 17:13:15.750 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.32ms
+[I 2025-06-18 17:14:15.751 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 17:15:15.754 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 17:16:15.756 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 17:17:15.743 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 17:18:15.752 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 17:19:15.752 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 17:20:15.746 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 17:21:15.760 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 17:22:15.752 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.40ms
+[I 2025-06-18 17:23:15.760 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 17:24:15.759 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 17:25:15.754 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 17:26:15.812 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.43ms
+[I 2025-06-18 17:27:15.754 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 17:28:15.761 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 17:28:49.901 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.39ms
+[I 2025-06-18 17:29:11.000 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 17:29:15.749 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 17:30:14.003 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 17:30:15.333 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 17:30:15.754 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.26ms
+[I 2025-06-18 17:30:56.738 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 17:31:14.054 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 17:31:15.756 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.30ms
+[I 2025-06-18 17:32:15.762 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 17:32:30.776 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 17:32:55.129 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 17:33:15.754 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.31ms
+[I 2025-06-18 17:34:02.912 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 17:34:15.760 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 17:34:41.115 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 17:35:15.761 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.44ms
+[I 2025-06-18 17:36:02.942 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 17:36:15.754 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.30ms
+[I 2025-06-18 17:37:15.761 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.41ms
+[I 2025-06-18 17:37:38.987 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 17:38:03.562 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 17:38:15.763 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 17:38:33.270 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 17:39:14.977 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 17:39:15.763 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 17:39:23.597 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 17:40:15.763 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 17:40:33.338 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 17:40:48.215 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 17:41:15.759 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.42ms
+[I 2025-06-18 17:42:15.764 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 17:42:41.928 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 17:43:15.764 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.40ms
+[I 2025-06-18 17:44:15.762 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.30ms
+[I 2025-06-18 17:45:15.773 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.31ms
+[I 2025-06-18 17:46:15.763 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.51ms
+[I 2025-06-18 17:47:15.761 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 17:48:15.763 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 17:49:15.768 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.31ms
+[I 2025-06-18 17:50:15.770 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 17:51:15.773 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.40ms
+[I 2025-06-18 17:52:15.767 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.40ms
+[I 2025-06-18 17:52:28.795 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 17:53:15.768 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 17:54:15.768 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 17:55:15.773 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 17:56:15.774 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 17:57:15.774 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 17:58:15.771 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 17:59:15.775 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 18:00:15.779 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 18:01:15.769 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 18:02:15.775 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 18:02:26.579 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[W 2025-06-18 18:02:28.004 LabApp] Could not determine jupyterlab build status without nodejs
+[W 2025-06-18 18:02:28.371 ServerApp] 404 GET /api/contents/saved_matrix/timit/clique/sample_size_info_10000.csv?content=0&hash=0&1750262548328 (a581068dfbd340e2b48ecf2e575481fe@10.10.127.129) 1.67ms referer=https://36ed1a9a3544fc3a32247fd13eacf19cfa25cbe112d8bea2.labremote.univ-lemans.fr/lab
+[W 2025-06-18 18:02:28.371 ServerApp] 404 GET /api/contents/saved_matrix/timit/clique/sample_size_info_10000.csv?content=0&hash=0&1750262548328 (10.10.127.129): No such file or directory: saved_matrix/timit/clique/sample_size_info_10000.csv
+[W 2025-06-18 18:02:28.378 ServerApp] 404 GET /api/contents/saved_matrix/timit/clique/sample_size_val_info_10000.csv?content=0&hash=0&1750262548328 (a581068dfbd340e2b48ecf2e575481fe@10.10.127.129) 1.57ms referer=https://36ed1a9a3544fc3a32247fd13eacf19cfa25cbe112d8bea2.labremote.univ-lemans.fr/lab
+[W 2025-06-18 18:02:28.378 ServerApp] 404 GET /api/contents/saved_matrix/timit/clique/sample_size_val_info_10000.csv?content=0&hash=0&1750262548328 (10.10.127.129): No such file or directory: saved_matrix/timit/clique/sample_size_val_info_10000.csv
+[I 2025-06-18 18:03:15.768 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.43ms
+[I 2025-06-18 18:03:16.477 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 18:03:22.622 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 18:04:15.771 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[W 2025-06-18 18:04:37.826 ServerApp] delete /saved_graphs/google_commands
+[W 2025-06-18 18:04:46.275 ServerApp] delete /saved_matrix/google_commands
+[I 2025-06-18 18:05:15.774 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.53ms
+[I 2025-06-18 18:06:15.767 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 18:07:15.779 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 18:08:15.675 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 18:08:15.776 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 18:09:15.759 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.42ms
+[I 2025-06-18 18:10:15.778 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.42ms
+[I 2025-06-18 18:11:13.170 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 18:11:15.773 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.30ms
+[I 2025-06-18 18:12:15.744 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 18:12:15.778 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 18:12:18.039 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 18:13:15.778 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 18:14:15.782 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.44ms
+[I 2025-06-18 18:15:15.779 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.42ms
+[I 2025-06-18 18:15:58.690 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 18:16:15.774 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.50ms
+[I 2025-06-18 18:17:15.780 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 18:17:48.278 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 18:18:15.777 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 18:19:15.776 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 18:20:15.777 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.32ms
+[I 2025-06-18 18:21:15.784 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.31ms
+[I 2025-06-18 18:22:15.778 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 18:22:30.352 ServerApp] Saving file at /gnn_heto_link_pred_model.py
+[I 2025-06-18 18:23:15.783 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 18:23:48.260 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 18:24:15.786 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.38ms
+[I 2025-06-18 18:24:34.301 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 18:24:47.029 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 18:25:15.784 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 18:26:15.786 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.67ms
+[I 2025-06-18 18:26:42.477 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 18:27:15.797 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 18:28:15.785 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.56ms
+[I 2025-06-18 18:29:15.789 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.50ms
+[I 2025-06-18 18:30:15.789 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 18:31:15.787 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.51ms
+[I 2025-06-18 18:32:15.786 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.61ms
+[I 2025-06-18 18:33:15.788 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.63ms
+[I 2025-06-18 18:34:15.787 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.76ms
+[I 2025-06-18 18:35:15.791 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 18:36:15.784 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.67ms
+[I 2025-06-18 18:37:15.791 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.51ms
+[I 2025-06-18 18:38:15.793 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 18:38:19.695 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 18:39:15.790 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 18:40:15.785 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.82ms
+[I 2025-06-18 18:41:15.773 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.82ms
+[I 2025-06-18 18:42:15.790 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.52ms
+[I 2025-06-18 18:43:15.788 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.81ms
+[I 2025-06-18 18:44:15.792 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.69ms
+[I 2025-06-18 18:45:15.788 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 18:46:15.778 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 18:47:15.793 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 18:48:15.786 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 18:48:33.848 ServerApp] Saving file at /eval_embedding.py
+[I 2025-06-18 18:49:05.520 ServerApp] Saving file at /eval_embedding.py
+[I 2025-06-18 18:49:15.793 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.34ms
+[I 2025-06-18 18:49:38.069 ServerApp] Saving file at /eval_embedding.py
+[I 2025-06-18 18:50:15.780 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.44ms
+[I 2025-06-18 18:50:24.062 ServerApp] Saving file at /eval_embedding.py
+[I 2025-06-18 18:51:00.213 ServerApp] Saving file at /eval_embedding.py
+[I 2025-06-18 18:51:15.787 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 18:52:15.783 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.54ms
+[I 2025-06-18 18:53:15.794 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.81ms
+[I 2025-06-18 18:54:15.791 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.78ms
+[I 2025-06-18 18:55:15.787 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.74ms
+[I 2025-06-18 18:56:15.795 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.78ms
+[I 2025-06-18 18:57:15.795 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.55ms
+[I 2025-06-18 18:58:15.798 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.51ms
+[I 2025-06-18 18:59:15.799 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.83ms
+[I 2025-06-18 19:00:13.781 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 19:00:15.798 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 19:01:15.786 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 19:02:15.788 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.55ms
+[I 2025-06-18 19:03:15.795 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 19:04:15.799 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.82ms
+[I 2025-06-18 19:05:15.803 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.86ms
+[I 2025-06-18 19:06:15.798 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.69ms
+[I 2025-06-18 19:07:15.794 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 19:08:15.799 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 19:08:22.845 ServerApp] Saving file at /eval_embedding.py
+[I 2025-06-18 19:09:15.796 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 19:10:15.800 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 1.05ms
+[I 2025-06-18 19:11:15.795 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.33ms
+[I 2025-06-18 19:12:15.798 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.42ms
+[I 2025-06-18 19:12:45.483 ServerApp] Saving file at /induc_lexi_eval.py
+[I 2025-06-18 19:13:15.803 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.41ms
+[I 2025-06-18 19:14:06.837 ServerApp] Saving file at /induc_lexi_eval.py
+[I 2025-06-18 19:14:11.904 ServerApp] Saving file at /induc_lexi_eval.py
+[I 2025-06-18 19:14:15.798 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 19:15:02.335 ServerApp] Saving file at /eval_embedding.py
+[I 2025-06-18 19:15:15.805 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 19:16:15.804 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 19:17:15.810 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 19:18:15.807 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.35ms
+[I 2025-06-18 19:18:46.178 ServerApp] Saving file at /induc_lexi_eval.py
+[I 2025-06-18 19:19:15.804 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 19:20:15.805 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 19:20:46.234 ServerApp] Saving file at /induc_lexi_eval.py
+[I 2025-06-18 19:21:01.897 ServerApp] Saving file at /induc_lexi_eval.py
+[I 2025-06-18 19:21:15.801 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.50ms
+[I 2025-06-18 19:22:15.811 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.62ms
+[I 2025-06-18 19:23:15.808 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.83ms
+[I 2025-06-18 19:24:15.812 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 19:25:15.803 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.81ms
+[I 2025-06-18 19:26:10.094 ServerApp] Saving file at /induc_lexi_eval.py
+[I 2025-06-18 19:26:15.806 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 19:27:15.809 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 19:28:15.810 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 19:29:15.807 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 19:30:15.799 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.50ms
+[I 2025-06-18 19:31:15.813 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 19:32:15.805 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.38ms
+[I 2025-06-18 19:33:04.059 ServerApp] Saving file at /eval_embedding.py
+[I 2025-06-18 19:33:15.817 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 19:33:50.486 ServerApp] Saving file at /eval_embedding.py
+[I 2025-06-18 19:34:15.811 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 19:34:39.961 ServerApp] Saving file at /eval_embedding.py
+[I 2025-06-18 19:34:55.352 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 19:35:15.815 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.53ms
+[I 2025-06-18 19:36:15.809 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.81ms
+[I 2025-06-18 19:37:15.810 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 19:38:15.818 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.30ms
+[I 2025-06-18 19:39:15.819 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 19:39:37.740 ServerApp] Saving file at /eval_embedding.py
+[I 2025-06-18 19:40:15.818 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 19:41:15.813 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.52ms
+[I 2025-06-18 19:42:15.818 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 19:43:15.811 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.51ms
+[I 2025-06-18 19:44:15.821 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.36ms
+[I 2025-06-18 19:45:15.821 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.63ms
+[I 2025-06-18 19:46:15.816 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.83ms
+[I 2025-06-18 19:47:15.817 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 19:48:15.817 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.75ms
+[I 2025-06-18 19:49:05.814 ServerApp] Saving file at /induc_lexi_eval.py
+[I 2025-06-18 19:49:15.819 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 19:49:36.389 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 19:50:15.815 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.43ms
+[I 2025-06-18 19:51:15.820 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.50ms
+[I 2025-06-18 19:51:44.797 ServerApp] Saving file at /induc_lexi_eval.py
+[I 2025-06-18 19:52:15.809 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 19:52:55.789 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 19:53:15.819 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 19:53:20.617 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 19:54:15.812 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.55ms
+[I 2025-06-18 19:55:15.817 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 19:56:15.818 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.32ms
+[I 2025-06-18 19:57:15.821 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.30ms
+[I 2025-06-18 19:58:15.823 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.34ms
+[I 2025-06-18 19:58:25.176 ServerApp] Saving file at /induc_lexi_eval.py
+[I 2025-06-18 19:59:15.824 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 20:00:15.824 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.51ms
+[I 2025-06-18 20:01:15.817 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.50ms
+[I 2025-06-18 20:01:34.131 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 20:02:15.804 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.48ms
+[I 2025-06-18 20:03:15.821 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 20:04:15.824 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[W 2025-06-18 20:04:47.696 TerminalsExtensionApp] WebSocket ping timeout after 90001 ms.
+[I 2025-06-18 20:05:15.826 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 20:06:15.823 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 20:07:15.828 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.58ms
+[I 2025-06-18 20:08:15.826 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 20:09:15.830 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 20:10:15.829 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.55ms
+[I 2025-06-18 20:11:15.835 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.66ms
+[I 2025-06-18 20:12:15.833 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.62ms
+[I 2025-06-18 20:13:15.823 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.76ms
+[I 2025-06-18 20:14:15.831 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.78ms
+[I 2025-06-18 20:15:15.832 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.74ms
+[I 2025-06-18 20:16:15.829 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 20:17:15.829 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 20:18:15.835 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.59ms
+[I 2025-06-18 20:19:15.835 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.61ms
+[I 2025-06-18 20:20:15.824 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.36ms
+[I 2025-06-18 20:21:15.832 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.66ms
+[I 2025-06-18 20:22:15.838 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.77ms
+[I 2025-06-18 20:23:15.829 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.65ms
+[I 2025-06-18 20:24:15.831 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.87ms
+[I 2025-06-18 20:25:15.820 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.88ms
+[I 2025-06-18 20:26:15.825 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.51ms
+[I 2025-06-18 20:27:15.837 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 20:28:15.834 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.40ms
+[I 2025-06-18 20:28:32.700 ServerApp] Saving file at /exec_pipeline.sh
+[I 2025-06-18 20:29:15.835 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 20:30:15.831 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.51ms
+[I 2025-06-18 20:31:15.837 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 1.15ms
+[I 2025-06-18 20:32:15.834 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.73ms
+[I 2025-06-18 20:33:15.837 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.63ms
+[I 2025-06-18 20:34:15.835 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 1.00ms
+[I 2025-06-18 20:35:15.837 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 20:36:15.835 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 20:37:15.840 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.61ms
+[I 2025-06-18 20:38:15.836 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.70ms
+[I 2025-06-18 20:39:15.840 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.70ms
+[I 2025-06-18 20:40:15.838 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.53ms
+[I 2025-06-18 20:41:15.838 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 20:42:15.827 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.38ms
+[I 2025-06-18 20:43:15.837 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.55ms
+[I 2025-06-18 20:44:15.842 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 20:45:15.833 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 20:46:15.840 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.32ms
+[I 2025-06-18 20:47:15.836 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 20:48:15.840 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.36ms
+[I 2025-06-18 20:49:15.841 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.30ms
+[I 2025-06-18 20:50:15.841 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.30ms
+[I 2025-06-18 20:51:15.838 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.44ms
+[I 2025-06-18 20:52:15.844 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.42ms
+[I 2025-06-18 20:53:15.840 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.30ms
+[I 2025-06-18 20:54:15.833 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.42ms
+[I 2025-06-18 20:55:15.840 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.38ms
+[I 2025-06-18 20:56:15.834 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.32ms
+[I 2025-06-18 20:57:15.836 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.32ms
+[I 2025-06-18 20:58:15.840 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 20:59:15.836 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.49ms
+[I 2025-06-18 21:00:15.843 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.43ms
+[I 2025-06-18 21:01:15.845 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 21:02:15.844 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 21:03:15.826 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 21:04:15.844 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 21:05:15.847 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.44ms
+[I 2025-06-18 21:06:15.844 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 21:07:15.845 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 21:08:15.842 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.32ms
+[I 2025-06-18 21:09:15.846 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 21:10:15.845 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 21:11:15.848 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 21:12:15.854 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 21:13:15.848 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.44ms
+[I 2025-06-18 21:14:15.847 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.42ms
+[I 2025-06-18 21:15:15.851 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.42ms
+[W 2025-06-18 21:16:05.959 ServerApp] 400 GET /api/contents/filtered_similarity_matrix_word_google_command.npy?type=file&content=1&hash=1&format=text&1750274165973 (10.10.127.129): /export/home/lium/yyomie/Acoustic_Linguistic_GNN/filtered_similarity_matrix_word_google_command.npy is not UTF-8 encoded
+[W 2025-06-18 21:16:05.959 ServerApp] wrote error: '/export/home/lium/yyomie/Acoustic_Linguistic_GNN/filtered_similarity_matrix_word_google_command.npy is not UTF-8 encoded'
+    Traceback (most recent call last):
+      File "/usr/local/lib/python3.9/dist-packages/jupyter_server/services/contents/fileio.py", line 536, in _read_file
+        (bcontent.decode("utf8"), "text", bcontent)
+    UnicodeDecodeError: 'utf-8' codec can't decode byte 0x93 in position 0: invalid start byte
+    
+    The above exception was the direct cause of the following exception:
+    
+    Traceback (most recent call last):
+      File "/usr/local/lib/python3.9/dist-packages/tornado/web.py", line 1713, in _execute
+        result = await result
+      File "/usr/local/lib/python3.9/dist-packages/jupyter_server/auth/decorator.py", line 73, in inner
+        return await out
+      File "/usr/local/lib/python3.9/dist-packages/jupyter_server/services/contents/handlers.py", line 154, in get
+        model = await ensure_async(
+      File "/usr/local/lib/python3.9/dist-packages/jupyter_core/utils/__init__.py", line 198, in ensure_async
+        result = await obj
+      File "/usr/local/lib/python3.9/dist-packages/jupyter_server/services/contents/filemanager.py", line 926, in get
+        model = await self._file_model(
+      File "/usr/local/lib/python3.9/dist-packages/jupyter_server/services/contents/filemanager.py", line 835, in _file_model
+        content, format, bytes_content = await self._read_file(os_path, format, raw=True)  # type: ignore[misc]
+      File "/usr/local/lib/python3.9/dist-packages/jupyter_server/services/contents/fileio.py", line 545, in _read_file
+        raise HTTPError(
+    tornado.web.HTTPError: HTTP 400: bad format (/export/home/lium/yyomie/Acoustic_Linguistic_GNN/filtered_similarity_matrix_word_google_command.npy is not UTF-8 encoded)
+[W 2025-06-18 21:16:06.009 ServerApp] 400 GET /api/contents/filtered_similarity_matrix_word_google_command.npy?type=file&content=1&hash=1&format=text&1750274165973 (a581068dfbd340e2b48ecf2e575481fe@10.10.127.129) 52.81ms referer=https://36ed1a9a3544fc3a32247fd13eacf19cfa25cbe112d8bea2.labremote.univ-lemans.fr/lab/tree/filtered_similarity_matrix_word_google_command.npy
+[I 2025-06-18 21:16:15.848 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.32ms
+[I 2025-06-18 21:17:15.847 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.31ms
+[I 2025-06-18 21:18:15.848 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.38ms
+[I 2025-06-18 21:19:15.835 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.47ms
+[I 2025-06-18 21:20:15.847 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.42ms
+[I 2025-06-18 21:21:15.848 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 21:22:15.849 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.56ms
+[I 2025-06-18 21:23:15.857 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.46ms
+[I 2025-06-18 21:24:15.850 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.45ms
+[I 2025-06-18 21:25:15.851 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.39ms
+[I 2025-06-18 21:26:15.856 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.38ms
+[I 2025-06-18 21:27:15.851 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.31ms
+[I 2025-06-18 21:28:15.852 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.31ms
+[I 2025-06-18 21:29:15.845 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.31ms
+[I 2025-06-18 21:29:55.000 ServerApp] Saving file at /induc_lexi_eval.py
+[I 2025-06-18 21:30:15.855 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.28ms
+[I 2025-06-18 21:31:15.858 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.41ms
+[I 2025-06-18 21:31:55.129 ServerApp] Saving file at /induc_lexi_eval.py
+[I 2025-06-18 21:32:15.855 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.27ms
+[I 2025-06-18 21:33:15.859 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
+[I 2025-06-18 21:33:55.257 ServerApp] Saving file at /induc_lexi_eval.py
+[I 2025-06-18 21:34:15.858 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.31ms
+[I 2025-06-18 21:35:15.853 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.35ms
+[I 2025-06-18 21:35:55.392 ServerApp] Saving file at /induc_lexi_eval.py
+[I 2025-06-18 21:36:15.853 ServerApp] 302 GET /?token=[secret] (@10.10.127.129) 0.29ms
