@@ -228,6 +228,18 @@ def train_link_regression(model, g, features, true_edge_labels,
                           src, dst, src_pos, dst_pos, 
                           val_ratio=0.2, test_ratio=0.1,
                           epochs=100, lr=0.0001, lamb=0.0, seed=42):
+    
+    device = next(model.parameters()).device  # Get device from model
+    
+    # Move all tensors to the same device as model
+    g = g.to(device)
+    features = {k: v.to(device) for k, v in features.items()}
+    true_edge_labels = true_edge_labels.to(device)
+    src = src.to(device)
+    dst = dst.to(device)
+    src_pos = src_pos.to(device)
+    dst_pos = dst_pos.to(device)
+    
 
     torch.manual_seed(seed)
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
@@ -387,7 +399,10 @@ def infoNCE_loss(embeddings_acoustic, embeddings_word, pos_src, pos_dst, tempera
     pos_src, pos_dst: indices des paires positives (généralement identiques dans batch ordonné)
     temperature: facteur d'échelle pour la similarité
     """
-
+    device = embeddings_acoustic.device
+    pos_src = pos_src.to(device)
+    pos_dst = pos_dst.to(device)
+    #
     # Normaliser les embeddings pour utiliser cosinus similarity
     embeddings_acoustic = F.normalize(embeddings_acoustic, dim=1)
     embeddings_word = F.normalize(embeddings_word, dim=1)
@@ -440,6 +455,7 @@ def topological_loss(embeddings_acoustic, embeddings_word,
     
 
 def generate_negative_edges(g, num_samples, src_type='word', dst_type='acoustic', etype='related_to'):
+    device = g.device
     src_nodes = torch.arange(g.num_nodes(src_type))
     dst_nodes = torch.arange(g.num_nodes(dst_type))
     existing_edges = set(zip(*g.edges(etype=etype)))
@@ -451,9 +467,12 @@ def generate_negative_edges(g, num_samples, src_type='word', dst_type='acoustic'
         if (src, dst) not in existing_edges:
             negatives.append((src, dst))
             existing_edges.add((src, dst))  # pour éviter les doublons
-    return torch.tensor([i[0] for i in negatives]), torch.tensor([i[1] for i in negatives])
+    return torch.tensor([i[0] for i in negatives], device=device), torch.tensor([i[1] for i in negatives], device=device)
 
 def predict_edge_probabilities(model, acoustic_embeddings, word_embeddings, src, dst):
+    device = next(model.parameters()).device
+    src = src.to(device)
+    dst = dst.to(device)
     src_embed = word_embeddings[src]
     dst_embed = acoustic_embeddings[dst]
     diff = torch.abs(src_embed - dst_embed)
@@ -512,13 +531,17 @@ def save_results_to_excel(results_dict, args, excel_path='results.xlsx'):
 
     
 def main(input_folder, graph_file, epochs, lamb, dataset, args):
+    # Detect GPU if available
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    logging.info(f'Using device: {device}')
+    
     glist, _ = dgl.load_graphs(os.path.join(input_folder, graph_file))
-    hetero_graph = glist[0]
-
+    hetero_graph = glist[0].to(device)  # Move graph to GPU
+    
     features = {
-        'acoustic': hetero_graph.nodes['acoustic'].data['feat'],
-        'word': hetero_graph.nodes['word'].data['feat']
-    }
+        'acoustic': hetero_graph.nodes['acoustic'].data['feat'].to(device),
+        'word': hetero_graph.nodes['word'].data['feat'].to(device)
+    }   
     with open(f'phon_idx_{dataset}.pkl', 'rb') as f:
         phon_idx = pickle.load(f)
     
@@ -526,6 +549,13 @@ def main(input_folder, graph_file, epochs, lamb, dataset, args):
     # Positifs
     src_pos, dst_pos = hetero_graph.edges(etype=('word', 'related_to', 'acoustic'))
     weights_pos = hetero_graph.edges[('word', 'related_to', 'acoustic')].data['weight']
+    
+    # Move these to GPU
+    src_pos = src_pos.to(device)
+    dst_pos = dst_pos.to(device)
+    weights_pos = weights_pos.to(device)
+
+
     
 
     # Négatifs (autant que les positifs, ou plus/moins si tu veux)
@@ -544,7 +574,7 @@ def main(input_folder, graph_file, epochs, lamb, dataset, args):
     hidden_size = 512
     linear_hidden_size = 64
     nb_phon = hetero_graph.nodes['word'].data['feat'].shape[1]
-    model = HeteroLinkGCN(in_feats, hidden_size, nb_phon, linear_hidden_size)
+    model = HeteroLinkGCN(in_feats, hidden_size, nb_phon, linear_hidden_size).to(device)
 
    
    
@@ -601,6 +631,10 @@ if __name__ == "__main__":
     parser.add_argument('--sub_units', help='fraction of data', required=True)  
     parser.add_argument('--feature', type=str, default='mfcc', choices=['mfcc', 'mel_spec', 'wav2vec', 'trill', 'vggish', 'yamnet', 'wavlm', 'hubert'], help='Feature type to extract')
     args = parser.parse_args()
+    
+    if not torch.cuda.is_available():
+        logging.warning("CUDA is not available. Running on CPU.")
+    
 
     main(args.input_folder, args.graph_file, int(args.epochs), float(args.lamb), args.dataset, args)
 
