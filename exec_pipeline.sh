@@ -8,7 +8,7 @@ declare -A UNIT_DIVISORS=( ["timit"]=6102 ["spoken_digit"]=10 ["google_command"]
 
 #################################### CONFIGURATION #################################################
 DATASETS=("mini_google_commands" "google_commands"  "spoken_digit" "yemba_command_small")
-UNITS=$(seq 100 100 8000)
+UNITS=$(seq 2000 100 8000)
 METHOD_MMA="clique"
 METHOD_MSA="filter"
 ALPHAS=(1.0)

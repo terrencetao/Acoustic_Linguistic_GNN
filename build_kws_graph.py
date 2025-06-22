@@ -10,6 +10,8 @@ from netbone.filters import boolean_filter, threshold_filter, fraction_filter
 from generate_similarity_matrix_acoustic import compute_distance_for_pair, compute_dtw_distance, distance_dtw, vgg_distance
 from joblib import Parallel, delayed
 from tqdm import tqdm
+import time
+from datetime import timedelta
 
 np.random.seed(42)
     
@@ -279,9 +281,16 @@ if __name__ == "__main__":
               G.add_edge(i, j, weight=similarity)
         ## filtrage netbone 
         # 1. Calculer le squelette à haute saillance
-        backbone = nb.high_salience_skeleton(G)
+        start_time = time.time()
+        backbone = nb.maximum_spanning_tree(G)
 
-        backbone_G = fraction_filter(backbone, 0.15)
+        backbone_G = boolean_filter(backbone)
+        elapsed_time = time.time() - start_time
+        formatted_time = str(timedelta(seconds=int(elapsed_time)))
+
+   
+        print(f"Temps total (PMFG + filtre) : {formatted_time}")
+
         backbone_df = backbone.to_dataframe()
         print(backbone_df.head())
         # Créer un graphe avec tous les nœuds d'origine

@@ -560,7 +560,7 @@ def main(input_folder, graph_file, epochs, lamb, dataset, args):
     model, hetero_graph, features, true_edge_labels,
     src, dst,
     src_pos, dst_pos,
-    epochs=epochs, lr=0.0001, lamb=0.1  # adjust lamb/alpha as needed
+    epochs=epochs, lr=0.0001, lamb=0.01  # adjust lamb/alpha as needed
 )
 
     

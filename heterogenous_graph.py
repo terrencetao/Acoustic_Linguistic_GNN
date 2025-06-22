@@ -100,8 +100,7 @@ def create_weighted_label_matrix(graph, graph_w):
             elif graph_w.has_edges_between(get_idx_from_label(true_label,graph_w), label_idx):
                 edge_ids = graph_w.edge_ids(get_idx_from_label(true_label,graph_w), label_idx)
                 weights = graph_w.edata['weight'][edge_ids]
-                if weights > 0.6:
-                    weighted_matrix[node_idx, label_idx] = weights
+                weighted_matrix[node_idx, label_idx] = weights
                 
 
     return weighted_matrix, label_matrix
